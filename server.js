@@ -544,7 +544,7 @@ function serveStaticFile(filePath, req, res) {
   const headers = {
     'Content-Type': contentType,
     'Access-Control-Allow-Origin': '*',
-    'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=86400'
+    'Cache-Control': 'no-cache, no-store, must-revalidate'
   };
 
   const compressible = ['.html', '.css', '.js', '.json', '.svg'].includes(ext);

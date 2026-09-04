@@ -274,6 +274,7 @@ function renderRooms() {
 
   grid.innerHTML = cardsHtml;
   renderPagination(totalRooms, currentPage, roomsPerPage);
+  initTouchSliders();
 }
 
 // ==========================================================================
@@ -404,6 +405,87 @@ function changeCardSlide(roomId, step, event) {
   dots.forEach((dot, idx) => {
     dot.classList.toggle("active", idx === nextIndex);
   });
+}
+
+// Touch swipe gestures for card image slider
+function initTouchSliders() {
+  document.querySelectorAll('.card-image-slider').forEach(slider => {
+    let startX = 0;
+    let startY = 0;
+    let isSwiping = false;
+
+    slider.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isSwiping = false;
+      }
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1) {
+        const diffX = e.touches[0].clientX - startX;
+        const diffY = e.touches[0].clientY - startY;
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+          isSwiping = true;
+        }
+      }
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      const endX = e.changedTouches[0].clientX;
+      const diffX = endX - startX;
+      const roomId = slider.id.replace('slider-', '');
+      if (diffX < -30) {
+        // Vuốt sang trái -> Xem ảnh tiếp theo
+        changeCardSlide(roomId, 1, e);
+      } else if (diffX > 30) {
+        // Vuốt sang phải -> Xem ảnh trước đó
+        changeCardSlide(roomId, -1, e);
+      }
+    }, { passive: true });
+  });
+}
+
+function initModalTouchGallery() {
+  const mainGallery = document.querySelector('.detail-gallery-main');
+  if (!mainGallery) return;
+  let startX = 0;
+  let isSwiping = false;
+
+  mainGallery.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      isSwiping = false;
+    }
+  }, { passive: true });
+
+  mainGallery.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 1) {
+      const diffX = e.touches[0].clientX - startX;
+      if (Math.abs(diffX) > 10) isSwiping = true;
+    }
+  }, { passive: true });
+
+  mainGallery.addEventListener('touchend', (e) => {
+    if (!isSwiping || !currentDetailRoom || !currentDetailRoom.images || currentDetailRoom.images.length <= 1) return;
+    const diffX = e.changedTouches[0].clientX - startX;
+    if (Math.abs(diffX) > 35) {
+      const mainImg = document.getElementById('detailMainImg');
+      if (!mainImg) return;
+      const curSrc = mainImg.src;
+      let curIdx = currentDetailRoom.images.findIndex(img => curSrc.includes(img) || img === curSrc);
+      if (curIdx === -1) curIdx = 0;
+      let nextIdx = diffX < 0 ? curIdx + 1 : curIdx - 1;
+      if (nextIdx >= currentDetailRoom.images.length) nextIdx = 0;
+      if (nextIdx < 0) nextIdx = currentDetailRoom.images.length - 1;
+      const nextImg = currentDetailRoom.images[nextIdx];
+      const thumbs = document.querySelectorAll('.thumb-img');
+      switchDetailImg(nextImg, thumbs[nextIdx]);
+      if (thumbs[nextIdx]) thumbs[nextIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, { passive: true });
 }
 
 // Filter logic (Toàn bộ tiêu chí lọc chuẩn xác theo giao diện Listivo / Mời Thuê)
@@ -1008,6 +1090,7 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
   `;
 
   openModal("roomDetailModal");
+  initModalTouchGallery();
 }
 
 function switchDetailImg(imgSrc, thumbEl) {
