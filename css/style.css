@@ -1948,11 +1948,103 @@ button, input, select, textarea {
     padding: 16px;
   }
   .room-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
+
+  .card-media-wrapper {
+    height: 140px;
+  }
+
+  .card-content {
+    padding: 10px 10px 12px;
+  }
+
+  .card-category {
+    font-size: 0.68rem;
+    margin-bottom: 2px;
+  }
+
+  .card-title {
+    font-size: 0.88rem;
+    line-height: 1.35;
+    margin-bottom: 6px;
+    height: 2.7em;
+  }
+
+  .card-location {
+    font-size: 0.76rem;
+    margin-bottom: 6px;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-specs {
+    display: none; /* Hide specs on mobile 2-col to match clean Moithue style */
+  }
+
+  .card-footer {
+    padding-top: 4px;
+    margin-top: auto;
+  }
+
+  .price-value {
+    font-size: 1.02rem;
+    color: #EA580C;
+  }
+
+  .price-unit {
+    font-size: 0.7rem;
+  }
+
+  .card-cta-group {
+    gap: 5px;
+  }
+
+  .btn-quick-view {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+
+  .btn-schedule-view {
+    padding: 5px 9px;
+    font-size: 0.75rem;
+  }
+
+  .badge-code, .badge-status {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  .badge-ev-vin, .badge-ev-ok, .badge-ev-no {
+    font-size: 0.65rem;
+    padding: 2px 5px;
+  }
+
+  .btn-media-quickview {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    bottom: 8px;
+    left: 8px;
+  }
+
+  .btn-wishlist {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  .slider-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+
   .detail-gallery {
     grid-template-columns: 1fr;
-    height: 240px;
+    height: auto;
   }
   .detail-gallery-thumbs {
     display: flex;

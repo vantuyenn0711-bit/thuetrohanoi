@@ -184,7 +184,8 @@ function cleanHtmlPreserveBreaks(html) {
 
 function transformMoithueName(str) {
   if (!str) return '';
-  return str.replace(/(?:^|\b)(?:(?:ngõ|ngách)\s+)?(\d+)\.\d+\s+(?!(?:triệu|tỷ|m2|m²|tr\s*\/|tr\s*$))/gi, (match, alley) => 'ngõ ' + alley + ' ').trim();
+  // Chuyển 115.x -> 115, 115.55.x -> 115, 58.05 -> 58, 89.19.38.x -> 89
+  return str.replace(/^((?:[A-Za-z]{1,4}\s*)?\d+[A-Za-z]?)(?:\.[a-zA-Z0-9]+)+\s+/i, (match, prefix) => prefix + ' ').trim();
 }
 
 function extractRoomFromHtml(html, slug) {
