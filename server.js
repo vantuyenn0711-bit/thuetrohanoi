@@ -515,16 +515,48 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon'
 };
 
-function serveStaticFile(filePath, res) {
+const zlib = require('zlib');
+const fileCache = new Map();
+
+function serveStaticFile(filePath, req, res) {
   const fullPath = path.join(__dirname, filePath);
   if (!fs.existsSync(fullPath)) {
     res.writeHead(404); res.end('Not found'); return;
   }
   const ext = path.extname(fullPath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-  const content = fs.readFileSync(fullPath);
-  res.writeHead(200, { 'Content-Type': contentType, 'Access-Control-Allow-Origin': '*' });
-  res.end(content);
+  
+  let content = fileCache.get(fullPath);
+  if (!content) {
+    try {
+      content = fs.readFileSync(fullPath);
+      // Cache files smaller than 2MB
+      if (content.length < 2 * 1024 * 1024) {
+        fileCache.set(fullPath, content);
+      }
+    } catch (e) {
+      res.writeHead(500); res.end('Read error'); return;
+    }
+  }
+
+  const acceptEncoding = (req && req.headers && req.headers['accept-encoding']) || '';
+  const headers = {
+    'Content-Type': contentType,
+    'Access-Control-Allow-Origin': '*',
+    'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=86400'
+  };
+
+  const compressible = ['.html', '.css', '.js', '.json', '.svg'].includes(ext);
+  if (compressible && acceptEncoding.includes('gzip')) {
+    headers['Content-Encoding'] = 'gzip';
+    res.writeHead(200, headers);
+    zlib.gzip(content, (err, gzipped) => {
+      if (err) { res.end(content); } else { res.end(gzipped); }
+    });
+  } else {
+    res.writeHead(200, headers);
+    res.end(content);
+  }
 }
 
 // ======================================================================
@@ -612,7 +644,7 @@ const server = http.createServer(async (req, res) => {
   // Static files
   let filePath = pathname === '/' ? '/index.html' : (pathname === '/admin' ? '/admin.html' : pathname);
   filePath = filePath.replace(/\.\./g, ''); // Security: prevent path traversal
-  serveStaticFile(filePath, res);
+  serveStaticFile(filePath, req, res);
 });
 
 server.on('error', (err) => {
