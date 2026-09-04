@@ -176,9 +176,9 @@ function renderRooms() {
     const isSaved = wishlist.includes(room.id);
     const priceFormatted = new Intl.NumberFormat('vi-VN').format(room.price) + " đ";
     
-    // Build slider images
+    // Build slider images (Chỉ nạp trước ảnh đầu tiên, các ảnh sau nạp theo yêu cầu để web siêu nhanh trên điện thoại)
     const slidesHtml = room.images.map((img, idx) => `
-      <img src="${img}" class="card-slide-img" style="display: ${idx === 0 ? 'block' : 'none'};" data-index="${idx}" alt="${room.title}" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
+      <img ${idx === 0 ? `src="${img}"` : `data-src="${img}"`} class="card-slide-img" style="display: ${idx === 0 ? 'block' : 'none'};" data-index="${idx}" alt="${room.title}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
     `).join("");
 
     const dotsHtml = room.images.map((_, idx) => `
@@ -391,7 +391,14 @@ function changeCardSlide(roomId, step, event) {
   if (nextIndex >= images.length) nextIndex = 0;
 
   images.forEach((img, idx) => {
-    img.style.display = idx === nextIndex ? "block" : "none";
+    if (idx === nextIndex) {
+      if (img.dataset.src && (!img.src || img.src.endsWith('/undefined') || img.src === window.location.href)) {
+        img.src = img.dataset.src;
+      }
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+    }
   });
 
   dots.forEach((dot, idx) => {
@@ -828,14 +835,14 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
     <!-- Gallery -->
     <div class="detail-gallery">
       <div class="detail-gallery-main" style="position: relative;">
-        <img src="${room.images[0]}" id="detailMainImg" alt="${room.title}" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
+        <img src="${room.images[0]}" id="detailMainImg" alt="${room.title}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
         <div class="gallery-photo-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.75); color: white; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; backdrop-filter: blur(4px);">
           <i class="fas fa-images"></i> ${room.images.length} ảnh phòng thực tế
         </div>
       </div>
       <div class="detail-gallery-thumbs" style="display: flex; gap: 8px; overflow-x: auto; padding: 6px 0;">
         ${room.images.map((img, idx) => `
-          <img src="${img}" class="thumb-img ${idx === 0 ? 'active' : ''}" onclick="switchDetailImg('${img}', this)" alt="Ảnh phòng ${idx + 1}" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid ${idx === 0 ? 'var(--primary)' : 'transparent'}; flex-shrink: 0;">
+          <img src="${img}" class="thumb-img ${idx === 0 ? 'active' : ''}" onclick="switchDetailImg('${img}', this)" alt="Ảnh phòng ${idx + 1}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid ${idx === 0 ? 'var(--primary)' : 'transparent'}; flex-shrink: 0;">
         `).join("")}
       </div>
     </div>
