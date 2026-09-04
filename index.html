@@ -198,27 +198,6 @@
        ========================================================================== -->
   <main class="main-section container" id="listingsSection" style="position: relative !important; z-index: 10 !important;">
     
-    <!-- Section Header & Filter -->
-    <div class="section-header">
-      <div class="section-title-wrap">
-        <h2>Mục Cho Thuê Mới Nhất</h2>
-        <p id="resultsCount">Đang tải danh sách phòng...</p>
-      </div>
-
-      <div class="sort-and-view">
-        <button class="btn-toggle-sidebar" onclick="toggleSidebarFilter()">
-          <i class="fas fa-sliders-h"></i> <span>Lọc chuyên sâu</span>
-        </button>
-        <label for="sortSelect" style="font-size: 0.88rem; font-weight: 600; color: var(--text-muted);">Sắp xếp:</label>
-        <select class="sort-select" id="sortSelect">
-          <option value="newest">Phòng mới nhất</option>
-          <option value="price-asc">Giá từ thấp đến cao</option>
-          <option value="price-desc">Giá từ cao đến thấp</option>
-          <option value="area-desc">Diện tích lớn nhất</option>
-        </select>
-      </div>
-    </div>
-
     <!-- MAIN LISTINGS LAYOUT: SIDEBAR BỘ LỌC + GRID PHÒNG -->
     <div class="listings-main-layout">
       <!-- SIDEBAR BACKDROP CHO MOBILE -->
@@ -534,6 +513,27 @@
 
       <!-- RIGHT COLUMN: CARDS GRID & QUICK CATEGORY CHIPS -->
       <div class="listings-grid-column">
+        <!-- Section Header & Filter -->
+        <div class="section-header">
+          <div class="section-title-wrap" style="display: flex; align-items: baseline; gap: 8px;">
+            <div id="resultsCount" style="font-size: 1.45rem; font-weight: 800; color: #1E293B;">Đang tải...</div>
+            <span style="font-size: 0.95rem; font-weight: 700; color: #F59E0B;">Mục cho thuê</span>
+          </div>
+
+          <div class="sort-and-view">
+            <button class="btn-toggle-sidebar" onclick="toggleSidebarFilter()">
+              <i class="fas fa-sliders-h"></i> <span>Lọc chuyên sâu</span>
+            </button>
+            <label for="sortSelect" style="font-size: 0.88rem; font-weight: 600; color: var(--text-muted);">Sắp xếp theo:</label>
+            <select class="sort-select" id="sortSelect">
+              <option value="newest">Tin mới nhất</option>
+              <option value="price-asc">Giá từ thấp đến cao</option>
+              <option value="price-desc">Giá từ cao đến thấp</option>
+              <option value="area-desc">Diện tích lớn nhất</option>
+            </select>
+          </div>
+        </div>
+
         <!-- Category Type Filter Chips -->
         <div class="filter-bar">
           <div class="filter-group">

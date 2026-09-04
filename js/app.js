@@ -129,13 +129,7 @@ function renderRooms() {
   }
   
   if (countDisplay) {
-    if (rooms.length === 0) {
-      countDisplay.innerText = "Chưa có phòng nào trên hệ thống (0 phòng)";
-    } else if (totalRooms === rooms.length) {
-      countDisplay.innerText = `Hiển thị tất cả ${totalRooms} phòng trọ`;
-    } else {
-      countDisplay.innerText = `Tìm thấy ${totalRooms} / ${rooms.length} phòng trọ phù hợp`;
-    }
+    countDisplay.innerHTML = `<span style="font-size: 1.55rem; font-weight: 800; color: #1E293B;">${totalRooms}</span> <span style="font-size: 0.95rem; font-weight: 700; color: #64748B;">kết quả</span>`;
   }
 
   if (totalRooms === 0) {
@@ -190,26 +184,15 @@ function renderRooms() {
     }
 
     return `
-      <div class="room-card" data-room-id="${room.id}" onclick="openRoomDetailModal('${room.id}', true)" style="cursor: pointer;">
+      <div class="room-card moithue-card" data-room-id="${room.id}" onclick="openRoomDetailModal('${room.id}', true)" style="cursor: pointer;">
         <div class="card-media-wrapper">
           <div class="card-badges">
-            <span class="badge-code" style="background: rgba(13, 148, 136, 0.9);">${room.sourceGroupName ? room.sourceGroupName.replace("Khu vực ", "") : (room.tag || room.categoryName)}</span>
+            <span class="badge-code">${room.sourceGroupName ? room.sourceGroupName.replace("Khu vực ", "") : (room.tag || room.categoryName || 'CÒN PHÒNG')}</span>
             <span class="badge-status ${room.status === 'rented' ? 'rented' : ''}">
               <i class="fas fa-circle" style="font-size: 6px;"></i> ${room.statusName || 'Còn phòng'}
             </span>
             ${evBadgeHtml}
           </div>
-
-          <div class="card-actions-top">
-            <button class="btn-wishlist ${isSaved ? 'active' : ''}" title="Lưu phòng yêu thích" onclick="toggleWishlist('${room.id}', event)">
-              <i class="${isSaved ? 'fas fa-heart' : 'far fa-heart'}"></i>
-            </button>
-          </div>
-
-          <!-- Nút Xem nhanh nổi trên ảnh -->
-          <button class="btn-media-quickview" onclick="openRoomDetailModal('${room.id}', false, event)" title="Xem nhanh thông tin phòng">
-            <i class="fas fa-eye"></i> Xem nhanh
-          </button>
 
           <div class="card-image-slider" id="slider-${room.id}">
             ${slidesHtml}
@@ -224,12 +207,15 @@ function renderRooms() {
         </div>
 
         <div class="card-content">
-          <div class="card-category">${room.categoryName || 'Phòng Trọ'}</div>
           <h3 class="card-title">${room.title}</h3>
           
-          <div class="card-location">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>${room.address}</span>
+          <div class="price-box">
+            <span class="price-value">${priceFormatted}</span>
+          </div>
+
+          <div class="card-author">
+            <i class="far fa-user-circle"></i>
+            <span>Đặng Văn Tuyển (0358954360)</span>
           </div>
 
           <div class="card-specs">
@@ -246,21 +232,20 @@ function renderRooms() {
               <span>Tối đa ${room.maxPeople || 2} người</span>
             </div>
           </div>
+        </div>
 
-          <div class="card-footer">
-            <div class="price-box">
-              <span class="price-value">${priceFormatted}</span>
-              <span class="price-unit">/ tháng</span>
-            </div>
-            <div class="card-cta-group">
-              <button class="btn-quick-view" onclick="openRoomDetailModal('${room.id}', false, event)" title="Xem nhanh phòng này">
-                <i class="fas fa-eye"></i> Xem nhanh
-              </button>
-              <button class="btn-schedule-view" onclick="contactZaloRoom('${room.id}', event)" style="background: linear-gradient(135deg, #0068FF, #0052cc); box-shadow: 0 4px 12px rgba(0, 104, 255, 0.25);">
-                <i class="fas fa-comment-dots"></i> Nhắn Zalo
-              </button>
-            </div>
+        <div class="card-footer">
+          <div class="card-actions-left">
+            <button class="moithue-icon-btn" title="Xem nhanh thông tin phòng" onclick="openRoomDetailModal('${room.id}', false, event)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="moithue-icon-btn ${isSaved ? 'active' : ''}" title="Lưu yêu thích" onclick="toggleWishlist('${room.id}', event)">
+              <i class="${isSaved ? 'fas fa-heart' : 'far fa-heart'}"></i>
+            </button>
           </div>
+          <button class="btn-schedule-view" onclick="contactZaloRoom('${room.id}', event)">
+            <i class="fas fa-comment-dots"></i> Nhắn Zalo
+          </button>
         </div>
       </div>
     `;

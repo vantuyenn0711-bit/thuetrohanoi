@@ -253,33 +253,26 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   HERO BANNER & SEARCH BAR
+   HERO BANNER & SEARCH BAR (CHUẨN BỘ LỌC MOITHUE.COM)
    ========================================================================== */
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #0F172A 0%, #134E4A 100%);
-  color: white;
-  padding: 60px 0 80px;
+  background: #E5EFF7;
+  color: #1E293B;
+  padding: 36px 0 24px;
   overflow: visible;
   z-index: 50;
+  border-bottom: 1px solid #D5E3F0;
 }
 
 .hero-section::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(13, 148, 136, 0.3) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+  display: none;
 }
 
 .hero-content {
   text-align: center;
   max-width: 840px;
-  margin: 0 auto 40px;
+  margin: 0 auto 20px;
   position: relative;
   z-index: 2;
 }
@@ -288,34 +281,35 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
+  background: white;
   padding: 6px 16px;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   font-weight: 600;
-  color: #5EEAD4;
-  margin-bottom: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #0D9488;
+  margin-bottom: 12px;
+  border: 1px solid #CBD5E1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .hero-title {
-  font-size: 2.75rem;
+  font-size: 2.2rem;
   font-weight: 800;
   line-height: 1.25;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+  color: #1E3A8A;
   letter-spacing: -0.5px;
 }
 
 .hero-title span {
-  background: linear-gradient(to right, #5EEAD4, #FCD34D);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #F59E0B;
+  background: none;
+  -webkit-text-fill-color: initial;
 }
 
 .hero-desc {
-  font-size: 1.1rem;
-  color: #CBD5E1;
+  font-size: 1rem;
+  color: #64748B;
   max-width: 650px;
   margin: 0 auto;
 }
@@ -414,30 +408,33 @@ button, input, select, textarea {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
+  gap: 8px;
+  margin-top: 18px;
 }
 
 .quick-tag-label {
-  font-size: 0.88rem;
-  color: #94A3B8;
-  font-weight: 500;
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 700;
 }
 
 .quick-tag-item {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 0.85rem;
-  padding: 6px 14px;
+  background: white;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid #CBD5E1;
   cursor: pointer;
   transition: var(--transition);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
 .quick-tag-item:hover, .quick-tag-item.active {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: #F59E0B;
+  border-color: #F59E0B;
+  color: white;
 }
 
 /* ==========================================================================
@@ -730,27 +727,21 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   ROOM CARDS GRID (DESKTOP: 3 COLUMNS, MOBILE: 2 COLUMNS)
+   ROOM CARDS GRID (CHUẨN 2 CỘT LISTIVO / MOITHUE.COM)
    ========================================================================== */
 .room-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-
-@media (max-width: 1200px) {
-  .room-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .room-card {
   background: #FFFFFF;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  border: 1.5px solid #F59E0B;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.08);
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -760,15 +751,15 @@ button, input, select, textarea {
 
 .room-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
-  border-color: rgba(13, 148, 136, 0.45);
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.16);
+  border-color: #D97706;
 }
 
 /* CARD IMAGE SLIDER */
 .card-media-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 10;
   background: #E2E8F0;
   overflow: hidden;
 }
@@ -802,23 +793,24 @@ button, input, select, textarea {
 }
 
 .badge-code {
-  background: rgba(13, 148, 136, 0.95);
-  backdrop-filter: blur(4px);
+  background: #F59E0B;
   color: white;
-  font-size: 0.74rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .badge-status {
-  background: var(--success);
+  background: #10B981;
   color: white;
   font-size: 0.7rem;
   font-weight: 700;
   padding: 3px 8px;
-  border-radius: 6px;
+  border-radius: 4px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -828,72 +820,13 @@ button, input, select, textarea {
   background: var(--text-muted);
 }
 
-.card-actions-top {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 5;
-  display: flex;
-  gap: 8px;
-}
-
-.btn-wishlist {
-  width: 34px;
-  height: 34px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(4px);
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: var(--transition);
-  font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.btn-wishlist:hover, .btn-wishlist.active {
-  background: #FFE4E6;
-  color: #E11D48;
-  border-color: #FECDD3;
-}
-
-.btn-media-quickview {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  z-index: 5;
-  background: rgba(15, 23, 42, 0.82);
-  backdrop-filter: blur(6px);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 5px 11px;
-  border-radius: var(--radius-full);
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.btn-media-quickview:hover {
-  background: var(--primary);
-  border-color: var(--primary);
-  transform: scale(1.04);
-}
-
 /* SLIDER CONTROLS ON CARD */
 .slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: var(--radius-full);
@@ -951,73 +884,66 @@ button, input, select, textarea {
 
 /* CARD CONTENT */
 .card-content {
-  padding: 14px 16px 16px;
+  padding: 14px 16px 10px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.card-category {
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  margin-bottom: 4px;
-}
-
 .card-title {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: #1E3A8A;
-  line-height: 1.38;
-  margin-bottom: 8px;
+  line-height: 1.4;
+  margin-bottom: 6px;
   cursor: pointer;
   transition: var(--transition);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 2.76em;
+  min-height: 2.8em;
 }
 
 .card-title:hover {
-  color: var(--primary);
+  color: #D97706;
 }
 
-.card-location {
+.price-box {
+  margin-bottom: 6px;
+}
+
+.price-value {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #F59E0B;
+  line-height: 1.2;
+}
+
+.card-author {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #64748B;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
-.card-location i {
-  color: var(--primary);
-  font-size: 0.88rem;
-  flex-shrink: 0;
-}
-
-.card-location span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.card-author i {
+  color: #94A3B8;
+  font-size: 0.95rem;
 }
 
 .card-specs {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 10px;
-  background: #F8FAFC;
-  border-radius: 8px;
-  border: 1px solid #F1F5F9;
-  margin-bottom: 12px;
+  padding: 6px 10px;
+  background: #FFFDF9;
+  border-radius: 6px;
+  border: 1px dashed #FDE68A;
+  margin-bottom: 8px;
 }
 
 .spec-item {
@@ -1039,55 +965,44 @@ button, input, select, textarea {
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid #F1F5F9;
+  padding: 10px 16px 12px;
+  border-top: 1px solid #FEF3C7;
+  background: #FFFCF7;
 }
 
-.price-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.price-value {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #EA580C;
-  line-height: 1.2;
-}
-
-.price-unit {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.card-cta-group {
+.card-actions-left {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.btn-quick-view {
-  background: #F1F5F9;
-  color: var(--text-main);
+.moithue-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   border: 1px solid #CBD5E1;
-  font-weight: 700;
-  font-size: 0.78rem;
-  padding: 7px 11px;
-  border-radius: 6px;
-  cursor: pointer;
-  display: inline-flex;
+  background: white;
+  color: #475569;
+  display: flex;
   align-items: center;
-  gap: 5px;
-  transition: var(--transition);
-  white-space: nowrap;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.btn-quick-view:hover {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  border-color: var(--primary);
-  transform: translateY(-1px);
+.moithue-icon-btn:hover {
+  background: #FFFBEB;
+  border-color: #F59E0B;
+  color: #D97706;
+  transform: scale(1.06);
+}
+
+.moithue-icon-btn.active {
+  background: #FFF1F2;
+  border-color: #FECDD3;
+  color: #E11D48;
 }
 
 .btn-schedule-view {
@@ -1096,7 +1011,7 @@ button, input, select, textarea {
   border: none;
   font-weight: 700;
   font-size: 0.78rem;
-  padding: 7px 13px;
+  padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
   display: inline-flex;
