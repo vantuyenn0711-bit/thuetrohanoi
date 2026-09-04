@@ -1525,8 +1525,13 @@ function updateSidebarCounts() {
 
 function toggleSidebarFilter() {
   const sidebar = document.getElementById("sidebarFilter");
+  const backdrop = document.getElementById("sidebarBackdrop");
   if (sidebar) {
-    sidebar.classList.toggle("active");
+    const isActive = sidebar.classList.toggle("active");
+    if (backdrop) backdrop.classList.toggle("active", isActive);
+    if (window.innerWidth <= 992) {
+      document.body.style.overflow = isActive ? "hidden" : "";
+    }
   }
 }
 
