@@ -181,92 +181,38 @@ function renderRooms() {
       <img ${idx === 0 ? `src="${img}"` : `data-src="${img}"`} class="card-slide-img" style="display: ${idx === 0 ? 'block' : 'none'};" data-index="${idx}" alt="${room.title}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
     `).join("");
 
-    const dotsHtml = room.images.map((_, idx) => `
-      <div class="slider-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>
-    `).join("");
-
-    // Xe điện badge
-    let evBadgeHtml = "";
-    if (room.electricVehiclePolicy === 'vinfast_only') {
-      evBadgeHtml = `<span class="badge-ev-vin" title="${room.electricVehicleNote || 'Chỉ nhận xe điện VinFast / Đổi pin'}"><i class="fas fa-motorcycle"></i> Xe Vin</span>`;
-    } else if (room.electricVehiclePolicy === 'allowed') {
-      evBadgeHtml = `<span class="badge-ev-ok" title="${room.electricVehicleNote || 'Nhận xe điện'}"><i class="fas fa-bolt"></i> Xe điện</span>`;
-    } else if (room.electricVehiclePolicy === 'forbidden') {
-      evBadgeHtml = `<span class="badge-ev-no" title="${room.electricVehicleNote || 'Cấm xe điện'}"><i class="fas fa-ban"></i> Cấm xe điện</span>`;
-    }
+    // Tag nổi bật (HH hoặc Nhóm nguồn hoặc Loại phòng)
+    let tagText = room.sourceGroupName ? room.sourceGroupName.replace("Khu vực ", "") : (room.tag || room.categoryName || 'Khép kín');
+    if (room.status === 'rented') tagText = 'Đã thuê';
 
     return `
-      <div class="room-card" data-room-id="${room.id}" onclick="openRoomDetailModal('${room.id}', true)" style="cursor: pointer;">
+      <div class="room-card moithue-card" data-room-id="${room.id}" onclick="openRoomDetailModal('${room.id}', true)" style="cursor: pointer;">
+        <!-- KHUNG ẢNH THOÁNG ĐÃNG -->
         <div class="card-media-wrapper">
-          <div class="card-badges">
-            <span class="badge-code" style="background: rgba(13, 148, 136, 0.9);">${room.tag || room.categoryName}</span>
-            <span class="badge-status ${room.status === 'rented' ? 'rented' : ''}">
-              <i class="fas fa-circle" style="font-size: 6px;"></i> ${room.statusName || 'Còn phòng'}
-            </span>
-            ${evBadgeHtml}
-          </div>
-
-          <div class="card-actions-top">
-            <button class="btn-wishlist ${isSaved ? 'active' : ''}" title="Lưu phòng yêu thích" onclick="toggleWishlist('${room.id}', event)">
-              <i class="${isSaved ? 'fas fa-heart' : 'far fa-heart'}"></i>
-            </button>
-          </div>
-
-          <!-- Nút Xem nhanh nổi trên ảnh -->
-          <button class="btn-media-quickview" onclick="openRoomDetailModal('${room.id}', false, event)" title="Xem nhanh thông tin phòng">
-            <i class="fas fa-eye"></i> Xem nhanh
-          </button>
-
+          <div class="moithue-card-tag ${room.status === 'rented' ? 'rented' : ''}">${tagText}</div>
           <div class="card-image-slider" id="slider-${room.id}">
             ${slidesHtml}
-            <button class="slider-btn prev" onclick="changeCardSlide('${room.id}', -1, event)">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="slider-btn next" onclick="changeCardSlide('${room.id}', 1, event)">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-            <div class="slider-dots">${dotsHtml}</div>
           </div>
         </div>
 
-        <div class="card-content">
-          <div class="card-category">${room.categoryName || 'Phòng Trọ'}</div>
-          <h3 class="card-title">${room.title}</h3>
-          
-          <div class="card-location">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>${room.address}</span>
+        <!-- THÔNG TIN PHÒNG TINH GỌN -->
+        <div class="moithue-card-body">
+          <h3 class="moithue-card-title">${room.title}</h3>
+          <div class="moithue-card-price">${priceFormatted}</div>
+          <div class="moithue-card-author">
+            <i class="far fa-user-circle"></i>
+            <span>Đặng Văn Tuyển</span>
           </div>
+        </div>
 
-          <div class="card-specs">
-            <div class="spec-item">
-              <i class="fas fa-vector-square"></i>
-              <span>${room.area} m²</span>
-            </div>
-            <div class="spec-item">
-              <i class="fas fa-layer-group"></i>
-              <span>${room.floor.split('/')[0]}</span>
-            </div>
-            <div class="spec-item">
-              <i class="fas fa-user-friends"></i>
-              <span>Tối đa ${room.maxPeople} người</span>
-            </div>
-          </div>
-
-          <div class="card-footer">
-            <div class="price-box">
-              <span class="price-value">${priceFormatted}</span>
-              <span class="price-unit">/ tháng</span>
-            </div>
-            <div class="card-cta-group">
-              <button class="btn-quick-view" onclick="openRoomDetailModal('${room.id}', false, event)" title="Xem nhanh phòng này">
-                <i class="fas fa-eye"></i> Xem nhanh
-              </button>
-              <button class="btn-schedule-view" onclick="contactZaloRoom('${room.id}', event)" style="background: linear-gradient(135deg, #0068FF, #0052cc); box-shadow: 0 4px 12px rgba(0, 104, 255, 0.25);">
-                <i class="fas fa-comment-dots"></i> Nhắn Zalo
-              </button>
-            </div>
-          </div>
+        <!-- 2 NÚT HÀNH ĐỘNG DƯỚI ĐÁY -->
+        <div class="moithue-card-footer">
+          <button class="moithue-action-btn" title="Xem nhanh thông tin phòng" onclick="openRoomDetailModal('${room.id}', false, event)">
+            <i class="far fa-eye"></i>
+          </button>
+          <button class="moithue-action-btn ${isSaved ? 'active' : ''}" title="Lưu yêu thích" onclick="toggleWishlist('${room.id}', event)">
+            <i class="${isSaved ? 'fas fa-heart' : 'far fa-heart'}"></i>
+          </button>
         </div>
       </div>
     `;
