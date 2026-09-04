@@ -610,7 +610,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Static files
-  let filePath = pathname === '/' ? '/admin.html' : pathname;
+  let filePath = pathname === '/' ? '/index.html' : (pathname === '/admin' ? '/admin.html' : pathname);
   filePath = filePath.replace(/\.\./g, ''); // Security: prevent path traversal
   serveStaticFile(filePath, res);
 });
