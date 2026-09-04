@@ -1,0 +1,463 @@
+/* ==========================================================================
+   LISTIVO SEARCH FORM & SELECT V2 (CHUẨN 100% MOITHUE.COM)
+   ========================================================================== */
+
+/* === ROOT VARIABLES FOR LISTIVO THEME === */
+:root {
+  --listivo-color-text: #2A3946;
+  --listivo-color-muted: #64748B;
+  --listivo-color-border: #E2E8F0;
+  --listivo-color-bg: #FFFFFF;
+  --listivo-color-primary: #059669;
+  --listivo-color-primary-hover: #047857;
+  --listivo-color-accent: #F59E0B;
+  --listivo-height: 60px;
+  --listivo-radius: 8px;
+  --listivo-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  --listivo-shadow-dropdown: 0 12px 35px rgba(15, 23, 42, 0.16);
+}
+
+/* === MAIN SEARCH FORM CONTAINER === */
+.listivo-search-v2 {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  z-index: 1000;
+}
+
+.listivo-main-search-form {
+  position: relative;
+  overflow: visible;
+  background: transparent;
+  width: 100%;
+}
+
+.listivo-main-search-form__primary-wrapper {
+  padding: 10px 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.listivo-main-search-form__primary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr auto;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  overflow: visible;
+}
+
+@media (max-width: 992px) {
+  .listivo-main-search-form__primary {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .listivo-main-search-form__primary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.listivo-field-v2 {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.listivo-field-v2:focus-within,
+.listivo-field-v2:has(.listivo-select-v2--open) {
+  z-index: 999999;
+}
+
+/* === 1. LISTIVO SELECT V2 (DROPDOWN WITH SEARCH) === */
+.listivo-select-v2 {
+  position: relative;
+  background: var(--listivo-color-bg);
+  border: 1px solid var(--listivo-color-border);
+  border-radius: var(--listivo-radius);
+  height: var(--listivo-height);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  user-select: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.listivo-select-v2:hover {
+  border-color: #CBD5E1;
+}
+
+.listivo-select-v2:focus,
+.listivo-select-v2--open,
+.listivo-select-v2--active {
+  border-color: var(--listivo-color-primary);
+}
+
+.listivo-select-v2--open {
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+  z-index: 999999 !important;
+}
+
+.listivo-select-v2__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  min-width: 22px;
+  margin-right: 12px;
+  color: var(--listivo-color-primary);
+  font-size: 1.15rem;
+}
+
+.listivo-select-v2__placeholder {
+  position: relative;
+  color: var(--listivo-color-text);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 1px;
+  padding-right: 48px;
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.listivo-select-v2__placeholder.is-placeholder {
+  color: #64748B;
+  font-weight: 500;
+}
+
+.listivo-select-v2__clear {
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #F1F5F9;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 2;
+}
+
+.listivo-select-v2__clear:hover {
+  background: #EF4444;
+}
+
+.listivo-select-v2__clear svg path {
+  fill: #64748B;
+  transition: fill 0.2s;
+}
+
+.listivo-select-v2__clear:hover svg path {
+  fill: #FFFFFF;
+}
+
+.listivo-select-v2__arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.listivo-select-v2--open .listivo-select-v2__arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.listivo-select-v2__arrow svg path {
+  fill: #475569;
+}
+
+/* === DROPDOWN MENU === */
+.listivo-select-v2__dropdown {
+  display: none;
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: calc(100% + 6px);
+  min-width: 280px;
+  background: var(--listivo-color-bg);
+  border: 1px solid var(--listivo-color-border);
+  border-radius: var(--listivo-radius);
+  box-shadow: var(--listivo-shadow-dropdown);
+  z-index: 99999;
+  max-height: 380px;
+  flex-direction: column;
+  overflow: hidden;
+  animation: listivoFadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes listivoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.listivo-select-v2--open .listivo-select-v2__dropdown {
+  display: flex;
+}
+
+.listivo-select-v2__searchable {
+  padding: 10px 12px;
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--listivo-color-border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.listivo-searchable-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.listivo-searchable-input-wrapper:focus-within {
+  border-color: var(--listivo-color-primary);
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
+}
+
+.listivo-searchable-input-wrapper i {
+  color: #94A3B8;
+  font-size: 0.85rem;
+}
+
+.listivo-select-v2__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: var(--listivo-color-text);
+  font-family: inherit;
+  background: transparent;
+}
+
+.listivo-select-v2__options {
+  overflow-y: auto;
+  max-height: 280px;
+  padding: 6px 0;
+}
+
+.listivo-select-v2__options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.listivo-select-v2__options::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+.listivo-select-v2__option {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--listivo-color-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.listivo-select-v2__option:hover {
+  background: #ECFDF5;
+  color: var(--listivo-color-primary);
+}
+
+.listivo-select-v2__option.is-selected {
+  background: #D1FAE5;
+  color: var(--listivo-color-primary);
+  font-weight: 700;
+}
+
+.listivo-select-v2__count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #E2E8F0;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 10px;
+  transition: all 0.15s ease;
+}
+
+.listivo-select-v2__option:hover .listivo-select-v2__count,
+.listivo-select-v2__option.is-selected .listivo-select-v2__count {
+  background: #A7F3D0;
+  color: #065F46;
+}
+
+.listivo-select-v2__no-options {
+  padding: 16px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #94A3B8;
+}
+
+/* === 2. LISTIVO AUTOCOMPLETE INPUT (TỪ KHÓA) === */
+.listivo-autocomplete-input {
+  background: var(--listivo-color-bg);
+  border: 1px solid var(--listivo-color-border);
+  border-radius: var(--listivo-radius);
+  height: var(--listivo-height);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  cursor: text;
+  position: relative;
+  width: 100%;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.listivo-autocomplete-input:hover {
+  border-color: #CBD5E1;
+}
+
+.listivo-autocomplete-input:focus-within {
+  border-color: var(--listivo-color-primary);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+}
+
+.listivo-autocomplete-input__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  min-width: 22px;
+  margin-right: 12px;
+  color: var(--listivo-color-primary);
+  font-size: 1.15rem;
+}
+
+.listivo-autocomplete-input__input-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+
+.listivo-autocomplete-input input {
+  font-family: inherit;
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--listivo-color-text);
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.listivo-autocomplete-input input::placeholder {
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* === 3. LISTIVO BUTTON (NÚT TÌM KIẾM CHUẨN MOITHUE) === */
+.listivo-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  height: var(--listivo-height);
+  padding: 0 28px;
+  color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--listivo-radius);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+  white-space: nowrap;
+}
+
+.listivo-button--primary-1 {
+  background-color: var(--listivo-color-primary);
+}
+
+.listivo-button--primary-1:hover {
+  background-color: var(--listivo-color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.45);
+}
+
+.listivo-button:before, 
+.listivo-button:after {
+  content: "";
+  height: 120px;
+  width: 120px;
+  background-color: #FFFFFF;
+  opacity: 0.18;
+  position: absolute;
+  right: -55px;
+  top: -10px;
+  transform: rotate(20deg);
+  transition: 0.4s ease-in-out;
+}
+
+.listivo-button:before {
+  transform: translateX(-220%) translateY(-50px) rotate(20deg);
+  opacity: 0;
+}
+
+.listivo-button:hover:before {
+  transform: translateX(0) translateY(0) rotate(20deg);
+  opacity: 0.18;
+}
+
+.listivo-button:hover:after {
+  transform: translateX(220%) translateY(-50px) rotate(20deg);
+  opacity: 0;
+}
+
+.listivo-button span {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.listivo-button__icon {
+  margin-left: 12px !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+.listivo-button svg path {
+  fill: #FFFFFF;
+}
+
+/* === SIDEBAR SELECTS TWEAKS === */
+.listivo-search-panel__content .listivo-select-v2 {
+  height: 48px;
+  border-radius: 8px;
+}

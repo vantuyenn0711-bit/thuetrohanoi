@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thuê Trọ – Cố Vấn Tìm Phòng Trọ Hà Nội Uy Tín</title>
+  <meta name="description" content="Hệ thống tìm kiếm phòng trọ, căn hộ mini, studio khép kín cao cấp tại Hà Nội. Tư vấn tận tâm, thông tin chuẩn xác, dẫn đi xem phòng trực tiếp miễn phí - Đặng Văn Tuyển (0358954360).">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css?v=22">
+  <link rel="stylesheet" href="css/searchable-select.css?v=22">
+
+  <style>
+    /* BẢO ĐẢM 100% DROPDOWN LUÔN NỔI LÊN TRÊN VÀ KHÔNG BỊ BẤT CỨ GÌ CHE KHUẤT */
+    .hero-section {
+      overflow: visible !important;
+      position: relative !important;
+      z-index: 900 !important;
+    }
+    .hero-section .container {
+      overflow: visible !important;
+      position: relative !important;
+      z-index: 900 !important;
+    }
+    .listivo-search-v2 {
+      position: relative !important;
+      z-index: 1000 !important;
+      overflow: visible !important;
+    }
+    .listivo-main-search-form,
+    .listivo-main-search-form__primary-wrapper,
+    .listivo-main-search-form__primary {
+      overflow: visible !important;
+      position: relative !important;
+      z-index: 1000 !important;
+    }
+    .listivo-field-v2 {
+      position: relative !important;
+      overflow: visible !important;
+    }
+    .listivo-field-v2:has(.listivo-select-v2--open),
+    .listivo-field-v2:focus-within {
+      z-index: 999999 !important;
+    }
+    .listivo-select-v2 {
+      position: relative !important;
+      z-index: 100 !important;
+    }
+    .listivo-select-v2--open {
+      z-index: 999999 !important;
+    }
+    .listivo-select-v2__dropdown {
+      position: absolute !important;
+      top: calc(100% + 6px) !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 9999999 !important;
+      background: #ffffff !important;
+      border: 1px solid #CBD5E1 !important;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
+      max-height: 380px !important;
+    }
+    .quick-tags {
+      position: relative !important;
+      z-index: 1 !important;
+    }
+    .main-section {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVBAR
+       ========================================================================== -->
+  <header class="header">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <i class="fas fa-home"></i>
+        </div>
+        <div>
+          <span>Thuê</span><span class="highlight">Trọ</span>
+        </div>
+      </a>
+
+      <!-- Navigation Menu -->
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Trang chủ</a></li>
+        <li><a href="#listingsSection" class="nav-link">Danh sách phòng</a></li>
+        <li><a href="#aboutUs" class="nav-link">Quy trình xem phòng</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <!-- Wishlist Button -->
+        <button class="btn-icon-badge" onclick="openWishlistModal()" title="Phòng đã lưu">
+          <i class="far fa-heart"></i>
+          <span class="badge-count" id="wishlistCountBadge" style="display: none;">0</span>
+        </button>
+
+        <!-- Hotline -->
+        <a href="tel:0358954360" class="btn-hotline">
+          <i class="fas fa-phone-alt"></i>
+          <span>0358.954.360</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO BANNER & ADVANCED SEARCH (CHUẨN BỘ LỌC MOITHUE.COM)
+       ========================================================================== -->
+  <section class="hero-section" style="overflow: visible !important; position: relative !important; z-index: 900 !important;">
+    <div class="container" style="overflow: visible !important; position: relative !important; z-index: 900 !important;">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fas fa-user-check"></i> Chuyên viên cố vấn: <strong>Đặng Văn Tuyển</strong> • Dẫn xem phòng 100% miễn phí
+        </div>
+        <h1 class="hero-title">
+          An Tâm Tìm Nhà <span>Không Lo Về Giá</span>
+        </h1>
+        <p class="hero-desc">
+          Thông tin minh bạch đáng tin cậy. Quản lý, cố vấn cho thuê chuyên nghiệp, tận tâm. Hẹn đi xem phòng trực tiếp bất cứ lúc nào!
+        </p>
+      </div>
+
+      <!-- LISTIVO SEARCH FORM (CHUẨN 100% MOITHUE.COM) -->
+      <div class="listivo-search-v2" style="overflow: visible !important; position: relative !important; z-index: 1000 !important;">
+        <div class="listivo-main-search-form" style="overflow: visible !important; position: relative !important;">
+          <div class="listivo-main-search-form__primary-wrapper" style="overflow: visible !important; position: relative !important;">
+            <div class="listivo-main-search-form__primary" style="overflow: visible !important; position: relative !important;">
+
+              <!-- 1. Nhóm Nguồn Hàng (listivo-field-v2) -->
+              <div class="listivo-field-v2 listivo-search-form-field listivo-search-form-field--listivo_145233">
+                <div id="heroSourceGroupContainer"></div>
+              </div>
+
+              <!-- 2. Quận / Huyện (listivo-field-v2) -->
+              <div class="listivo-field-v2 listivo-search-form-field listivo-search-form-field--listivo_15029 listivo-field-v2--1">
+                <div id="heroDistrictContainer"></div>
+              </div>
+
+              <!-- 3. Từ khóa (listivo-autocomplete-input) -->
+              <div class="listivo-field-v2 listivo-search-form-field listivo-field-v2 listivo-search-form-field">
+                <div class="listivo-autocomplete-input listivo-autocomplete-input--with-icon">
+                  <div class="listivo-autocomplete-input__icon listivo-icon-v2">
+                    <i class="fas fa-pen"></i>
+                  </div>
+                  <div class="listivo-autocomplete-input__input-wrapper">
+                    <div class="listivo-autocomplete-input__placeholder" style="display: none;"></div>
+                    <input type="text" id="heroSearchInput" placeholder="Từ khóa">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Nút Tìm kiếm (listivo-button) -->
+              <div class="listivo-field-v2 listivo-search-form-field listivo-search-form-field--button">
+                <button type="button" class="listivo-button listivo-button--primary-1 listivo-button--height-60" onclick="handleHeroSearch()">
+                  <span>Tìm kiếm</span>
+                  <span class="listivo-button__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M13.7144 12.5694L10.5186 9.37367C11.3323 8.35625 11.8182 7.06733 11.8182 5.66667C11.8182 2.54225 9.276 0 6.15158 0C3.02717 0 0.484917 2.54225 0.484917 5.66667C0.484917 8.79108 3.02717 11.3333 6.15158 11.3333C7.55225 11.3333 8.84117 10.8474 9.85858 10.0338L13.0543 13.2295C13.1437 13.3195 13.2662 13.37 13.3844 13.37C13.5025 13.37 13.625 13.3195 13.7144 13.2295C13.8943 13.0485 13.8943 12.7505 13.7144 12.5694ZM6.15158 10.3939C3.54558 10.3939 1.42425 8.27258 1.42425 5.66667C1.42425 3.06075 3.54558 0.939417 6.15158 0.939417C8.75758 0.939417 10.8789 3.06075 10.8789 5.66667C10.8789 8.27258 8.75758 10.3939 6.15158 10.3939Z" fill="white"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Category Source Groups (Chuẩn các thẻ trên trang Mời Thuê) -->
+      <div class="quick-tags" style="position: relative !important; z-index: 1 !important;">
+        <span class="quick-tag-label">Nguồn hàng hot:</span>
+        <button class="quick-tag-item active" data-source="all" onclick="setQuickSource('all')">Tất cả nguồn</button>
+        <button class="quick-tag-item" data-source="nguon-hoang-mai" onclick="setQuickSource('nguon-hoang-mai')">Hoàng Mai</button>
+        <button class="quick-tag-item" data-source="nguon-kim-giang-ngoc-hoi" onclick="setQuickSource('nguon-kim-giang-ngoc-hoi')">Kim Giang, Ngọc Hồi</button>
+        <button class="quick-tag-item" data-source="nguon-ba-dinh" onclick="setQuickSource('nguon-ba-dinh')">Ba Đình - Tây Hồ</button>
+        <button class="quick-tag-item" data-source="nguon-dinh-cong" onclick="setQuickSource('nguon-dinh-cong')">Định Công</button>
+        <button class="quick-tag-item" data-source="nguon-cau-giay" onclick="setQuickSource('nguon-cau-giay')">Cầu Giấy</button>
+        <button class="quick-tag-item" data-source="nguon-my-dinh" onclick="setQuickSource('nguon-my-dinh')">Mỹ Đình</button>
+        <button class="quick-tag-item" data-source="nguon-dong-da" onclick="setQuickSource('nguon-dong-da')">Đống Đa</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       MAIN LISTINGS SECTION
+       ========================================================================== -->
+  <main class="main-section container" id="listingsSection" style="position: relative !important; z-index: 10 !important;">
+    
+    <!-- Section Header & Filter -->
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h2>Mục Cho Thuê Mới Nhất</h2>
+        <p id="resultsCount">Đang tải danh sách phòng...</p>
+      </div>
+
+      <div class="sort-and-view">
+        <button class="btn-toggle-sidebar" onclick="toggleSidebarFilter()">
+          <i class="fas fa-sliders-h"></i> <span>Lọc chuyên sâu</span>
+        </button>
+        <label for="sortSelect" style="font-size: 0.88rem; font-weight: 600; color: var(--text-muted);">Sắp xếp:</label>
+        <select class="sort-select" id="sortSelect">
+          <option value="newest">Phòng mới nhất</option>
+          <option value="price-asc">Giá từ thấp đến cao</option>
+          <option value="price-desc">Giá từ cao đến thấp</option>
+          <option value="area-desc">Diện tích lớn nhất</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- MAIN LISTINGS LAYOUT: SIDEBAR BỘ LỌC + GRID PHÒNG -->
+    <div class="listings-main-layout">
+      <!-- SIDEBAR BỘ LỌC CHUẨN LISTIVO / MOITHUE.COM -->
+      <aside class="listivo-search-sidebar" id="sidebarFilter">
+        <div class="sidebar-header-mobile">
+          <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--dark);"><i class="fas fa-filter"></i> Lọc Chuyên Sâu</h4>
+          <button class="sidebar-close-btn" onclick="toggleSidebarFilter()">&times;</button>
+        </div>
+
+        <!-- 1. Yêu thích -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">❤️ Yêu thích</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterOnlyFavorites" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Chỉ hiển thị tin yêu thích</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Quận / Huyện (Searchable) -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">📍 Quận / Huyện</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <div id="sidebarDistrictContainer"></div>
+          </div>
+        </div>
+
+        <!-- 3. Nhóm Nguồn Hàng (Searchable) -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🧭 Nhóm Nguồn Hàng</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <div id="sidebarSourceGroupContainer"></div>
+          </div>
+        </div>
+
+        <!-- 2. Dạng phòng -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🏠 Chọn loại nhà / Dạng phòng</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <div class="listivo-radio-group">
+              <label class="listivo-radio-label">
+                <input type="radio" name="sidebarRoomLayout" value="all" checked onchange="onSidebarFilterChange()">
+                <span class="custom-radio"></span>
+                <span class="label-text">Bất kì <span class="count-badge" id="countLayoutAll"></span></span>
+              </label>
+              <label class="listivo-radio-label">
+                <input type="radio" name="sidebarRoomLayout" value="Studio" onchange="onSidebarFilterChange()">
+                <span class="custom-radio"></span>
+                <span class="label-text">STUDIO <span class="count-badge" id="countLayoutStudio"></span></span>
+              </label>
+              <label class="listivo-radio-label">
+                <input type="radio" name="sidebarRoomLayout" value="1N1K" onchange="onSidebarFilterChange()">
+                <span class="custom-radio"></span>
+                <span class="label-text">1N1K <span class="count-badge" id="countLayout1N1K"></span></span>
+              </label>
+              <label class="listivo-radio-label">
+                <input type="radio" name="sidebarRoomLayout" value="2N1K" onchange="onSidebarFilterChange()">
+                <span class="custom-radio"></span>
+                <span class="label-text">2N1K <span class="count-badge" id="countLayout2N1K"></span></span>
+              </label>
+              <label class="listivo-radio-label">
+                <input type="radio" name="sidebarRoomLayout" value="3N1K" onchange="onSidebarFilterChange()">
+                <span class="custom-radio"></span>
+                <span class="label-text">3N1K <span class="count-badge" id="countLayout3N1K"></span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Mức giá -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">💰 Mức giá (VNĐ)</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <div class="price-inputs-row">
+              <input type="number" id="sidebarPriceMin" placeholder="↘️ Từ..." step="100000" class="sidebar-input" oninput="onSidebarFilterChange()">
+              <input type="number" id="sidebarPriceMax" placeholder="↗️ Đến..." step="100000" class="sidebar-input" oninput="onSidebarFilterChange()">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Sức chứa -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">👥 Sức chứa</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <select id="sidebarCapacity" class="sidebar-select" onchange="onSidebarFilterChange()">
+              <option value="all">Sức chứa (Bất kì)</option>
+              <option value="1">1 người</option>
+              <option value="2">2 người</option>
+              <option value="3">3 người</option>
+              <option value="4">4 người</option>
+              <option value="6">6 - 8 người</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 5. Để xe -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🛵 Để xe</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <select id="sidebarVehicles" class="sidebar-select" onchange="onSidebarFilterChange()">
+              <option value="all">Để xe (Bất kì)</option>
+              <option value="1">1 xe</option>
+              <option value="2">2 xe</option>
+              <option value="3">3 xe</option>
+              <option value="4">4 xe</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 6. Loại thang -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🛗 Loại thang</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterElevator" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Thang máy</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterStairs" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Thang bộ</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 7. Thú cưng -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🐾 Thú cưng</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterPetAllowed" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">✅ Được nuôi pet</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterPetForbidden" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">🚫 Không nuôi pet</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 8. Xe điện -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">⚡ Xe điện</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterEVAllowed" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">✅ Nhận xe điện (Chung)</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterEVVin" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">🛵 Xe điện VinFast / Đổi pin</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterEVForbidden" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">🚫 Cấm xe điện</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 9. Khách quốc tế -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🌍 Khách quốc tế</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterForeignAllowed" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">✅ Nhận khách quốc tế</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterForeignForbidden" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">🚫 Không khách quốc tế</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 10. Thuận tiện ô tô -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🚗 Thuận tiện ô tô</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterNearParking" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Gần bãi đỗ ô tô</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterNearMainRoad" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Gần đường lớn</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 11. Gác xép -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🪜 Gác xép</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterHasLoft" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">✅ Có gác xép</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" id="filterNoLoft" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">❌ Không gác xép</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 12. Có gì trong nhà? -->
+        <div class="listivo-search-panel">
+          <div class="listivo-search-panel__top">
+            <div class="listivo-search-panel__label">🛋️ Có gì trong nhà?</div>
+            <div class="listivo-search-panel__circle"></div>
+          </div>
+          <div class="listivo-search-panel__content">
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" class="filter-amenity-cb" value="Ban công" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Ban công</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" class="filter-amenity-cb" value="Tủ lạnh" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Tủ lạnh</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" class="filter-amenity-cb" value="Máy giặt riêng" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Máy giặt riêng</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" class="filter-amenity-cb" value="Đầu chờ máy giặt" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Đầu chờ máy giặt</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" class="filter-amenity-cb" value="Điều hòa" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Điều hòa</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" class="filter-amenity-cb" value="Nóng lạnh" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Nóng lạnh</span>
+            </label>
+            <label class="listivo-checkbox-label">
+              <input type="checkbox" class="filter-amenity-cb" value="Bếp từ" onchange="onSidebarFilterChange()">
+              <span class="custom-checkbox"></span>
+              <span class="label-text">Bếp từ</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="padding: 10px 0;">
+          <button class="btn-schedule-view" style="width: 100%; justify-content: center; background: white; color: var(--danger); border: 1.5px solid var(--danger); box-shadow: none;" onclick="resetAllFilters()">
+            <i class="fas fa-redo"></i> Đặt lại tất cả lọc
+          </button>
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN: CARDS GRID & QUICK CATEGORY CHIPS -->
+      <div class="listings-grid-column">
+        <!-- Category Type Filter Chips -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <button class="filter-btn filter-type-btn active" data-type="all">
+              <i class="fas fa-th-large"></i> Tất cả
+            </button>
+            <button class="filter-btn filter-type-btn" data-type="can-ho-mini">
+              <i class="fas fa-door-closed"></i> Khép kín
+            </button>
+            <button class="filter-btn filter-type-btn" data-type="gac-lung">
+              <i class="fas fa-layer-group"></i> Gác lửng
+            </button>
+            <button class="filter-btn filter-type-btn" data-type="phong-chung-wc">
+              <i class="fas fa-wallet"></i> VS chung
+            </button>
+            <button class="filter-btn filter-type-btn" data-type="nha-nguyen-can">
+              <i class="fas fa-home"></i> Nguyên căn
+            </button>
+            <button class="filter-btn filter-type-btn" data-type="ki-tuc-xa">
+              <i class="fas fa-bed"></i> Kí túc xá
+            </button>
+          </div>
+        </div>
+
+        <!-- Room Cards Grid -->
+        <div class="room-grid" id="roomGrid">
+          <!-- JavaScript will inject cards here -->
+        </div>
+
+        <!-- Numbered Pagination (Chuẩn Listivo / Mời Thuê) -->
+        <div id="roomPaginationContainer" class="listivo-search-results__pagination">
+          <!-- JavaScript will inject pagination controls here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       WHY CHOOSE US / ADVISOR SECTION
+       ========================================================================== -->
+  <section class="container" id="aboutUs" style="padding: 40px 20px 80px;">
+    <div style="background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: 50px 40px; box-shadow: var(--shadow-sm);">
+      <div style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+        <h2 style="font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: 12px;">
+          Quy Trình Đi Xem Phòng Tiện Lợi & Nhanh Chóng
+        </h2>
+        <p style="color: var(--text-muted); font-size: 1rem;">
+          Đặng Văn Tuyển sẽ trực tiếp hỗ trợ tư vấn, dẫn bạn đi xem phòng thực tế hoàn toàn miễn phí.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 64px; height: 64px; background: var(--primary-light); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 18px;">
+            <i class="fas fa-search-location"></i>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">1. Chọn Phòng & Ước Tính Phí</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Xem ảnh thật, địa chỉ rõ ràng và dùng bảng tính ước lượng tổng chi phí sinh hoạt mỗi tháng ngay trên web.</p>
+        </div>
+
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 64px; height: 64px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 18px;">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">2. Đặt Lịch Xem Trực Tiếp</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Bấm nút Hẹn đi xem, chọn ngày giờ rảnh. Mình sẽ gọi/Zalo xác nhận và đón bạn đi xem phòng trực tiếp.</p>
+        </div>
+
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 64px; height: 64px; background: var(--secondary-light); color: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 18px;">
+            <i class="fas fa-key"></i>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">3. Xem Phòng & Nhận Chìa Khóa</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Đi xem phòng thực tế, ký hợp đồng minh bạch và dọn vào ở với không gian sống tiện nghi, thoải mái.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ROOM DETAIL MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="roomDetailModal">
+    <div class="modal-container">
+      <div class="detail-modal-top-bar" id="detailModalTopBar">
+        <div class="top-bar-left">
+          <button class="btn-topbar-back" onclick="closeModal('roomDetailModal')" title="Đóng cửa sổ">
+            <i class="fas fa-arrow-left"></i> <span>Quay lại</span>
+          </button>
+          <span class="topbar-room-title" id="topbarRoomTitle">Chi tiết phòng trọ</span>
+        </div>
+        <div class="top-bar-actions">
+          <button class="btn-topbar-toggle" id="detailFullscreenToggleBtn" onclick="toggleModalFullscreen()" title="Chuyển đổi Toàn màn hình / Thu nhỏ">
+            <i class="fas fa-compress-alt"></i> <span>Thu nhỏ</span>
+          </button>
+          <button class="modal-close-btn" onclick="closeModal('roomDetailModal')" title="Đóng">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="detail-modal-body" id="roomDetailContent">
+        <!-- JS will populate -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       WISHLIST MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="wishlistModal">
+    <div class="modal-container" style="max-width: 600px;">
+      <button class="modal-close-btn" onclick="closeModal('wishlistModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <div style="padding: 30px;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--dark); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-heart" style="color: #E11D48;"></i> Danh Sách Phòng Bạn Đã Lưu
+        </h3>
+        <div id="wishlistModalBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FLOATING CONTACT BAR (CALL & ZALO - ĐẶNG VĂN TUYỂN)
+       ========================================================================== -->
+  <div class="floating-contact-bar">
+    <a href="https://zalo.me/0358954360" target="_blank" class="float-btn zalo" title="Chat Zalo với Đặng Văn Tuyển">
+      <i class="fas fa-comment-dots" style="font-size: 1.2rem;"></i>
+      <span>Chat Zalo (Đặng Văn Tuyển)</span>
+    </a>
+    <a href="tel:0358954360" class="float-btn hotline" title="Gọi Hotline Đặng Văn Tuyển">
+      <i class="fas fa-phone-alt" style="font-size: 1.1rem;"></i>
+      <span>Gọi Tuyển: 0358.954.360</span>
+    </a>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo" style="color: white; margin-bottom: 16px; display: inline-flex;">
+          <div class="logo-icon"><i class="fas fa-home"></i></div>
+          <span>Thuê<span class="highlight">Trọ</span></span>
+        </a>
+        <p style="font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
+          Kênh tư vấn & hỗ trợ tìm phòng trọ, căn hộ mini, studio khép kín chất lượng tại Hà Nội. Tư vấn nhiệt tình, dẫn đi xem phòng tận tâm 24/7.
+        </p>
+        <div style="font-size: 0.9rem;">
+          <div><i class="fas fa-user-tie" style="color: var(--primary-light);"></i> Cố vấn: <strong>Đặng Văn Tuyển</strong></div>
+          <div style="margin-top: 6px;"><i class="fas fa-phone-alt" style="color: var(--primary-light);"></i> Hotline / Zalo: <strong>0358.954.360</strong></div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Khu Vực Phổ Biến</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="setQuickDistrict('cau-giay')">Thuê trọ Cầu Giấy</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickDistrict('dong-da')">Thuê trọ Đống Đa</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickDistrict('hoang-mai')">Định Công - Hoàng Mai</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickDistrict('tay-ho')">Tây Hồ - Ba Đình</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickDistrict('nam-tu-liem')">Nam Từ Liêm - Mỹ Đình</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Loại Nhà Thuê</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="setQuickType('can-ho-mini')">Khép kín (Căn hộ mini)</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickType('gac-lung')">Phòng gác lửng</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickType('phong-chung-wc')">VS chung / Giá rẻ</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickType('nha-nguyen-can')">Nhà nguyên căn / 2-3PN</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Liên Hệ Tư Vấn</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 12px;">Bạn đang cần tìm phòng khu vực nào? Nhắn Zalo hoặc gọi ngay cho mình để được gửi thêm nhiều phòng mới nhé!</p>
+        <a href="https://zalo.me/0358954360" target="_blank" class="btn-hotline" style="display: inline-flex; width: 100%; justify-content: center; background: #0068FF;">
+          <i class="fas fa-comment-dots"></i> Nhắn Zalo: 0358.954.360
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <div>&copy; 2026 Đặng Văn Tuyển – Thuê Trọ Hà Nội. All rights reserved.</div>
+      <a href="admin.html" style="opacity: 0.18; color: inherit; text-decoration: none; font-size: 0.85rem;" title="Cổng quản trị nội bộ">
+        <i class="fas fa-lock"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js?v=22"></script>
+  <script src="js/searchable-select.js?v=22"></script>
+  <script src="js/app.js?v=22"></script>
+</body>
+</html>

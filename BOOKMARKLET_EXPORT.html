@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Moithue.com Data Export Tool</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
+    .card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h1 { color: #0D9488; }
+    h2 { color: #333; }
+    .step { background: #f0fdf4; border-left: 4px solid #0D9488; padding: 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+    code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .bookmarklet { display: inline-block; background: #0D9488; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1em; cursor: pointer; }
+    .bookmarklet:hover { background: #0F766E; }
+    textarea { width: 100%; height: 200px; font-family: monospace; font-size: 12px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; }
+    .btn { background: #0D9488; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1em; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #0F766E; }
+    .btn-secondary { background: #64748B; }
+    .status { padding: 10px; border-radius: 8px; margin: 10px 0; }
+    .status.success { background: #dcfce7; color: #166534; }
+    .status.error { background: #fee2e2; color: #991b1b; }
+    .status.info { background: #dbeafe; color: #1e40af; }
+  </style>
+</head>
+<body>
+  <h1>🔧 Moithue.com Data Export Tool</h1>
+  
+  <div class="card">
+    <h2>📋 Cách sử dụng</h2>
+    
+    <div class="step">
+      <strong>Bước 1:</strong> Đăng nhập vào <a href="https://moithue.com" target="_blank">moithue.com</a>
+    </div>
+    
+    <div class="step">
+      <strong>Bước 2:</strong> Vào trang <a href="https://moithue.com/listings/" target="_blank">moithue.com/listings/</a>
+    </div>
+    
+    <div class="step">
+      <strong>Bước 3:</strong> Mở Console (F12 → Console) và paste đoạn code bên dưới
+    </div>
+    
+    <div class="step">
+      <strong>Bước 4:</strong> File <code>moithue_rooms.json</code> sẽ được tải về tự động
+    </div>
+    
+    <div class="step">
+      <strong>Bước 5:</strong> Copy file vào thư mục project và đặt tên <code>rooms_new.json</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📜 Code Export (Copy vào Console trên moithue.com)</h2>
+    <textarea id="exportCode" readonly>(async()=>{
+  console.log('🚀 Bắt đầu export dữ liệu từ moithue.com...');
+  
+  const allListings = [];
+  const seenIds = new Set();
+  
+  // Extract from current DOM
+  function extractFromDOM(doc) {
+    const cards = doc.querySelectorAll('.listivo-listing-card-v4');
+    cards.forEach(card => {
+      try {
+        const link = card.querySelector('a[href*="/listing/"]');
+        if (!link) return;
+        const url = link.href || link.getAttribute('href');
+        const slugMatch = url.match(/\/listing\/([^/]+)\//);
+        if (!slugMatch) return;
+        const slug = slugMatch[1];
+        if (seenIds.has(slug)) return;
+        seenIds.add(slug);
+        
+        const title = card.querySelector('[class*="name-selector"]')?.textContent?.trim() || '';
+        const price = card.querySelector('[class*="value-selector"]')?.textContent?.trim() || '';
+        const address = card.querySelector('[class*="address-selector"]')?.textContent?.trim() || '';
+        
+        const metas = card.querySelectorAll('[class*="meta-value"]');
+        let area='', floor='', capacity='';
+        metas.forEach(v => {
+          const t = v.textContent.trim();
+          if (t.includes('m²')) area = t;
+          else if (t.includes('Tầng')) floor = t;
+          else if (t.includes('người')) capacity = t;
+        });
+        
+        const images = [];
+        card.querySelectorAll('img').forEach(img => {
+          const s = img.src || img.dataset?.src || '';
+          if (s && s.startsWith('http') && !s.includes('svg')) images.push(s);
+        });
+        
+        const attributes = [];
+        card.querySelectorAll('[class*="icon-label"]').forEach(t => {
+          const txt = t.textContent.trim();
+          if (txt) attributes.push(txt);
+        });
+        
+        allListings.push({slug, url, title, price, address, area, floor, capacity, images: [...new Set(images)], attributes});
+      } catch(e) {}
+    });
+  }
+  
+  // Extract from current page
+  extractFromDOM(document);
+  console.log('Trang 1: ' + allListings.length + ' phòng');
+  
+  // Fetch additional pages
+  for (let page = 2; page <= 40; page++) {
+    try {
+      const res = await fetch('https://moithue.com/listings/page/' + page + '/', {credentials: 'include'});
+      const html = await res.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const before = allListings.length;
+      extractFromDOM(doc);
+      const added = allListings.length - before;
+      console.log('Trang ' + page + ': +' + added + ' phòng (tổng: ' + allListings.length + ')');
+      if (added === 0) break;
+      await new Promise(r => setTimeout(r, 500));
+    } catch(e) {
+      console.log('Lỗi trang ' + page + ': ' + e.message);
+      break;
+    }
+  }
+  
+  console.log('✅ Tổng cộng: ' + allListings.length + ' phòng');
+  
+  // Download
+  const blob = new Blob([JSON.stringify(allListings, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'moithue_rooms.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  
+  console.log('📥 Đã tải file moithue_rooms.json');
+  console.log('📋 Copy file vào thư mục project và đổi tên thành rooms_new.json');
+})();</textarea>
+    <br><br>
+    <button class="btn" onclick="document.getElementById('exportCode').select(); document.execCommand('copy'); alert('Đã copy code!')">📋 Copy Code</button>
+  </div>
+
+  <div class="card">
+    <h2>📁 Upload File JSON</h2>
+    <p>Sau khi export, đặt file tên <code>rooms_new.json</code> vào thư mục project, hệ thống sẽ tự động detect và merge.</p>
+    <input type="file" id="jsonFile" accept=".json" style="margin: 10px 0;">
+    <br>
+    <button class="btn" onclick="uploadFile()">📤 Upload & Merge</button>
+    <div id="uploadStatus"></div>
+  </div>
+
+  <script>
+    async function uploadFile() {
+      const fileInput = document.getElementById('jsonFile');
+      const status = document.getElementById('uploadStatus');
+      
+      if (!fileInput.files.length) {
+        status.innerHTML = '<div class="status error">❌ Vui lòng chọn file JSON</div>';
+        return;
+      }
+      
+      const file = fileInput.files[0];
+      const text = await file.text();
+      
+      try {
+        const data = JSON.parse(text);
+        status.innerHTML = '<div class="status success">✅ File hợp lệ: ' + data.length + ' phòng</div>';
+        
+        // Save to localStorage for the main app to pick up
+        localStorage.setItem('moithue_rooms_new', text);
+        status.innerHTML += '<div class="status info">ℹ️ Đã lưu vào localStorage. Mở trang chủ và nhấn nút "Cập nhật từ moithue.com" trên admin panel.</div>';
+      } catch(e) {
+        status.innerHTML = '<div class="status error">❌ File không hợp lệ: ' + e.message + '</div>';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "id": "MT-467-170-xx-linh-nam-1--truc-01",
+  "title": "467.170.xx Lĩnh Nam (1)_ Trục 01 _ A Đạt _LN",
+  "address": "467.170.x Lĩnh Nam(1)_Trục 01_A Đạt",
+  "district": "hoang-mai",
+  "sourceGroup": "nguon-hoang-mai",
+  "sourceGroupName": "Hoàng Mai",
+  "roomLayout": "STUDIO",
+  "categoryName": "Khép kín",
+  "tag": "Khép kín",
+  "status": "available",
+  "statusName": "Còn phòng",
+  "price": 4600000,
+  "area": 25,
+  "floor": "Tầng 3 / 6 tầng (Thang máy Có)",
+  "maxPeople": 2,
+  "elevator": true,
+  "furnishLevel": "Full đồ",
+  "maxVehicles": 2,
+  "petAllowed": false,
+  "electricVehicle": false,
+  "electricVehiclePolicy": "unspecified",
+  "electricVehicleNote": "Liên hệ chủ nhà",
+  "foreignGuest": false,
+  "nearParking": false,
+  "nearMainRoad": false,
+  "loft": true,
+  "images": [
+    "https://moithue.com/wp-content/uploads/2026/09/IMG_1667-scaled.jpeg",
+    "https://moithue.com/wp-content/uploads/2026/09/IMG_1675-scaled.jpeg",
+    "https://moithue.com/wp-content/uploads/2026/09/IMG_1674-scaled.jpeg",
+    "https://moithue.com/wp-content/uploads/2026/09/IMG_1673-scaled.jpeg",
+    "https://moithue.com/wp-content/uploads/2026/09/IMG_1671-scaled.jpeg",
+    "https://moithue.com/wp-content/uploads/2026/09/IMG_1672-scaled.jpeg"
+  ],
+  "amenities": [
+    "Điều hòa",
+    "Nóng lạnh",
+    "Giường",
+    "Tủ quần áo"
+  ],
+  "description": "THÔNG TIN PHÒNG_LN   ĐỊA CHỈ: 467.170.x Lĩnh Nam(1)_Trục 01_A Đạt ⏳Tình trạng: Đang trống 🍡Ngõ: Ba gác 🍡Thang máy: Có 🍡Dạng phòng: Studio 🛋️ Nội thất: Tủ quần áo, điều hòa, nóng lạnh, tủ bếp, bàn bếp,quạt trần,tủ lạnh,giường... ✅ TIỆN ÍCH • Gần trường: Kinh Công Kinh kỹ ~ 1km Đại Học Mở [...]",
+  "detailDescription": {
+    "info": "467.170.x Lĩnh Nam(1)_Trục 01_A Đạt",
+    "amenity": "Tủ quần áo, điều hòa, nóng lạnh, tủ bếp, bàn bếp,quạt trần,tủ lạnh,giường... ✅ TIỆN ÍCH • Gần trường: Kinh Công Kinh kỹ ~ 1km Đại Học Mở [...]",
+    "service": "",
+    "note": "THÔNG TIN PHÒNG_LN   ĐỊA CHỈ: 467.170.x Lĩnh Nam(1)_Trục 01_A Đạt ⏳Tình trạng: Đang trống 🍡Ngõ: Ba gác 🍡Thang máy: Có 🍡Dạng phòng: Studio 🛋️ Nội thất: Tủ quần áo, điều hòa, nóng lạnh, tủ bếp, bàn bếp,quạt trần,tủ lạnh,giường... ✅ TIỆN ÍCH • Gần trường: Kinh Công Kinh kỹ ~ 1km Đại Học Mở [...]"
+  },
+  "moithueUrl": "https://moithue.com/listing/467-170-xx-linh-nam-1_-truc-01-_-a-dat-_ln/",
+  "moithueSlug": "467-170-xx-linh-nam-1_-truc-01-_-a-dat-_ln",
+  "createdAt": "2026-09-04T06:33:48.630Z"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "thuetro-hanoi",
+  "version": "1.0.0",
+  "description": "Website Tim Kiem Va Cho Thue Phong Tro Ha Noi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["thue-tro", "ha-noi", "phong-tro"],
+  "author": "Dang Van Tuyen",
+  "license": "ISC"
+}
