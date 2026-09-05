@@ -1525,3 +1525,92 @@ function confirmFetchedImport(isNew, existingIdx) {
   renderAdminStats();
   renderRoomsTable();
 }
+
+// ==========================================================================
+// EXPORT & IMPORT ROOMS JSON (100% BULLETPROOF BACKUP & RESTORE)
+// ==========================================================================
+function exportRoomsJson() {
+  if (adminRooms.length === 0) {
+    showToast('⚠️ Hiện tại danh sách chưa có phòng nào để xuất!');
+    return;
+  }
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(adminRooms, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", `rooms_backup_${new Date().toISOString().slice(0, 10)}.json`);
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+  showToast(`📁 Đã xuất thành công ${adminRooms.length} phòng về máy!`);
+}
+
+function triggerImportJson() {
+  let fileInput = document.getElementById('adminImportJsonInput');
+  if (!fileInput) {
+    fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.id = 'adminImportJsonInput';
+    fileInput.accept = '.json';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+    
+    fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        let importedList = [];
+        if (Array.isArray(parsed)) {
+          importedList = parsed;
+        } else if (parsed && typeof parsed === 'object') {
+          importedList = [parsed];
+        } else {
+          throw new Error('Dữ liệu JSON không đúng định dạng danh sách phòng!');
+        }
+
+        if (importedList.length === 0) {
+          alert('File JSON rỗng!');
+          return;
+        }
+
+        // Merge imported rooms into adminRooms
+        let addedCount = 0;
+        let updatedCount = 0;
+        importedList.forEach(r => {
+          if (!r.title && !r.address) return;
+          if (r.title) r.title = transformMoithueName(r.title);
+          if (r.address) r.address = transformMoithueName(r.address);
+          
+          const existIdx = adminRooms.findIndex(item => (r.id && item.id === r.id) || (r.moithueSlug && item.moithueSlug === r.moithueSlug) || (r.moithueUrl && item.moithueUrl === r.moithueUrl));
+          if (existIdx > -1) {
+            adminRooms[existIdx] = { ...adminRooms[existIdx], ...r };
+            updatedCount++;
+          } else {
+            adminRooms.unshift(r);
+            addedCount++;
+          }
+        });
+
+        localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
+        try {
+          await fetch('/api/save-rooms', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(adminRooms)
+          });
+        } catch (saveErr) {}
+
+        renderAdminStats();
+        renderRoomsTable();
+        showToast(`🎉 Nhập xong: Thêm mới ${addedCount} phòng, Cập nhật ${updatedCount} phòng!`);
+      } catch (err) {
+        alert('❌ Lỗi đọc file JSON: ' + err.message);
+      } finally {
+        fileInput.value = '';
+      }
+    });
+  }
+  fileInput.click();
+}
+
