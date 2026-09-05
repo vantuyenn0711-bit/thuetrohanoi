@@ -110,21 +110,67 @@ function httpPost(url, postData) {
   });
 }
 
+let cookies = {};
+
+function loadEnvCookies(customCookieStr = '') {
+  const envCookie = customCookieStr || process.env.MOITHUE_COOKIE || '';
+  if (!envCookie) return;
+  
+  envCookie.split(';').forEach(c => {
+    const trimmed = c.trim();
+    if (!trimmed) return;
+    const eqIdx = trimmed.indexOf('=');
+    if (eqIdx > -1) {
+      const k = trimmed.substring(0, eqIdx).trim();
+      const v = trimmed.substring(eqIdx + 1).trim();
+      if (k) cookies[k] = v;
+    } else {
+      cookies['wordpress_logged_in_custom'] = trimmed;
+    }
+  });
+}
+
 // ======================================================================
 // LOGIN
 // ======================================================================
-async function login(force = false) {
-  if (!force && Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_'))) return true;
+async function login(force = false, customCookie = '') {
+  loadEnvCookies(customCookie);
+
+  const hasAuthCookie = Object.keys(cookies).some(k => 
+    k.startsWith('wordpress_logged_in_') || 
+    k.startsWith('wordpress_sec_') || 
+    k.includes('logged_in')
+  );
+
+  if (!force && hasAuthCookie) {
+    console.log('🔑 Sử dụng phiên đăng nhập từ Cookie (Render/Env/Client)...');
+    return true;
+  }
+
+  if (force && customCookie) {
+    return true;
+  }
+
   cookies = {};
+  loadEnvCookies(customCookie);
+  if (Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_') || k.includes('logged_in'))) {
+    return true;
+  }
+
   console.log('🔑 Logging into moithue.com...');
-  await httpGet('https://moithue.com/wp-login.php');
-  await httpPost('https://moithue.com/wp-login.php', {
-    log: CREDENTIALS.email, pwd: CREDENTIALS.password,
-    'wp-submit': 'Đăng nhập', redirect_to: 'https://moithue.com/', testcookie: '1'
-  });
-  const ok = Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_'));
-  console.log(ok ? '✅ Login OK' : '⚠️ Login failed');
-  return ok;
+  try {
+    await httpGet('https://moithue.com/wp-login.php');
+    await httpPost('https://moithue.com/wp-login.php', {
+      log: CREDENTIALS.email, pwd: CREDENTIALS.password,
+      'wp-submit': 'Đăng nhập', redirect_to: 'https://moithue.com/', testcookie: '1'
+    });
+    const ok = Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_') || k.startsWith('wordpress_sec_'));
+    console.log(ok ? '✅ Login OK' : '⚠️ Login failed (Nếu chạy trên Render, hãy set biến MOITHUE_COOKIE)');
+    return ok;
+  } catch (err) {
+    console.warn('⚠️ Lỗi kết nối login:', err.message);
+    return false;
+  }
 }
 
 // ======================================================================
@@ -714,12 +760,12 @@ function convertToRoomFormat(data, sourceGroup, district) {
 // ======================================================================
 // API: FETCH LISTING
 // ======================================================================
-async function fetchListing(listingUrl, sourceGroup, district) {
+async function fetchListing(listingUrl, sourceGroup, district, customCookie = '') {
   const slugMatch = listingUrl.match(/\/listing\/([^/]+)\/?$/);
   if (!slugMatch) throw new Error('Invalid URL. Must be moithue.com/listing/slug/');
   const slug = slugMatch[1];
 
-  await login();
+  await login(false, customCookie);
 
   let res = await httpGet(`https://moithue.com/listing/${slug}/`);
   
@@ -727,12 +773,15 @@ async function fetchListing(listingUrl, sourceGroup, district) {
   if (res.status === 403 || res.status === 401 || res.status === 503) {
     console.warn(`⚠️ HTTP ${res.status} khi tải ${slug}, đang reset cookie và đăng nhập lại...`);
     await new Promise(r => setTimeout(r, 1500));
-    await login(true);
+    await login(true, customCookie);
     res = await httpGet(`https://moithue.com/listing/${slug}/`);
   }
 
   if (res.status === 404) {
     throw new Error('Link này không tồn tại / đã bị xóa trên moithue (404)');
+  }
+  if (res.status === 403) {
+    throw new Error('HTTP 403 (Bị chặn trên Render do thiếu cookie. Vui lòng cấu hình MOITHUE_COOKIE)');
   }
   if (res.status !== 200) throw new Error(`HTTP ${res.status}`);
 
@@ -863,11 +912,11 @@ const server = http.createServer(async (req, res) => {
     req.on('data', chunk => body += chunk);
     req.on('end', async () => {
       try {
-        const { url, sourceGroup, district } = JSON.parse(body);
+        const { url, sourceGroup, district, cookie } = JSON.parse(body);
         if (!url) { res.writeHead(400, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: 'Missing url' })); return; }
 
         console.log(`📥 Fetching: ${url}`);
-        const room = await fetchListing(url, sourceGroup, district);
+        const room = await fetchListing(url, sourceGroup, district, cookie);
         console.log(`✅ Fetched 100%: ${room.title}`);
 
         res.writeHead(200, { 'Content-Type': 'application/json' });

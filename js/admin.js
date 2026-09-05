@@ -43,6 +43,7 @@ function getOptimizedImageUrl(url, width = 140, quality = 75) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  initCustomCookieInput();
   await loadAdminData();
   renderAdminStats();
   renderBookingsTable();
@@ -1115,6 +1116,23 @@ function updateLinksCountBadge() {
   badge.style.color = links.length > 0 ? '#14532d' : '#15803d';
 }
 
+function initCustomCookieInput() {
+  const cookieInput = document.getElementById('moithueCustomCookie');
+  if (cookieInput) {
+    cookieInput.value = localStorage.getItem('moithue_custom_cookie') || '';
+  }
+}
+
+function saveCustomCookie(val) {
+  if (val && val.trim()) {
+    localStorage.setItem('moithue_custom_cookie', val.trim());
+    showToast('🔑 Đã lưu Cookie moithue.com thành công!');
+  } else {
+    localStorage.removeItem('moithue_custom_cookie');
+    showToast('Đã xóa Cookie tùy chỉnh');
+  }
+}
+
 let isBatchUploading = false;
 
 async function fetchAndAddRooms() {
@@ -1244,10 +1262,11 @@ async function fetchAndAddRooms() {
       }
 
       try {
+        const customCookie = localStorage.getItem('moithue_custom_cookie') || '';
         const response = await fetch('/api/fetch-listing', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url: link, sourceGroup, district })
+          body: JSON.stringify({ url: link, sourceGroup, district, cookie: customCookie })
         });
 
         const result = await response.json();
