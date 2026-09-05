@@ -134,7 +134,7 @@ function cleanHtmlPreserveBreaks(html) {
 
   // 1. Thêm ngắt dòng trước các icon mục lớn
   text = text.replace(/([^\n])\s*(?=(?:📋|✅|🚚|🏆|❎))/gu, '$1\n\n');
-  
+
   // 2. Thêm ngắt dòng trước các tiêu đề lớn (kể cả không có emoji)
   text = text.replace(/([^\n])\s*(?=(?:THÔNG TIN PHÒNG|TIỆN ÍCH|DỊCH VỤ|LƯU Ý)(?:[\s:•_]|$))/gi, '$1\n\n');
 
@@ -203,7 +203,7 @@ function extractRoomFromHtml(html, slug) {
 
   // 2. Price
   const priceWidgetMatch = html.match(/widget-lst_listing_price[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
-                           html.match(/class="[^"]*price[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+    html.match(/class="[^"]*price[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
   let priceStr = '';
   if (priceWidgetMatch) {
     const pNum = priceWidgetMatch[1].match(/(\d{1,3}(?:[.,]\d{3})+)/);
@@ -218,8 +218,8 @@ function extractRoomFromHtml(html, slug) {
   // 3. Extract 100% FULL Description from container
   let fullDescHtml = '';
   const sectionTextMatch = html.match(/<div class="listivo-listing-section__text">([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>/i) ||
-                           html.match(/<div class="listivo-listing-section__text">([\s\S]*?)<\/div>/i) ||
-                           html.match(/listivo-listing-description[\s\S]*?>([\s\S]*?)<\/div>/i);
+    html.match(/<div class="listivo-listing-section__text">([\s\S]*?)<\/div>/i) ||
+    html.match(/listivo-listing-description[\s\S]*?>([\s\S]*?)<\/div>/i);
   if (sectionTextMatch) {
     fullDescHtml = sectionTextMatch[1];
   } else {
@@ -252,7 +252,7 @@ function extractRoomFromHtml(html, slug) {
 
   // 5. Extract "Tầng còn phòng ở trục này"
   const floorMatch = html.match(/Tầng còn phòng ở trục này[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/i) ||
-                     html.match(/Tầng còn phòng ở trục này[\s\S]*?<\/div>\s*<\/div>/i);
+    html.match(/Tầng còn phòng ở trục này[\s\S]*?<\/div>\s*<\/div>/i);
   const availableFloors = [];
   if (floorMatch) {
     const tagRegex = /<div class=["']listivo-tag["']>([\s\S]*?)<\/div>/gi;
@@ -282,7 +282,7 @@ function extractRoomFromHtml(html, slug) {
     data.videoUrl = '';
   }
   const driveMatch = html.match(/href=["'](https:\/\/drive\.google\.com\/[^\s"'>]+)["'][^>]*title=["']Lấy Video["']/i) ||
-                     html.match(/href=["'](https:\/\/drive\.google\.com\/[^\s"'>]+)["']/i);
+    html.match(/href=["'](https:\/\/drive\.google\.com\/[^\s"'>]+)["']/i);
   data.videoDriveUrl = driveMatch ? driveMatch[1] : '';
 
   // 7. Extract Gallery Images
@@ -590,7 +590,7 @@ function serveStaticFile(filePath, req, res) {
   }
   const ext = path.extname(fullPath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-  
+
   let content;
   try {
     content = fs.readFileSync(fullPath);
@@ -700,8 +700,21 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Chặn hoàn toàn đường dẫn admin cũ
+  if (pathname === '/admin' || pathname === '/admin.html') {
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('<h1>404 Not Found</h1><p>Trang không tồn tại.</p>');
+    return;
+  }
+
+  // Đường dẫn quản trị bí mật
+  if (pathname === '/minhthu2812' || pathname === '/minhthu2812.html') {
+    serveStaticFile('/minhthu2812.html', req, res);
+    return;
+  }
+
   // Static files
-  let filePath = pathname === '/' ? '/index.html' : (pathname === '/admin' ? '/admin.html' : pathname);
+  let filePath = pathname === '/' ? '/index.html' : pathname;
   filePath = filePath.replace(/\.\./g, ''); // Security: prevent path traversal
   serveStaticFile(filePath, req, res);
 });
