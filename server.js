@@ -686,7 +686,8 @@ function convertToRoomFormat(data, sourceGroup, district) {
     'nguon-cau-dien': 'Cầu Diễn', 'nguon-kim-giang-ngoc-hoi': 'Kim Giang, Ngọc Hồi',
     'nguon-trieu-khuc': 'Triều Khúc', 'nguon-phu-dien': 'Phú Diễn',
     'nguon-xuan-phuong': 'Xuân Phương', 'nguon-yen-xa-mau-luong': 'Yên Xá/Mậu Lương',
-    'ngoc-truc-dai-linh': 'Ngọc Trục - Đại Linh', 'nguon-ha-dong': 'Hà Đông'
+    'ngoc-truc-dai-linh': 'Ngọc Trục - Đại Linh', 'nguon-ha-dong': 'Hà Đông',
+    'nguon-linh-nam-vinh-hung': 'Lĩnh Nam - Vĩnh Hưng', 'nguon-bach-kinh-xay': 'Bách Kinh Xây'
   };
 
   const evPolicy = data.evPolicy || 'unspecified';
@@ -873,6 +874,29 @@ const server = http.createServer(async (req, res) => {
       } else {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify([]));
+      }
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: err.message }));
+    }
+    return;
+  }
+
+  // API: Get rooms from rooms_new.json
+  if ((pathname === '/api/rooms' || pathname === '/api/get-rooms') && req.method === 'GET') {
+    try {
+      const roomsPath = path.join(__dirname, 'rooms_new.json');
+      if (fs.existsSync(roomsPath)) {
+        const data = fs.readFileSync(roomsPath, 'utf8');
+        res.writeHead(200, {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
+          'Cache-Control': 'no-cache, no-store, must-revalidate'
+        });
+        res.end(data);
+      } else {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end('[]');
       }
     } catch (err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });

@@ -7,6 +7,8 @@ const STORAGE_BOOKINGS_KEY = "thuetro_bookings_list";
 const SOURCE_GROUP_NAMES = {
   "nguon-ba-dinh": "Ba Đình - Tây Hồ",
   "nguon-ba-dinh-tay-ho": "Ba Đình - Tây Hồ",
+  "nguon-bach-kinh-xay": "Bách Kinh Xây",
+  "bach-kinh-xay": "Bách Kinh Xây",
   "nguon-cau-dien": "Cầu Diễn",
   "nguon-cau-giay": "Cầu Giấy",
   "nguon-xuan-dinh": "Cổ Nhuế , Xuân Đỉnh",
@@ -18,6 +20,8 @@ const SOURCE_GROUP_NAMES = {
   "nguon-hoai-duc": "Hoài Đức",
   "nguon-hoang-mai": "Hoàng Mai",
   "nguon-kim-giang-ngoc-hoi": "Kim Giang, Ngọc Hồi",
+  "nguon-linh-nam-vinh-hung": "Lĩnh Nam - Vĩnh Hưng",
+  "linh-nam-vinh-hung": "Lĩnh Nam - Vĩnh Hưng",
   "me-tri-phu-do": "Mễ Trì - Phú Đô",
   "nguon-me-tri-phu-do": "Mễ Trì - Phú Đô",
   "nguon-my-dinh": "Mỹ Đình",

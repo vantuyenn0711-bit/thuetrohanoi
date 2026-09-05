@@ -228,7 +228,9 @@
           <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 5px;">📍 Nhóm Nguồn Hàng</label>
           <select id="syncSourceGroup" class="form-control" style="font-weight: 600;">
             <option value="nguon-cau-giay">Cầu Giấy</option>
+            <option value="nguon-bach-kinh-xay">Bách Kinh Xây</option>
             <option value="nguon-hoang-mai">Hoàng Mai</option>
+            <option value="nguon-linh-nam-vinh-hung">Lĩnh Nam - Vĩnh Hưng</option>
             <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
             <option value="nguon-my-dinh">Mỹ Đình</option>
             <option value="nguon-hoai-duc">Hoài Đức</option>
@@ -336,15 +338,18 @@
         <select id="adminSourceGroupFilter" class="form-control" onchange="onAdminFilterChange()">
           <option value="all">Tất cả Nhóm Nguồn Hàng</option>
           <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
+          <option value="nguon-bach-kinh-xay">Bách Kinh Xây</option>
           <option value="nguon-cau-dien">Cầu Diễn</option>
           <option value="nguon-cau-giay">Cầu Giấy</option>
           <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế , Xuân Đỉnh</option>
           <option value="nguon-dinh-cong">Định Công</option>
           <option value="nguon-dong-da">Đống Đa</option>
+          <option value="nguon-ha-dong">Hà Đông</option>
           <option value="nguon-hoai-duc">Hoài Đức</option>
           <option value="nguon-hoang-mai">Hoàng Mai</option>
           <option value="nguon-ho-tung-mau">Hồ Tùng Mậu</option>
           <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
+          <option value="nguon-linh-nam-vinh-hung">Lĩnh Nam - Vĩnh Hưng</option>
           <option value="nguon-me-tri-phu-do">Mễ Trì - Phú Đô</option>
           <option value="nguon-my-dinh">Mỹ Đình</option>
           <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
@@ -460,15 +465,18 @@
                 <label>Nhóm Nguồn Hàng *</label>
                 <select id="formSourceGroup" class="form-control">
                   <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
+                  <option value="nguon-bach-kinh-xay">Bách Kinh Xây</option>
                   <option value="nguon-cau-dien">Cầu Diễn</option>
                   <option value="nguon-cau-giay">Cầu Giấy</option>
                   <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế , Xuân Đỉnh</option>
                   <option value="nguon-dinh-cong">Định Công</option>
                   <option value="nguon-dong-da">Đống Đa</option>
+                  <option value="nguon-ha-dong">Hà Đông</option>
                   <option value="nguon-hoai-duc">Hoài Đức</option>
                   <option value="nguon-hoang-mai">Hoàng Mai</option>
                   <option value="nguon-ho-tung-mau">Hồ Tùng Mậu</option>
                   <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
+                  <option value="nguon-linh-nam-vinh-hung">Lĩnh Nam - Vĩnh Hưng</option>
                   <option value="nguon-me-tri-phu-do">Mễ Trì - Phú Đô</option>
                   <option value="nguon-my-dinh">Mỹ Đình</option>
                   <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
@@ -684,8 +692,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=20260905_v3"></script>
-  <script src="js/admin.js?v=20260905_v3"></script>
+  <script src="js/data.js?v=20260905_v4"></script>
+  <script src="js/admin.js?v=20260905_v4"></script>
   <script>
     function switchAdminTab(tabId, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));

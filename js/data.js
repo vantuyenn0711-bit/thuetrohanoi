@@ -24,6 +24,7 @@ const DISTRICTS = [
 const SOURCE_GROUPS = [
   { id: "all", name: "Tất cả Nhóm Nguồn Hàng" },
   { id: "nguon-ba-dinh", name: "Ba Đình - Tây Hồ" },
+  { id: "nguon-bach-kinh-xay", name: "Bách Kinh Xây" },
   { id: "nguon-cau-dien", name: "Cầu Diễn" },
   { id: "nguon-cau-giay", name: "Cầu Giấy" },
   { id: "nguon-xuan-dinh", name: "Cổ Nhuế, Xuân Đỉnh" },
@@ -34,6 +35,7 @@ const SOURCE_GROUPS = [
   { id: "nguon-hoai-duc", name: "Hoài Đức" },
   { id: "nguon-hoang-mai", name: "Hoàng Mai" },
   { id: "nguon-kim-giang-ngoc-hoi", name: "Kim Giang, Ngọc Hồi" },
+  { id: "nguon-linh-nam-vinh-hung", name: "Lĩnh Nam - Vĩnh Hưng" },
   { id: "me-tri-phu-do", name: "Mễ Trì - Phú Đô" },
   { id: "nguon-my-dinh", name: "Mỹ Đình" },
   { id: "nguon-nam-tu-liem", name: "Nam Từ Liêm" },
