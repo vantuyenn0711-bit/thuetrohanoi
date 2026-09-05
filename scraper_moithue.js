@@ -393,7 +393,7 @@ function convertToRoomFormat(data, index) {
   else if (evPolicy === 'allowed') evNote = 'Nhận xe điện';
   
   return {
-    id: 'MT-' + data.slug.replace(/[^a-zA-Z0-9]/g, '-').substring(0, 30),
+    id: 'MT-' + data.slug.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-'),
     title: data.title || data.slug,
     address: data.address || '',
     district,

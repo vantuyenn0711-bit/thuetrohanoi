@@ -41,17 +41,48 @@ const CONSULTANT_ZALO = "0358954360";
 // Fallback image URL
 const DEFAULT_ROOM_IMAGE = "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80";
 
+// ==========================================================================
+// IMAGE OPTIMIZER - FAST WEBP CDN PROXY & RESIZING (wsrv.nl / Cloudflare)
+// ==========================================================================
+function getOptimizedImageUrl(url, width = 600, quality = 80) {
+  if (!url || typeof url !== 'string') return DEFAULT_ROOM_IMAGE;
+  const clean = url.trim();
+  if (!clean || clean.startsWith('data:') || clean.startsWith('blob:')) return clean;
+  if (clean.startsWith('/') || clean.startsWith('./')) return clean;
+  if (clean.includes('wsrv.nl') || clean.includes('images.weserv.nl')) return clean;
+
+  // Use wsrv.nl to resize, compress and convert to WebP on the fly (backed by Cloudflare CDN)
+  return `https://wsrv.nl/?url=${encodeURIComponent(clean)}&w=${width}&q=${quality}&output=webp&we=1&default=${encodeURIComponent(DEFAULT_ROOM_IMAGE)}`;
+}
+
 let heroDistrictSelectComponent = null;
 let heroSourceGroupSelectComponent = null;
 let sidebarDistrictSelectComponent = null;
 let sidebarSourceGroupSelectComponent = null;
 
-document.addEventListener("DOMContentLoaded", () => {
-  initData();
+document.addEventListener("DOMContentLoaded", async () => {
+  // 1. Đọc ngay từ localStorage trước để render tức thì 0ms (không bị trống phòng khi vừa mở)
+  try {
+    const saved = localStorage.getItem(STORAGE_ROOMS_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        rooms = parsed.map(r => {
+          if (r.title) r.title = transformMoithueName(r.title);
+          return r;
+        });
+      }
+    }
+  } catch (e) {}
+
   initSearchableSelects();
   initEventListeners();
   renderRooms();
   updateWishlistCount();
+  updateSidebarCounts();
+
+  // 2. Tiếp tục đồng bộ từ API / file dữ liệu máy chủ
+  await initData();
 });
 
 function transformMoithueName(str) {
@@ -108,34 +139,48 @@ async function initData() {
     }
   }
 
+  let loaded = false;
+
+  // 1. Thử lấy từ API / file rooms_new.json
   try {
     let res = await fetch(`/api/rooms?t=${Date.now()}`);
     if (!res.ok) {
       res = await fetch(`rooms_new.json?t=${Date.now()}`);
     }
-    const data = await res.json();
-    if (Array.isArray(data)) {
-      rooms = data.map(r => {
-        if (r.title) r.title = transformMoithueName(r.title);
-        return r;
-      });
-    }
-  } catch (err) {
-    try {
-      const res2 = await fetch(`rooms_new.json?t=${Date.now()}`);
-      const data2 = await res2.json();
-      if (Array.isArray(data2)) {
-        rooms = data2.map(r => {
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        rooms = data.map(r => {
           if (r.title) r.title = transformMoithueName(r.title);
           return r;
         });
+        loaded = true;
+        try { localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(rooms)); } catch(e) {}
       }
-    } catch (e2) {
-      console.error("Could not load rooms:", e2);
+    }
+  } catch (err) {
+    console.warn("API fetch error, trying local storage:", err);
+  }
+
+  // 2. Nếu API không lấy được, nạp từ localStorage
+  if (!loaded) {
+    const savedRooms = localStorage.getItem(STORAGE_ROOMS_KEY);
+    if (savedRooms) {
+      try {
+        const parsed = JSON.parse(savedRooms);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          rooms = parsed.map(r => {
+            if (r.title) r.title = transformMoithueName(r.title);
+            return r;
+          });
+          loaded = true;
+        }
+      } catch (e) {}
     }
   }
 
-  if ((!rooms || rooms.length === 0) && typeof INITIAL_ROOMS !== "undefined" && INITIAL_ROOMS.length > 0) {
+  // 3. Fallback sang INITIAL_ROOMS nếu vẫn chưa có
+  if (!loaded && (!rooms || rooms.length === 0) && typeof INITIAL_ROOMS !== "undefined" && INITIAL_ROOMS.length > 0) {
     rooms = INITIAL_ROOMS.map(r => {
       if (r.title) r.title = transformMoithueName(r.title);
       return r;
@@ -144,6 +189,7 @@ async function initData() {
 
   renderRooms();
   updateSidebarCounts();
+  updateWishlistCount();
 
   // Tự động mở chi tiết phòng nếu có tham số ?room=... hoặc ?id=... trên URL
   try {
@@ -242,12 +288,24 @@ function renderRooms() {
     const isSaved = wishlist.includes(room.id);
     const priceFormatted = new Intl.NumberFormat('vi-VN').format(room.price) + " đ";
     
-    // Build slider images track (Chỉ nạp trước ảnh đầu tiên, các ảnh sau nạp theo yêu cầu để web siêu nhanh trên điện thoại)
-    const slidesHtml = room.images.map((img, idx) => `
+    // Build slider images track (Chỉ nạp trước ảnh đầu tiên dạng WebP tối ưu, các ảnh sau nạp theo yêu cầu để web siêu nhanh trên điện thoại)
+    const slidesHtml = room.images.map((img, idx) => {
+      const optSrc = getOptimizedImageUrl(img, 600, 80);
+      const isPriority = idx === 0 && roomIdx < 4;
+      return `
       <div class="card-slide-item">
-        <img ${idx === 0 ? `src="${img}"` : `data-src="${img}"`} class="card-slide-img" data-index="${idx}" alt="${room.title}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
+        <img ${idx === 0 ? `src="${optSrc}"` : `data-src="${optSrc}"`} 
+             data-fallback="${img}"
+             class="card-slide-img" 
+             data-index="${idx}" 
+             alt="${room.title}" 
+             loading="lazy" 
+             decoding="async"
+             ${isPriority ? 'fetchpriority="high"' : ''}
+             referrerpolicy="no-referrer" 
+             onerror="if(this.dataset.fallback && this.src !== this.dataset.fallback){this.src=this.dataset.fallback;}else{this.onerror=null;this.src='${DEFAULT_ROOM_IMAGE}';}">
       </div>
-    `).join("");
+    `}).join("");
 
     const dotsHtml = room.images.map((_, idx) => `
       <div class="slider-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}" onclick="jumpCardSlide('${room.id}', ${idx}, event)"></div>
@@ -288,16 +346,6 @@ function renderRooms() {
         </div>
 
         <div class="card-content">
-          <!-- Dải Tag nhẹ nhàng dưới ảnh (Không che khuất ảnh) -->
-          <div class="card-tags-row">
-            <span class="card-tag-pill location"><i class="fas fa-map-marker-alt"></i> ${distName}</span>
-            <span class="card-tag-pill status ${isRented ? 'rented' : ''}">
-              <i class="fas ${isRented ? 'fa-ban' : 'fa-circle'}"></i> ${isRented ? 'Đã cho thuê' : (room.statusName || 'Còn phòng')}
-            </span>
-            ${evBadgeHtml}
-            ${room.elevator ? `<span class="card-tag-pill elevator"><i class="fas fa-elevator"></i> Thang máy</span>` : ''}
-          </div>
-
           <h3 class="card-title" title="${room.title}">${room.title}</h3>
 
           <div class="card-bottom-row">
@@ -306,8 +354,8 @@ function renderRooms() {
               <span class="price-unit">/ tháng</span>
             </div>
             <div class="card-cta-group">
-              <button class="btn-schedule-view ${isRented ? 'rented-btn' : ''}" onclick="contactZaloRoom('${room.id}', event)" title="${isRented ? 'Nhắn Zalo tìm phòng tương tự' : 'Nhắn Zalo cố vấn'}" style="${isRented ? 'background: #64748B; box-shadow: none;' : ''}">
-                <i class="fas ${isRented ? 'fa-history' : 'fa-comment-dots'}"></i> ${isRented ? 'Phòng tương tự' : 'Nhắn Zalo'}
+              <button class="btn-card-chat ${isRented ? 'rented-btn' : ''}" onclick="contactZaloRoom('${room.id}', event)" title="${isRented ? 'Nhắn Zalo tìm phòng tương tự' : 'Nhắn Zalo cố vấn'}" aria-label="Nhắn tin">
+                <i class="fas ${isRented ? 'fa-history' : 'fa-comment-dots'}"></i>
               </button>
             </div>
           </div>
@@ -542,18 +590,16 @@ function initModalTouchGallery() {
     if (!isSwiping || !currentDetailRoom || !currentDetailRoom.images || currentDetailRoom.images.length <= 1) return;
     const diffX = e.changedTouches[0].clientX - startX;
     if (Math.abs(diffX) > 35) {
-      const mainImg = document.getElementById('detailMainImg');
-      if (!mainImg) return;
-      const curSrc = mainImg.src;
-      let curIdx = currentDetailRoom.images.findIndex(img => curSrc.includes(img) || img === curSrc);
+      const thumbs = document.querySelectorAll('.thumb-img');
+      let curIdx = Array.from(thumbs).findIndex(t => t.classList.contains('active'));
       if (curIdx === -1) curIdx = 0;
       let nextIdx = diffX < 0 ? curIdx + 1 : curIdx - 1;
       if (nextIdx >= currentDetailRoom.images.length) nextIdx = 0;
       if (nextIdx < 0) nextIdx = currentDetailRoom.images.length - 1;
-      const nextImg = currentDetailRoom.images[nextIdx];
-      const thumbs = document.querySelectorAll('.thumb-img');
-      switchDetailImg(nextImg, thumbs[nextIdx]);
-      if (thumbs[nextIdx]) thumbs[nextIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const nextThumb = thumbs[nextIdx];
+      const nextImgLarge = nextThumb ? (nextThumb.dataset.large || getOptimizedImageUrl(currentDetailRoom.images[nextIdx], 1200, 85)) : getOptimizedImageUrl(currentDetailRoom.images[nextIdx], 1200, 85);
+      switchDetailImg(nextImgLarge, nextThumb);
+      if (nextThumb) nextThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
   }, { passive: true });
 }
@@ -641,14 +687,33 @@ function getFilteredRooms() {
       return false;
     }
 
-    // 8. Dạng phòng (Studio, 1N1K, 2N1K, 3N1K)
+    // 8. Dạng phòng & Loại nhà (Phân cấp cây: Khép kín -> Studio/1N1K/2N1K/3N1K, Nguyên căn)
     if (currentFilter.roomLayout !== "all") {
-      const targetLayout = currentFilter.roomLayout.toLowerCase();
-      const actualLayout = (room.roomLayout || "").toLowerCase();
-      const title = (room.title || "").toLowerCase();
-      const tag = (room.tag || "").toLowerCase();
-      if (!actualLayout.includes(targetLayout) && !title.includes(targetLayout) && !tag.includes(targetLayout)) {
-        return false;
+      const layout = currentFilter.roomLayout.toLowerCase();
+      const rLayout = (room.roomLayout || "").toLowerCase();
+      const rCategory = (room.categoryName || "").toLowerCase();
+      const rTag = (room.tag || "").toLowerCase();
+      const rTitle = (room.title || "").toLowerCase();
+
+      const isNguyenCan = rCategory.includes("nguyên căn") || rLayout.includes("nguyên căn") || rTag.includes("nguyên căn");
+      const isKhepKin = !isNguyenCan;
+
+      if (layout === "khep-kin-all") {
+        if (!isKhepKin) return false;
+      } else if (layout === "nguyen-can") {
+        if (!isNguyenCan) return false;
+      } else if (layout === "studio") {
+        if (!isKhepKin) return false;
+        const isMulti = rLayout.includes('1n1k') || rTitle.includes('1n1k') || rTag.includes('1n1k') ||
+                        rLayout.includes('2n1k') || rTitle.includes('2n1k') || rTag.includes('2n1k') ||
+                        rLayout.includes('3n1k') || rTitle.includes('3n1k') || rTag.includes('3n1k');
+        if (isMulti) return false;
+      } else {
+        // Nhánh con của Khép kín: 1n1k, 2n1k, 3n1k
+        if (!isKhepKin) return false;
+        if (!rLayout.includes(layout) && !rTitle.includes(layout) && !rTag.includes(layout) && !rCategory.includes(layout)) {
+          return false;
+        }
       }
     }
 
@@ -777,9 +842,19 @@ function openWishlistModal() {
   } else {
     container.innerHTML = `
       <div style="display: flex; flex-direction: column; gap: 14px;">
-        ${savedRooms.map(room => `
+        ${savedRooms.map(room => {
+          const thumbOpt = getOptimizedImageUrl(room.images[0], 160, 75);
+          return `
           <div style="display: flex; gap: 16px; align-items: center; background: var(--bg-alt); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-            <img src="${room.images[0]}" style="width: 80px; height: 70px; object-fit: cover; border-radius: var(--radius-sm); cursor: pointer;" alt="${room.title}" onclick="closeModal('wishlistModal'); openRoomDetailModal('${room.id}', true);">
+            <img src="${thumbOpt}" 
+                 data-fallback="${room.images[0]}" 
+                 loading="lazy" 
+                 decoding="async"
+                 referrerpolicy="no-referrer" 
+                 onerror="if(this.dataset.fallback && this.src !== this.dataset.fallback){this.src=this.dataset.fallback;}else{this.onerror=null;this.src='${DEFAULT_ROOM_IMAGE}';}" 
+                 style="width: 80px; height: 70px; object-fit: cover; border-radius: var(--radius-sm); cursor: pointer;" 
+                 alt="${room.title}" 
+                 onclick="closeModal('wishlistModal'); openRoomDetailModal('${room.id}', true);">
             <div style="flex-grow: 1; cursor: pointer;" onclick="closeModal('wishlistModal'); openRoomDetailModal('${room.id}', true);">
               <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px;">${room.title}</h5>
               <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px;">${room.address}</div>
@@ -794,7 +869,7 @@ function openWishlistModal() {
               </button>
             </div>
           </div>
-        `).join("")}
+        `}).join("")}
       </div>
     `;
   }
@@ -987,15 +1062,34 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
     <!-- Gallery -->
     <div class="detail-gallery">
       <div class="detail-gallery-main" style="position: relative;">
-        <img src="${room.images[0]}" id="detailMainImg" alt="${room.title}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
+        <img src="${getOptimizedImageUrl(room.images[0], 1200, 85)}" 
+             data-fallback="${room.images[0]}" 
+             id="detailMainImg" 
+             alt="${room.title}" 
+             decoding="async"
+             referrerpolicy="no-referrer" 
+             onerror="if(this.dataset.fallback && this.src !== this.dataset.fallback){this.src=this.dataset.fallback;}else{this.onerror=null;this.src='${DEFAULT_ROOM_IMAGE}';}">
         <div class="gallery-photo-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.75); color: white; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; backdrop-filter: blur(4px);">
           <i class="fas fa-images"></i> ${room.images.length} ảnh phòng thực tế
         </div>
       </div>
       <div class="detail-gallery-thumbs" style="display: flex; gap: 8px; overflow-x: auto; padding: 6px 0;">
-        ${room.images.map((img, idx) => `
-          <img src="${img}" class="thumb-img ${idx === 0 ? 'active' : ''}" onclick="switchDetailImg('${img}', this)" alt="Ảnh phòng ${idx + 1}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid ${idx === 0 ? 'var(--primary)' : 'transparent'}; flex-shrink: 0;">
-        `).join("")}
+        ${room.images.map((img, idx) => {
+          const thumbSrc = getOptimizedImageUrl(img, 180, 75);
+          const largeSrc = getOptimizedImageUrl(img, 1200, 85);
+          return `
+          <img src="${thumbSrc}" 
+               data-large="${largeSrc}"
+               data-fallback="${img}"
+               class="thumb-img ${idx === 0 ? 'active' : ''}" 
+               onclick="switchDetailImg('${largeSrc}', this)" 
+               alt="Ảnh phòng ${idx + 1}" 
+               loading="lazy" 
+               decoding="async"
+               referrerpolicy="no-referrer" 
+               onerror="if(this.dataset.fallback && this.src !== this.dataset.fallback){this.src=this.dataset.fallback;}else{this.onerror=null;this.src='${DEFAULT_ROOM_IMAGE}';}" 
+               style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid ${idx === 0 ? 'var(--primary)' : 'transparent'}; flex-shrink: 0;">
+        `}).join("")}
       </div>
     </div>
 
@@ -1605,10 +1699,32 @@ function onSidebarFilterChange() {
 function updateSidebarCounts() {
   const activeRooms = getAvailableRooms();
   const allCount = activeRooms.length;
-  const studioCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("studio") || (r.title || "").toLowerCase().includes("studio")).length;
-  const n1kCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("1n1k") || (r.title || "").toLowerCase().includes("1n1k")).length;
-  const n2kCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("2n1k") || (r.title || "").toLowerCase().includes("2n1k")).length;
-  const n3kCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("3n1k") || (r.title || "").toLowerCase().includes("3n1k")).length;
+
+  const isNguyenCan = (r) => {
+    const c = (r.categoryName || "").toLowerCase();
+    const l = (r.roomLayout || "").toLowerCase();
+    const t = (r.tag || "").toLowerCase();
+    return c.includes("nguyên căn") || l.includes("nguyên căn") || t.includes("nguyên căn");
+  };
+
+  const isKhepKin = (r) => !isNguyenCan(r);
+
+  const khepKinCount = activeRooms.filter(isKhepKin).length;
+  const studioCount = activeRooms.filter(r => {
+    if (!isKhepKin(r)) return false;
+    const l = (r.roomLayout || "").toLowerCase();
+    const t = (r.title || "").toLowerCase();
+    const tag = (r.tag || "").toLowerCase();
+    const isMulti = l.includes('1n1k') || t.includes('1n1k') || tag.includes('1n1k') ||
+                    l.includes('2n1k') || t.includes('2n1k') || tag.includes('2n1k') ||
+                    l.includes('3n1k') || t.includes('3n1k') || tag.includes('3n1k');
+    return !isMulti;
+  }).length;
+
+  const n1kCount = activeRooms.filter(r => isKhepKin(r) && ((r.roomLayout || "").toLowerCase().includes("1n1k") || (r.title || "").toLowerCase().includes("1n1k") || (r.tag || "").toLowerCase().includes("1n1k"))).length;
+  const n2kCount = activeRooms.filter(r => isKhepKin(r) && ((r.roomLayout || "").toLowerCase().includes("2n1k") || (r.title || "").toLowerCase().includes("2n1k") || (r.tag || "").toLowerCase().includes("2n1k"))).length;
+  const n3kCount = activeRooms.filter(r => isKhepKin(r) && ((r.roomLayout || "").toLowerCase().includes("3n1k") || (r.title || "").toLowerCase().includes("3n1k") || (r.tag || "").toLowerCase().includes("3n1k"))).length;
+  const nguyenCanCount = activeRooms.filter(isNguyenCan).length;
 
   const setBadge = (id, count) => {
     const el = document.getElementById(id);
@@ -1616,10 +1732,12 @@ function updateSidebarCounts() {
   };
 
   setBadge("countLayoutAll", allCount);
+  setBadge("countLayoutKhepKin", khepKinCount);
   setBadge("countLayoutStudio", studioCount);
   setBadge("countLayout1N1K", n1kCount);
   setBadge("countLayout2N1K", n2kCount);
   setBadge("countLayout3N1K", n3kCount);
+  setBadge("countLayoutNguyenCan", nguyenCanCount);
 
   // Update dynamic counts in all SearchableSelect dropdowns
   const distItems = getDistrictItems();
@@ -1628,6 +1746,32 @@ function updateSidebarCounts() {
   if (heroSourceGroupSelectComponent) heroSourceGroupSelectComponent.setItems(srcItems);
   if (sidebarDistrictSelectComponent) sidebarDistrictSelectComponent.setItems(distItems);
   if (sidebarSourceGroupSelectComponent) sidebarSourceGroupSelectComponent.setItems(srcItems);
+}
+
+function setQuickChip(chipId, btnEl) {
+  document.querySelectorAll(".filter-quick-chip").forEach(b => b.classList.remove("active"));
+  if (btnEl) btnEl.classList.add("active");
+
+  if (chipId === "all") {
+    currentFilter.loft = "all";
+    currentFilter.evAllowed = false;
+    currentFilter.evVin = false;
+    currentFilter.pet = "all";
+    currentFilter.elevator = "all";
+  } else if (chipId === "gac-xep") {
+    currentFilter.loft = "has_loft";
+  } else if (chipId === "xe-dien") {
+    currentFilter.evAllowed = true;
+  } else if (chipId === "nuoi-pet") {
+    currentFilter.pet = "allowed";
+  } else if (chipId === "thang-may") {
+    currentFilter.elevator = "elevator";
+  }
+
+  currentPage = 1;
+  renderRooms();
+  const el = document.getElementById("listingsSection");
+  if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 
 function toggleSidebarFilter() {
@@ -1695,6 +1839,12 @@ function resetAllFilters() {
 
   const maxPriceEl = document.getElementById("sidebarPriceMax");
   if (maxPriceEl) maxPriceEl.value = "";
+
+  const radioLayoutAll = document.querySelector('input[name="sidebarRoomLayout"][value="all"]');
+  if (radioLayoutAll) radioLayoutAll.checked = true;
+
+  const quickChips = document.querySelectorAll(".filter-quick-chip");
+  quickChips.forEach(b => b.classList.toggle("active", b.getAttribute("data-chip") === "all"));
 
   const capEl = document.getElementById("sidebarCapacity");
   if (capEl) capEl.value = "all";

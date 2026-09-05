@@ -315,9 +315,20 @@ function extractRoomFromHtml(html, slug) {
     else data.images = ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'];
   }
 
-  // 8. Parse Detailed Attributes
+  // 8. Extract listivo-listing-attribute Chips (Thẻ thông số trên cùng của moithue.com)
+  const chipRegex = /<div[^>]*class=["'][^"']*(?:listivo-listing-attribute|listivo-attribute)[^"']*["'][^>]*>([\s\S]*?)<\/div>/gi;
+  const chips = [];
+  let cm;
+  while ((cm = chipRegex.exec(html)) !== null) {
+    const text = cm[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (text && !chips.includes(text)) {
+      chips.push(text);
+    }
+  }
+  const allChipsText = chips.join(' ');
+
   const desc = data.description || '';
-  const fullText = (data.title + '\n' + desc).toLowerCase();
+  const fullText = (data.title + '\n' + allChipsText + '\n' + desc).toLowerCase();
 
   // Address
   const addrMatch = desc.match(/(?:ĐỊA CHỈ|Địa chỉ)[:\s]*([^\n\r•]+?)(?=\s*(?:Ngõ|Tình trạng|Trống|Diện tích|Thang máy|Dạng phòng|Nội thất|⏳|🍡|🛋️|✅|🚚|❎|$))/iu);
@@ -325,35 +336,124 @@ function extractRoomFromHtml(html, slug) {
   const cleanRawAddr = (rawAddr.split('\n')[0] || '').trim();
   data.address = transformMoithueName(cleanRawAddr);
 
-  // Area
-  const areaMatch = desc.match(/(?:Diện tích|DT|dt)\s*[:•]?\s*~?\s*(\d+)\s*m/i) || desc.match(/(\d+)\s*m[²2]/);
-  data.area = areaMatch ? parseInt(areaMatch[1], 10) : 25;
+  // 1. Area (Diện tích - Ưu tiên đọc chip "30 m²", sau đó regex mô tả)
+  let area = 25;
+  const areaChip = chips.find(c => /\d+\s*m[²2]/i.test(c));
+  if (areaChip) {
+    const m = areaChip.match(/(\d+)/);
+    if (m) area = parseInt(m[1], 10);
+  } else {
+    const areaMatch = desc.match(/(?:Diện tích|DT|dt)\s*[:•]?\s*~?\s*(\d+)/i) || desc.match(/(\d+)\s*(?:m2|m²|mét vuông)/i);
+    if (areaMatch) area = parseInt(areaMatch[1], 10);
+  }
+  data.area = area;
 
-  // Total floors & Floor string
+  // 2. Max people (Tối đa số người - Ưu tiên đọc chip "3 người", sau đó regex mô tả)
+  let maxPeople = 2;
+  const peopleChip = chips.find(c => /\d+\s*người/i.test(c));
+  if (peopleChip) {
+    const m = peopleChip.match(/(\d+)/);
+    if (m) maxPeople = parseInt(m[1], 10);
+  } else {
+    const maxPeopleMatch = desc.match(/(?:Tối đa(?:\s*số)?\s*người(?:\s*ở)?|Số người tối đa|Tối đa)\s*[:•]\s*(\d+)/i) || desc.match(/(\d+)\s*người(?:\s*ở)?/i);
+    if (maxPeopleMatch) maxPeople = parseInt(maxPeopleMatch[1], 10);
+  }
+  data.maxPeople = maxPeople;
+
+  // 3. Max vehicles (Số xe - Ưu tiên đọc chip "2 xe", sau đó regex mô tả)
+  let maxVehicles = 2;
+  const vehChip = chips.find(c => /\d+\s*xe\b/i.test(c));
+  if (vehChip) {
+    const m = vehChip.match(/(\d+)/);
+    if (m) maxVehicles = parseInt(m[1], 10);
+  } else {
+    const maxVehMatch = desc.match(/(?:GỬI XE[\s\S]*?)?Xe máy\s*[:•]\s*(\d+)/i) || desc.match(/(?:Tối đa|Xe máy)\s*[:•]\s*(\d+)\s*xe/i) || desc.match(/(\d+)\s*xe\s*máy/i);
+    if (maxVehMatch) maxVehicles = parseInt(maxVehMatch[1], 10);
+  }
+  data.maxVehicles = maxVehicles;
+
+  // 4. Move-in Status (Bàn giao / Ở ngay - Ưu tiên đọc chip "Bàn giao: 01/10/2026", "Ở ngay", "Sắp trống")
+  let moveInStatus = 'Ở ngay';
+  const handoverChip = chips.find(c => c.startsWith('Bàn giao:') || c.startsWith('Nhận từ') || c.startsWith('Sắp trống') || c === 'Ở ngay');
+  if (handoverChip) {
+    moveInStatus = handoverChip;
+  } else {
+    const handoverMatch = data.title.match(/(?:Nhận\s*(?:từ)?|Bàn\s*giao)\s*[:\s]*(\d{1,2}\/\d{1,2}(?:\/\d{2,4})?)/i) ||
+                          desc.match(/(?:Nhận\s*phòng|Bàn\s*giao|Thời\s*gian\s*nhận)\s*[:•]\s*([^\n\r•]+)/i);
+    if (handoverMatch) {
+      moveInStatus = `Bàn giao: ${handoverMatch[1].trim()}`;
+    } else {
+      const luiMatch = desc.match(/Ngày lùi(?: linh động| tối đa)?\s*[:•~]\s*([^\n\r•]+)/i);
+      if (luiMatch) {
+        moveInStatus = `Lùi ${luiMatch[1].trim().replace(/^~+\s*/, '')}`;
+      }
+    }
+  }
+  data.moveInNote = moveInStatus;
+
+  // 5. Total floors & Floor string
   const totalFloorMatch = desc.match(/Tổng số tầng(?:\s*nhà)?[:\s]*(\d+)/i);
   const totalFloors = totalFloorMatch ? parseInt(totalFloorMatch[1], 10) : 6;
   const currentFloorMatch = desc.match(/Tầng\s*(\d+)/i);
   const currentFloor = currentFloorMatch ? currentFloorMatch[1] : (availableFloors.length > 0 ? availableFloors[0].replace(/\D/g, '') : '2');
-  const hasElevator = fullText.includes('thang máy: có') || fullText.includes('thang máy : có') || fullText.includes('thang : thang máy') || (fullText.includes('thang máy') && !fullText.includes('thang bộ'));
+  
+  // 6. Elevator
+  let hasElevator = true;
+  if (chips.some(c => c.toLowerCase().includes('thang máy'))) {
+    hasElevator = true;
+  } else if (chips.some(c => c.toLowerCase().includes('thang bộ'))) {
+    hasElevator = false;
+  } else {
+    const elMatch = desc.match(/(?:Thang máy|Thang)\s*[:•]\s*([^\n\r•]+)/i);
+    if (elMatch) {
+      const elVal = elMatch[1].toLowerCase();
+      if (elVal.includes('bộ') || elVal.includes('ko') || elVal.includes('không')) hasElevator = false;
+      else if (elVal.includes('có') || elVal.includes('thang máy')) hasElevator = true;
+    }
+  }
   data.elevator = hasElevator;
   data.floor = `Tầng ${currentFloor} / ${totalFloors} tầng (${hasElevator ? 'Thang máy Có' : 'Thang bộ'})`;
 
-  // Layout
-  if (fullText.includes('3n1k') || fullText.includes('3 phòng')) data.roomLayout = '3N1K';
-  else if (fullText.includes('2n1k') || fullText.includes('2 phòng')) data.roomLayout = '2N1K';
-  else if (fullText.includes('1n1k') || fullText.includes('1 phòng')) data.roomLayout = '1N1K';
-  else if (fullText.includes('duplex') || fullText.includes('gác xép') || fullText.includes('có gác')) data.roomLayout = 'Duplex/Gác xép';
-  else if (fullText.includes('nguyên căn')) data.roomLayout = 'Nguyên căn';
-  else data.roomLayout = 'STUDIO';
+  // 7. Layout & Category Detection (Chuẩn Khép kín / Studio / 1N1K / 2N1K / 3N1K / Nguyên căn)
+  const isNguyenCan = chips.some(c => c.toLowerCase().includes('nguyên căn')) || fullText.includes('nguyên căn');
+  data.isNguyenCan = isNguyenCan;
 
-  // Furniture
+  if (isNguyenCan) {
+    data.roomLayout = 'Nguyên căn';
+  } else {
+    const layoutChip = chips.find(c => ['STUDIO', '1N1K', '2N1K', '3N1K', 'DUPLEX', 'GÁC XÉP', 'GÁC LỬNG'].includes(c.toUpperCase()));
+    if (layoutChip) {
+      const u = layoutChip.toUpperCase();
+      if (u === 'DUPLEX' || u === 'GÁC XÉP' || u === 'GÁC LỬNG') data.roomLayout = 'Gác lửng';
+      else data.roomLayout = u;
+    } else if (fullText.includes('3n1k') || fullText.includes('3 ngủ 1 khách') || fullText.includes('3 phòng ngủ')) {
+      data.roomLayout = '3N1K';
+    } else if (fullText.includes('2n1k') || fullText.includes('2 ngủ 1 khách') || fullText.includes('2 phòng ngủ')) {
+      data.roomLayout = '2N1K';
+    } else if (fullText.includes('1n1k') || fullText.includes('1 ngủ 1 khách') || fullText.includes('1 phòng ngủ')) {
+      data.roomLayout = '1N1K';
+    } else if (fullText.includes('duplex') || fullText.includes('gác xép') || fullText.includes('gác lửng') || fullText.includes('có gác')) {
+      data.roomLayout = 'Gác lửng';
+    } else {
+      data.roomLayout = 'STUDIO';
+    }
+  }
+
+  // 8. Furniture
+  let furnishLevel = 'Full đồ';
+  if (chips.some(c => c.toLowerCase().includes('full đồ') || c.toLowerCase().includes('full nội thất'))) {
+    furnishLevel = 'Full đồ';
+  } else if (chips.some(c => c.toLowerCase().includes('cơ bản') || c.toLowerCase().includes('đồ cơ bản'))) {
+    furnishLevel = 'Cơ bản';
+  } else if (fullText.includes('cơ bản')) {
+    furnishLevel = 'Cơ bản';
+  }
+  data.furnishLevel = furnishLevel;
+
   const furnMatch = desc.match(/(?:Nội thất|nội thất)\s*[:•]\s*([^\n\r•]+)/i);
   data.furniture = furnMatch ? furnMatch[1].trim() : '';
-  if (fullText.includes('full đồ') || fullText.includes('full nội thất')) data.furnishLevel = 'Full đồ';
-  else if (fullText.includes('cơ bản')) data.furnishLevel = 'Cơ bản';
-  else data.furnishLevel = 'Full đồ';
 
-  // Service fees
+  // 9. Service fees
   const dienMatch = desc.match(/(?:Điện|dien)\s*[:•]\s*([^\n\r•]+)/i);
   data.feeElectricity = dienMatch ? dienMatch[1].trim() : '4k/số';
 
@@ -372,50 +472,86 @@ function extractRoomFromHtml(html, slug) {
   const xeMayMatch = desc.match(/(?:Xe máy|xe máy)\s*[:•]\s*([^\n\r•]+)/i);
   data.feeParking = xeMayMatch ? xeMayMatch[1].trim() : 'Free 2 xe';
 
-  // Max people & vehicles
-  const maxPeopleMatch = desc.match(/Tối đa\s*[:•]\s*(\d+)\s*người/i) || desc.match(/tối đa\s*[:•]\s*(\d+)/i);
-  data.maxPeople = maxPeopleMatch ? parseInt(maxPeopleMatch[1], 10) : 2;
-
-  const maxVehMatch = desc.match(/(\d+)\s*xe(?:\s*máy)?/i) || desc.match(/xe máy\s*[:•]\s*(\d+)/i);
-  data.maxVehicles = maxVehMatch ? parseInt(maxVehMatch[1], 10) : 2;
-
-  // Policies
-  data.petAllowed = fullText.includes('nuôi pet: có') || fullText.includes('cho phép pet') || (fullText.includes('nuôi pet') && !fullText.includes('nuôi pet: không') && !fullText.includes('cấm pet') && !fullText.includes('nuôi pet: ko'));
-
-  if (fullText.includes('cấm xe điện') || fullText.includes('không nhận xe điện') || fullText.includes('xe điện: không') || fullText.includes('xe điện: ko')) {
-    data.evPolicy = 'forbidden';
-    data.evNote = 'Không nhận xe điện';
-    data.electricVehicle = false;
-  } else if (fullText.includes('vinfast') || fullText.includes('đổi pin') || fullText.includes('pin rời')) {
-    data.evPolicy = 'vinfast_only';
-    data.evNote = 'Chỉ nhận xe VinFast pin rời';
-    data.electricVehicle = true;
-  } else if (fullText.includes('xe điện: có') || fullText.includes('nhận xe điện') || fullText.includes('xe điện: nhận')) {
-    data.evPolicy = 'allowed';
-    const evFee = desc.match(/Xe điện\s*[:•]\s*có\s*\(([^)]+)\)/i);
-    data.evNote = evFee ? `Nhận xe điện (${evFee[1]})` : 'Nhận xe điện';
-    data.electricVehicle = true;
+  // 10. Pet Policy (Nuôi pet)
+  let petAllowed = false;
+  if (allChipsText.includes('Không nuôi pet') || allChipsText.includes('Cấm pet')) {
+    petAllowed = false;
+  } else if (allChipsText.includes('Nhận pet') || allChipsText.includes('Cho nuôi pet')) {
+    petAllowed = true;
   } else {
-    data.evPolicy = 'unspecified';
-    data.evNote = 'Liên hệ chủ nhà';
-    data.electricVehicle = false;
+    const petMatch = desc.match(/(?:Nuôi pet|Pet|Thú cưng)\s*[:•]\s*([^\n\r•]+)/i);
+    if (petMatch) {
+      const pVal = petMatch[1].toLowerCase();
+      if (pVal.includes('ko') || pVal.includes('không') || pVal.includes('cấm') || pVal.includes('k ')) petAllowed = false;
+      else if (pVal.includes('có') || pVal.includes('được') || pVal.includes('cho') || pVal.includes('nhận') || pVal.includes('cam kết') || pVal.includes('ok')) petAllowed = true;
+    } else {
+      petAllowed = fullText.includes('nuôi pet: có') || fullText.includes('cho nuôi pet') || fullText.includes('pet: có');
+    }
   }
+  data.petAllowed = petAllowed;
 
-  data.foreignGuest = fullText.includes('khách tây: có') || (fullText.includes('khách tây') && !fullText.includes('khách tây: không') && !fullText.includes('ko khách tây') && !fullText.includes('không'));
-  data.nearParking = fullText.includes('gần bãi ôtô') || fullText.includes('gần bãi ô tô') || fullText.includes('ô tô đỗ') || fullText.includes('bãi đỗ ô tô');
-  data.nearMainRoad = fullText.includes('mặt đường') || fullText.includes('đường lớn') || fullText.includes('ngõ ba gác');
-  data.hasLoft = fullText.includes('gác') || fullText.includes('duplex');
+  // 11. Electric Vehicle Policy (Xe điện)
+  let evPolicy = 'unspecified';
+  let evNote = 'Liên hệ chủ nhà';
+  let electricVehicle = false;
+
+  if (allChipsText.includes('Cấm xe điện') || allChipsText.includes('Không nhận xe điện')) {
+    evPolicy = 'forbidden';
+    evNote = 'Không nhận xe điện';
+    electricVehicle = false;
+  } else if (allChipsText.includes('VinFast') || allChipsText.includes('pin rời') || allChipsText.includes('đổi pin')) {
+    evPolicy = 'vinfast_only';
+    evNote = 'Chỉ nhận xe VinFast pin rời';
+    electricVehicle = true;
+  } else if (allChipsText.includes('Nhận xe điện')) {
+    evPolicy = 'allowed';
+    evNote = 'Nhận xe điện';
+    electricVehicle = true;
+  } else {
+    const evMatch = desc.match(/(?:XE|Xe)\s*điện\s*[:•]\s*([^\n\r•]+)/i);
+    if (evMatch) {
+      const evVal = evMatch[1].toLowerCase();
+      if (evVal.includes('ko') || evVal.includes('không') || evVal.includes('cấm') || evVal.includes('k ')) {
+        evPolicy = 'forbidden'; evNote = 'Không nhận xe điện'; electricVehicle = false;
+      } else if (evVal.includes('vinfast') || evVal.includes('pin rời') || evVal.includes('đổi pin')) {
+        evPolicy = 'vinfast_only'; evNote = 'Chỉ nhận xe VinFast pin rời'; electricVehicle = true;
+      } else if (evVal.includes('có') || evVal.includes('nhận') || evVal.includes('được')) {
+        evPolicy = 'allowed'; evNote = 'Nhận xe điện'; electricVehicle = true;
+      }
+    }
+  }
+  data.evPolicy = evPolicy;
+  data.evNote = evNote;
+  data.electricVehicle = electricVehicle;
+
+  // 12. Foreign Guest (Khách nước ngoài / Khách quốc tế)
+  let foreignGuest = false;
+  if (allChipsText.includes('Không khách quốc tế') || allChipsText.includes('Không khách nước ngoài')) {
+    foreignGuest = false;
+  } else if (allChipsText.includes('Nhận khách quốc tế') || allChipsText.includes('Nhận khách nước ngoài')) {
+    foreignGuest = true;
+  } else {
+    const fgMatch = desc.match(/(?:Khách\s*(?:nước\s*ngoài|quốc\s*tế|tây)|Nước\s*ngoài)\s*[:•]\s*([^\n\r•]+)/i);
+    if (fgMatch) {
+      const fgVal = fgMatch[1].toLowerCase();
+      if (fgVal.includes('ko') || fgVal.includes('không') || fgVal.includes('cấm') || fgVal.includes('k ')) foreignGuest = false;
+      else if (fgVal.includes('có') || fgVal.includes('nhận') || fgVal.includes('được')) foreignGuest = true;
+    }
+  }
+  data.foreignGuest = foreignGuest;
+
+  // 13. Environment & Location
+  data.nearParking = allChipsText.includes('bãi đỗ ô tô') || allChipsText.includes('Ô tô vào nhà') || allChipsText.includes('Ô tô đỗ cửa') || fullText.includes('ô tô') || fullText.includes('bãi đỗ') || fullText.includes('bãi ô tô');
+  data.nearMainRoad = allChipsText.includes('đường lớn') || allChipsText.includes('Mặt đường') || fullText.includes('đường lớn') || fullText.includes('mặt đường') || fullText.includes('ô tô đỗ') || fullText.includes('ngõ thoáng');
+  data.hasLoft = data.roomLayout === 'Gác lửng' || fullText.includes('gác xép') || fullText.includes('duplex');
   data.fireSafety = fullText.includes('pccc') || fullText.includes('thang thoát hiểm');
 
-  // Terms
+  // 14. Terms
   const hopDongMatch = desc.match(/Hợp đồng\s*[:•]\s*([^\n\r•]+)/i);
   data.contractTerm = hopDongMatch ? hopDongMatch[1].trim() : '12 tháng';
 
   const thanhToanMatch = desc.match(/Thanh toán\s*[:•]\s*([^\n\r•]+)/i);
   data.depositTerm = thanhToanMatch ? thanhToanMatch[1].trim() : 'Cọc 1 đóng 1';
-
-  const ngayLuiMatch = desc.match(/Ngày lùi(?: linh động| tối đa)?\s*[:•~]\s*([^\n\r•]+)/i);
-  data.moveInNote = ngayLuiMatch ? `Lùi ${ngayLuiMatch[1].trim().replace(/^~+\s*/, '')}` : 'Ở ngay';
 
   return data;
 }
@@ -491,11 +627,20 @@ function convertToRoomFormat(data, sourceGroup, district) {
   const evAllowed = evPolicy === 'allowed' || evPolicy === 'vinfast_only';
   const evNote = data.evNote || 'Liên hệ chủ nhà';
 
-  const categoryName = data.roomLayout === 'Nguyên căn' ? 'Nguyên căn' : `Khép kín${data.roomLayout !== 'STUDIO' ? ' (' + data.roomLayout + ')' : ''}`;
-  const tag = data.roomLayout === 'Nguyên căn' ? 'Nguyên căn' : 'Khép kín';
+  const isNguyenCan = data.isNguyenCan || data.roomLayout === 'Nguyên căn';
+
+  let categoryName = 'Khép kín';
+  let tag = 'Khép kín';
+  if (isNguyenCan) {
+    categoryName = 'Nguyên căn';
+    tag = 'Nguyên căn';
+  } else {
+    categoryName = data.roomLayout !== 'STUDIO' ? `Khép kín (${data.roomLayout})` : 'Khép kín';
+    tag = 'Khép kín';
+  }
 
   return {
-    id: 'MT-' + data.slug.replace(/[^a-zA-Z0-9]/g, '-').substring(0, 30),
+    id: 'MT-' + data.slug.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-'),
     title: transformMoithueName(data.title || data.slug),
     address: transformMoithueName(data.address || ''),
     district: district || 'cau-giay',
@@ -575,9 +720,12 @@ const MIME_TYPES = {
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.woff2': 'font/woff2',
+  '.woff': 'font/woff'
 };
 
 const zlib = require('zlib');
@@ -599,10 +747,11 @@ function serveStaticFile(filePath, req, res) {
   }
 
   const acceptEncoding = (req && req.headers && req.headers['accept-encoding']) || '';
+  const isMediaOrFont = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.ico', '.woff2', '.woff'].includes(ext);
   const headers = {
     'Content-Type': contentType,
     'Access-Control-Allow-Origin': '*',
-    'Cache-Control': 'no-cache, no-store, must-revalidate'
+    'Cache-Control': isMediaOrFont ? 'public, max-age=604800, immutable' : 'no-cache, no-store, must-revalidate'
   };
 
   const compressible = ['.html', '.css', '.js', '.json', '.svg'].includes(ext);

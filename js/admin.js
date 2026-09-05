@@ -34,6 +34,14 @@ const SOURCE_GROUP_NAMES = {
 let adminRooms = [];
 let adminBookings = [];
 
+function getOptimizedImageUrl(url, width = 140, quality = 75) {
+  if (!url || typeof url !== 'string') return 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80';
+  const clean = url.trim();
+  if (!clean || clean.startsWith('data:') || clean.startsWith('blob:') || clean.startsWith('/') || clean.startsWith('./')) return clean;
+  if (clean.includes('wsrv.nl') || clean.includes('images.weserv.nl')) return clean;
+  return `https://wsrv.nl/?url=${encodeURIComponent(clean)}&w=${width}&q=${quality}&output=webp&we=1`;
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   await loadAdminData();
   renderAdminStats();
@@ -364,13 +372,34 @@ function renderRoomsTable() {
     const statusText = isAvailable ? "Còn phòng" : "Hết phòng";
     const sourceLabel = r.sourceGroupName || SOURCE_GROUP_NAMES[r.sourceGroup] || r.sourceGroup || "";
 
+    const rawCategory = (r.tag || r.categoryName || 'Khép kín').trim();
+    const lowCat = rawCategory.toLowerCase();
+    let badgeBg = '#0D9488'; // Teal mặc định cho Khép kín
+    if (lowCat.includes('chung')) {
+      badgeBg = '#EA580C'; // Cam nổi bật cho VS chung
+    } else if (lowCat.includes('nguyên căn')) {
+      badgeBg = '#2563EB'; // Xanh dương cho Nguyên căn
+    } else if (lowCat.includes('1n1k')) {
+      badgeBg = '#0284C7'; // Xanh biển nhạt cho 1N1K
+    } else if (lowCat.includes('2n1k') || lowCat.includes('3n1k')) {
+      badgeBg = '#7C3AED'; // Tím cho 2N1K / 3N1K
+    }
+
+    const firstImage = (r.images && r.images.length > 0) ? r.images[0] : 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80';
+
     return `
       <tr>
         <td>
-          <img src="${r.images[0]}" style="width: 60px; height: 48px; object-fit: cover; border-radius: var(--radius-sm);" alt="${r.title}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'">
+          <img src="${getOptimizedImageUrl(firstImage, 120, 75)}" 
+               data-fallback="${firstImage}"
+               loading="lazy" 
+               decoding="async" 
+               style="width: 60px; height: 48px; object-fit: cover; border-radius: var(--radius-sm);" 
+               alt="${r.title}" 
+               onerror="if(this.dataset.fallback && this.src !== this.dataset.fallback){this.src=this.dataset.fallback;}else{this.onerror=null;this.src='https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'}">
         </td>
         <td>
-          <span class="badge-code" style="background: var(--primary);">${r.tag || r.categoryName}</span>
+          <span class="badge-code" style="background: ${badgeBg}; color: #ffffff !important; font-weight: 700; padding: 4px 10px; border-radius: 6px; display: inline-block; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">${rawCategory}</span>
         </td>
         <td>
           <strong style="color: var(--dark); font-size: 0.95rem;">${r.title}</strong>
@@ -940,7 +969,7 @@ function convertMoithueToRoom(item) {
     const district = guessDistrict(address);
     
     return {
-      id: 'MT-' + slug.replace(/[^a-zA-Z0-9]/g, '-').substring(0, 30),
+      id: 'MT-' + slug.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-'),
       title,
       price,
       address,
@@ -1086,7 +1115,14 @@ function updateLinksCountBadge() {
   badge.style.color = links.length > 0 ? '#14532d' : '#15803d';
 }
 
+let isBatchUploading = false;
+
 async function fetchAndAddRooms() {
+  if (isBatchUploading) {
+    showToast('⚠️ Hệ thống đang xử lý tải phòng, vui lòng đợi hoàn tất!');
+    return;
+  }
+
   const inputEl = document.getElementById('moithueLinksInput') || document.getElementById('moithueLinkInput');
   const sourceGroupSelect = document.getElementById('syncSourceGroup');
   const districtSelect = document.getElementById('syncDistrict');
@@ -1102,213 +1138,266 @@ async function fetchAndAddRooms() {
     return;
   }
 
-  const sourceGroup = sourceGroupSelect ? sourceGroupSelect.value : 'nguon-cau-giay';
-  const district = districtSelect ? districtSelect.value : 'cau-giay';
+  isBatchUploading = true;
+  window.onbeforeunload = () => "Hệ thống đang lưu phòng, vui lòng không đóng hoặc tải lại trang!";
 
-  // Khóa nút bấm và dựng giao diện tiến độ
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Đang tải 0/${links.length} phòng...`;
-  }
+  try {
+    const sourceGroup = sourceGroupSelect ? sourceGroupSelect.value : 'nguon-cau-giay';
+    const district = districtSelect ? districtSelect.value : 'cau-giay';
 
-  if (statusEl) {
-    statusEl.innerHTML = `
-      <div style="margin-top: 16px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px;">
-        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.92rem; color: #1e293b; margin-bottom: 8px;">
-          <span><i class="fas fa-tasks" style="color: #0284c7;"></i> Tiến độ tải phòng:</span>
-          <span id="batchPercentText" style="color: #0284c7;">0 / ${links.length} (0%)</span>
-        </div>
-        <div style="width: 100%; height: 10px; background: #e2e8f0; border-radius: 6px; overflow: hidden; margin-bottom: 12px;">
-          <div id="batchProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #059669, #10b981); transition: width 0.3s ease;"></div>
-        </div>
-        <div id="batchLogsList" style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; padding-right: 4px;"></div>
-      </div>
-    `;
-  }
+    // Đảm bảo nạp dữ liệu phòng mới nhất từ server trước khi bắt đầu
+    await loadAdminData();
 
-  const batchProgressBar = document.getElementById('batchProgressBar');
-  const batchPercentText = document.getElementById('batchPercentText');
-  const batchLogsList = document.getElementById('batchLogsList');
-
-  const successRooms = [];
-  const failedRooms = [];
-
-  for (let i = 0; i < links.length; i++) {
-    const link = links[i];
-    const currentIndex = i + 1;
-    const percent = Math.round((i / links.length) * 100);
-
+    // Khóa nút bấm và dựng giao diện tiến độ
     if (btn) {
-      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Đang tải [${currentIndex}/${links.length}]...`;
-    }
-    if (batchProgressBar) batchProgressBar.style.width = `${percent}%`;
-    if (batchPercentText) batchPercentText.innerText = `${i} / ${links.length} (${percent}%)`;
-
-    // Thêm dòng log đang tải
-    const logItem = document.createElement('div');
-    logItem.id = `batchLogItem-${i}`;
-    logItem.style.cssText = 'padding: 8px 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; gap: 10px;';
-    logItem.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;">
-        <i class="fas fa-spinner fa-spin" style="color: #0284c7;"></i>
-        <span style="color: #475569; font-weight: 700;">[${currentIndex}/${links.length}]</span>
-        <span style="color: #1e293b; overflow: hidden; text-overflow: ellipsis;">${link}</span>
-      </div>
-      <span style="font-size: 0.78rem; color: #64748b; font-weight: 700;">Đang lấy dữ liệu...</span>
-    `;
-    if (batchLogsList) {
-      batchLogsList.appendChild(logItem);
-      logItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Đang tải 0/${links.length} phòng...`;
     }
 
-    try {
-      const response = await fetch('/api/fetch-listing', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: link, sourceGroup, district })
-      });
+    if (statusEl) {
+      statusEl.innerHTML = `
+        <div style="margin-top: 16px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.92rem; color: #1e293b; margin-bottom: 8px;">
+            <span><i class="fas fa-tasks" style="color: #0284c7;"></i> Tiến độ tải phòng:</span>
+            <span id="batchPercentText" style="color: #0284c7;">0 / ${links.length} (0%)</span>
+          </div>
+          <div style="width: 100%; height: 10px; background: #e2e8f0; border-radius: 6px; overflow: hidden; margin-bottom: 12px;">
+            <div id="batchProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #059669, #10b981); transition: width 0.3s ease;"></div>
+          </div>
+          <div id="batchLogsList" style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; padding-right: 4px;"></div>
+        </div>
+      `;
+    }
 
-      const result = await response.json();
-      if (!response.ok || result.error) {
-        throw new Error(result.error || 'Lỗi server');
+    const batchProgressBar = document.getElementById('batchProgressBar');
+    const batchPercentText = document.getElementById('batchPercentText');
+    const batchLogsList = document.getElementById('batchLogsList');
+
+    const successRooms = [];
+    const skippedRooms = [];
+    const failedRooms = [];
+
+    for (let i = 0; i < links.length; i++) {
+      const link = links[i];
+      const currentIndex = i + 1;
+      const percent = Math.round((i / links.length) * 100);
+
+      if (btn) {
+        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Đang xử lý [${currentIndex}/${links.length}]...`;
       }
+      if (batchProgressBar) batchProgressBar.style.width = `${percent}%`;
+      if (batchPercentText) batchPercentText.innerText = `${i} / ${links.length} (${percent}%)`;
 
-      const room = result.room;
-      if (room.title) room.title = transformMoithueName(room.title);
-      if (room.address) room.address = transformMoithueName(room.address);
+      // Trích xuất slug và chuẩn hóa URL để nhận biết trùng lặp chuẩn 100%
+      const slugMatch = link.match(/\/listing\/([^/?#]+)/i);
+      const slug = slugMatch ? slugMatch[1].trim() : '';
+      const normalizedUrl = slug ? `https://moithue.com/listing/${slug}/` : link.trim();
 
-      // Đảm bảo thông tin phòng độc lập hoàn toàn (không nhầm lẫn)
+      // Tìm kiếm trong danh sách phòng đã có
       const existingIdx = adminRooms.findIndex(r => {
-        if (r.moithueSlug && r.moithueSlug === room.moithueSlug) return true;
-        if (r.moithueUrl && r.moithueUrl === room.moithueUrl) return true;
-        if (r.id === room.id) return true;
+        if (slug && (r.moithueSlug === slug || r.id === 'MT-' + slug || r.id === 'MT-' + slug.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-'))) return true;
+        if (r.moithueUrl && (r.moithueUrl === normalizedUrl || r.moithueUrl === link || r.moithueUrl.includes(slug))) return true;
         return false;
       });
 
-      const isNew = existingIdx === -1;
-      if (isNew) {
-        adminRooms.unshift(room);
-      } else {
-        const existing = adminRooms[existingIdx];
-        room.status = existing.status;
-        room.statusName = existing.statusName;
-        adminRooms[existingIdx] = room;
-      }
+      const existing = existingIdx > -1 ? adminRooms[existingIdx] : null;
 
-      successRooms.push({ room, isNew });
+      // TH 1: PHÒNG ĐÃ CÓ VÀ ĐANG HIỂN THỊ CHO KHÁCH (CÒN PHÒNG) -> TỰ ĐỘNG BỎ QUA NGAY ĐỂ TIẾT KIỆM THỜI GIAN
+      if (existing && existing.status !== 'rented') {
+        skippedRooms.push(existing);
 
-      // Cập nhật dòng log thành công
-      if (logItem) {
-        logItem.style.borderColor = '#86efac';
-        logItem.style.background = '#f0fdf4';
+        const logItem = document.createElement('div');
+        logItem.id = `batchLogItem-${i}`;
+        logItem.style.cssText = 'padding: 8px 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: space-between; gap: 10px;';
         logItem.innerHTML = `
           <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;">
-            <i class="fas fa-check-circle" style="color: #16a34a;"></i>
-            <span style="color: #166534; font-weight: 700;">[${currentIndex}/${links.length}]</span>
-            <span style="color: #0f172a; font-weight: 800; overflow: hidden; text-overflow: ellipsis;">${room.title}</span>
+            <i class="fas fa-forward" style="color: #64748b;"></i>
+            <span style="color: #64748b; font-weight: 700;">[${currentIndex}/${links.length}]</span>
+            <span style="color: #475569; font-weight: 700; overflow: hidden; text-overflow: ellipsis;">${existing.title || link}</span>
           </div>
-          <span style="font-size: 0.78rem; background: ${isNew ? '#bbf7d0' : '#fef08a'}; color: ${isNew ? '#166534' : '#854d0e'}; padding: 3px 10px; border-radius: 12px; font-weight: 700; white-space: nowrap;">
-            ${isNew ? '🆕 Thêm mới' : '🔄 Cập nhật'}
+          <span style="font-size: 0.78rem; background: #e2e8f0; color: #475569; padding: 3px 10px; border-radius: 12px; font-weight: 700; white-space: nowrap;">
+            ⏩ Bỏ qua (Đang hiển thị)
           </span>
         `;
+        if (batchLogsList) {
+          batchLogsList.appendChild(logItem);
+          logItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        continue;
       }
-    } catch (err) {
-      failedRooms.push({ link, error: err.message });
-      if (logItem) {
-        logItem.style.borderColor = '#fca5a5';
-        logItem.style.background = '#fef2f2';
-        logItem.innerHTML = `
-          <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;">
-            <i class="fas fa-times-circle" style="color: #dc2626;"></i>
-            <span style="color: #dc2626; font-weight: 700;">[${currentIndex}/${links.length}]</span>
-            <span style="color: #991b1b; overflow: hidden; text-overflow: ellipsis;">${link}</span>
-          </div>
-          <span style="font-size: 0.78rem; background: #fee2e2; color: #dc2626; padding: 3px 8px; border-radius: 12px; font-weight: 700; white-space: nowrap;">
-            ❌ ${err.message}
-          </span>
-        `;
-      }
-    }
 
-    // Nghỉ nhẹ 300ms giữa các phòng để đảm bảo ổn định
-    if (i < links.length - 1) {
-      await new Promise(r => setTimeout(r, 300));
-    }
-  }
-
-  // Kết thúc tiến trình 100%
-  if (batchProgressBar) batchProgressBar.style.width = '100%';
-  if (batchPercentText) batchPercentText.innerText = `${links.length} / ${links.length} (100%)`;
-
-  // Lưu ngay vào localStorage và file rooms_new.json trên máy chủ
-  if (successRooms.length > 0) {
-    localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
-    fetch('/api/save-rooms', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(adminRooms)
-    }).catch(e => console.warn('Could not persist to server rooms_new.json', e));
-
-    renderAdminStats();
-    renderRoomsTable();
-  }
-
-  // Khôi phục nút bấm
-  if (btn) {
-    btn.disabled = false;
-    btn.innerHTML = `<i class="fas fa-cloud-upload-alt"></i> UP TẤT CẢ PHÒNG LÊN WEBSITE`;
-  }
-
-  showToast(`🎉 Đã xử lý xong: ${successRooms.length} thành công${failedRooms.length > 0 ? `, ${failedRooms.length} thất bại` : ''}!`);
-
-  if (inputEl) {
-    if (failedRooms.length > 0) {
-      inputEl.value = failedRooms.map(f => f.link).join('\n');
-    } else {
-      inputEl.value = '';
-    }
-    updateLinksCountBadge();
-  }
-
-  // Hiển thị tổng kết danh sách phòng đã up
-  if (statusEl) {
-    const summaryCard = document.createElement('div');
-    summaryCard.style.cssText = `margin-top: 14px; background: ${failedRooms.length === 0 ? '#f0fdf4' : '#fffbeb'}; border: 1.5px solid ${failedRooms.length === 0 ? '#86efac' : '#fde68a'}; border-radius: 10px; padding: 14px;`;
-    summaryCard.innerHTML = `
-      <div style="font-weight: 800; color: ${failedRooms.length === 0 ? '#166534' : '#92400e'}; font-size: 0.98rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-        <span>
-          <i class="fas ${failedRooms.length === 0 ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> 
-          Kết quả: ${successRooms.length} phòng thành công${failedRooms.length > 0 ? `, ${failedRooms.length} link lỗi` : ''}
-        </span>
-        <span style="font-size: 0.82rem; background: white; padding: 3px 10px; border-radius: 12px; border: 1px solid ${failedRooms.length === 0 ? '#86efac' : '#fde68a'};">
-          Tổng kho: ${adminRooms.length} phòng
-        </span>
-      </div>
-
-      ${successRooms.length > 0 ? `
-        <div style="max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-          ${successRooms.map(({ room, isNew }) => `
-            <div style="display: flex; align-items: center; gap: 10px; background: white; padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
-              <img src="${room.images && room.images[0] ? room.images[0] : ''}" 
-                style="width: 54px; height: 42px; object-fit: cover; border-radius: 6px; flex-shrink: 0;"
-                onerror="this.src='https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'">
-              <div style="flex: 1; min-width: 0;">
-                <div style="font-weight: 800; font-size: 0.88rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                  ${room.title}
-                </div>
-                <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">
-                  ${new Intl.NumberFormat('vi-VN').format(room.price)} đ/tháng · ${room.area}m² · ${room.sourceGroupName || ''}
-                </div>
-              </div>
-              <span style="font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 10px; ${isNew ? 'background: #dcfce7; color: #166534;' : 'background: #fef9c3; color: #854d0e;'}">
-                ${isNew ? '🆕 Thêm mới' : '🔄 Cập nhật'}
-              </span>
-            </div>
-          `).join('')}
+      // TH 2: PHÒNG CHƯA CÓ (HOẶC ĐÃ BỊ XÓA) HOẶC ĐANG Ở TRẠNG THÁI HẾT PHÒNG/ĐÃ THUÊ -> TIẾN HÀNH TẢI & THÊM/KÍCH HOẠT LẠI
+      const logItem = document.createElement('div');
+      logItem.id = `batchLogItem-${i}`;
+      logItem.style.cssText = 'padding: 8px 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; gap: 10px;';
+      logItem.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;">
+          <i class="fas fa-spinner fa-spin" style="color: #0284c7;"></i>
+          <span style="color: #475569; font-weight: 700;">[${currentIndex}/${links.length}]</span>
+          <span style="color: #1e293b; overflow: hidden; text-overflow: ellipsis;">${link}</span>
         </div>
-      ` : ''}
-    `;
-    statusEl.appendChild(summaryCard);
+        <span style="font-size: 0.78rem; color: #64748b; font-weight: 700;">${existing ? 'Đang cập nhật lại...' : 'Đang tải dữ liệu...'}</span>
+      `;
+      if (batchLogsList) {
+        batchLogsList.appendChild(logItem);
+        logItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      try {
+        const response = await fetch('/api/fetch-listing', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: link, sourceGroup, district })
+        });
+
+        const result = await response.json();
+        if (!response.ok || result.error) {
+          throw new Error(result.error || 'Lỗi server');
+        }
+
+        const room = result.room;
+        if (room.title) room.title = transformMoithueName(room.title);
+        if (room.address) room.address = transformMoithueName(room.address);
+
+        const isNew = existingIdx === -1;
+        room.status = 'available';
+        room.statusName = 'Còn phòng';
+        room.createdAt = new Date().toISOString();
+
+        if (isNew) {
+          // Phòng mới (hoặc phòng cũ đã từng bị xoá hẳn): Thêm vào đầu danh sách
+          adminRooms.unshift(room);
+        } else {
+          // Phòng cũ đang ở trạng thái đã thuê / hết phòng: Xoá khỏi vị trí cũ và đẩy lên vị trí mới nhất
+          adminRooms.splice(existingIdx, 1);
+          adminRooms.unshift(room);
+        }
+
+        // 🌟 LƯU NGAY LẬP TỨC TỪNG PHÒNG VÀO BỘ NHỚ VÀ Ổ CỨNG SERVER (BẢO TOÀN 100%)
+        localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
+        try {
+          await fetch('/api/save-rooms', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(adminRooms)
+          });
+        } catch (saveErr) {
+          console.warn('Lỗi ghi file tạm thời:', saveErr);
+        }
+
+        renderAdminStats();
+        renderRoomsTable();
+
+        successRooms.push({ room, isNew });
+
+        // Cập nhật dòng log thành công
+        if (logItem) {
+          logItem.style.borderColor = '#86efac';
+          logItem.style.background = '#f0fdf4';
+          logItem.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;">
+              <i class="fas fa-check-circle" style="color: #16a34a;"></i>
+              <span style="color: #166534; font-weight: 700;">[${currentIndex}/${links.length}]</span>
+              <span style="color: #0f172a; font-weight: 800; overflow: hidden; text-overflow: ellipsis;">${room.title}</span>
+            </div>
+            <span style="font-size: 0.78rem; background: ${isNew ? '#bbf7d0' : '#fef08a'}; color: ${isNew ? '#166534' : '#854d0e'}; padding: 3px 10px; border-radius: 12px; font-weight: 700; white-space: nowrap;">
+              ${isNew ? '🆕 Thêm mới' : '🔄 Kích hoạt lại & Đẩy lên đầu'}
+            </span>
+          `;
+        }
+      } catch (err) {
+        failedRooms.push({ link, error: err.message });
+        if (logItem) {
+          logItem.style.borderColor = '#fca5a5';
+          logItem.style.background = '#fef2f2';
+          logItem.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;">
+              <i class="fas fa-times-circle" style="color: #dc2626;"></i>
+              <span style="color: #dc2626; font-weight: 700;">[${currentIndex}/${links.length}]</span>
+              <span style="color: #991b1b; overflow: hidden; text-overflow: ellipsis;">${link}</span>
+            </div>
+            <span style="font-size: 0.78rem; background: #fee2e2; color: #dc2626; padding: 3px 8px; border-radius: 12px; font-weight: 700; white-space: nowrap;">
+              ❌ ${err.message}
+            </span>
+          `;
+        }
+      }
+
+      // Nghỉ nhẹ 300ms giữa các phòng để đảm bảo ổn định
+      if (i < links.length - 1) {
+        await new Promise(r => setTimeout(r, 300));
+      }
+    }
+
+    // Kết thúc tiến trình 100%
+    if (batchProgressBar) batchProgressBar.style.width = '100%';
+    if (batchPercentText) batchPercentText.innerText = `${links.length} / ${links.length} (100%)`;
+
+    // Khôi phục nút bấm
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<i class="fas fa-cloud-upload-alt"></i> UP TẤT CẢ PHÒNG LÊN WEBSITE`;
+    }
+
+    const resultMsg = `🎉 Xong! ${successRooms.length} phòng mới/kích hoạt lại, ${skippedRooms.length} bỏ qua (đã hiển thị)${failedRooms.length > 0 ? `, ${failedRooms.length} lỗi` : ''}!`;
+    showToast(resultMsg);
+
+    if (inputEl) {
+      if (failedRooms.length > 0) {
+        inputEl.value = failedRooms.map(f => f.link).join('\n');
+      } else {
+        inputEl.value = '';
+      }
+      updateLinksCountBadge();
+    }
+
+    // Hiển thị tổng kết danh sách phòng đã up
+    if (statusEl) {
+      const summaryCard = document.createElement('div');
+      summaryCard.style.cssText = `margin-top: 14px; background: ${failedRooms.length === 0 ? '#f0fdf4' : '#fffbeb'}; border: 1.5px solid ${failedRooms.length === 0 ? '#86efac' : '#fde68a'}; border-radius: 10px; padding: 14px;`;
+      summaryCard.innerHTML = `
+        <div style="font-weight: 800; color: ${failedRooms.length === 0 ? '#166534' : '#92400e'}; font-size: 0.98rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+          <span>
+            <i class="fas ${failedRooms.length === 0 ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> 
+            Kết quả: ${successRooms.length} phòng cập nhật/mới · ${skippedRooms.length} đã bỏ qua · ${failedRooms.length} lỗi
+          </span>
+          <span style="font-size: 0.82rem; background: white; padding: 3px 10px; border-radius: 12px; border: 1px solid ${failedRooms.length === 0 ? '#86efac' : '#fde68a'};">
+            Tổng kho: ${adminRooms.length} phòng
+          </span>
+        </div>
+
+        ${successRooms.length > 0 ? `
+          <div style="max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+            ${successRooms.map(({ room, isNew }) => `
+              <div style="display: flex; align-items: center; gap: 10px; background: white; padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <img src="${room.images && room.images[0] ? room.images[0] : ''}" 
+                  style="width: 54px; height: 42px; object-fit: cover; border-radius: 6px; flex-shrink: 0;"
+                  onerror="this.src='https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'">
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-weight: 800; font-size: 0.88rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    ${room.title}
+                  </div>
+                  <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">
+                    ${new Intl.NumberFormat('vi-VN').format(room.price)} đ/tháng · ${room.area}m² · ${room.sourceGroupName || ''}
+                  </div>
+                </div>
+                <span style="font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 10px; ${isNew ? 'background: #dcfce7; color: #166534;' : 'background: #fef9c3; color: #854d0e;'}">
+                  ${isNew ? '🆕 Thêm mới' : '🔄 Kích hoạt lại'}
+                </span>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+      `;
+      statusEl.appendChild(summaryCard);
+    }
+  } finally {
+    isBatchUploading = false;
+    window.onbeforeunload = null;
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<i class="fas fa-cloud-upload-alt"></i> UP TẤT CẢ PHÒNG LÊN WEBSITE`;
+    }
   }
 }
 
