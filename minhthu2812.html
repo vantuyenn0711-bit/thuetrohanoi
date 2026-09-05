@@ -214,6 +214,7 @@
         <div style="margin-top: 8px;">
           <input type="text" id="moithueCustomCookie" placeholder="Dán cookie wordpress_logged_in_... vào đây để Render không bị lỗi 403" 
             style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.8rem; font-family: monospace; box-sizing: border-box;"
+            oninput="saveCustomCookie(this.value)"
             onchange="saveCustomCookie(this.value)">
           <p style="margin: 4px 0 0 0; color: #64748b; font-size: 0.76rem;">
             💡 <strong>Hướng dẫn lấy Cookie:</strong> Đăng nhập moithue.com trên máy tính -> Bấm <code>F12</code> -> Vào <strong>Application</strong> -> <strong>Cookies</strong> -> Copy giá trị cookie <code>wordpress_logged_in_...</code> dán vào ô này.
