@@ -1323,9 +1323,9 @@ async function fetchAndAddRooms() {
         }
       }
 
-      // Nghỉ nhẹ 300ms giữa các phòng để đảm bảo ổn định
+      // Nghỉ nhẹ 1.2 giây giữa các phòng để tránh bị moithue.com chặn quét dồn dập
       if (i < links.length - 1) {
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 1200));
       }
     }
 

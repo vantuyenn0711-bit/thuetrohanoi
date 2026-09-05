@@ -94,8 +94,9 @@ function httpPost(url, postData) {
 // ======================================================================
 // LOGIN
 // ======================================================================
-async function login() {
-  if (Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_'))) return true;
+async function login(force = false) {
+  if (!force && Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_'))) return true;
+  cookies = {};
   console.log('🔑 Logging into moithue.com...');
   await httpGet('https://moithue.com/wp-login.php');
   await httpPost('https://moithue.com/wp-login.php', {
@@ -701,7 +702,16 @@ async function fetchListing(listingUrl, sourceGroup, district) {
 
   await login();
 
-  const res = await httpGet(`https://moithue.com/listing/${slug}/`);
+  let res = await httpGet(`https://moithue.com/listing/${slug}/`);
+  
+  // Tự động xử lý khi gặp 403, 401 hoặc 503: xóa cookie, chờ 1.5s, đăng nhập lại và thử lại
+  if (res.status === 403 || res.status === 401 || res.status === 503) {
+    console.warn(`⚠️ HTTP ${res.status} khi tải ${slug}, đang reset cookie và đăng nhập lại...`);
+    await new Promise(r => setTimeout(r, 1500));
+    await login(true);
+    res = await httpGet(`https://moithue.com/listing/${slug}/`);
+  }
+
   if (res.status !== 200) throw new Error(`HTTP ${res.status}`);
 
   const extracted = extractRoomFromHtml(res.body, slug);

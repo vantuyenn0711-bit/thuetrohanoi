@@ -138,8 +138,9 @@ function httpPost(url, postData) {
 // ======================================================================
 // LOGIN
 // ======================================================================
-async function login() {
-  if (Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_'))) return true;
+async function login(force = false) {
+  if (!force && Object.keys(cookies).some(k => k.startsWith('wordpress_logged_in_'))) return true;
+  cookies = {};
   console.log('🔑 Logging into moithue.com...');
   await httpGet('https://moithue.com/wp-login.php');
   await httpPost('https://moithue.com/wp-login.php', {
@@ -794,7 +795,12 @@ module.exports = {
     if (!slugMatch) throw new Error('Invalid URL. Must be moithue.com/listing/slug/');
     const slug = slugMatch[1];
     await login();
-    const res = await httpGet(`https://moithue.com/listing/${slug}/`);
+    let res = await httpGet(`https://moithue.com/listing/${slug}/`);
+    if (res.status === 403 || res.status === 401 || res.status === 503) {
+      await new Promise(r => setTimeout(r, 1500));
+      await login(true);
+      res = await httpGet(`https://moithue.com/listing/${slug}/`);
+    }
     if (res.status !== 200) throw new Error(`HTTP ${res.status}`);
     const extracted = extractRoomFromHtml(res.body, slug);
     const room = convertToRoomFormat(extracted);
