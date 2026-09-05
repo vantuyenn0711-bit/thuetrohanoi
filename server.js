@@ -15,12 +15,19 @@ const PORT = process.env.PORT || 3000;
 const CREDENTIALS = { email: 'Phonghuyentran.moithue@gmail.com', password: 'Huyentran' };
 let cookies = {};
 
+const CLOUDFLARE_WORKER_URL = process.env.CLOUDFLARE_WORKER_URL || 'https://proud-grass-4b4a.vantuyenn0711.workers.dev';
+
 // ======================================================================
-// HTTP HELPERS (reused from fetch_listing.js)
+// HTTP HELPERS (Routed via Cloudflare Worker for 100% Anti-Block)
 // ======================================================================
 function httpGet(url, maxRedirects = 5) {
   return new Promise((resolve, reject) => {
-    const parsedUrl = new URL(url);
+    const cookieStr = Object.entries(cookies).map(([k, v]) => `${k}=${v}`).join('; ');
+    const requestUrl = CLOUDFLARE_WORKER_URL 
+      ? `${CLOUDFLARE_WORKER_URL}/?url=${encodeURIComponent(url)}&cookie=${encodeURIComponent(cookieStr)}`
+      : url;
+
+    const parsedUrl = new URL(requestUrl);
     const options = {
       hostname: parsedUrl.hostname,
       port: 443,
@@ -31,17 +38,10 @@ function httpGet(url, maxRedirects = 5) {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
         'Accept-Language': 'vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7',
         'Referer': 'https://moithue.com/',
-        'Sec-Ch-Ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-        'Sec-Ch-Ua-Mobile': '?0',
-        'Sec-Ch-Ua-Platform': '"Windows"',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'same-origin',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1',
-        'Cookie': Object.entries(cookies).map(([k, v]) => `${k}=${v}`).join('; ')
+        'x-moithue-cookie': cookieStr,
+        'Cookie': cookieStr
       },
-      timeout: 15000
+      timeout: 20000
     };
     const req = https.request(options, (res) => {
       const setCookies = res.headers['set-cookie'] || [];
