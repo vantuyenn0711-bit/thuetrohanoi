@@ -34,11 +34,30 @@ const SOURCE_GROUP_NAMES = {
 let adminRooms = [];
 let adminBookings = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadAdminData();
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadAdminData();
   renderAdminStats();
   renderBookingsTable();
   renderRoomsTable();
+});
+
+// Lắng nghe thay đổi phòng khi có tab khác cập nhật
+window.addEventListener('storage', (e) => {
+  if (e.key === STORAGE_ROOMS_KEY && e.newValue) {
+    try {
+      adminRooms = JSON.parse(e.newValue).map(r => {
+        if (r.title) r.title = transformMoithueName(r.title);
+        if (r.address) r.address = transformMoithueName(r.address);
+        return r;
+      });
+      renderAdminStats();
+      renderRoomsTable();
+    } catch (err) {}
+  }
+});
+
+window.addEventListener('focus', () => {
+  loadAdminData();
 });
 
 function transformMoithueName(str) {
@@ -84,31 +103,45 @@ function transformMoithueName(str) {
   return clean.replace(/\s+/g, ' ').trim();
 }
 
-function loadAdminData() {
-  const savedRooms = localStorage.getItem(STORAGE_ROOMS_KEY);
-  if (savedRooms !== null) {
-    try { 
-      adminRooms = JSON.parse(savedRooms).map(r => {
+async function loadAdminData() {
+  try {
+    let res = await fetch(`/api/rooms?t=${Date.now()}`);
+    if (!res.ok) {
+      res = await fetch(`rooms_new.json?t=${Date.now()}`);
+    }
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      adminRooms = data.map(r => {
         if (r.title) r.title = transformMoithueName(r.title);
         if (r.address) r.address = transformMoithueName(r.address);
         return r;
-      }); 
-    } catch (e) { adminRooms = []; }
-  } else {
-    adminRooms = [];
-    fetch('/api/rooms')
-      .then(res => res.json())
-      .then(data => {
-        adminRooms = Array.isArray(data) ? data.map(r => {
+      });
+      try { localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms)); } catch(e) {}
+    }
+  } catch (err) {
+    try {
+      const res2 = await fetch(`rooms_new.json?t=${Date.now()}`);
+      const data2 = await res2.json();
+      if (Array.isArray(data2)) {
+        adminRooms = data2.map(r => {
           if (r.title) r.title = transformMoithueName(r.title);
           if (r.address) r.address = transformMoithueName(r.address);
           return r;
-        }) : [];
+        });
         try { localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms)); } catch(e) {}
-        renderAdminStats();
-        renderRoomsTable();
-      })
-      .catch(() => {});
+      }
+    } catch (err2) {
+      const savedRooms = localStorage.getItem(STORAGE_ROOMS_KEY);
+      if (savedRooms) {
+        try { 
+          adminRooms = JSON.parse(savedRooms).map(r => {
+            if (r.title) r.title = transformMoithueName(r.title);
+            if (r.address) r.address = transformMoithueName(r.address);
+            return r;
+          }); 
+        } catch (e) { adminRooms = []; }
+      }
+    }
   }
 
   const savedBookings = localStorage.getItem(STORAGE_BOOKINGS_KEY);
@@ -117,6 +150,9 @@ function loadAdminData() {
   } else {
     adminBookings = [];
   }
+
+  renderAdminStats();
+  renderRoomsTable();
 }
 
 function clearAllRooms() {
