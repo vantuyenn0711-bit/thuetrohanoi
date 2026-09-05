@@ -112,12 +112,12 @@ async function login() {
 // ======================================================================
 function cleanHtmlPreserveBreaks(html) {
   if (!html) return '';
-  return html
+  let text = html
     .replace(/<br\s*[\/]?>/gi, '\n')
     .replace(/<\/p>/gi, '\n')
     .replace(/<\/div>/gi, '\n')
     .replace(/<\/li>/gi, '\n')
-    .replace(/<li[^>]*>/gi, '• ')
+    .replace(/<li[^>]*>/gi, '\n• ')
     .replace(/<[^>]+>/g, '')
     .replace(/&#8211;/g, '–')
     .replace(/&#8212;/g, '—')
@@ -129,29 +129,79 @@ function cleanHtmlPreserveBreaks(html) {
     .replace(/&#038;/g, '&')
     .replace(/&amp;/g, '&')
     .replace(/&hellip;/g, '...')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/[ \t]+/g, ' ')
-    .replace(/\n\s*\n\s*\n+/g, '\n\n')
-    .trim();
+    .replace(/&nbsp;|\u00A0/g, ' ')
+    .replace(/\r\n|\r/g, '\n');
+
+  // 1. Thêm ngắt dòng trước các icon mục lớn
+  text = text.replace(/([^\n])\s*(?=(?:📋|✅|🚚|🏆|❎))/gu, '$1\n\n');
+  
+  // 2. Thêm ngắt dòng trước các tiêu đề lớn (kể cả không có emoji)
+  text = text.replace(/([^\n])\s*(?=(?:THÔNG TIN PHÒNG|TIỆN ÍCH|DỊCH VỤ|LƯU Ý)(?:[\s:•_]|$))/gi, '$1\n\n');
+
+  // 3. Thêm ngắt dòng trước các thuộc tính quan trọng
+  text = text.replace(/([^\n•])\s*(?=(?:ĐỊA CHỈ|Ngõ|Tình trạng|Trống|Diện tích|Thang máy|Dạng phòng|Nội thất|Gần trường|Gần chợ|Gần bãi|(?:(?<!Xe\s*)Điện)|Nước|Internet|Mạng|Dịch vụ chung|Thêm đồ|Bớt đồ|Xe máy|Tối đa|Nuôi pet|Xe điện|Khách tây|Giờ giấc|Chung chủ|Phơi đồ|Máy giặt|Tổng số tầng|Hợp đồng|Thanh toán|Ngày lùi)\s*[:•])/gi, '$1\n');
+
+  // 4. Thêm ngắt dòng trước dấu bullet •
+  text = text.replace(/([^\n])\s*•\s*/g, '$1\n• ');
+
+  // 5. Chuẩn hóa khoảng trắng & nhiều dòng trống
+  return text.replace(/[ \t]+/g, ' ').replace(/\n\s*\n\s*\n+/g, '\n\n').trim();
 }
 
 function transformMoithueName(str) {
   if (!str) return '';
-  // Chuyển 115.x -> 115, 115.55.x -> 115, 58.05 -> 58, 89.19.38.x -> 89
-  return str.replace(/^((?:[A-Za-z]{1,4}\s*)?\d+[A-Za-z]?)(?:\.[a-zA-Z0-9]+)+\s+/i, (match, prefix) => prefix + ' ').trim();
+  let clean = str.trim();
+
+  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 139.49.X, 259.x, 448.x...) thành "Ngõ 649 "
+  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+)(?:\.[a-zA-Z0-9_\-]+)+\s*/i, (match, alley) => {
+    return `Ngõ ${alley} `;
+  });
+
+  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ (vd: Lĩnh Nam(1) -> Lĩnh Nam (1))
+  clean = clean.replace(/([^\s(])\(/g, '$1 (');
+
+  // Xóa dấu ngoặc mở cụt ở cuối chuỗi (vd: 259.x Vĩnh Hưng( -> 259.x Vĩnh Hưng)
+  clean = clean.replace(/\(\s*$/, '').trim();
+
+  // 2. Trích xuất và bảo toàn phần "_Trục XX" nếu có
+  let trucPart = '';
+  const trucMatch = clean.match(/(?:_|\s)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
+  if (trucMatch) {
+    trucPart = '_' + trucMatch[1].replace(/\s+/g, ' ').trim();
+    // Tách phần tên trước Trục
+    const idx = clean.search(/(?:_|\s)Trục\s*\d+/i);
+    if (idx > -1) {
+      clean = clean.substring(0, idx).trim();
+    }
+  } else {
+    // Nếu không có Trục, cắt bỏ các mã nhân viên / hậu tố sau dấu _ (vd: _A Tâm, _A Nhu, _A Đạt, _FH, _LN...)
+    clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
+  }
+
+  // Loại bỏ các mã đuôi thừa nếu còn dính vào tên chính trước Trục
+  clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
+  clean = clean.replace(/_+$/, '').trim();
+
+  // Ghép lại phần Trục
+  if (trucPart) {
+    clean = clean + trucPart;
+  }
+
+  // Chuẩn hóa khoảng trắng
+  return clean.replace(/\s+/g, ' ').trim();
 }
 
 function extractRoomFromHtml(html, slug) {
   const data = { slug, url: `https://moithue.com/listing/${slug}/` };
 
-  // 1. Title (Chuyển dạng "58.05 Phú Vinh..." -> "ngõ 58 Phú Vinh...")
+  // 1. Title
   const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   const titleTagMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   const rawTitle = h1Match ? h1Match[1] : (titleTagMatch ? titleTagMatch[1] : slug);
   const cleanedTitle = cleanHtmlPreserveBreaks(rawTitle).replace(/ - Mời Thuê.*$/, '').replace(/ – Mời Thuê.*$/, '').trim();
   data.title = transformMoithueName(cleanedTitle);
 
-  // 2. Price (From main listing price widget)
+  // 2. Price
   const priceWidgetMatch = html.match(/widget-lst_listing_price[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
                            html.match(/class="[^"]*price[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
   let priceStr = '';
@@ -186,7 +236,7 @@ function extractRoomFromHtml(html, slug) {
   const ogDesc = ogDescMatch ? cleanHtmlPreserveBreaks(ogDescMatch[1]) : '';
   data.description = rawDescText || ogDesc || '';
 
-  // 4. Extract "Trong nhà có gì?" (100% Features / Amenities)
+  // 4. Extract "Trong nhà có gì?" (Features / Amenities)
   const featRegex = /<div class="listivo-listing-feature__text">([\s\S]*?)<\/div>/gi;
   const extractedAmenities = [];
   let m;
@@ -200,7 +250,7 @@ function extractRoomFromHtml(html, slug) {
     'Ban công', 'Điều hòa', 'Nóng lạnh', 'Giường', 'Tủ quần áo', 'Bàn bếp', 'Tủ bếp', 'Wifi'
   ];
 
-  // 5. Extract "Tầng còn phòng ở trục này" (Available floors / room numbers P.204, P.304, etc.)
+  // 5. Extract "Tầng còn phòng ở trục này"
   const floorMatch = html.match(/Tầng còn phòng ở trục này[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/i) ||
                      html.match(/Tầng còn phòng ở trục này[\s\S]*?<\/div>\s*<\/div>/i);
   const availableFloors = [];
@@ -211,7 +261,6 @@ function extractRoomFromHtml(html, slug) {
       const clean = cleanHtmlPreserveBreaks(m[1]).trim();
       if (clean && !availableFloors.includes(clean)) availableFloors.push(clean);
     }
-    // Fallback if no listivo-tag divs found
     if (availableFloors.length === 0) {
       const fallbackTags = floorMatch[0].match(/(?:P\.?\s*\d+|Tầng\s*\d+|\d{3,4})/gi);
       if (fallbackTags) {
@@ -224,7 +273,7 @@ function extractRoomFromHtml(html, slug) {
   }
   data.availableFloors = availableFloors;
 
-  // 6. Extract Video (YouTube embed and Google Drive video link)
+  // 6. Extract Video
   const ytMatch = html.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
   if (ytMatch) {
     data.videoUrl = `https://www.youtube.com/watch?v=${ytMatch[1]}`;
@@ -236,7 +285,7 @@ function extractRoomFromHtml(html, slug) {
                      html.match(/href=["'](https:\/\/drive\.google\.com\/[^\s"'>]+)["']/i);
   data.videoDriveUrl = driveMatch ? driveMatch[1] : '';
 
-  // 7. Extract 100% Gallery Images (Permanent URLs, zero cutoff)
+  // 7. Extract Gallery Images
   const galleryIdx = html.indexOf('elementor-widget-lst_listing_gallery');
   let galleryChunk = html;
   if (galleryIdx > -1) {
@@ -271,11 +320,13 @@ function extractRoomFromHtml(html, slug) {
   const fullText = (data.title + '\n' + desc).toLowerCase();
 
   // Address
-  const addrMatch = desc.match(/(?:ĐỊA CHỈ|Địa chỉ)[:\s]*([^\n\r\u23F0-\u23FF\u2600-\u27BF]+)/iu);
-  data.address = transformMoithueName(addrMatch ? addrMatch[1].trim().replace(/[\s]+$/, '') : data.title);
+  const addrMatch = desc.match(/(?:ĐỊA CHỈ|Địa chỉ)[:\s]*([^\n\r•]+?)(?=\s*(?:Ngõ|Tình trạng|Trống|Diện tích|Thang máy|Dạng phòng|Nội thất|⏳|🍡|🛋️|✅|🚚|❎|$))/iu);
+  const rawAddr = addrMatch ? addrMatch[1].trim() : data.title.split('_')[0].trim();
+  const cleanRawAddr = (rawAddr.split('\n')[0] || '').trim();
+  data.address = transformMoithueName(cleanRawAddr);
 
   // Area
-  const areaMatch = desc.match(/(?:Diện tích|DT|dt)[:\s]*(\d+)\s*m/i) || desc.match(/(\d+)\s*m[²2]/);
+  const areaMatch = desc.match(/(?:Diện tích|DT|dt)\s*[:•]?\s*~?\s*(\d+)\s*m/i) || desc.match(/(\d+)\s*m[²2]/);
   data.area = areaMatch ? parseInt(areaMatch[1], 10) : 25;
 
   // Total floors & Floor string
@@ -296,36 +347,36 @@ function extractRoomFromHtml(html, slug) {
   else data.roomLayout = 'STUDIO';
 
   // Furniture
-  const furnMatch = desc.match(/(?:Nội thất|nội thất)[:\s]*([^\n\r]+)/i);
+  const furnMatch = desc.match(/(?:Nội thất|nội thất)\s*[:•]\s*([^\n\r•]+)/i);
   data.furniture = furnMatch ? furnMatch[1].trim() : '';
   if (fullText.includes('full đồ') || fullText.includes('full nội thất')) data.furnishLevel = 'Full đồ';
   else if (fullText.includes('cơ bản')) data.furnishLevel = 'Cơ bản';
   else data.furnishLevel = 'Full đồ';
 
   // Service fees
-  const dienMatch = desc.match(/(?:Điện|dien)[:\s]*([^\n\r]+)/i);
+  const dienMatch = desc.match(/(?:Điện|dien)\s*[:•]\s*([^\n\r•]+)/i);
   data.feeElectricity = dienMatch ? dienMatch[1].trim() : '4k/số';
 
-  const nuocMatch = desc.match(/(?:Nước|nuoc)[:\s]*([^\n\r]+)/i);
-  data.feeWater = nuocMatch ? nuocMatch[1].trim() : '30k/khối';
+  const nuocMatch = desc.match(/(?:Nước|nuoc)\s*[:•]\s*([^\n\r•]+)/i);
+  data.feeWater = nuocMatch ? nuocMatch[1].trim() : '35k/khối';
 
-  const mangMatch = desc.match(/(?:WIFI|Mạng|Wifi|Internet)[:\s]*([^\n\r]+)/i);
+  const mangMatch = desc.match(/(?:WIFI|Mạng|Wifi|Internet)\s*[:•]\s*([^\n\r•]+)/i);
   data.feeInternet = mangMatch ? mangMatch[1].trim() : '100k/phòng';
 
-  const dvChungMatch = desc.match(/(?:Dịch vụ chung|Dịch vụ)[:\s]*([^\n\r]+)/i);
-  data.feeService = dvChungMatch ? dvChungMatch[1].trim() : '150k/người (Vệ sinh, điện chung, thang máy)';
+  const dvChungMatch = desc.match(/(?:Dịch vụ chung|Dịch vụ)\s*[:•]\s*([^\n\r•]+)/i);
+  data.feeService = dvChungMatch ? dvChungMatch[1].trim() : '200k/người';
 
-  const thangMayFeeMatch = desc.match(/Thang máy[:\s]*(\d+k\/người[^\n\r]*)/i);
+  const thangMayFeeMatch = desc.match(/Thang máy\s*[:•]\s*(\d+k\/người[^\n\r•]*)/i);
   data.feeElevator = thangMayFeeMatch ? thangMayFeeMatch[1].trim() : '';
 
-  const xeMayMatch = desc.match(/(?:Xe máy|xe máy)[:\s]*([^\n\r]+)/i);
+  const xeMayMatch = desc.match(/(?:Xe máy|xe máy)\s*[:•]\s*([^\n\r•]+)/i);
   data.feeParking = xeMayMatch ? xeMayMatch[1].trim() : 'Free 2 xe';
 
   // Max people & vehicles
-  const maxPeopleMatch = desc.match(/Tối đa[:\s]*(\d+)\s*người/i) || desc.match(/tối đa[:\s]*(\d+)/i);
+  const maxPeopleMatch = desc.match(/Tối đa\s*[:•]\s*(\d+)\s*người/i) || desc.match(/tối đa\s*[:•]\s*(\d+)/i);
   data.maxPeople = maxPeopleMatch ? parseInt(maxPeopleMatch[1], 10) : 2;
 
-  const maxVehMatch = desc.match(/(\d+)\s*xe(?:\s*máy)?/i) || desc.match(/xe máy[:\s]*(\d+)/i);
+  const maxVehMatch = desc.match(/(\d+)\s*xe(?:\s*máy)?/i) || desc.match(/xe máy\s*[:•]\s*(\d+)/i);
   data.maxVehicles = maxVehMatch ? parseInt(maxVehMatch[1], 10) : 2;
 
   // Policies
@@ -341,7 +392,7 @@ function extractRoomFromHtml(html, slug) {
     data.electricVehicle = true;
   } else if (fullText.includes('xe điện: có') || fullText.includes('nhận xe điện') || fullText.includes('xe điện: nhận')) {
     data.evPolicy = 'allowed';
-    const evFee = desc.match(/Xe điện[:\s]*có\s*\(([^)]+)\)/i);
+    const evFee = desc.match(/Xe điện\s*[:•]\s*có\s*\(([^)]+)\)/i);
     data.evNote = evFee ? `Nhận xe điện (${evFee[1]})` : 'Nhận xe điện';
     data.electricVehicle = true;
   } else {
@@ -357,49 +408,62 @@ function extractRoomFromHtml(html, slug) {
   data.fireSafety = fullText.includes('pccc') || fullText.includes('thang thoát hiểm');
 
   // Terms
-  const hopDongMatch = desc.match(/Hợp đồng[:\s]*([^\n\r]+)/i);
+  const hopDongMatch = desc.match(/Hợp đồng\s*[:•]\s*([^\n\r•]+)/i);
   data.contractTerm = hopDongMatch ? hopDongMatch[1].trim() : '12 tháng';
 
-  const thanhToanMatch = desc.match(/Thanh toán[:\s]*([^\n\r]+)/i);
+  const thanhToanMatch = desc.match(/Thanh toán\s*[:•]\s*([^\n\r•]+)/i);
   data.depositTerm = thanhToanMatch ? thanhToanMatch[1].trim() : 'Cọc 1 đóng 1';
 
-  const ngayLuiMatch = desc.match(/Ngày lùi(?: linh động)?[:\s]*([^\n\r]+)/i);
-  data.moveInNote = ngayLuiMatch ? `Lùi ${ngayLuiMatch[1].trim()}` : 'Ở ngay';
+  const ngayLuiMatch = desc.match(/Ngày lùi(?: linh động| tối đa)?\s*[:•~]\s*([^\n\r•]+)/i);
+  data.moveInNote = ngayLuiMatch ? `Lùi ${ngayLuiMatch[1].trim().replace(/^~+\s*/, '')}` : 'Ở ngay';
 
   return data;
 }
 
 // ======================================================================
-// PARSE FULL DETAIL DESCRIPTION INTO 4 SECTIONS (100% COMPLETE)
+// PARSE FULL DETAIL DESCRIPTION INTO 4 SECTIONS (100% COMPLETE & CLEAN)
 // ======================================================================
 function parseDetailDescription(data) {
   const desc = data.description || '';
   const sections = { info: '', amenity: '', service: '', note: '' };
 
-  const splitRegex = /(?=(?:THÔNG TIN PHÒNG|📋\s*THÔNG TIN|✅\s*TIỆN ÍCH|TIỆN ÍCH\b|(?:🚚|🏆)\s*DỊCH VỤ|DỊCH VỤ\s*:|❎\s*LƯU Ý|LƯU Ý\s*:))/i;
-  const parts = desc.split(splitRegex);
+  const infoMatch = desc.match(/(?:THÔNG TIN PHÒNG(?:_[A-Z0-9]+)?|📋\s*THÔNG TIN|ĐỊA CHỈ\s*:)/i);
+  const amenityMatch = desc.match(/(?:✅\s*TIỆN ÍCH|TIỆN ÍCH\b)/i);
+  const serviceMatch = desc.match(/(?:(?:🚚|🏆)\s*DỊCH VỤ|DỊCH VỤ\b)/i);
+  const noteMatch = desc.match(/(?:❎\s*LƯU Ý|LƯU Ý\b)/i);
 
-  for (const part of parts) {
-    const trimmed = part.trim();
-    if (!trimmed) continue;
-    if (/^(?:THÔNG TIN PHÒNG|📋\s*THÔNG TIN|ĐỊA CHỈ)/i.test(trimmed)) {
-      sections.info = trimmed;
-    } else if (/^(?:✅\s*TIỆN ÍCH|TIỆN ÍCH)/i.test(trimmed)) {
-      sections.amenity = trimmed;
-    } else if (/^(?:(?:🚚|🏆)\s*DỊCH VỤ|DỊCH VỤ\s*:)/i.test(trimmed)) {
-      sections.service = trimmed;
-    } else if (/^(?:❎\s*LƯU Ý|LƯU Ý\s*:)/i.test(trimmed)) {
-      sections.note = trimmed;
-    } else if (!sections.info) {
-      sections.info = trimmed;
-    }
+  const infoIdx = infoMatch ? infoMatch.index : -1;
+  const amenityIdx = amenityMatch ? amenityMatch.index : -1;
+  const serviceIdx = serviceMatch ? serviceMatch.index : -1;
+  const noteIdx = noteMatch ? noteMatch.index : -1;
+
+  if (infoIdx > -1) {
+    const end = (amenityIdx > infoIdx) ? amenityIdx : ((serviceIdx > infoIdx) ? serviceIdx : ((noteIdx > infoIdx) ? noteIdx : desc.length));
+    sections.info = desc.substring(infoIdx, end).trim();
   }
+  if (amenityIdx > -1) {
+    const end = (serviceIdx > amenityIdx) ? serviceIdx : ((noteIdx > amenityIdx) ? noteIdx : desc.length);
+    sections.amenity = desc.substring(amenityIdx, end).trim();
+  }
+  if (serviceIdx > -1) {
+    const end = (noteIdx > serviceIdx) ? noteIdx : desc.length;
+    sections.service = desc.substring(serviceIdx, end).trim();
+  }
+  if (noteIdx > -1) {
+    sections.note = desc.substring(noteIdx).trim();
+  }
+
+  // Làm sạch tiêu đề thừa đầu mỗi khối
+  if (sections.info) sections.info = sections.info.replace(/^(?:📋\s*)?THÔNG TIN PHÒNG(?:_[A-Z0-9]+)?\s*:?\s*/i, '').trim();
+  if (sections.amenity) sections.amenity = sections.amenity.replace(/^(?:✅\s*)?TIỆN ÍCH\s*:?\s*/i, '').trim();
+  if (sections.service) sections.service = sections.service.replace(/^(?:(?:🚚|🏆)\s*)?DỊCH VỤ\s*:?\s*/i, '').trim();
+  if (sections.note) sections.note = sections.note.replace(/^(?:❎\s*)?LƯU Ý\s*:?\s*/i, '').trim();
 
   // Robust Fallbacks
   if (!sections.info && data.address) sections.info = `ĐỊA CHỈ: ${data.address}\nDiện tích: ${data.area || 25}m2\nDạng phòng: ${data.roomLayout || 'Studio'}`;
-  if (!sections.amenity && data.furniture) sections.amenity = `✅ TIỆN ÍCH\n• Nội thất: ${data.furniture}`;
-  if (!sections.service && data.feeElectricity) sections.service = `🚚 DỊCH VỤ\n• Điện: ${data.feeElectricity}\n• Nước: ${data.feeWater}\n• Mạng: ${data.feeInternet}\n• Dịch vụ chung: ${data.feeService}`;
-  if (!sections.note && data.contractTerm) sections.note = `❎ LƯU Ý\n• Hợp đồng: ${data.contractTerm}\n• Thanh toán: ${data.depositTerm}\n• Tối đa: ${data.maxPeople} người ${data.maxVehicles} xe`;
+  if (!sections.amenity && data.furniture) sections.amenity = `• Nội thất: ${data.furniture}`;
+  if (!sections.service && data.feeElectricity) sections.service = `• Điện: ${data.feeElectricity}\n• Nước: ${data.feeWater}\n• Mạng: ${data.feeInternet}\n• Dịch vụ chung: ${data.feeService}`;
+  if (!sections.note && data.contractTerm) sections.note = `• Hợp đồng: ${data.contractTerm}\n• Thanh toán: ${data.depositTerm}\n• Tối đa: ${data.maxPeople} người ${data.maxVehicles} xe`;
 
   return sections;
 }
@@ -527,17 +591,11 @@ function serveStaticFile(filePath, req, res) {
   const ext = path.extname(fullPath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
   
-  let content = fileCache.get(fullPath);
-  if (!content) {
-    try {
-      content = fs.readFileSync(fullPath);
-      // Cache files smaller than 2MB
-      if (content.length < 2 * 1024 * 1024) {
-        fileCache.set(fullPath, content);
-      }
-    } catch (e) {
-      res.writeHead(500); res.end('Read error'); return;
-    }
+  let content;
+  try {
+    content = fs.readFileSync(fullPath);
+  } catch (e) {
+    res.writeHead(500); res.end('Read error'); return;
   }
 
   const acceptEncoding = (req && req.headers && req.headers['accept-encoding']) || '';
@@ -594,7 +652,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   // API: Save rooms to rooms_new.json
-  if (pathname === '/api/save-rooms' && req.method === 'POST') {
+  if ((pathname === '/api/save-rooms' || pathname === '/api/rooms') && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => body += chunk);
     req.on('end', () => {

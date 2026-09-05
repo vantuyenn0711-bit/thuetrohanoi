@@ -3,7 +3,6 @@
 // ==========================================================================
 const STORAGE_ROOMS_KEY = "thuetro_rooms_v20";
 const STORAGE_BOOKINGS_KEY = "thuetro_bookings_list";
-const ADMIN_PASSWORDS = ["0358954360", "tuyen123", "admin123", "dangvantuyen"];
 
 const SOURCE_GROUP_NAMES = {
   "nguon-ba-dinh": "Ba Đình - Tây Hồ",
@@ -36,57 +35,53 @@ let adminRooms = [];
 let adminBookings = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-  checkAdminAuth();
   loadAdminData();
   renderAdminStats();
   renderBookingsTable();
   renderRoomsTable();
 });
 
-// ==========================================================================
-// ADMIN SECURITY & AUTHENTICATION
-// ==========================================================================
-function checkAdminAuth() {
-  const isAuth = sessionStorage.getItem("thuetro_admin_auth") === "true";
-  const overlay = document.getElementById("adminAuthOverlay");
-  if (overlay) {
-    overlay.style.display = isAuth ? "none" : "flex";
-    if (!isAuth) {
-      const input = document.getElementById("adminPasswordInput");
-      if (input) setTimeout(() => input.focus(), 150);
-    }
-  }
-}
-
-function handleAdminLogin(e) {
-  e.preventDefault();
-  const input = document.getElementById("adminPasswordInput");
-  const errorMsg = document.getElementById("adminAuthError");
-  const entered = input ? input.value.trim() : "";
-  
-  if (ADMIN_PASSWORDS.includes(entered)) {
-    sessionStorage.setItem("thuetro_admin_auth", "true");
-    if (errorMsg) errorMsg.style.display = "none";
-    checkAdminAuth();
-    showToast("🔓 Đăng nhập quản trị thành công!");
-  } else {
-    if (errorMsg) errorMsg.style.display = "block";
-    if (input) {
-      input.value = "";
-      input.focus();
-    }
-  }
-}
-
-function handleAdminLogout() {
-  sessionStorage.removeItem("thuetro_admin_auth");
-  checkAdminAuth();
-  showToast("🔒 Đã đăng xuất và khóa bảo mật quản trị!");
-}
-
 function transformMoithueName(str) {
   if (!str) return '';
-  return str.replace(/(?:^|\b)(?:(?:ngõ|ngách)\s+)?(\d+)\.\d+\s+(?!(?:triệu|tỷ|m2|m²|tr\s*\/|tr\s*$))/gi, (match, alley) => 'ngõ ' + alley + ' ').trim();
+  let clean = str.trim();
+
+  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 139.49.X, 259.x, 448.x...) thành "Ngõ 649 "
+  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+)(?:\.[a-zA-Z0-9_\-]+)+\s*/i, (match, alley) => {
+    return `Ngõ ${alley} `;
+  });
+
+  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ (vd: Lĩnh Nam(1) -> Lĩnh Nam (1))
+  clean = clean.replace(/([^\s(])\(/g, '$1 (');
+
+  // Xóa dấu ngoặc mở cụt ở cuối chuỗi (vd: 259.x Vĩnh Hưng( -> 259.x Vĩnh Hưng)
+  clean = clean.replace(/\(\s*$/, '').trim();
+
+  // 2. Trích xuất và bảo toàn phần "_Trục XX" nếu có
+  let trucPart = '';
+  const trucMatch = clean.match(/(?:_|\s)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
+  if (trucMatch) {
+    trucPart = '_' + trucMatch[1].replace(/\s+/g, ' ').trim();
+    // Tách phần tên trước Trục
+    const idx = clean.search(/(?:_|\s)Trục\s*\d+/i);
+    if (idx > -1) {
+      clean = clean.substring(0, idx).trim();
+    }
+  } else {
+    // Nếu không có Trục, cắt bỏ các mã nhân viên / hậu tố sau dấu _ (vd: _A Tâm, _A Nhu, _A Đạt, _FH, _LN...)
+    clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
+  }
+
+  // Loại bỏ các mã đuôi thừa nếu còn dính vào tên chính trước Trục
+  clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
+  clean = clean.replace(/_+$/, '').trim();
+
+  // Ghép lại phần Trục
+  if (trucPart) {
+    clean = clean + trucPart;
+  }
+
+  // Chuẩn hóa khoảng trắng
+  return clean.replace(/\s+/g, ' ').trim();
 }
 
 function loadAdminData() {
@@ -357,7 +352,10 @@ function renderRoomsTable() {
           </button>
         </td>
         <td>
-          <div style="display: flex; gap: 8px;">
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button onclick="window.open('index.html?room=${r.id}', '_blank')" style="background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" title="Mở xem phòng này trên giao diện người dùng">
+              <i class="fas fa-external-link-alt"></i> Xem
+            </button>
             <button onclick="editRoomModal('${r.id}')" style="background: var(--bg-alt); border: 1px solid var(--border-color); padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer;" title="Chỉnh sửa chi tiết phòng">
               <i class="fas fa-edit" style="color: var(--secondary);"></i> Sửa
             </button>
@@ -414,7 +412,33 @@ function changeAdminPage(newPage) {
   if (table) table.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function toggleRoomStatus(roomId) {
+// ======================================================================
+// SYNC ROOMS DATA TO SERVER & LOCALSTORAGE
+// ======================================================================
+async function syncAdminRoomsToServer() {
+  try {
+    localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
+  } catch (e) {}
+
+  try {
+    const res = await fetch('/api/save-rooms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(adminRooms)
+    });
+    if (!res.ok) {
+      await fetch('/api/rooms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(adminRooms)
+      });
+    }
+  } catch (err) {
+    console.error('Không thể lưu lên server:', err);
+  }
+}
+
+async function toggleRoomStatus(roomId) {
   const room = adminRooms.find(r => r.id === roomId);
   if (!room) return;
 
@@ -422,31 +446,40 @@ function toggleRoomStatus(roomId) {
   room.status = newStatus;
   room.statusName = newStatus === "available" ? "Còn phòng" : "Đã cho thuê";
 
-  localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
   renderAdminStats();
   renderRoomsTable();
+  await syncAdminRoomsToServer();
   showToast(newStatus === "available" ? "🟢 Đã chuyển phòng sang: CÒN PHÒNG" : "🔴 Đã chuyển phòng sang: HẾT PHÒNG (Đã cho thuê)");
 }
 
-function updateRoomStatus(roomId, newStatus) {
+async function updateRoomStatus(roomId, newStatus) {
   const room = adminRooms.find(r => r.id === roomId);
   if (room) {
     room.status = newStatus;
     room.statusName = newStatus === "available" ? "Còn phòng" : "Đã cho thuê";
-    localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
     renderAdminStats();
     renderRoomsTable();
+    await syncAdminRoomsToServer();
     showToast("Đã cập nhật trạng thái phòng!");
   }
 }
 
-function deleteRoom(roomId) {
+async function deleteRoom(roomId) {
   if (!confirm("Bạn có chắc chắn muốn xóa phòng này khỏi website?")) return;
   adminRooms = adminRooms.filter(r => r.id !== roomId);
-  localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
   renderAdminStats();
   renderRoomsTable();
+  await syncAdminRoomsToServer();
   showToast("Đã xóa phòng trọ!");
+}
+
+async function clearAllRooms() {
+  if (!confirm("CẢNH BÁO: Bạn có chắc chắn muốn xóa toàn bộ danh sách phòng về 0 phòng?")) return;
+  adminRooms = [];
+  renderAdminStats();
+  renderRoomsTable();
+  await syncAdminRoomsToServer();
+  showToast("Đã xóa sạch toàn bộ phòng về 0!");
 }
 
 // ==========================================================================
@@ -506,11 +539,11 @@ function openAddRoomModal() {
   document.getElementById("formContactPerson").value = "Đặng Văn Tuyển";
   document.getElementById("formImagesList").value = "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80\nhttps://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80";
   
-  // Default 4 sections
-  document.getElementById("formDescInfo").value = "ĐỊA CHỈ: ...\n🍡 Diện tích: 28m2\n🍡 Thang máy: Có\n🍡 Dạng phòng: Studio\n🛋️ Nội thất: Điều hòa, nóng lạnh, giường tủ, tủ lạnh, bếp, hút mùi.";
-  document.getElementById("formDescAmenity").value = "• Gần đường lớn, tiện xe bus & di chuyển.\n• Gần chợ, siêu thị dân sinh sầm uất.\n• Khu an ninh cao, dân trí tốt.";
-  document.getElementById("formDescService").value = "• Điện: 4.000đ / số\n• Nước: Theo khối hoặc đầu người\n• Dịch vụ chung: Đầy đủ (Thang máy, rác, vệ sinh tòa nhà)\n• Xe máy: Để tại tầng 1";
-  document.getElementById("formDescNote").value = "• Tối đa: 2 người 2 xe\n• Xe điện: Có nhận xe điện\n• Nuôi pet: Không\n• Giờ giấc: Tự do 24/7\n• Không chung chủ\n• Hợp đồng: 6 - 12 tháng, Đóng 1 cọc 1";
+  // Default description
+  const descEl = document.getElementById("formDescription");
+  if (descEl) {
+    descEl.value = "THÔNG TIN PHÒNG\nĐỊA CHỈ: ...\n🍡 Diện tích: 28m2\n🍡 Thang máy: Có\n🍡 Dạng phòng: Studio\n🛋️ Nội thất: Điều hòa, nóng lạnh, giường tủ, tủ lạnh, bếp, hút mùi.\n✅ TIỆN ÍCH\n• Gần đường lớn, tiện xe bus & di chuyển.\n• Gần chợ, siêu thị dân sinh sầm uất.\n• Khu an ninh cao, dân trí tốt.\n🚚 DỊCH VỤ\n• Điện: 4k/số\n• Nước: 35k/khối\n• Internet: 100k/phòng\n• Dịch vụ chung: 200k/người\n• Xe máy: Free 2 xe\n❎ LƯU Ý\n• Tối đa: 2 người 2 xe\n• Xe điện: Có nhận xe điện\n• Nuôi pet: Không\n• Giờ giấc: Tự do 24/7\n• Không chung chủ\n• Hợp đồng: 12 tháng\n• Thanh toán: Đóng 1 cọc 1";
+  }
 
   // Check default amenities
   document.querySelectorAll(".form-amenity-cb").forEach(cb => {
@@ -556,12 +589,11 @@ function editRoomModal(roomId) {
   document.getElementById("formMoveInStatus").value = room.moveInStatus || "Ở ngay";
   document.getElementById("formAvailableFloors").value = (room.availableFloors || []).join(", ");
 
-  // Tab 3: Desc 4 sections
-  const dd = room.detailDescription || {};
-  document.getElementById("formDescInfo").value = dd.info || "";
-  document.getElementById("formDescAmenity").value = dd.amenity || "";
-  document.getElementById("formDescService").value = dd.service || "";
-  document.getElementById("formDescNote").value = dd.note || "";
+  // Tab 3: Full Description
+  const descEl = document.getElementById("formDescription");
+  if (descEl) {
+    descEl.value = room.description || "";
+  }
 
   // Tab 4: Filter checkboxes & amenities
   document.getElementById("formPetAllowed").checked = !!room.petAllowed;
@@ -590,7 +622,7 @@ function editRoomModal(roomId) {
   openModal("roomManageModal");
 }
 
-function handleRoomFormSubmit(event) {
+async function handleRoomFormSubmit(event) {
   event.preventDefault();
 
   // Tab 1
@@ -613,11 +645,10 @@ function handleRoomFormSubmit(event) {
   const availableFloorsStr = document.getElementById("formAvailableFloors").value.trim();
   const availableFloors = availableFloorsStr ? availableFloorsStr.split(",").map(f => f.trim()).filter(Boolean) : [];
 
-  // Tab 3
-  const info = document.getElementById("formDescInfo").value.trim();
-  const amenity = document.getElementById("formDescAmenity").value.trim();
-  const service = document.getElementById("formDescService").value.trim();
-  const note = document.getElementById("formDescNote").value.trim();
+  // Tab 3: Description
+  const descInputEl = document.getElementById("formDescription");
+  const rawDescription = descInputEl ? descInputEl.value.trim() : "";
+  const description = rawDescription || `Phòng trọ, căn hộ khép kín ${categoryName} tại ${address}. Đầy đủ nội thất, giờ giấc tự do, an ninh tốt.`;
 
   // Tab 4
   const petAllowed = document.getElementById("formPetAllowed").checked;
@@ -644,8 +675,6 @@ function handleRoomFormSubmit(event) {
   const categoryName = roomLayout === "STUDIO" ? "Khép kín (Studio)" : `Khép kín (${roomLayout})`;
   const statusName = status === "available" ? "Còn phòng" : "Đã cho thuê";
 
-  const description = `Phòng trọ, căn hộ khép kín ${categoryName} tại ${address}. Đầy đủ nội thất, giờ giấc tự do, an ninh tốt.`;
-
   if (editingRoomId) {
     const room = adminRooms.find(r => r.id === editingRoomId);
     if (room) {
@@ -667,7 +696,7 @@ function handleRoomFormSubmit(event) {
       room.maxVehicles = maxVehicles;
       room.moveInStatus = moveInStatus;
       room.availableFloors = availableFloors;
-      room.detailDescription = { info, amenity, service, note };
+      room.description = description;
       room.petAllowed = petAllowed;
       room.electricVehiclePolicy = electricVehiclePolicy;
       room.electricVehicle = electricVehicle;
@@ -726,7 +755,7 @@ function handleRoomFormSubmit(event) {
     showToast("🎉 Đã thêm phòng trọ mới thành công!");
   }
 
-  localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
+  await syncAdminRoomsToServer();
   closeModal("roomManageModal");
   renderAdminStats();
   renderRoomsTable();
@@ -756,13 +785,13 @@ function handleImportJson(event) {
   if (!file) return;
 
   const reader = new FileReader();
-  reader.onload = function(e) {
+  reader.onload = async function(e) {
     try {
       const imported = JSON.parse(e.target.result);
       if (Array.isArray(imported) && imported.length > 0 && imported[0].title) {
         if (confirm(`Bạn có chắc muốn nhập ${imported.length} phòng từ file này vào hệ thống không? Dữ liệu hiện tại sẽ được cập nhật.`)) {
           adminRooms = imported;
-          localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
+          await syncAdminRoomsToServer();
           renderAdminStats();
           renderRoomsTable();
           showToast(`🎉 Đã nạp thành công ${imported.length} phòng vào hệ thống!`);

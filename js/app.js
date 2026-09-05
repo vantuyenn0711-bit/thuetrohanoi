@@ -56,7 +56,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function transformMoithueName(str) {
   if (!str) return '';
-  return str.replace(/^((?:[A-Za-z]{1,4}\s*)?\d+[A-Za-z]?)(?:\.[a-zA-Z0-9]+)+\s+/i, (match, prefix) => prefix + ' ').trim();
+  let clean = str.trim();
+
+  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 139.49.X, 259.x, 448.x...) thành "Ngõ 649 "
+  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+)(?:\.[a-zA-Z0-9_\-]+)+\s*/i, (match, alley) => {
+    return `Ngõ ${alley} `;
+  });
+
+  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ (vd: Lĩnh Nam(1) -> Lĩnh Nam (1))
+  clean = clean.replace(/([^\s(])\(/g, '$1 (');
+
+  // Xóa dấu ngoặc mở cụt ở cuối chuỗi (vd: 259.x Vĩnh Hưng( -> 259.x Vĩnh Hưng)
+  clean = clean.replace(/\(\s*$/, '').trim();
+
+  // 2. Trích xuất và bảo toàn phần "_Trục XX" nếu có
+  let trucPart = '';
+  const trucMatch = clean.match(/(?:_|\s)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
+  if (trucMatch) {
+    trucPart = '_' + trucMatch[1].replace(/\s+/g, ' ').trim();
+    // Tách phần tên trước Trục
+    const idx = clean.search(/(?:_|\s)Trục\s*\d+/i);
+    if (idx > -1) {
+      clean = clean.substring(0, idx).trim();
+    }
+  } else {
+    // Nếu không có Trục, cắt bỏ các mã nhân viên / hậu tố sau dấu _ (vd: _A Tâm, _A Nhu, _A Đạt, _FH, _LN...)
+    clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
+  }
+
+  // Loại bỏ các mã đuôi thừa nếu còn dính vào tên chính trước Trục
+  clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
+  clean = clean.replace(/_+$/, '').trim();
+
+  // Ghép lại phần Trục
+  if (trucPart) {
+    clean = clean + trucPart;
+  }
+
+  // Chuẩn hóa khoảng trắng
+  return clean.replace(/\s+/g, ' ').trim();
 }
 
 // Load or initialize room data
@@ -71,12 +109,12 @@ async function initData() {
   }
 
   try {
-    let res = await fetch('/api/rooms');
+    let res = await fetch(`/api/rooms?t=${Date.now()}`);
     if (!res.ok) {
-      res = await fetch('rooms_new.json');
+      res = await fetch(`rooms_new.json?t=${Date.now()}`);
     }
     const data = await res.json();
-    if (Array.isArray(data) && data.length > 0) {
+    if (Array.isArray(data)) {
       rooms = data.map(r => {
         if (r.title) r.title = transformMoithueName(r.title);
         return r;
@@ -84,9 +122,9 @@ async function initData() {
     }
   } catch (err) {
     try {
-      const res2 = await fetch('rooms_new.json');
+      const res2 = await fetch(`rooms_new.json?t=${Date.now()}`);
       const data2 = await res2.json();
-      if (Array.isArray(data2) && data2.length > 0) {
+      if (Array.isArray(data2)) {
         rooms = data2.map(r => {
           if (r.title) r.title = transformMoithueName(r.title);
           return r;
@@ -97,9 +135,50 @@ async function initData() {
     }
   }
 
+  if ((!rooms || rooms.length === 0) && typeof INITIAL_ROOMS !== "undefined" && INITIAL_ROOMS.length > 0) {
+    rooms = INITIAL_ROOMS.map(r => {
+      if (r.title) r.title = transformMoithueName(r.title);
+      return r;
+    });
+  }
+
   renderRooms();
   updateSidebarCounts();
+
+  // Tự động mở chi tiết phòng nếu có tham số ?room=... hoặc ?id=... trên URL
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetRoomId = urlParams.get('room') || urlParams.get('id');
+    if (targetRoomId) {
+      setTimeout(() => {
+        openRoomDetailModal(targetRoomId, true);
+        const cardEl = document.querySelector(`[data-room-id="${targetRoomId}"]`);
+        if (cardEl) {
+          cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 250);
+    }
+  } catch (e) {}
 }
+
+// Lắng nghe thay đổi trạng thái phòng từ trang Quản trị (Admin)
+window.addEventListener('storage', (e) => {
+  if (e.key === STORAGE_ROOMS_KEY && e.newValue) {
+    try {
+      rooms = JSON.parse(e.newValue).map(r => {
+        if (r.title) r.title = transformMoithueName(r.title);
+        return r;
+      });
+      renderRooms();
+      updateSidebarCounts();
+    } catch (err) {}
+  }
+});
+
+// Khi chuyển tab quay lại web, tự động làm mới trạng thái phòng mới nhất
+window.addEventListener('focus', () => {
+  initData();
+});
 
 // ==========================================================================
 // RENDER ROOM CARDS (PAGINATION: 24 ROOMS PER PAGE CHUẨN LISTIVO / MỜI THUÊ)
@@ -135,22 +214,21 @@ function renderRooms() {
   if (totalRooms === 0) {
     grid.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: white; border-radius: var(--radius-md); border: 1px dashed var(--border-color);">
-        <i class="fas fa-home" style="font-size: 3rem; color: var(--text-light); margin-bottom: 16px;"></i>
-        <h3 style="font-size: 1.3rem; color: var(--dark); margin-bottom: 8px;">
-          ${rooms.length === 0 ? 'Hiện tại chưa có phòng nào trên hệ thống' : 'Không tìm thấy phòng phù hợp'}
+        <i class="fas fa-search" style="font-size: 2.8rem; color: var(--text-light); margin-bottom: 16px;"></i>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">
+          Không tìm thấy phòng phù hợp
         </h3>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">
-          ${rooms.length === 0 ? 'Vui lòng truy cập trang Quản trị Admin để dán link và thêm phòng mới.' : 'Vui lòng thử điều chỉnh lại bộ lọc hoặc tìm kiếm theo từ khóa khác.'}
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px;">
+          Vui lòng thử chọn lại khu vực khác, điều chỉnh khoảng giá hoặc bấm "Đặt lại bộ lọc" để xem danh sách phòng.
         </p>
-        ${rooms.length === 0 ? `
-          <a href="admin.html" class="btn-schedule-view" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: var(--primary);">
-            <i class="fas fa-plus-circle"></i> Đến trang Quản trị Admin để thêm phòng
-          </a>
-        ` : `
-          <button class="btn-schedule-view" onclick="resetAllFilters()">
-            <i class="fas fa-redo"></i> Xóa tất cả bộ lọc
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+          <button class="btn-schedule-view" onclick="resetAllFilters()" style="background: var(--primary);">
+            <i class="fas fa-redo"></i> Đặt lại tất cả lọc
           </button>
-        `}
+          <a href="https://zalo.me/${CONSULTANT_ZALO}" target="_blank" class="btn-schedule-view" style="background: var(--accent); text-decoration: none;">
+            <i class="fas fa-comment-dots"></i> Nhắn Zalo tư vấn
+          </a>
+        </div>
       </div>
     `;
     if (pagiContainer) pagiContainer.innerHTML = "";
@@ -160,92 +238,79 @@ function renderRooms() {
   const startIndex = (currentPage - 1) * roomsPerPage;
   const displayedRooms = filtered.slice(startIndex, startIndex + roomsPerPage);
 
-  const cardsHtml = displayedRooms.map(room => {
+  const cardsHtml = displayedRooms.map((room, roomIdx) => {
     const isSaved = wishlist.includes(room.id);
     const priceFormatted = new Intl.NumberFormat('vi-VN').format(room.price) + " đ";
     
-    // Build slider images (Chỉ nạp trước ảnh đầu tiên, các ảnh sau nạp theo yêu cầu để web siêu nhanh trên điện thoại)
+    // Build slider images track (Chỉ nạp trước ảnh đầu tiên, các ảnh sau nạp theo yêu cầu để web siêu nhanh trên điện thoại)
     const slidesHtml = room.images.map((img, idx) => `
-      <img ${idx === 0 ? `src="${img}"` : `data-src="${img}"`} class="card-slide-img" style="display: ${idx === 0 ? 'block' : 'none'};" data-index="${idx}" alt="${room.title}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
+      <div class="card-slide-item">
+        <img ${idx === 0 ? `src="${img}"` : `data-src="${img}"`} class="card-slide-img" data-index="${idx}" alt="${room.title}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${DEFAULT_ROOM_IMAGE}'">
+      </div>
     `).join("");
 
     const dotsHtml = room.images.map((_, idx) => `
-      <div class="slider-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>
+      <div class="slider-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}" onclick="jumpCardSlide('${room.id}', ${idx}, event)"></div>
     `).join("");
 
-    // Xe điện badge
+    // Xe điện badge nhỏ
     let evBadgeHtml = "";
-    if (room.electricVehiclePolicy === 'vinfast_only') {
-      evBadgeHtml = `<span class="badge-ev-vin" title="${room.electricVehicleNote || 'Chỉ nhận xe điện VinFast / Đổi pin'}"><i class="fas fa-motorcycle"></i> Xe Vin</span>`;
-    } else if (room.electricVehiclePolicy === 'allowed') {
-      evBadgeHtml = `<span class="badge-ev-ok" title="${room.electricVehicleNote || 'Nhận xe điện'}"><i class="fas fa-bolt"></i> Xe điện</span>`;
-    } else if (room.electricVehiclePolicy === 'forbidden') {
-      evBadgeHtml = `<span class="badge-ev-no" title="${room.electricVehicleNote || 'Cấm xe điện'}"><i class="fas fa-ban"></i> Cấm xe điện</span>`;
+    if (room.electricVehiclePolicy === 'vinfast_only' || room.electricVehicle) {
+      evBadgeHtml = `<span class="card-tag-pill ev"><i class="fas fa-bolt"></i> Xe điện</span>`;
     }
 
-    return `
-      <div class="room-card moithue-card" data-room-id="${room.id}" onclick="openRoomDetailModal('${room.id}', true)" style="cursor: pointer;">
-        <div class="card-media-wrapper">
-          <div class="card-badges">
-            <span class="badge-code">${room.sourceGroupName ? room.sourceGroupName.replace("Khu vực ", "") : (room.tag || room.categoryName || 'CÒN PHÒNG')}</span>
-            <span class="badge-status ${room.status === 'rented' ? 'rented' : ''}">
-              <i class="fas fa-circle" style="font-size: 6px;"></i> ${room.statusName || 'Còn phòng'}
-            </span>
-            ${evBadgeHtml}
-          </div>
+    const distName = room.sourceGroupName ? room.sourceGroupName.replace("Khu vực ", "") : (DISTRICTS.find(d => d.id === room.district)?.name || 'Hà Nội');
 
-          <div class="card-image-slider" id="slider-${room.id}">
-            ${slidesHtml}
-            <button class="slider-btn prev" onclick="changeCardSlide('${room.id}', -1, event)">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="slider-btn next" onclick="changeCardSlide('${room.id}', 1, event)">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-            <div class="slider-dots">${dotsHtml}</div>
+    const isRented = room.status === 'rented';
+
+    return `
+      <div class="room-card moithue-card ${isRented ? 'is-rented' : ''}" style="--i: ${roomIdx};" data-room-id="${room.id}" onclick="openRoomDetailModal('${room.id}', true)">
+        <div class="card-media-wrapper">
+          <!-- Nút Yêu thích nổi tinh tế góc phải trên ảnh -->
+          <button class="card-wishlist-float ${isSaved ? 'active' : ''}" title="${isSaved ? 'Đã lưu yêu thích' : 'Lưu tin này'}" onclick="toggleWishlist('${room.id}', event)">
+            <i class="${isSaved ? 'fas fa-heart' : 'far fa-heart'}"></i>
+          </button>
+
+          <div class="card-image-slider" id="slider-${room.id}" data-current="0">
+            <div class="card-slides-track">
+              ${slidesHtml}
+            </div>
+            ${room.images.length > 1 ? `
+              <button class="slider-btn prev" onclick="changeCardSlide('${room.id}', -1, event)" title="Ảnh trước">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="slider-btn next" onclick="changeCardSlide('${room.id}', 1, event)" title="Ảnh tiếp theo">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <div class="slider-dots">${dotsHtml}</div>
+            ` : ''}
           </div>
         </div>
 
         <div class="card-content">
-          <h3 class="card-title">${room.title}</h3>
-          
-          <div class="price-box">
-            <span class="price-value">${priceFormatted}</span>
+          <!-- Dải Tag nhẹ nhàng dưới ảnh (Không che khuất ảnh) -->
+          <div class="card-tags-row">
+            <span class="card-tag-pill location"><i class="fas fa-map-marker-alt"></i> ${distName}</span>
+            <span class="card-tag-pill status ${isRented ? 'rented' : ''}">
+              <i class="fas ${isRented ? 'fa-ban' : 'fa-circle'}"></i> ${isRented ? 'Đã cho thuê' : (room.statusName || 'Còn phòng')}
+            </span>
+            ${evBadgeHtml}
+            ${room.elevator ? `<span class="card-tag-pill elevator"><i class="fas fa-elevator"></i> Thang máy</span>` : ''}
           </div>
 
-          <div class="card-author">
-            <i class="far fa-user-circle"></i>
-            <span>Đặng Văn Tuyển (0358954360)</span>
-          </div>
+          <h3 class="card-title" title="${room.title}">${room.title}</h3>
 
-          <div class="card-specs">
-            <div class="spec-item">
-              <i class="fas fa-vector-square"></i>
-              <span>${room.area} m²</span>
+          <div class="card-bottom-row">
+            <div class="price-box">
+              <span class="price-value">${priceFormatted}</span>
+              <span class="price-unit">/ tháng</span>
             </div>
-            <div class="spec-item">
-              <i class="fas fa-layer-group"></i>
-              <span>${room.floor ? room.floor.split('/')[0] : 'Tầng 1'}</span>
-            </div>
-            <div class="spec-item">
-              <i class="fas fa-user-friends"></i>
-              <span>Tối đa ${room.maxPeople || 2} người</span>
+            <div class="card-cta-group">
+              <button class="btn-schedule-view ${isRented ? 'rented-btn' : ''}" onclick="contactZaloRoom('${room.id}', event)" title="${isRented ? 'Nhắn Zalo tìm phòng tương tự' : 'Nhắn Zalo cố vấn'}" style="${isRented ? 'background: #64748B; box-shadow: none;' : ''}">
+                <i class="fas ${isRented ? 'fa-history' : 'fa-comment-dots'}"></i> ${isRented ? 'Phòng tương tự' : 'Nhắn Zalo'}
+              </button>
             </div>
           </div>
-        </div>
-
-        <div class="card-footer">
-          <div class="card-actions-left">
-            <button class="moithue-icon-btn" title="Xem nhanh thông tin phòng" onclick="openRoomDetailModal('${room.id}', false, event)">
-              <i class="fas fa-eye"></i>
-            </button>
-            <button class="moithue-icon-btn ${isSaved ? 'active' : ''}" title="Lưu yêu thích" onclick="toggleWishlist('${room.id}', event)">
-              <i class="${isSaved ? 'fas fa-heart' : 'far fa-heart'}"></i>
-            </button>
-          </div>
-          <button class="btn-schedule-view" onclick="contactZaloRoom('${room.id}', event)">
-            <i class="fas fa-comment-dots"></i> Nhắn Zalo
-          </button>
         </div>
       </div>
     `;
@@ -350,43 +415,69 @@ function goToPage(targetPage) {
   }
 }
 
-// Card image slider navigation
+// ==========================================================================
+// CARD IMAGE SLIDER - HARDWARE ACCELERATED CAROUSEL
+// ==========================================================================
 function changeCardSlide(roomId, step, event) {
   if (event) event.stopPropagation();
   const slider = document.getElementById(`slider-${roomId}`);
   if (!slider) return;
 
-  const images = slider.querySelectorAll(".card-slide-img");
+  const track = slider.querySelector(".card-slides-track");
+  const items = slider.querySelectorAll(".card-slide-item");
   const dots = slider.querySelectorAll(".slider-dot");
-  let currentIndex = 0;
+  if (!track || items.length <= 1) return;
 
-  images.forEach((img, idx) => {
-    if (img.style.display !== "none") {
-      currentIndex = idx;
-    }
-  });
-
+  let currentIndex = parseInt(slider.dataset.current || "0", 10);
   let nextIndex = currentIndex + step;
-  if (nextIndex < 0) nextIndex = images.length - 1;
-  if (nextIndex >= images.length) nextIndex = 0;
+  if (nextIndex < 0) nextIndex = items.length - 1;
+  if (nextIndex >= items.length) nextIndex = 0;
 
-  images.forEach((img, idx) => {
-    if (idx === nextIndex) {
-      if (img.dataset.src && (!img.src || img.src.endsWith('/undefined') || img.src === window.location.href)) {
-        img.src = img.dataset.src;
-      }
-      img.style.display = "block";
-    } else {
-      img.style.display = "none";
-    }
-  });
+  slider.dataset.current = nextIndex;
+
+  // Lazy load ảnh đích và ảnh kế tiếp
+  const targetImg = items[nextIndex].querySelector(".card-slide-img");
+  if (targetImg && targetImg.dataset.src && (!targetImg.src || targetImg.src.endsWith('/undefined') || targetImg.src === window.location.href)) {
+    targetImg.src = targetImg.dataset.src;
+  }
+  const nextNextImg = items[(nextIndex + 1) % items.length].querySelector(".card-slide-img");
+  if (nextNextImg && nextNextImg.dataset.src && (!nextNextImg.src || nextNextImg.src.endsWith('/undefined') || nextNextImg.src === window.location.href)) {
+    nextNextImg.src = nextNextImg.dataset.src;
+  }
+
+  // Smooth slide transition
+  track.style.transform = `translateX(-${nextIndex * 100}%)`;
 
   dots.forEach((dot, idx) => {
     dot.classList.toggle("active", idx === nextIndex);
   });
 }
 
-// Touch swipe gestures for card image slider
+function jumpCardSlide(roomId, targetIndex, event) {
+  if (event) event.stopPropagation();
+  const slider = document.getElementById(`slider-${roomId}`);
+  if (!slider) return;
+
+  const track = slider.querySelector(".card-slides-track");
+  const items = slider.querySelectorAll(".card-slide-item");
+  const dots = slider.querySelectorAll(".slider-dot");
+  if (!track || items.length <= 1) return;
+
+  slider.dataset.current = targetIndex;
+
+  const targetImg = items[targetIndex].querySelector(".card-slide-img");
+  if (targetImg && targetImg.dataset.src && (!targetImg.src || targetImg.src.endsWith('/undefined') || targetImg.src === window.location.href)) {
+    targetImg.src = targetImg.dataset.src;
+  }
+
+  track.style.transform = `translateX(-${targetIndex * 100}%)`;
+
+  dots.forEach((dot, idx) => {
+    dot.classList.toggle("active", idx === targetIndex);
+  });
+}
+
+// Touch swipe gestures for card image slider (Smooth Swipe)
 function initTouchSliders() {
   document.querySelectorAll('.card-image-slider').forEach(slider => {
     let startX = 0;
@@ -405,7 +496,7 @@ function initTouchSliders() {
       if (e.touches.length === 1) {
         const diffX = e.touches[0].clientX - startX;
         const diffY = e.touches[0].clientY - startY;
-        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 8) {
           isSwiping = true;
         }
       }
@@ -416,10 +507,10 @@ function initTouchSliders() {
       const endX = e.changedTouches[0].clientX;
       const diffX = endX - startX;
       const roomId = slider.id.replace('slider-', '');
-      if (diffX < -30) {
+      if (diffX < -25) {
         // Vuốt sang trái -> Xem ảnh tiếp theo
         changeCardSlide(roomId, 1, e);
-      } else if (diffX > 30) {
+      } else if (diffX > 25) {
         // Vuốt sang phải -> Xem ảnh trước đó
         changeCardSlide(roomId, -1, e);
       }
@@ -470,6 +561,11 @@ function initModalTouchGallery() {
 // Filter logic (Toàn bộ tiêu chí lọc chuẩn xác theo giao diện Listivo / Mời Thuê)
 function getFilteredRooms() {
   return rooms.filter(room => {
+    // 0. Ẩn hoàn toàn các phòng đã hết / đã cho thuê đối với khách xem
+    if (room.status === "rented" || room.statusName === "Đã cho thuê" || room.status === "het-phong") {
+      return false;
+    }
+
     // 1. Keyword
     if (currentFilter.keyword) {
       const kw = currentFilter.keyword.toLowerCase();
@@ -612,6 +708,7 @@ function getFilteredRooms() {
     // 16. Gác xép
     if (currentFilter.loft !== "all") {
       const hasLoft = (room.roomLayout === "Gác lửng") || 
+                      (room.roomLayout === "Gác xép") ||
                       (room.tag && room.tag.toLowerCase().includes("gác")) ||
                       (room.title && room.title.toLowerCase().includes("gác")) ||
                       ((room.amenities || []).some(a => a.toLowerCase().includes("gác")));
@@ -781,35 +878,50 @@ function formatDescContent(text) {
     .replace(/<div[^>]*>/gi, '')
     .replace(/<\/div>/gi, '\n')
     .replace(/<br\s*[\/]?>/gi, '\n')
-    .replace(/&nbsp;/g, ' ')
+    .replace(/&nbsp;|\u00A0/g, ' ')
     .replace(/&#8211;/g, '–')
+    .replace(/&#8212;/g, '—')
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
     .replace(/&#8230;/g, '...')
+    .replace(/&#038;/g, '&')
+    .replace(/&amp;/g, '&')
     .replace(/&hellip;/g, '...')
     .replace(/\[\.\.\.\]/g, '')
     .trim();
 
-  // Split lines and render
+  // Tự động chèn ngắt dòng nếu các trường bị dính liền nhau
+  clean = clean.replace(/([^\n])\s*(?=(?:ĐỊA CHỈ|Ngõ|Tình trạng|Trống|Diện tích|Thang máy|Dạng phòng|Nội thất|Gần trường|Gần chợ|Gần bãi|Điện|Nước|Internet|Mạng|Dịch vụ chung|Thêm đồ|Bớt đồ|Xe máy|Tối đa|Nuôi pet|Xe điện|Khách tây|Giờ giấc|Chung chủ|Phơi đồ|Máy giặt|Tổng số tầng|Hợp đồng|Thanh toán|Ngày lùi)\s*[:•])/gi, '$1\n');
+  clean = clean.replace(/([^\n])\s*(?=(?:✅|🚚|🏆|❎))/gu, '$1\n\n');
+  clean = clean.replace(/([^\n])\s*•\s*/g, '$1\n• ');
+
+  // Tách dòng
   let lines = clean.split('\n').map(l => l.trim()).filter(l => l.length > 0);
 
-  // Loại bỏ các dòng tiêu đề bị lặp thừa ở đầu nội dung
-  lines = lines.filter((line, idx) => {
-    if (idx < 2) {
-      if (/^(?:📋\s*)?THÔNG TIN PHÒNG(_[A-Z0-9]+)?\s*$/i.test(line)) return false;
-      if (/^(?:✅\s*)?TIỆN ÍCH\s*$/i.test(line)) return false;
-      if (/^(?:🚚|🏆\s*)?DỊCH VỤ\s*$/i.test(line)) return false;
-      if (/^(?:❎\s*)?LƯU Ý\s*$/i.test(line)) return false;
-    }
-    return true;
-  });
-
   return lines.map(line => {
+    // 1. Tiêu đề khối lớn như ✅ TIỆN ÍCH, 🚚 DỊCH VỤ, ❎ LƯU Ý
+    if (/^(?:✅\s*TIỆN ÍCH|TIỆN ÍCH\b|(?:🚚|🏆)\s*DỊCH VỤ|DỊCH VỤ\b|❎\s*LƯU Ý|LƯU Ý\b)/i.test(line)) {
+      return `<div style="margin-top: 14px; margin-bottom: 6px; font-weight: 800; font-size: 1rem; color: #0F172A; display: flex; align-items: center; gap: 6px;">${line}</div>`;
+    }
+    // 2. Dấu bullet •
     if (/^[•—\-*]/.test(line)) {
-      return `<div style="display: flex; gap: 8px; margin-bottom: 6px; align-items: baseline;"><span style="color: var(--primary); font-weight: 800;">•</span><span>${line.replace(/^[•—\-*]\s*/, '')}</span></div>`;
+      return `<div style="display: flex; gap: 8px; margin-bottom: 4px; align-items: baseline; padding-left: 2px;"><span style="color: #64748B; font-weight: 800;">•</span><span style="color: #334155;">${line.replace(/^[•—\-*]\s*/, '')}</span></div>`;
     }
-    if (/^(?:🍡|🛋️|⏳|✅|🚚|❎|📋)/u.test(line)) {
-      return `<div style="margin-bottom: 6px; font-weight: 500;">${line}</div>`;
+    // 3. Các dòng thụt lề con của Gần trường (vd: Kinh Kỹ ~1,5km)
+    if (/^(?:Kinh Kỹ|Kinh Công|Bách Kinh Xây|Đại Học|ĐH|Học Viện|HV|CĐ|Cao Đẳng)\b/i.test(line)) {
+      return `<div style="padding-left: 18px; margin-bottom: 4px; color: #475569; font-size: 0.92rem;">${line}</div>`;
     }
-    return `<div style="margin-bottom: 6px;">${line}</div>`;
+    // 4. Các icon thuộc tính (🍡, 🛋️, ⏳, 📋...)
+    if (/^(?:🍡|🛋️|⏳|📋)/u.test(line)) {
+      return `<div style="margin-bottom: 5px; font-weight: 500; color: #1E293B;">${line}</div>`;
+    }
+    // 5. Tiêu đề THÔNG TIN PHÒNG_LN
+    if (/^THÔNG TIN PHÒNG/i.test(line)) {
+      return `<div style="font-weight: 700; color: #64748B; margin-bottom: 12px; font-size: 0.95rem;">${line}</div>`;
+    }
+    return `<div style="margin-bottom: 5px; color: #334155;">${line}</div>`;
   }).join('');
 }
 
@@ -843,27 +955,6 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
 
   const priceFormatted = new Intl.NumberFormat('vi-VN').format(room.price) + " đ";
   const timeAgo = getTimeAgo(room.createdAt);
-  const dd = room.detailDescription || {};
-
-  // Auto-fill missing sections if any are empty
-  const descText = room.description || '';
-  let serviceContent = dd.service || '';
-  if (!serviceContent) {
-    const sMatch = descText.match(/(?:(?:🚚|🏆)\s*DỊCH VỤ|DỊCH VỤ\s*:)[\s\S]*?(?=(?:❎\s*LƯU Ý|LƯU Ý\s*:|$))/i);
-    if (sMatch) serviceContent = sMatch[0];
-    else if (room.feeElectricity || room.feeWater) {
-      serviceContent = `🚚 DỊCH VỤ\n• Điện: ${room.feeElectricity || '4k/số'}\n• Nước: ${room.feeWater || '30k/khối'}\n• Mạng wifi: ${room.feeInternet || '100k/phòng'}\n• Dịch vụ chung: ${room.feeService || '150k/người'}\n• Xe máy: ${room.feeParking || 'Free 2 xe'}`;
-    }
-  }
-
-  let noteContent = dd.note || '';
-  if (!noteContent) {
-    const nMatch = descText.match(/(?:❎\s*LƯU Ý|LƯU Ý\s*:)[\s\S]*$/i);
-    if (nMatch) noteContent = nMatch[0];
-    else if (room.maxPeople) {
-      noteContent = `❎ LƯU Ý\n• Tối đa: ${room.maxPeople} người ${room.maxVehicles || 2} xe\n• Nuôi pet: ${room.petAllowed ? 'Cho phép' : 'Không'}\n• Xe điện: ${room.electricVehicleNote || 'Liên hệ'}\n• Khách tây: ${room.foreignGuest ? 'Có' : 'Không'}\n• Giờ giấc: Tự do\n• Hợp đồng: ${room.contractTerm || '12 tháng'}\n• Thanh toán: ${room.depositTerm || 'Cọc 1 đóng 1'}`;
-    }
-  }
 
   // Available floors
   let floors = room.availableFloors || [];
@@ -872,7 +963,7 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
     if (titleRoomMatch) {
       floors = titleRoomMatch[1].split(',').map(n => 'P.' + n.trim());
     } else {
-      const floorTags = descText.match(/(?:P\.?\s*\d+|Tầng\s*\d+)/gi);
+      const floorTags = (room.description || '').match(/(?:P\.?\s*\d+|Tầng\s*\d+)/gi);
       if (floorTags && floorTags.length > 0) {
         floors = Array.from(new Set(floorTags.map(f => f.trim())));
       }
@@ -887,7 +978,7 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
   // Video URL
   let ytUrl = room.videoUrl || '';
   if (!ytUrl) {
-    const ytInDesc = descText.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+    const ytInDesc = (room.description || '').match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
     if (ytInDesc) ytUrl = `https://www.youtube.com/watch?v=${ytInDesc[1]}`;
   }
   const driveUrl = room.videoDriveUrl || '';
@@ -917,6 +1008,19 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
         <i class="far fa-eye"></i> ${room.views || 1} Lượt xem · Mã tin: <strong>${room.id}</strong>
       </div>
     </div>
+
+    ${room.status === 'rented' ? `
+    <!-- === BANNER CẢNH BÁO PHÒNG ĐÃ CHO THUÊ === -->
+    <div style="background: #FEF2F2; border: 2px solid #EF4444; border-radius: 12px; padding: 14px 18px; margin-bottom: 18px; color: #991B1B; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.12);">
+      <div style="width: 42px; height: 42px; min-width: 42px; border-radius: 50%; background: #DC2626; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+        <i class="fas fa-lock"></i>
+      </div>
+      <div>
+        <div style="font-size: 1.05rem; font-weight: 800; color: #B91C1C;">🔴 PHÒNG NÀY ĐÃ ĐƯỢC CHO THUÊ (HẾT PHÒNG)</div>
+        <div style="font-size: 0.88rem; font-weight: 500; color: #7F1D1D; margin-top: 2px;">Căn phòng này hiện đã có khách chốt thuê. Quý khách vui lòng bấm nút Nhắn Zalo <strong>0358.954.360</strong> để được gửi ngay danh sách các phòng tương tự đang còn trống!</div>
+      </div>
+    </div>
+    ` : ''}
 
     <!-- === BANNER LƯU Ý CHÍNH SÁCH QUAN TRỌNG (CHUẨN MOITHUE) === -->
     <div class="notice-sale-banner" style="background: #FEFCE8; border: 1.5px solid #FDE047; border-radius: 10px; padding: 12px 18px; margin-bottom: 18px; font-size: 0.92rem; color: #854D0E; line-height: 1.6; box-shadow: 0 2px 6px rgba(253, 224, 71, 0.15);">
@@ -993,50 +1097,13 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
     </div>
     ` : ''}
 
-    <!-- === MÔ TẢ 4 PHẦN ĐẦY ĐỦ 100% CHUẨN MOITHUE === -->
-    <div class="detail-description-sections" style="margin-bottom: 26px;">
-      <h4 class="modal-section-title" style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 14px;">
-        <i class="fas fa-file-alt" style="color: var(--primary);"></i> Mô tả chi tiết 4 phần
-      </h4>
-
-      <!-- PHẦN 1: THÔNG TIN PHÒNG -->
-      <div class="desc-section" style="margin-bottom: 14px; border-radius: 10px; border: 1px solid #E2E8F0; overflow: hidden; background: #FAFAFA;">
-        <div class="desc-section-header" style="background: white; padding: 12px 18px; font-weight: 800; font-size: 0.98rem; color: #0F172A; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; gap: 8px;">
-          <span class="desc-section-icon" style="font-size: 1.15rem;">📋</span> THÔNG TIN PHÒNG
-        </div>
-        <div class="desc-section-body" style="padding: 14px 18px; font-size: 0.92rem; line-height: 1.8; color: #334155;">
-          ${formatDescContent(dd.info || `ĐỊA CHỈ: ${room.address}\nDiện tích: ${room.area}m2\nDạng phòng: ${room.roomLayout}\nThang máy: ${room.elevator ? 'Có' : 'Không'}\nNội thất: ${room.furniture || 'Full đồ'}`)}
-        </div>
-      </div>
-
-      <!-- PHẦN 2: TIỆN ÍCH -->
-      <div class="desc-section" style="margin-bottom: 14px; border-radius: 10px; border: 1px solid #E2E8F0; overflow: hidden; background: #FAFAFA;">
-        <div class="desc-section-header" style="background: white; padding: 12px 18px; font-weight: 800; font-size: 0.98rem; color: #0F172A; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; gap: 8px;">
-          <span class="desc-section-icon" style="font-size: 1.15rem;">✅</span> TIỆN ÍCH
-        </div>
-        <div class="desc-section-body" style="padding: 14px 18px; font-size: 0.92rem; line-height: 1.8; color: #334155;">
-          ${formatDescContent(dd.amenity || 'Gần chợ dân sinh, siêu thị, bãi đỗ ô tô và các trường đại học lớn trong khu vực.')}
-        </div>
-      </div>
-
-      <!-- PHẦN 3: DỊCH VỤ -->
-      <div class="desc-section" style="margin-bottom: 14px; border-radius: 10px; border: 1px solid #E2E8F0; overflow: hidden; background: #FAFAFA;">
-        <div class="desc-section-header" style="background: white; padding: 12px 18px; font-weight: 800; font-size: 0.98rem; color: #0F172A; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; gap: 8px;">
-          <span class="desc-section-icon" style="font-size: 1.15rem;">🚚</span> DỊCH VỤ
-        </div>
-        <div class="desc-section-body" style="padding: 14px 18px; font-size: 0.92rem; line-height: 1.8; color: #334155;">
-          ${formatDescContent(serviceContent)}
-        </div>
-      </div>
-
-      <!-- PHẦN 4: LƯU Ý -->
-      <div class="desc-section" style="margin-bottom: 14px; border-radius: 10px; border: 1px solid #E2E8F0; overflow: hidden; background: #FAFAFA;">
-        <div class="desc-section-header" style="background: white; padding: 12px 18px; font-weight: 800; font-size: 0.98rem; color: #0F172A; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; gap: 8px;">
-          <span class="desc-section-icon" style="font-size: 1.15rem;">❎</span> LƯU Ý
-        </div>
-        <div class="desc-section-body" style="padding: 14px 18px; font-size: 0.92rem; line-height: 1.8; color: #334155;">
-          ${formatDescContent(noteContent)}
-        </div>
+    <!-- === MÔ TẢ (1 PHẦN ĐẦY ĐỦ 100% CHUẨN MOITHUE) === -->
+    <div class="detail-description-section" style="margin-bottom: 26px;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-bottom: 14px; letter-spacing: -0.3px;">
+        Mô tả
+      </h3>
+      <div style="background: #FAFAFA; border: 1px solid #E2E8F0; border-radius: 12px; padding: 22px 24px; font-size: 0.95rem; line-height: 1.85; color: #334155;">
+        ${formatDescContent(room.description || `${room.title} tại ${room.address}.`)}
       </div>
     </div>
 
@@ -1060,10 +1127,10 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
     <!-- CTA Footer -->
     <div style="display: flex; gap: 12px; align-items: center; justify-content: flex-end; padding-top: 18px; border-top: 1px solid var(--border-color); flex-wrap: wrap;">
       <a href="tel:${CONSULTANT_PHONE}" class="btn-hotline" style="text-decoration: none; padding: 12px 22px; font-weight: 700; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; background: #F1F5F9; color: #0F172A; border: 1px solid #CBD5E1;">
-        <i class="fas fa-phone-alt" style="color: var(--primary);"></i> Gọi Ad Tuyển: 0358.954.360
+        <i class="fas fa-phone-alt" style="color: var(--primary);"></i> Gọi: 0358.954.360
       </a>
       <button class="btn-schedule-view" style="padding: 12px 26px; font-size: 0.98rem; font-weight: 800; border-radius: 8px; border: none; cursor: pointer; color: white; background: linear-gradient(135deg, #0068FF, #0052cc); box-shadow: 0 4px 14px rgba(0, 104, 255, 0.35); display: inline-flex; align-items: center; gap: 8px;" onclick="contactZaloRoom('${room.id}')">
-        <i class="fas fa-comment-dots"></i> Nhắn Zalo lên lịch hẹn với Ad
+        <i class="fas fa-comment-dots"></i> Nhắn Zalo lên lịch hẹn
       </button>
     </div>
   `;
@@ -1562,8 +1629,15 @@ function toggleSidebarFilter() {
   if (sidebar) {
     const isActive = sidebar.classList.toggle("active");
     if (backdrop) backdrop.classList.toggle("active", isActive);
-    if (window.innerWidth <= 992) {
-      document.body.style.overflow = isActive ? "hidden" : "";
+    
+    if (isActive) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     }
   }
 }

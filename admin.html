@@ -97,62 +97,23 @@
 <body style="background: #F1F5F9;">
 
   <!-- ==========================================================================
-       ADMIN AUTHENTICATION GATE (BẢO MẬT MẬT KHẨU NỘI BỘ)
-       ========================================================================== -->
-  <div id="adminAuthOverlay" style="position: fixed; inset: 0; background: linear-gradient(135deg, #0F172A, #1E293B); z-index: 999999; display: flex; align-items: center; justify-content: center; padding: 20px;">
-    <div style="background: white; border-radius: 18px; width: 100%; max-width: 440px; padding: 40px 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); text-align: center;">
-      <div style="width: 68px; height: 68px; background: #E0F2FE; color: #0284C7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 16px;">
-        <i class="fas fa-shield-alt"></i>
-      </div>
-      <h2 style="font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-bottom: 6px;">Bảo Mật Quản Trị Hệ Thống</h2>
-      <p style="font-size: 0.88rem; color: #64748B; margin-bottom: 24px;">Khu vực nội bộ dành riêng cho Quản Trị Viên (Đặng Văn Tuyển)</p>
-      
-      <form onsubmit="handleAdminLogin(event)" style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="text-align: left;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px; display: block;">Mật khẩu quản trị</label>
-          <div style="position: relative;">
-            <input type="password" id="adminPasswordInput" class="form-control" placeholder="Nhập mật khẩu..." required autofocus style="padding-left: 42px; font-size: 1rem;">
-            <i class="fas fa-lock" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94A3B8;"></i>
-          </div>
-          <div id="adminAuthError" style="color: #EF4444; font-size: 0.84rem; margin-top: 8px; display: none; font-weight: 700;">
-            ❌ Mật khẩu không chính xác. Vui lòng thử lại!
-          </div>
-        </div>
-        
-        <button type="submit" class="btn-schedule-view" style="padding: 12px; font-size: 1rem; width: 100%; justify-content: center; background: linear-gradient(135deg, var(--primary), #059669); border-radius: 8px; font-weight: 700;">
-          <i class="fas fa-key"></i> Xác Thực & Mở Khóa Quản Trị
-        </button>
-      </form>
-      
-      <div style="margin-top: 22px;">
-        <a href="index.html" style="color: #64748B; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-          <i class="fas fa-arrow-left"></i> Quay lại trang chủ người xem
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
        ADMIN HEADER
        ========================================================================== -->
   <header class="admin-header">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
       <div style="display: flex; align-items: center; gap: 14px;">
-        <div class="brand-logo" style="color: white;">
+        <a href="index.html" class="brand-logo" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;" title="Bấm để về Trang Chủ Website">
           <div class="logo-icon" style="background: var(--primary);">
-            <i class="fas fa-user-shield"></i>
+            <i class="fas fa-home"></i>
           </div>
-          <span>Bảng Quản Trị <span style="color: #5EEAD4; font-size: 1rem; font-weight: 500;">(Đặng Văn Tuyển - 0358.954.360)</span></span>
-        </div>
+          <span>Bảng Quản Trị <span style="color: #5EEAD4; font-size: 0.95rem; font-weight: 500;">(Đặng Văn Tuyển)</span></span>
+        </a>
       </div>
 
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <a href="index.html" class="btn-schedule-view" style="text-decoration: none; background: rgba(255, 255, 255, 0.15); color: white; padding: 8px 14px; font-size: 0.88rem;">
-          <i class="fas fa-globe"></i> Xem Trang Web
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="index.html" class="btn-schedule-view" style="text-decoration: none; background: #10B981; color: white; padding: 10px 18px; font-size: 0.92rem; font-weight: 700; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);">
+          <i class="fas fa-external-link-alt"></i> Xem Trang Chủ Web (index.html)
         </a>
-        <button onclick="handleAdminLogout()" style="background: rgba(239, 68, 68, 0.2); color: #FECACA; border: 1px solid rgba(239, 68, 68, 0.5); padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.88rem;" title="Khóa trang quản trị">
-          <i class="fas fa-sign-out-alt"></i> Khóa / Đăng xuất
-        </button>
       </div>
     </div>
   </header>
@@ -205,251 +166,198 @@
       </div>
     </div>
 
-    <!-- TABS -->
-    <div class="tab-nav">
-      <button class="tab-btn active" onclick="switchAdminTab('tab-rooms', this)">
-        <i class="fas fa-home"></i> Quản Lý Danh Sách Phòng Trọ
-      </button>
-      <button class="tab-btn" onclick="switchAdminTab('tab-bookings', this)">
-        <i class="fas fa-history"></i> Lưu Trữ Lịch Hẹn Khách Hàng
-      </button>
-    </div>
-
-    <!-- TAB 1: ROOMS MANAGEMENT (ACTIVE) -->
-    <div class="tab-pane active" id="tab-rooms">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
-        <div>
-          <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--dark);">
-            Danh Sách Phòng Trọ Đang Đăng Trên Web
-          </h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
-            Bấm vào nút trạng thái <strong>[Còn phòng / Hết phòng]</strong> để bật tắt nhanh tình trạng phòng trên web.
-          </p>
+    <!-- ==========================================================================
+         KHỐI DÁN LINK ĐĂNG PHÒNG NHANH TỪ MOITHUE.COM (CHÍNH)
+         ========================================================================== -->
+    <div style="background: white; border: 1.5px solid var(--border-color); border-radius: 14px; padding: 22px 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.15rem;">
+            <i class="fas fa-link"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin: 0;">
+              Đăng Phòng Nhanh Từ Link moithue.com
+            </h3>
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0;">
+              Dán 1 hoặc nhiều link phòng từ moithue.com, hệ thống tự động bóc tách đầy đủ hình ảnh, giá, diện tích và mô tả.
+            </p>
+          </div>
         </div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button onclick="exportRoomsJson()" style="background: var(--bg-alt); border: 1px solid var(--border-color); padding: 9px 14px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Tải toàn bộ phòng về máy tính">
-            <i class="fas fa-file-download" style="color: var(--primary);"></i> Xuất JSON
-          </button>
-          <button onclick="triggerImportJson()" style="background: var(--bg-alt); border: 1px solid var(--border-color); padding: 9px 14px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Nhập danh sách phòng từ file JSON">
-            <i class="fas fa-file-upload" style="color: var(--accent);"></i> Nhập JSON
-          </button>
-          <button onclick="clearAllRooms()" style="background: #FEF2F2; border: 1px solid #FCA5A5; color: #DC2626; padding: 9px 14px; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Xóa toàn bộ phòng trong hệ thống về 0 phòng">
-            <i class="fas fa-trash-alt"></i> Xóa hết phòng
-          </button>
-          <button onclick="openSyncModal()" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: white; border: none; padding: 9px 14px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Đồng bộ phòng mới từ moithue.com">
-            <i class="fas fa-sync-alt"></i> Đồng bộ moithue.com
-          </button>
-          <button onclick="openAddRoomModal()" class="btn-schedule-view" style="padding: 9px 18px;">
-            <i class="fas fa-plus-circle"></i> Đăng Thêm Phòng Mới
-          </button>
-        </div>
+        <span id="linksCountBadge" style="font-size: 0.8rem; font-weight: 700; background: var(--bg-alt); color: var(--text-muted); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border-color);">
+          0 link được nhập
+        </span>
       </div>
 
-      <!-- Admin Rooms Filter & Search Bar -->
-      <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; background: white; padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); align-items: center;">
-        <div style="flex: 1; min-width: 240px;">
-          <input type="text" id="adminRoomSearch" class="form-control" placeholder="🔍 Tìm theo tên phòng, ngõ, đường, quận..." oninput="onAdminFilterChange()">
-        </div>
-        <div style="min-width: 170px;">
-          <select id="adminStatusFilter" class="form-control" onchange="onAdminFilterChange()">
-            <option value="all">Tất cả tình trạng</option>
-            <option value="available">🟢 Chỉ phòng Còn trống</option>
-            <option value="rented">🔴 Chỉ phòng Đã thuê (Hết)</option>
+      <!-- Ô Dán Link -->
+      <div style="margin-bottom: 14px;">
+        <textarea id="moithueLinksInput" rows="3" placeholder="Dán danh sách link phòng tại đây (mỗi dòng 1 link):&#10;https://moithue.com/listing/58-05-phu-vinh_truc-34_a-huy_ak/&#10;https://moithue.com/listing/245-32-dinh-cong_tang-5-3n1k/..." 
+          oninput="updateLinksCountBadge()"
+          style="width: 100%; padding: 12px 14px; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 0.88rem; outline: none; box-sizing: border-box; font-family: monospace; resize: vertical; line-height: 1.5; background: #FAFDFB;"></textarea>
+      </div>
+
+      <!-- Chọn Nguồn & Quận + Nút Bấm Đăng -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: flex-end;">
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 5px;">📍 Nhóm Nguồn Hàng</label>
+          <select id="syncSourceGroup" class="form-control" style="font-weight: 600;">
+            <option value="nguon-cau-giay">Cầu Giấy</option>
+            <option value="nguon-hoang-mai">Hoàng Mai</option>
+            <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
+            <option value="nguon-my-dinh">Mỹ Đình</option>
+            <option value="nguon-hoai-duc">Hoài Đức</option>
+            <option value="nguon-tay-ho">Tây Hồ</option>
+            <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
+            <option value="nguon-thanh-xuan">Thanh Xuân</option>
+            <option value="nguon-dong-da">Đống Đa</option>
+            <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế, Xuân Đỉnh</option>
+            <option value="nguon-cau-dien">Cầu Diễn</option>
+            <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
+            <option value="nguon-dinh-cong">Định Công</option>
+            <option value="nguon-trieu-khuc">Triều Khúc</option>
+            <option value="nguon-phu-dien">Phú Diễn</option>
+            <option value="nguon-xuan-phuong">Xuân Phương</option>
+            <option value="nguon-yen-xa-mau-luong">Yên Xá/Mậu Lương</option>
+            <option value="nguon-ha-dong">Hà Đông</option>
           </select>
         </div>
-        <div style="min-width: 170px;">
-          <select id="adminDistrictFilter" class="form-control" onchange="onAdminFilterChange()">
-            <option value="all">Tất cả quận / huyện</option>
+
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 5px;">🧭 Quận / Huyện</label>
+          <select id="syncDistrict" class="form-control" style="font-weight: 600;">
             <option value="cau-giay">Quận Cầu Giấy</option>
-            <option value="dong-da">Quận Đống Đa</option>
             <option value="hoang-mai">Quận Hoàng Mai</option>
-            <option value="thanh-xuan">Quận Thanh Xuân</option>
             <option value="nam-tu-liem">Quận Nam Từ Liêm</option>
-            <option value="bac-tu-liem">Quận Bắc Từ Liêm</option>
-            <option value="ba-dinh">Quận Ba Đình</option>
+            <option value="hoai-duc">Huyện Hoài Đức</option>
             <option value="tay-ho">Quận Tây Hồ</option>
+            <option value="bac-tu-liem">Quận Bắc Từ Liêm</option>
+            <option value="thanh-xuan">Quận Thanh Xuân</option>
+            <option value="ba-dinh">Quận Ba Đình</option>
+            <option value="dong-da">Quận Đống Đa</option>
             <option value="hai-ba-trung">Quận Hai Bà Trưng</option>
             <option value="ha-dong">Quận Hà Đông</option>
             <option value="hoan-kiem">Quận Hoàn Kiếm</option>
             <option value="long-bien">Quận Long Biên</option>
-            <option value="hoai-duc">Huyện Hoài Đức</option>
           </select>
         </div>
-        <div style="min-width: 190px;">
-          <select id="adminSourceGroupFilter" class="form-control" onchange="onAdminFilterChange()">
-            <option value="all">Tất cả Nhóm Nguồn Hàng</option>
-            <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
-            <option value="nguon-cau-dien">Cầu Diễn</option>
-            <option value="nguon-cau-giay">Cầu Giấy</option>
-            <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế , Xuân Đỉnh</option>
-            <option value="nguon-dinh-cong">Định Công</option>
-            <option value="nguon-dong-da">Đống Đa</option>
-            <option value="nguon-hoai-duc">Hoài Đức</option>
-            <option value="nguon-hoang-mai">Hoàng Mai</option>
-            <option value="nguon-ho-tung-mau">Hồ Tùng Mậu</option>
-            <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
-            <option value="nguon-me-tri-phu-do">Mễ Trì - Phú Đô</option>
-            <option value="nguon-my-dinh">Mỹ Đình</option>
-            <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
-            <option value="nguon-phu-dien">Phú Diễn</option>
-            <option value="nguon-tay-ho">Tây Hồ</option>
-            <option value="nguon-thanh-xuan">Thanh Xuân</option>
-            <option value="nguon-trieu-khuc">Triều Khúc</option>
-            <option value="nguon-xuan-phuong">Xuân Phương</option>
-            <option value="nguon-yen-xa-mau-luong">Yên Xá/Mậu Lương</option>
-          </select>
-        </div>
-        <div id="adminRoomsCountBadge" style="font-weight: 700; color: var(--primary); font-size: 0.9rem; white-space: nowrap;">
-          <span id="adminTotalRoomsLabel">0</span> phòng
-        </div>
+
+        <button onclick="fetchAndAddRooms()" id="fetchUpBtn" class="btn-schedule-view"
+          style="padding: 11px 24px; font-weight: 800; font-size: 0.95rem; border-radius: 8px; white-space: nowrap; height: 44px; display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fas fa-cloud-upload-alt"></i> LẤY & ĐĂNG LÊN WEB
+        </button>
       </div>
 
-      <div style="overflow-x: auto;">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Ảnh</th>
-              <th>Loại / Tag</th>
-              <th>Tên Phòng & Địa Chỉ</th>
-              <th>Giá Thuê</th>
-              <th>Diện Tích</th>
-              <th>Tình Trạng (Bấm để bật/tắt)</th>
-              <th>Thao Tác</th>
-            </tr>
-          </thead>
-          <tbody id="roomsTableBody">
-            <!-- JS populated -->
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Admin Pagination -->
-      <div id="adminPagination" style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 12px 16px; background: white; border-radius: var(--radius-sm); border: 1px solid var(--border-color); flex-wrap: wrap; gap: 10px;">
-        <!-- JS populated -->
-      </div>
+      <!-- Trạng thái tiến trình tải -->
+      <div id="fetchedStatus"></div>
     </div>
 
-  </div>
-
-  <!-- ==========================================================================
-       SYNC MODAL - ĐỒNG BỘ TỪ MOITHUE.COM
-       ========================================================================== -->
-  <div class="modal-overlay" id="syncModal">
-    <div class="modal-container" style="max-width: 760px;">
-      <button class="modal-close-btn" onclick="closeModal('syncModal')"><i class="fas fa-times"></i></button>
-      <div style="padding: 30px;">
-        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-          <i class="fas fa-sync-alt" style="color: #0284c7;"></i> Đồng bộ dữ liệu từ moithue.com
+    <!-- ==========================================================================
+         DANH SÁCH PHÒNG TRỌ ĐANG QUẢN LÝ
+         ========================================================================== -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--dark);">
+          Danh Sách Phòng Trọ Đang Đăng Trên Web
         </h3>
-
-        <!-- METHOD 1: FETCH FROM LINKS (BATCH ONE-CLICK ADD) -->
-        <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <p style="font-size: 0.98rem; color: #166534; font-weight: 800; margin: 0;">
-              <i class="fas fa-layer-group" style="color: #059669;"></i> Thêm 1 hoặc NHIỀU phòng cùng nguồn & khu vực
-            </p>
-            <span id="linksCountBadge" style="font-size: 0.8rem; font-weight: 700; background: #dcfce7; color: #15803d; padding: 4px 12px; border-radius: 20px; border: 1px solid #86efac;">
-              0 link được nhập
-            </span>
-          </div>
-          
-          <!-- STEP 1: PASTE MULTIPLE LINKS -->
-          <div style="margin-bottom: 14px;">
-            <label style="font-size: 0.85rem; font-weight: 700; color: #166534; display: block; margin-bottom: 6px;">
-              Bước 1: Dán danh sách link phòng từ moithue.com (mỗi link 1 dòng, có thể dán nhiều link cùng lúc)
-            </label>
-            <textarea id="moithueLinksInput" rows="5" placeholder="Dán danh sách link phòng tại đây (mỗi dòng 1 link):&#10;https://moithue.com/listing/58-05-phu-vinh_truc-34_a-huy_ak/&#10;https://moithue.com/listing/58-05-phu-vinh_truc-24_n_hao_ak/&#10;https://moithue.com/listing/phong-khac-cung-khu-vuc/..." 
-              oninput="updateLinksCountBadge()"
-              style="width: 100%; padding: 12px 14px; border: 2px solid #86efac; border-radius: 8px; font-size: 0.88rem; outline: none; box-sizing: border-box; font-family: monospace; resize: vertical; line-height: 1.5;"></textarea>
-          </div>
-
-          <!-- STEP 2: SELECT SOURCE GROUP & DISTRICT -->
-          <div style="display: flex; gap: 12px; margin-bottom: 14px;">
-            <div style="flex: 1;">
-              <label style="font-size: 0.85rem; font-weight: 700; color: #166534; display: block; margin-bottom: 6px;">Bước 2: Chọn Nguồn Hàng</label>
-              <select id="syncSourceGroup" style="width: 100%; padding: 10px 12px; border: 2px solid #86efac; border-radius: 8px; font-size: 0.88rem; background: white; font-weight: 600;">
-                <option value="nguon-cau-giay">Cầu Giấy</option>
-                <option value="nguon-hoang-mai">Hoàng Mai</option>
-                <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
-                <option value="nguon-my-dinh">Mỹ Đình</option>
-                <option value="nguon-hoai-duc">Hoài Đức</option>
-                <option value="nguon-tay-ho">Tây Hồ</option>
-                <option value="nguon-ba-dinh">Ba Đình - Tây Hồ</option>
-                <option value="nguon-thanh-xuan">Thanh Xuân</option>
-                <option value="nguon-dong-da">Đống Đa</option>
-                <option value="nguon-xuan-dinh">Cổ Nhuế, Xuân Đỉnh</option>
-                <option value="nguon-cau-dien">Cầu Diễn</option>
-                <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
-                <option value="nguon-dinh-cong">Định Công</option>
-                <option value="nguon-trieu-khuc">Triều Khúc</option>
-                <option value="nguon-phu-dien">Phú Diễn</option>
-                <option value="nguon-xuan-phuong">Xuân Phương</option>
-                <option value="nguon-yen-xa-mau-luong">Yên Xá/Mậu Lương</option>
-                <option value="ngoc-truc-dai-linh">Ngọc Trục - Đại Linh</option>
-                <option value="nguon-ha-dong">Hà Đông</option>
-              </select>
-            </div>
-            <div style="flex: 1;">
-              <label style="font-size: 0.85rem; font-weight: 700; color: #166534; display: block; margin-bottom: 6px;">Bước 3: Chọn Quận / Huyện</label>
-              <select id="syncDistrict" style="width: 100%; padding: 10px 12px; border: 2px solid #86efac; border-radius: 8px; font-size: 0.88rem; background: white; font-weight: 600;">
-                <option value="cau-giay">Quận Cầu Giấy</option>
-                <option value="hoang-mai">Quận Hoàng Mai</option>
-                <option value="nam-tu-liem">Quận Nam Từ Liêm</option>
-                <option value="hoai-duc">Huyện Hoài Đức</option>
-                <option value="tay-ho">Quận Tây Hồ</option>
-                <option value="bac-tu-liem">Quận Bắc Từ Liêm</option>
-                <option value="thanh-xuan">Quận Thanh Xuân</option>
-                <option value="ba-dinh">Quận Ba Đình</option>
-                <option value="dong-da">Quận Đống Đa</option>
-                <option value="hai-ba-trung">Quận Hai Bà Trưng</option>
-                <option value="ha-dong">Quận Hà Đông</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- STEP 3: UP BUTTON -->
-          <button onclick="fetchAndAddRooms()" id="fetchUpBtn"
-            style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 800; font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(5,150,105,0.25);">
-            <i class="fas fa-cloud-upload-alt"></i> UP TẤT CẢ PHÒNG LÊN WEBSITE
-          </button>
-
-          <!-- STATUS & LIVE PROGRESS -->
-          <div id="fetchedStatus"></div>
-        </div>
-
-        <!-- METHOD 2: SYNC FULL DATABASE -->
-        <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
-          <p style="font-size: 0.9rem; color: #0c4a6e; margin-bottom: 12px;"><strong>📦 Phương pháp 2: Đồng bộ toàn bộ database</strong></p>
-          <ol style="font-size: 0.85rem; color: #0c4a6e; padding-left: 20px; line-height: 1.8;">
-            <li>Đăng nhập <a href="https://moithue.com/listings/" target="_blank" style="color: #0284c7; font-weight: 700;">moithue.com/listings/</a></li>
-            <li>Mở Console (F12 → Console)</li>
-            <li>Paste code export và chạy</li>
-            <li>Tải file JSON về</li>
-            <li>Upload file JSON ở đây</li>
-          </ol>
-        </div>
-
-        <div style="border: 2px dashed var(--border-color); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 16px; cursor: pointer;" onclick="document.getElementById('syncFileInput').click()">
-          <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--text-light); margin-bottom: 10px;"></i>
-          <p style="font-weight: 700; color: var(--dark);">Bấm để chọn file JSON từ moithue.com</p>
-          <p style="font-size: 0.82rem; color: var(--text-muted);">Hỗ trợ file .json</p>
-          <input type="file" id="syncFileInput" accept=".json" style="display:none" onchange="handleSyncFile(event)">
-        </div>
-
-        <div id="syncStatus"></div>
-
-        <div style="display: flex; gap: 10px; margin-top: 16px;">
-          <a href="BOOKMARKLET_EXPORT.html" target="_blank" style="background: var(--bg-alt); border: 1px solid var(--border-color); padding: 10px 18px; border-radius: var(--radius-sm); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; color: var(--dark);">
-            <i class="fas fa-external-link-alt"></i> Mở trang Export
-          </a>
-          <button onclick="closeModal('syncModal')" style="background: white; border: 1px solid var(--border-color); padding: 10px 18px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; margin-left: auto;">Đóng</button>
-        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+          Bấm trực tiếp vào nút <strong>[🟢 Còn phòng / 🔴 Hết phòng]</strong> để bật tắt nhanh, hoặc bấm nút <strong>[Sửa]</strong> để chỉnh sửa thông tin chi tiết.
+        </p>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button onclick="exportRoomsJson()" style="background: var(--bg-alt); border: 1px solid var(--border-color); padding: 9px 14px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Tải toàn bộ phòng về máy tính để sao lưu">
+          <i class="fas fa-file-download" style="color: var(--primary);"></i> Xuất JSON
+        </button>
+        <button onclick="triggerImportJson()" style="background: var(--bg-alt); border: 1px solid var(--border-color); padding: 9px 14px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Nhập danh sách phòng từ file JSON">
+          <i class="fas fa-file-upload" style="color: var(--accent);"></i> Nhập JSON
+        </button>
+        <button onclick="clearAllRooms()" style="background: #FEF2F2; border: 1px solid #FCA5A5; color: #DC2626; padding: 9px 14px; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="Xóa toàn bộ phòng trong hệ thống về 0 phòng">
+          <i class="fas fa-trash-alt"></i> Xóa hết phòng
+        </button>
       </div>
     </div>
+
+    <!-- Admin Rooms Filter & Search Bar -->
+    <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; background: white; padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); align-items: center;">
+      <div style="flex: 1; min-width: 240px;">
+        <input type="text" id="adminRoomSearch" class="form-control" placeholder="🔍 Tìm theo tên phòng, ngõ, đường, quận..." oninput="onAdminFilterChange()">
+      </div>
+      <div style="min-width: 170px;">
+        <select id="adminStatusFilter" class="form-control" onchange="onAdminFilterChange()">
+          <option value="all">Tất cả tình trạng</option>
+          <option value="available">🟢 Chỉ phòng Còn trống</option>
+          <option value="rented">🔴 Chỉ phòng Đã thuê (Hết)</option>
+        </select>
+      </div>
+      <div style="min-width: 170px;">
+        <select id="adminDistrictFilter" class="form-control" onchange="onAdminFilterChange()">
+          <option value="all">Tất cả quận / huyện</option>
+          <option value="cau-giay">Quận Cầu Giấy</option>
+          <option value="dong-da">Quận Đống Đa</option>
+          <option value="hoang-mai">Quận Hoàng Mai</option>
+          <option value="thanh-xuan">Quận Thanh Xuân</option>
+          <option value="nam-tu-liem">Quận Nam Từ Liêm</option>
+          <option value="bac-tu-liem">Quận Bắc Từ Liêm</option>
+          <option value="ba-dinh">Quận Ba Đình</option>
+          <option value="tay-ho">Quận Tây Hồ</option>
+          <option value="hai-ba-trung">Quận Hai Bà Trưng</option>
+          <option value="ha-dong">Quận Hà Đông</option>
+          <option value="hoan-kiem">Quận Hoàn Kiếm</option>
+          <option value="long-bien">Quận Long Biên</option>
+          <option value="hoai-duc">Huyện Hoài Đức</option>
+        </select>
+      </div>
+      <div style="min-width: 190px;">
+        <select id="adminSourceGroupFilter" class="form-control" onchange="onAdminFilterChange()">
+          <option value="all">Tất cả Nhóm Nguồn Hàng</option>
+          <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
+          <option value="nguon-cau-dien">Cầu Diễn</option>
+          <option value="nguon-cau-giay">Cầu Giấy</option>
+          <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế , Xuân Đỉnh</option>
+          <option value="nguon-dinh-cong">Định Công</option>
+          <option value="nguon-dong-da">Đống Đa</option>
+          <option value="nguon-hoai-duc">Hoài Đức</option>
+          <option value="nguon-hoang-mai">Hoàng Mai</option>
+          <option value="nguon-ho-tung-mau">Hồ Tùng Mậu</option>
+          <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
+          <option value="nguon-me-tri-phu-do">Mễ Trì - Phú Đô</option>
+          <option value="nguon-my-dinh">Mỹ Đình</option>
+          <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
+          <option value="nguon-phu-dien">Phú Diễn</option>
+          <option value="nguon-tay-ho">Tây Hồ</option>
+          <option value="nguon-thanh-xuan">Thanh Xuân</option>
+          <option value="nguon-trieu-khuc">Triều Khúc</option>
+          <option value="nguon-xuan-phuong">Xuân Phương</option>
+          <option value="nguon-yen-xa-mau-luong">Yên Xá/Mậu Lương</option>
+        </select>
+      </div>
+      <div id="adminRoomsCountBadge" style="font-weight: 700; color: var(--primary); font-size: 0.9rem; white-space: nowrap;">
+        <span id="adminTotalRoomsLabel">0</span> phòng
+      </div>
+    </div>
+
+    <div style="overflow-x: auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Ảnh</th>
+            <th>Loại / Tag</th>
+            <th>Tên Phòng & Địa Chỉ</th>
+            <th>Giá Thuê</th>
+            <th>Diện Tích</th>
+            <th>Tình Trạng (Bấm để bật/tắt)</th>
+            <th>Thao Tác</th>
+          </tr>
+        </thead>
+        <tbody id="roomsTableBody">
+          <!-- JS populated -->
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
   <!-- ==========================================================================
-       ENTERPRISE ADD & EDIT ROOM MODAL FORM (CHIA 5 LUỒNG CHUYÊN NGHIỆP)
+       ENTERPRISE EDIT ROOM MODAL FORM (CHỈNH SỬA THÔNG TIN PHÒNG CHI TIẾT)
        ========================================================================== -->
   <div class="modal-overlay" id="roomManageModal">
     <div class="modal-container" style="max-width: 900px;">
@@ -464,7 +372,7 @@
               Chỉnh Sửa Chi Tiết Phòng Trọ
             </h3>
             <div id="roomFormModalSubtitle" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
-              Quản lý toàn bộ thông số, mô tả 4 phần, tiện nghi và bộ lọc chuyên sâu
+              Quản lý toàn bộ thông số, mô tả, tiện nghi và bộ lọc chuyên sâu
             </div>
           </div>
           <span id="roomFormBadgeId" class="badge-code" style="background: var(--dark); font-size: 0.85rem;">MT-NEW</span>
@@ -479,7 +387,7 @@
             <i class="fas fa-sliders-h"></i> 2. Giá & Thông Số
           </button>
           <button type="button" class="tab-btn form-tab-btn" onclick="switchFormTab('form-tab-desc', this)">
-            <i class="fas fa-file-alt"></i> 3. Mô Tả 4 Phần
+            <i class="fas fa-file-alt"></i> 3. Mô Tả Chi Tiết
           </button>
           <button type="button" class="tab-btn form-tab-btn" onclick="switchFormTab('form-tab-amenities', this)">
             <i class="fas fa-couch"></i> 4. Tiện Nghi & Lọc
@@ -625,27 +533,14 @@
             </div>
           </div>
 
-          <!-- ================= TAB 3: MÔ TẢ 4 PHẦN CHUẨN ================= -->
+          <!-- ================= TAB 3: MÔ TẢ CHI TIẾT ================= -->
           <div class="form-tab-pane" id="form-tab-desc" style="display: none;">
             <div style="display: flex; flex-direction: column; gap: 14px;">
               <div class="form-group form-group-full">
-                <label style="font-weight: 700; color: var(--primary);"><i class="fas fa-info-circle"></i> 1. Thông Tin Phòng (Nội thất chi tiết, giường tủ, điều hòa...)</label>
-                <textarea id="formDescInfo" rows="3" class="form-control" placeholder="ĐỊA CHỈ: ...&#10;🍡 Diện tích: 45m2&#10;🍡 Thang máy: Có&#10;🛋️ Nội thất: Giường, tủ, điều hòa, tủ bếp..."></textarea>
-              </div>
-
-              <div class="form-group form-group-full">
-                <label style="font-weight: 700; color: #0284C7;"><i class="fas fa-map-marked-alt"></i> 2. Tiện Ích & Vị Trí Xung Quanh (Trường học, chợ, bãi đỗ ô tô...)</label>
-                <textarea id="formDescAmenity" rows="3" class="form-control" placeholder="• Gần trường: ĐH Thăng Long, Y Hà Nội...&#10;• Gần chợ: ~50m&#10;• Gần bãi đỗ ô tô: ~200m"></textarea>
-              </div>
-
-              <div class="form-group form-group-full">
-                <label style="font-weight: 700; color: #D97706;"><i class="fas fa-bolt"></i> 3. Chi Phí Dịch Vụ (Điện, Nước theo khối hoặc đầu người, Dịch vụ chung...)</label>
-                <textarea id="formDescService" rows="3" class="form-control" placeholder="• Điện: 4.000đ/số&#10;• Nước: 35.000đ/khối (hoặc 100k/người)&#10;• Internet: 100k/phòng&#10;• Dịch vụ chung: 150k/người&#10;• Xe máy: Free 2 xe"></textarea>
-              </div>
-
-              <div class="form-group form-group-full">
-                <label style="font-weight: 700; color: #E11D48;"><i class="fas fa-file-contract"></i> 4. Lưu Ý Hợp Đồng & Quy Định (Số người, giờ giấc, cọc, kỳ hạn HĐ...)</label>
-                <textarea id="formDescNote" rows="3" class="form-control" placeholder="• Tối đa: 2 người 2 xe&#10;• Xe điện: Có nhận xe điện&#10;• Nuôi pet: Không&#10;• Giờ giấc: Tự do 24/7, không chung chủ&#10;• Hợp đồng: 6 - 12 tháng, Đóng 1 cọc 1"></textarea>
+                <label style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">
+                  <i class="fas fa-file-alt"></i> Toàn bộ nội dung mô tả phòng (Địa chỉ, ngõ, nội thất, tiện ích, dịch vụ, lưu ý...)
+                </label>
+                <textarea id="formDescription" rows="12" class="form-control" style="font-family: inherit; font-size: 0.9rem; line-height: 1.7; padding: 14px;" placeholder="Dán hoặc nhập toàn bộ nội dung mô tả phòng tại đây..."></textarea>
               </div>
             </div>
           </div>
@@ -679,7 +574,7 @@
                   <input type="checkbox" id="formNearMainRoad"> 🛣️ Gần đường lớn
                 </label>
                 <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                  <input type="checkbox" id="formHasLoft"> 🪜 Có gác xép / gác lửng
+                  <input type="checkbox" id="formHasLoft"> 🪜 Có gác xép
                 </label>
               </div>
             </div>
@@ -763,8 +658,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=22"></script>
-  <script src="js/admin.js?v=22"></script>
+  <script src="js/data.js?v=20260905_v3"></script>
+  <script src="js/admin.js?v=20260905_v3"></script>
   <script>
     function switchAdminTab(tabId, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));

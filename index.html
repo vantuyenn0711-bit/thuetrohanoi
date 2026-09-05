@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css?v=20260904_2059">
-  <link rel="stylesheet" href="css/searchable-select.css?v=20260904_2059">
+  <link rel="stylesheet" href="css/style.css?v=20260905_1325">
+  <link rel="stylesheet" href="css/searchable-select.css?v=20260905_1325">
 
   <style>
     /* BẢO ĐẢM 100% DROPDOWN LUÔN NỔI LÊN TRÊN VÀ KHÔNG BỊ BẤT CỨ GÌ CHE KHUẤT */
@@ -63,13 +63,9 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
       max-height: 380px !important;
     }
-    .quick-tags {
-      position: relative !important;
-      z-index: 1 !important;
-    }
-    .main-section {
-      position: relative !important;
-      z-index: 10 !important;
+    .hero-section:has(.listivo-select-v2--open),
+    .hero-section:focus-within {
+      z-index: 900 !important;
     }
   </style>
 </head>
@@ -124,7 +120,7 @@
           <i class="fas fa-user-check"></i> Chuyên viên cố vấn: <strong>Đặng Văn Tuyển</strong> • Dẫn xem phòng 100% miễn phí
         </div>
         <h1 class="hero-title">
-          An Tâm Tìm Nhà <span>Không Lo Về Giá</span>
+          An Tâm Tìm Nhà
         </h1>
         <p class="hero-desc">
           Thông tin minh bạch đáng tin cậy. Quản lý, cố vấn cho thuê chuyên nghiệp, tận tâm. Hẹn đi xem phòng trực tiếp bất cứ lúc nào!
@@ -176,19 +172,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Quick Category Source Groups (Chuẩn các thẻ trên trang Mời Thuê) -->
-      <div class="quick-tags" style="position: relative !important; z-index: 1 !important;">
-        <span class="quick-tag-label">Nguồn hàng hot:</span>
-        <button class="quick-tag-item active" data-source="all" onclick="setQuickSource('all')">Tất cả nguồn</button>
-        <button class="quick-tag-item" data-source="nguon-hoang-mai" onclick="setQuickSource('nguon-hoang-mai')">Hoàng Mai</button>
-        <button class="quick-tag-item" data-source="nguon-kim-giang-ngoc-hoi" onclick="setQuickSource('nguon-kim-giang-ngoc-hoi')">Kim Giang, Ngọc Hồi</button>
-        <button class="quick-tag-item" data-source="nguon-ba-dinh" onclick="setQuickSource('nguon-ba-dinh')">Ba Đình - Tây Hồ</button>
-        <button class="quick-tag-item" data-source="nguon-dinh-cong" onclick="setQuickSource('nguon-dinh-cong')">Định Công</button>
-        <button class="quick-tag-item" data-source="nguon-cau-giay" onclick="setQuickSource('nguon-cau-giay')">Cầu Giấy</button>
-        <button class="quick-tag-item" data-source="nguon-my-dinh" onclick="setQuickSource('nguon-my-dinh')">Mỹ Đình</button>
-        <button class="quick-tag-item" data-source="nguon-dong-da" onclick="setQuickSource('nguon-dong-da')">Đống Đa</button>
-      </div>
     </div>
   </section>
 
@@ -196,13 +179,13 @@
   <!-- ==========================================================================
        MAIN LISTINGS SECTION
        ========================================================================== -->
-  <main class="main-section container" id="listingsSection" style="position: relative !important; z-index: 10 !important;">
+  <!-- SIDEBAR BACKDROP CHO MOBILE -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebarFilter()"></div>
+
+  <main class="main-section container" id="listingsSection">
     
     <!-- MAIN LISTINGS LAYOUT: SIDEBAR BỘ LỌC + GRID PHÒNG -->
     <div class="listings-main-layout">
-      <!-- SIDEBAR BACKDROP CHO MOBILE -->
-      <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebarFilter()"></div>
-
       <!-- SIDEBAR BỘ LỌC CHUẨN LISTIVO / MOITHUE.COM -->
       <aside class="listivo-search-sidebar" id="sidebarFilter">
         <div class="sidebar-header-mobile">
@@ -223,28 +206,6 @@
               <span class="custom-checkbox"></span>
               <span class="label-text">Chỉ hiển thị tin yêu thích</span>
             </label>
-          </div>
-        </div>
-
-        <!-- 2. Quận / Huyện (Searchable) -->
-        <div class="listivo-search-panel">
-          <div class="listivo-search-panel__top">
-            <div class="listivo-search-panel__label">📍 Quận / Huyện</div>
-            <div class="listivo-search-panel__circle"></div>
-          </div>
-          <div class="listivo-search-panel__content">
-            <div id="sidebarDistrictContainer"></div>
-          </div>
-        </div>
-
-        <!-- 3. Nhóm Nguồn Hàng (Searchable) -->
-        <div class="listivo-search-panel">
-          <div class="listivo-search-panel__top">
-            <div class="listivo-search-panel__label">🧭 Nhóm Nguồn Hàng</div>
-            <div class="listivo-search-panel__circle"></div>
-          </div>
-          <div class="listivo-search-panel__content">
-            <div id="sidebarSourceGroupContainer"></div>
           </div>
         </div>
 
@@ -516,8 +477,8 @@
         <!-- Section Header & Filter -->
         <div class="section-header">
           <div class="section-title-wrap" style="display: flex; align-items: baseline; gap: 8px;">
-            <div id="resultsCount" style="font-size: 1.45rem; font-weight: 800; color: #1E293B;">Đang tải...</div>
-            <span style="font-size: 0.95rem; font-weight: 700; color: #F59E0B;">Mục cho thuê</span>
+            <div id="resultsCount" style="font-size: 1.45rem; font-weight: 800; color: var(--primary);">Đang tải...</div>
+            <span style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);">Mục cho thuê</span>
           </div>
 
           <div class="sort-and-view">
@@ -538,22 +499,22 @@
         <div class="filter-bar">
           <div class="filter-group">
             <button class="filter-btn filter-type-btn active" data-type="all">
-              <i class="fas fa-th-large"></i> Tất cả
+              <i class="fas fa-border-all"></i> Tất cả
             </button>
             <button class="filter-btn filter-type-btn" data-type="can-ho-mini">
               <i class="fas fa-door-closed"></i> Khép kín
             </button>
             <button class="filter-btn filter-type-btn" data-type="gac-lung">
-              <i class="fas fa-layer-group"></i> Gác lửng
+              <i class="fas fa-stairs"></i> Gác xép
             </button>
             <button class="filter-btn filter-type-btn" data-type="phong-chung-wc">
-              <i class="fas fa-wallet"></i> VS chung
+              <i class="fas fa-restroom"></i> VS chung
             </button>
             <button class="filter-btn filter-type-btn" data-type="nha-nguyen-can">
-              <i class="fas fa-home"></i> Nguyên căn
+              <i class="fas fa-house-chimney"></i> Nguyên căn
             </button>
             <button class="filter-btn filter-type-btn" data-type="ki-tuc-xa">
-              <i class="fas fa-bed"></i> Kí túc xá
+              <i class="fas fa-bed"></i> Giường tầng
             </button>
           </div>
         </div>
@@ -590,8 +551,8 @@
           <div style="width: 64px; height: 64px; background: var(--primary-light); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 18px;">
             <i class="fas fa-search-location"></i>
           </div>
-          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">1. Chọn Phòng & Ước Tính Phí</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Xem ảnh thật, địa chỉ rõ ràng và dùng bảng tính ước lượng tổng chi phí sinh hoạt mỗi tháng ngay trên web.</p>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">1. Chọn Phòng</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Xem ảnh thật, địa chỉ rõ ràng.</p>
         </div>
 
         <div style="text-align: center; padding: 24px;">
@@ -599,14 +560,14 @@
             <i class="fas fa-calendar-alt"></i>
           </div>
           <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">2. Đặt Lịch Xem Trực Tiếp</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Bấm nút Hẹn đi xem, chọn ngày giờ rảnh. Mình sẽ gọi/Zalo xác nhận và đón bạn đi xem phòng trực tiếp.</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Hãy nhắn trực tiếp hỏi xác minh lại xem phòng còn hay không và lên lịch xem phòng.</p>
         </div>
 
         <div style="text-align: center; padding: 24px;">
-          <div style="width: 64px; height: 64px; background: var(--secondary-light); color: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 18px;">
+          <div style="width: 64px; height: 64px; background: var(--primary-light); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 18px;">
             <i class="fas fa-key"></i>
           </div>
-          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">3. Xem Phòng & Nhận Chìa Khóa</h3>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 8px;">3. Xem Phòng</h3>
           <p style="color: var(--text-muted); font-size: 0.9rem;">Đi xem phòng thực tế, ký hợp đồng minh bạch và dọn vào ở với không gian sống tiện nghi, thoải mái.</p>
         </div>
       </div>
@@ -705,7 +666,7 @@
         <h4>Loại Nhà Thuê</h4>
         <ul class="footer-links">
           <li><a href="javascript:void(0)" onclick="setQuickType('can-ho-mini')">Khép kín (Căn hộ mini)</a></li>
-          <li><a href="javascript:void(0)" onclick="setQuickType('gac-lung')">Phòng gác lửng</a></li>
+          <li><a href="javascript:void(0)" onclick="setQuickType('gac-lung')">Phòng gác xép</a></li>
           <li><a href="javascript:void(0)" onclick="setQuickType('phong-chung-wc')">VS chung / Giá rẻ</a></li>
           <li><a href="javascript:void(0)" onclick="setQuickType('nha-nguyen-can')">Nhà nguyên căn / 2-3PN</a></li>
         </ul>
@@ -714,7 +675,7 @@
       <div class="footer-col">
         <h4>Liên Hệ Tư Vấn</h4>
         <p style="font-size: 0.88rem; margin-bottom: 12px;">Bạn đang cần tìm phòng khu vực nào? Nhắn Zalo hoặc gọi ngay cho mình để được gửi thêm nhiều phòng mới nhé!</p>
-        <a href="https://zalo.me/0358954360" target="_blank" class="btn-hotline" style="display: inline-flex; width: 100%; justify-content: center; background: #0068FF;">
+        <a href="https://zalo.me/0358954360" target="_blank" class="btn-hotline" style="display: inline-flex; width: 100%; justify-content: center; background: var(--accent);">
           <i class="fas fa-comment-dots"></i> Nhắn Zalo: 0358.954.360
         </a>
       </div>
@@ -722,15 +683,12 @@
 
     <div class="container footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
       <div>&copy; 2026 Đặng Văn Tuyển – Thuê Trọ Hà Nội. All rights reserved.</div>
-      <a href="admin.html" style="opacity: 0.18; color: inherit; text-decoration: none; font-size: 0.85rem;" title="Cổng quản trị nội bộ">
-        <i class="fas fa-lock"></i>
-      </a>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="js/data.js?v=20260904_2059"></script>
-  <script src="js/searchable-select.js?v=20260904_2059"></script>
-  <script src="js/app.js?v=20260904_2059"></script>
+  <script src="js/data.js?v=20260905_1341"></script>
+  <script src="js/searchable-select.js?v=20260905_1341"></script>
+  <script src="js/app.js?v=20260905_1341"></script>
 </body>
 </html>

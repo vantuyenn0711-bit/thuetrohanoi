@@ -4,17 +4,17 @@
 
 /* === ROOT VARIABLES FOR LISTIVO THEME === */
 :root {
-  --listivo-color-text: #2A3946;
-  --listivo-color-muted: #64748B;
-  --listivo-color-border: #E2E8F0;
+  --listivo-color-text: #1E2620;
+  --listivo-color-muted: #5C6660;
+  --listivo-color-border: #E6E0D6;
   --listivo-color-bg: #FFFFFF;
-  --listivo-color-primary: #059669;
-  --listivo-color-primary-hover: #047857;
-  --listivo-color-accent: #F59E0B;
+  --listivo-color-primary: #1F5D4A;
+  --listivo-color-primary-hover: #174839;
+  --listivo-color-accent: #1F5D4A;
   --listivo-height: 60px;
   --listivo-radius: 8px;
-  --listivo-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-  --listivo-shadow-dropdown: 0 12px 35px rgba(15, 23, 42, 0.16);
+  --listivo-shadow: 0 6px 25px rgba(30, 38, 32, 0.08);
+  --listivo-shadow-dropdown: 0 12px 35px rgba(30, 38, 32, 0.16);
 }
 
 /* === MAIN SEARCH FORM CONTAINER === */
@@ -199,17 +199,18 @@
   max-height: 380px;
   flex-direction: column;
   overflow: hidden;
-  animation: listivoFadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: listivoFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 @keyframes listivoFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-6px);
+    transform: translateY(-8px) scale(0.99);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -397,7 +398,7 @@
   font-weight: 700;
   letter-spacing: 0.3px;
   transition: 0.3s ease-in-out;
-  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+  box-shadow: 0 4px 14px rgba(31, 93, 74, 0.35);
   white-space: nowrap;
 }
 
@@ -408,7 +409,7 @@
 .listivo-button--primary-1:hover {
   background-color: var(--listivo-color-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.45);
+  box-shadow: 0 6px 20px rgba(31, 93, 74, 0.45);
 }
 
 .listivo-button:before, 
