@@ -731,6 +731,9 @@ async function fetchListing(listingUrl, sourceGroup, district) {
     res = await httpGet(`https://moithue.com/listing/${slug}/`);
   }
 
+  if (res.status === 404) {
+    throw new Error('Link này không tồn tại / đã bị xóa trên moithue (404)');
+  }
   if (res.status !== 200) throw new Error(`HTTP ${res.status}`);
 
   const extracted = extractRoomFromHtml(res.body, slug);
