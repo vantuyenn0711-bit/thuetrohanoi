@@ -1217,20 +1217,27 @@ document.addEventListener("keydown", (e) => {
 // ==========================================================================
 // SEARCHABLE SELECTS (CHUẨN LISTIVO-SELECT-V2 MOITHUE.COM)
 // ==========================================================================
+function getAvailableRooms() {
+  if (!rooms) return [];
+  return rooms.filter(r => r.status !== 'rented' && r.statusName !== 'Đã cho thuê' && r.status !== 'het-phong');
+}
+
 function getDistrictCount(districtId) {
-  if (!rooms || rooms.length === 0) return 0;
-  if (districtId === 'all') return rooms.length;
+  const activeRooms = getAvailableRooms();
+  if (activeRooms.length === 0) return 0;
+  if (districtId === 'all') return activeRooms.length;
   const target = districtId.replace(/^(quan-|huyen-)/, '').toLowerCase();
-  return rooms.filter(r => {
+  return activeRooms.filter(r => {
     const rd = (r.district || '').replace(/^(quan-|huyen-)/, '').toLowerCase();
     return rd === target;
   }).length;
 }
 
 function getSourceGroupCount(sourceGroupId) {
-  if (!rooms || rooms.length === 0) return 0;
-  if (sourceGroupId === 'all') return rooms.length;
-  return rooms.filter(r => (r.sourceGroup || '') === sourceGroupId).length;
+  const activeRooms = getAvailableRooms();
+  if (activeRooms.length === 0) return 0;
+  if (sourceGroupId === 'all') return activeRooms.length;
+  return activeRooms.filter(r => (r.sourceGroup || '') === sourceGroupId).length;
 }
 
 function getDistrictItems() {
@@ -1596,12 +1603,12 @@ function onSidebarFilterChange() {
 }
 
 function updateSidebarCounts() {
-  if (!rooms) return;
-  const allCount = rooms.length;
-  const studioCount = rooms.filter(r => (r.roomLayout || "").toLowerCase().includes("studio") || (r.title || "").toLowerCase().includes("studio")).length;
-  const n1kCount = rooms.filter(r => (r.roomLayout || "").toLowerCase().includes("1n1k") || (r.title || "").toLowerCase().includes("1n1k")).length;
-  const n2kCount = rooms.filter(r => (r.roomLayout || "").toLowerCase().includes("2n1k") || (r.title || "").toLowerCase().includes("2n1k")).length;
-  const n3kCount = rooms.filter(r => (r.roomLayout || "").toLowerCase().includes("3n1k") || (r.title || "").toLowerCase().includes("3n1k")).length;
+  const activeRooms = getAvailableRooms();
+  const allCount = activeRooms.length;
+  const studioCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("studio") || (r.title || "").toLowerCase().includes("studio")).length;
+  const n1kCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("1n1k") || (r.title || "").toLowerCase().includes("1n1k")).length;
+  const n2kCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("2n1k") || (r.title || "").toLowerCase().includes("2n1k")).length;
+  const n3kCount = activeRooms.filter(r => (r.roomLayout || "").toLowerCase().includes("3n1k") || (r.title || "").toLowerCase().includes("3n1k")).length;
 
   const setBadge = (id, count) => {
     const el = document.getElementById(id);
