@@ -175,108 +175,125 @@
         </div>
       </div>
     </div>
-
-    <!-- ==========================================================================
-         KHỐI DÁN LINK ĐĂNG PHÒNG NHANH TỪ MOITHUE.COM (CHÍNH)
-         ========================================================================== -->
-    <div style="background: white; border: 1.5px solid var(--border-color); border-radius: 14px; padding: 22px 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.15rem;">
-            <i class="fas fa-link"></i>
+    <div style="background: white; border: 1.5px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 26px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;">
+      
+      <!-- Top Header & Live Status Badge -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 14px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #059669, #10B981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);">
+            <i class="fas fa-robot" id="autoSyncHubIcon"></i>
           </div>
           <div>
-            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin: 0;">
-              Đăng Phòng Nhanh Từ Link moithue.com
-            </h3>
-            <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0;">
-              Dán 1 hoặc nhiều link phòng từ moithue.com, hệ thống tự động bóc tách đầy đủ hình ảnh, giá, diện tích và mô tả.
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <h3 style="font-size: 1.22rem; font-weight: 800; color: var(--text-main); margin: 0;">
+                Hệ Thống Đồng Bộ Tự Động 24/24 Từ Mời Thuê
+              </h3>
+              <span id="autoSyncLiveBadge" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #22C55E; display: inline-block; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);"></span>
+                ĐANG TỰ ĐỘNG CHẠY 24/24
+              </span>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin: 4px 0 0 0;">
+              Hệ thống tự động quét Mời Thuê mỗi 30 phút, thêm phòng mới, cập nhật giá và ẩn phòng đã cho thuê mà không cần bấm gì cả.
             </p>
           </div>
         </div>
-        <span id="linksCountBadge" style="font-size: 0.8rem; font-weight: 700; background: var(--bg-alt); color: var(--text-muted); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border-color);">
-          0 link được nhập
-        </span>
+
+        <!-- Action Buttons -->
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <button id="btnManualSyncNow" onclick="triggerManualSync()" class="btn-schedule-view" 
+            style="background: linear-gradient(135deg, var(--primary), #059669); color: white; padding: 10px 20px; font-size: 0.92rem; font-weight: 800; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);">
+            <i class="fas fa-bolt" id="btnSyncIcon"></i> <span id="btnSyncText">Đồng Bộ Ngay Bây Giờ</span>
+          </button>
+          
+          <button id="btnToggleAutoSync" onclick="toggleAutoSyncMode()" style="background: var(--bg-alt); border: 1px solid var(--border-color); color: var(--dark); padding: 10px 16px; font-size: 0.88rem; font-weight: 700; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;">
+            <i class="fas fa-pause-circle" id="btnToggleAutoSyncIcon"></i> <span id="btnToggleAutoSyncText">Tạm Dừng</span>
+          </button>
+
+          <button onclick="openSyncHistoryModal()" style="background: var(--bg-alt); border: 1px solid var(--border-color); color: var(--dark); padding: 10px 16px; font-size: 0.88rem; font-weight: 700; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;">
+            <i class="fas fa-history" style="color: var(--primary);"></i> Lịch Sử Quét
+          </button>
+        </div>
       </div>
 
-      <!-- Ô Dán Link -->
-      <div style="margin-bottom: 12px;">
-        <textarea id="moithueLinksInput" rows="3" placeholder="Dán danh sách link phòng tại đây (mỗi dòng 1 link):&#10;https://moithue.com/listing/58-05-phu-vinh_truc-34_a-huy_ak/&#10;https://moithue.com/listing/245-32-dinh-cong_tang-5-3n1k/..." 
-          oninput="updateLinksCountBadge()"
-          style="width: 100%; padding: 12px 14px; border: 1.5px solid var(--border-color); border-radius: 8px; font-size: 0.88rem; outline: none; box-sizing: border-box; font-family: monospace; resize: vertical; line-height: 1.5; background: #FAFDFB;"></textarea>
+      <!-- Live Dashboard Metric Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 16px;">
+        
+        <!-- Metric 1: Chu kỳ & Đếm ngược -->
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <span style="font-size: 0.8rem; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px;">
+              ⏱️ Lần Quét Kế Tiếp
+            </span>
+            <span style="font-size: 0.75rem; font-weight: 700; background: #E2E8F0; color: #475569; padding: 2px 8px; border-radius: 12px;">
+              Mỗi 30 phút
+            </span>
+          </div>
+          <div style="font-size: 1.45rem; font-weight: 900; color: #0F172A;" id="syncNextCountdown">
+            Đang tính...
+          </div>
+          <div style="font-size: 0.78rem; color: #64748B; margin-top: 4px;" id="syncNextTimeFull">
+            Hệ thống tự động chạy ngầm
+          </div>
+        </div>
+
+        <!-- Metric 2: Lần quét vừa xong -->
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px;">
+          <div style="font-size: 0.8rem; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+            🕒 Lần Quét Vừa Xong
+          </div>
+          <div style="font-size: 1.45rem; font-weight: 900; color: #0F172A;" id="syncLastTimeText">
+            Vừa xong
+          </div>
+          <div style="font-size: 0.78rem; color: #10B981; font-weight: 700; margin-top: 4px;" id="syncLastSummaryBadge">
+            🟢 Đã đồng bộ thành công
+          </div>
+        </div>
+
+        <!-- Metric 3: Tổng kho phòng web -->
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px;">
+          <div style="font-size: 0.8rem; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+            📦 Tổng Kho Phòng Web
+          </div>
+          <div style="font-size: 1.45rem; font-weight: 900; color: #0F172A;">
+            <span id="syncTotalRoomsNum">920</span> <span style="font-size: 0.95rem; font-weight: 700; color: #64748B;">phòng</span>
+          </div>
+          <div style="font-size: 0.78rem; color: #64748B; margin-top: 4px;">
+            Khớp 100% dữ liệu từ moithue.com
+          </div>
+        </div>
+
       </div>
 
-      <!-- Cấu hình Cookie moithue.com cho Render -->
-      <details style="margin-bottom: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem;">
-        <summary style="cursor: pointer; font-weight: 700; color: #0284c7; outline: none; user-select: none;">
-          <i class="fas fa-key"></i> 🔑 Cài đặt Cookie moithue.com (Vượt chặn 403 trên Render)
+      <!-- Banner tiến trình khi đang chạy đồng bộ -->
+      <div id="syncProgressBanner" style="display: none; background: #ECFDF5; border: 1.5px solid #6EE7B7; border-radius: 10px; padding: 14px 18px; margin-bottom: 14px; align-items: center; gap: 12px;">
+        <i class="fas fa-spinner fa-spin" style="font-size: 1.3rem; color: #059669;"></i>
+        <div>
+          <div style="font-weight: 800; color: #065F46; font-size: 0.92rem;">
+            Đang chạy đồng bộ ngầm toàn bộ phòng từ Mời Thuê...
+          </div>
+          <div style="font-size: 0.82rem; color: #047857;">
+            Tiến trình chỉ mất khoảng 20-30 giây. Bảng quản trị và website sẽ tự động cập nhật ngay khi hoàn tất.
+          </div>
+        </div>
+      </div>
+
+      <!-- Khối dán link thủ công (Dự phòng thu gọn) -->
+      <details style="background: #FAFDFB; border: 1px dashed #CBD5E1; border-radius: 10px; padding: 10px 14px; font-size: 0.84rem;">
+        <summary style="cursor: pointer; font-weight: 700; color: #475569; outline: none; user-select: none; display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-plus-circle" style="color: var(--primary);"></i> Cào thêm link thủ công riêng biệt (Nếu có bài viết lẻ đặc biệt)
         </summary>
-        <div style="margin-top: 8px;">
-          <input type="text" id="moithueCustomCookie" placeholder="Dán cookie wordpress_logged_in_... vào đây để Render không bị lỗi 403" 
-            style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.8rem; font-family: monospace; box-sizing: border-box;"
-            oninput="saveCustomCookie(this.value)"
-            onchange="saveCustomCookie(this.value)">
-          <p style="margin: 4px 0 0 0; color: #64748b; font-size: 0.76rem;">
-            💡 <strong>Hướng dẫn lấy Cookie:</strong> Đăng nhập moithue.com trên máy tính -> Bấm <code>F12</code> -> Vào <strong>Application</strong> -> <strong>Cookies</strong> -> Copy giá trị cookie <code>wordpress_logged_in_...</code> dán vào ô này.
-          </p>
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #E2E8F0;">
+          <textarea id="moithueLinksInput" rows="2" placeholder="Dán link lẻ tại đây (mỗi dòng 1 link): https://moithue.com/listing/..."
+            style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.84rem; font-family: monospace; box-sizing: border-box;"></textarea>
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+            <button onclick="fetchAndAddRooms()" id="fetchUpBtn" class="btn-schedule-view" style="padding: 8px 18px; font-size: 0.85rem;">
+              <i class="fas fa-cloud-upload-alt"></i> Cào Link Này
+            </button>
+          </div>
         </div>
       </details>
 
-      <!-- Chọn Nguồn & Quận + Nút Bấm Đăng -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: flex-end;">
-        <div>
-          <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 5px;">📍 Nhóm Nguồn Hàng</label>
-          <select id="syncSourceGroup" class="form-control" style="font-weight: 600;">
-            <option value="nguon-cau-giay">Cầu Giấy</option>
-            <option value="nguon-bach-kinh-xay">Bách Kinh Xây</option>
-            <option value="nguon-hoang-mai">Hoàng Mai</option>
-            <option value="nguon-linh-nam-vinh-hung">Lĩnh Nam - Vĩnh Hưng</option>
-            <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
-            <option value="nguon-my-dinh">Mỹ Đình</option>
-            <option value="nguon-hoai-duc">Hoài Đức</option>
-            <option value="nguon-tay-ho">Tây Hồ</option>
-            <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
-            <option value="nguon-thanh-xuan">Thanh Xuân</option>
-            <option value="nguon-dong-da">Đống Đa</option>
-            <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế, Xuân Đỉnh</option>
-            <option value="nguon-cau-dien">Cầu Diễn</option>
-            <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
-            <option value="nguon-dinh-cong">Định Công</option>
-            <option value="nguon-trieu-khuc">Triều Khúc</option>
-            <option value="nguon-phu-dien">Phú Diễn</option>
-            <option value="nguon-xuan-phuong">Xuân Phương</option>
-            <option value="nguon-yen-xa-mau-luong">Yên Xá/Mậu Lương</option>
-            <option value="nguon-ha-dong">Hà Đông</option>
-          </select>
-        </div>
-
-        <div>
-          <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 5px;">🧭 Quận / Huyện</label>
-          <select id="syncDistrict" class="form-control" style="font-weight: 600;">
-            <option value="cau-giay">Quận Cầu Giấy</option>
-            <option value="hoang-mai">Quận Hoàng Mai</option>
-            <option value="nam-tu-liem">Quận Nam Từ Liêm</option>
-            <option value="hoai-duc">Huyện Hoài Đức</option>
-            <option value="tay-ho">Quận Tây Hồ</option>
-            <option value="bac-tu-liem">Quận Bắc Từ Liêm</option>
-            <option value="thanh-xuan">Quận Thanh Xuân</option>
-            <option value="ba-dinh">Quận Ba Đình</option>
-            <option value="dong-da">Quận Đống Đa</option>
-            <option value="hai-ba-trung">Quận Hai Bà Trưng</option>
-            <option value="ha-dong">Quận Hà Đông</option>
-            <option value="hoan-kiem">Quận Hoàn Kiếm</option>
-            <option value="long-bien">Quận Long Biên</option>
-          </select>
-        </div>
-
-        <button onclick="fetchAndAddRooms()" id="fetchUpBtn" class="btn-schedule-view"
-          style="padding: 11px 24px; font-weight: 800; font-size: 0.95rem; border-radius: 8px; white-space: nowrap; height: 44px; display: inline-flex; align-items: center; gap: 8px;">
-          <i class="fas fa-cloud-upload-alt"></i> LẤY & ĐĂNG LÊN WEB
-        </button>
-      </div>
-
-      <!-- Trạng thái tiến trình tải -->
-      <div id="fetchedStatus"></div>
     </div>
 
     <!-- ==========================================================================
@@ -332,13 +349,13 @@
           <option value="hoan-kiem">Quận Hoàn Kiếm</option>
           <option value="long-bien">Quận Long Biên</option>
           <option value="hoai-duc">Huyện Hoài Đức</option>
+          <option value="thanh-tri">Huyện Thanh Trì</option>
         </select>
       </div>
       <div style="min-width: 190px;">
         <select id="adminSourceGroupFilter" class="form-control" onchange="onAdminFilterChange()">
           <option value="all">Tất cả Nhóm Nguồn Hàng</option>
           <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
-          <option value="nguon-bach-kinh-xay">Bách Kinh Xây</option>
           <option value="nguon-cau-dien">Cầu Diễn</option>
           <option value="nguon-cau-giay">Cầu Giấy</option>
           <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế , Xuân Đỉnh</option>
@@ -349,7 +366,6 @@
           <option value="nguon-hoang-mai">Hoàng Mai</option>
           <option value="nguon-ho-tung-mau">Hồ Tùng Mậu</option>
           <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
-          <option value="nguon-linh-nam-vinh-hung">Lĩnh Nam - Vĩnh Hưng</option>
           <option value="nguon-me-tri-phu-do">Mễ Trì - Phú Đô</option>
           <option value="nguon-my-dinh">Mỹ Đình</option>
           <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
@@ -458,6 +474,7 @@
                   <option value="hoan-kiem">Quận Hoàn Kiếm</option>
                   <option value="long-bien">Quận Long Biên</option>
                   <option value="hoai-duc">Huyện Hoài Đức</option>
+                  <option value="thanh-tri">Huyện Thanh Trì</option>
                 </select>
               </div>
 
@@ -465,7 +482,6 @@
                 <label>Nhóm Nguồn Hàng *</label>
                 <select id="formSourceGroup" class="form-control">
                   <option value="nguon-ba-dinh-tay-ho">Ba Đình - Tây Hồ</option>
-                  <option value="nguon-bach-kinh-xay">Bách Kinh Xây</option>
                   <option value="nguon-cau-dien">Cầu Diễn</option>
                   <option value="nguon-cau-giay">Cầu Giấy</option>
                   <option value="nguon-co-nhue-xuan-dinh">Cổ Nhuế , Xuân Đỉnh</option>
@@ -476,7 +492,6 @@
                   <option value="nguon-hoang-mai">Hoàng Mai</option>
                   <option value="nguon-ho-tung-mau">Hồ Tùng Mậu</option>
                   <option value="nguon-kim-giang-ngoc-hoi">Kim Giang, Ngọc Hồi</option>
-                  <option value="nguon-linh-nam-vinh-hung">Lĩnh Nam - Vĩnh Hưng</option>
                   <option value="nguon-me-tri-phu-do">Mễ Trì - Phú Đô</option>
                   <option value="nguon-my-dinh">Mỹ Đình</option>
                   <option value="nguon-nam-tu-liem">Nam Từ Liêm</option>
@@ -687,6 +702,27 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LỊCH SỬ ĐỒNG BỘ TỰ ĐỘNG -->
+  <div id="syncHistoryModal" class="modal-overlay" onclick="closeModal('syncHistoryModal')">
+    <div class="modal-card" style="max-width: 840px; max-height: 85vh; display: flex; flex-direction: column;" onclick="event.stopPropagation()">
+      <div class="modal-header" style="border-bottom: 1px solid var(--border-color); padding: 18px 24px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 38px; height: 38px; border-radius: 10px; background: #DCFCE7; color: #15803D; display: flex; align-items: center; justify-content: center; font-size: 1.15rem;">
+            <i class="fas fa-history"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--dark);">Nhật Ký Đồng Bộ Tự Động 24/24</h3>
+            <p style="margin: 2px 0 0 0; font-size: 0.8rem; color: var(--text-muted);">Ghi nhận các lần quét, số phòng thêm mới, đổi giá và phòng ẩn</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('syncHistoryModal')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 20px 24px; overflow-y: auto; flex: 1;" id="syncHistoryListContainer">
+        <!-- Rendered by admin.js -->
       </div>
     </div>
   </div>

@@ -10,6 +10,8 @@ moithue_single.html
 listing_sitemap.xml
 listing_slugs.json
 moithue_jar.txt
+moithue_active_cookie.txt
+*.backup.json
 legacy_backup/
 Tài liệu Tham Khảo/
 .DS_Store

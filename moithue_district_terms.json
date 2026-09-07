@@ -1,0 +1,2122 @@
+[
+  {
+    "id": 1051,
+    "key": "listivo_1051",
+    "name": "Phường Cống Vị",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1067,
+    "key": "listivo_1067",
+    "name": "Phường Cửa Nam",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1083,
+    "key": "listivo_1083",
+    "name": "Phường Thụy Khuê",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1099,
+    "key": "listivo_1099",
+    "name": "Phường Nam Đồng",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1119,
+    "key": "listivo_1119",
+    "name": "Phường Bạch Mai",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1135,
+    "key": "listivo_1135",
+    "name": "Phường Đại Kim",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1151,
+    "key": "listivo_1151",
+    "name": "Phường Khương Mai",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1167,
+    "key": "listivo_1167",
+    "name": "Phường Ngọc Thụy",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1184,
+    "key": "listivo_1184",
+    "name": "Phường Thụy Phương",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1200,
+    "key": "listivo_1200",
+    "name": "Phường Biên Giang",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1216,
+    "key": "listivo_1216",
+    "name": "Phường Yết Kiêu",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1232,
+    "key": "listivo_1232",
+    "name": "Xã Vĩnh Quỳnh",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1248,
+    "key": "listivo_1248",
+    "name": "Xã Minh Khai",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1052,
+    "key": "listivo_1052",
+    "name": "Phường Điện Biên",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1068,
+    "key": "listivo_1068",
+    "name": "Phường Đồng Xuân",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1084,
+    "key": "listivo_1084",
+    "name": "Phường Dịch Vọng",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1100,
+    "key": "listivo_1100",
+    "name": "Phường Ngã Tư Sở",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1120,
+    "key": "listivo_1120",
+    "name": "Phường Cầu Dền",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1136,
+    "key": "listivo_1136",
+    "name": "Phường Định Công",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1152,
+    "key": "listivo_1152",
+    "name": "Phường Khương Trung",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1168,
+    "key": "listivo_1168",
+    "name": "Phường Phúc Đồng",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1185,
+    "key": "listivo_1185",
+    "name": "Phường Xuân Đỉnh",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1201,
+    "key": "listivo_1201",
+    "name": "Phường Đồng Mai",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1217,
+    "key": "listivo_1217",
+    "name": "Huyện Thanh Trì",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1233,
+    "key": "listivo_1233",
+    "name": "Xã Yên Mỹ",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1249,
+    "key": "listivo_1249",
+    "name": "Xã Sơn Đồng",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1053,
+    "key": "listivo_1053",
+    "name": "Phường Đội Cấn",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1069,
+    "key": "listivo_1069",
+    "name": "Phường Hàng Bạc",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1085,
+    "key": "listivo_1085",
+    "name": "Phường Dịch Vọng Hậu",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1101,
+    "key": "listivo_1101",
+    "name": "Phường Ô Chợ Dừa",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1121,
+    "key": "listivo_1121",
+    "name": "Phường Đống Mác",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1137,
+    "key": "listivo_1137",
+    "name": "Phường Giáp Bát",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1153,
+    "key": "listivo_1153",
+    "name": "Phường Kim Giang",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1169,
+    "key": "listivo_1169",
+    "name": "Phường Phúc Lợi",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1186,
+    "key": "listivo_1186",
+    "name": "Phường Xuân Tảo",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1202,
+    "key": "listivo_1202",
+    "name": "Phường Dương Nội",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1218,
+    "key": "listivo_1218",
+    "name": "Thị trấn Văn điển",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1234,
+    "key": "listivo_1234",
+    "name": "Huyện Hoài Đức",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1250,
+    "key": "listivo_1250",
+    "name": "Xã Song Phương",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1054,
+    "key": "listivo_1054",
+    "name": "Phường Giảng Võ",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1070,
+    "key": "listivo_1070",
+    "name": "Phường Hàng Bài",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1086,
+    "key": "listivo_1086",
+    "name": "Phường Mai Dịch",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1102,
+    "key": "listivo_1102",
+    "name": "Phường Phương Liên",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1122,
+    "key": "listivo_1122",
+    "name": "Phường Đồng Nhân",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1138,
+    "key": "listivo_1138",
+    "name": "Phường Hoàng Liệt",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1154,
+    "key": "listivo_1154",
+    "name": "Phường Nhân Chính",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1170,
+    "key": "listivo_1170",
+    "name": "Phường Sài Đồng",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1187,
+    "key": "listivo_1187",
+    "name": "Phường Tứ Liên",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1203,
+    "key": "listivo_1203",
+    "name": "Phường Hà Cầu",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1219,
+    "key": "listivo_1219",
+    "name": "Xã Đại Áng",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1235,
+    "key": "listivo_1235",
+    "name": "Thị trấn Trạm Trôi",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1251,
+    "key": "listivo_1251",
+    "name": "Xã Tiền Yên",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1039,
+    "key": "listivo_1039",
+    "name": "Quận Cầu Giấy",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1055,
+    "key": "listivo_1055",
+    "name": "Phường Kim Mã",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1071,
+    "key": "listivo_1071",
+    "name": "Phường Hàng Bồ",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1087,
+    "key": "listivo_1087",
+    "name": "Phường Nghĩa Đô",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1107,
+    "key": "listivo_1107",
+    "name": "Phường Phương Mai",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1123,
+    "key": "listivo_1123",
+    "name": "Phường Đồng Tâm",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1139,
+    "key": "listivo_1139",
+    "name": "Phường Hoàng Văn Thụ",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1155,
+    "key": "listivo_1155",
+    "name": "Phường Phương Liệt",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1171,
+    "key": "listivo_1171",
+    "name": "Phường Thạch Bàn",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1188,
+    "key": "listivo_1188",
+    "name": "Phường Xuân La",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1204,
+    "key": "listivo_1204",
+    "name": "Phường Kiến Hưng",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1220,
+    "key": "listivo_1220",
+    "name": "Xã Đông Mỹ",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1236,
+    "key": "listivo_1236",
+    "name": "Xã An Khánh",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1252,
+    "key": "listivo_1252",
+    "name": "Xã Vân Canh",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1040,
+    "key": "listivo_1040",
+    "name": "Quận Hoàn Kiếm",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1056,
+    "key": "listivo_1056",
+    "name": "Phường Liễu Giai",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1072,
+    "key": "listivo_1072",
+    "name": "Phường Hàng Bông",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1088,
+    "key": "listivo_1088",
+    "name": "Phường Nghĩa Tân",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1108,
+    "key": "listivo_1108",
+    "name": "Phường Quang Trung",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1124,
+    "key": "listivo_1124",
+    "name": "Phường Lê Đại Hành",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1140,
+    "key": "listivo_1140",
+    "name": "Phường Lĩnh Nam",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1156,
+    "key": "listivo_1156",
+    "name": "Phường Thanh Xuân Bắc",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1172,
+    "key": "listivo_1172",
+    "name": "Phường Thượng Thanh",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1189,
+    "key": "listivo_1189",
+    "name": "Phường Yên Phụ",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1205,
+    "key": "listivo_1205",
+    "name": "Phường La Khê",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1221,
+    "key": "listivo_1221",
+    "name": "Xã Duyên Hà",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1237,
+    "key": "listivo_1237",
+    "name": "Xã An Thượng",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1253,
+    "key": "listivo_1253",
+    "name": "Xã Vân Côn",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1041,
+    "key": "listivo_1041",
+    "name": "Quận Hai Bà Trưng",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1057,
+    "key": "listivo_1057",
+    "name": "Phường Ngọc Hà",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1073,
+    "key": "listivo_1073",
+    "name": "Phường Hàng Buồm",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1089,
+    "key": "listivo_1089",
+    "name": "Phường Quan Hoa",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1109,
+    "key": "listivo_1109",
+    "name": "Phường Quốc Tử Giám",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1125,
+    "key": "listivo_1125",
+    "name": "Phường Minh Khai HBT",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1141,
+    "key": "listivo_1141",
+    "name": "Phường Mai Động",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1157,
+    "key": "listivo_1157",
+    "name": "Phường Thanh Xuân Nam",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1173,
+    "key": "listivo_1173",
+    "name": "Phường Việt Hưng",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1190,
+    "key": "listivo_1190",
+    "name": "Phường Cầu Diễn",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1206,
+    "key": "listivo_1206",
+    "name": "Phường Mộ Lao",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1222,
+    "key": "listivo_1222",
+    "name": "Xã Hữu Hòa",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1238,
+    "key": "listivo_1238",
+    "name": "Xã Cát Quế",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1254,
+    "key": "listivo_1254",
+    "name": "Xã Yên Sở",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1042,
+    "key": "listivo_1042",
+    "name": "Quận Hoàng Mai",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1058,
+    "key": "listivo_1058",
+    "name": "Phường Ngọc Khánh",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1074,
+    "key": "listivo_1074",
+    "name": "Phường Hàng Đào",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1090,
+    "key": "listivo_1090",
+    "name": "Phường Trung Hòa",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1110,
+    "key": "listivo_1110",
+    "name": "Phường Thịnh Quang",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1126,
+    "key": "listivo_1126",
+    "name": "Phường Nguyễn Du",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1142,
+    "key": "listivo_1142",
+    "name": "Phường Tân Mai",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1158,
+    "key": "listivo_1158",
+    "name": "Phường Thanh Xuân Trung",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1174,
+    "key": "listivo_1174",
+    "name": "Phường Cổ Nhuế 1",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1191,
+    "key": "listivo_1191",
+    "name": "Phường Đại Mỗ",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1207,
+    "key": "listivo_1207",
+    "name": "Phường Nguyễn Trãi",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1223,
+    "key": "listivo_1223",
+    "name": "Xã Liên Ninh",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1239,
+    "key": "listivo_1239",
+    "name": "Xã Đắc Sở",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1255,
+    "key": "listivo_1255",
+    "name": "Phường Minh Khai",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1043,
+    "key": "listivo_1043",
+    "name": "Quận Đống Đa",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1059,
+    "key": "listivo_1059",
+    "name": "Phường Nguyễn Trung Trực",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1075,
+    "key": "listivo_1075",
+    "name": "Phường Hàng Gai",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1091,
+    "key": "listivo_1091",
+    "name": "Phường Yên Hòa",
+    "parent": 1039,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1111,
+    "key": "listivo_1111",
+    "name": "Phường Thổ Quan",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1127,
+    "key": "listivo_1127",
+    "name": "Phường Phạm Đình Hổ",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1143,
+    "key": "listivo_1143",
+    "name": "Phường Thanh Trì",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1159,
+    "key": "listivo_1159",
+    "name": "Phường Thượng Đình",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1175,
+    "key": "listivo_1175",
+    "name": "Phường Cổ Nhuế 2",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1192,
+    "key": "listivo_1192",
+    "name": "Phường Mễ Trì",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1208,
+    "key": "listivo_1208",
+    "name": "Phường Phú La",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1224,
+    "key": "listivo_1224",
+    "name": "Xã Ngọc Hồi",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1240,
+    "key": "listivo_1240",
+    "name": "Xã Di Trạch",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1044,
+    "key": "listivo_1044",
+    "name": "Quận Tây Hồ",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1060,
+    "key": "listivo_1060",
+    "name": "Phường Phúc Xá",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1076,
+    "key": "listivo_1076",
+    "name": "Phường Hàng Mã",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1092,
+    "key": "listivo_1092",
+    "name": "Phường Cát Linh",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1112,
+    "key": "listivo_1112",
+    "name": "Phường Trung Liệt",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1128,
+    "key": "listivo_1128",
+    "name": "Phường Phố Huế",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1144,
+    "key": "listivo_1144",
+    "name": "Phường Thịnh Liệt",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1160,
+    "key": "listivo_1160",
+    "name": "Phường Bồ Đề",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1176,
+    "key": "listivo_1176",
+    "name": "Phường Đông Ngạc",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1193,
+    "key": "listivo_1193",
+    "name": "Phường Mỹ Đình 1",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1209,
+    "key": "listivo_1209",
+    "name": "Phường Phú Lãm",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1225,
+    "key": "listivo_1225",
+    "name": "Xã Ngũ Hiệp",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1241,
+    "key": "listivo_1241",
+    "name": "Xã Đông La",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1045,
+    "key": "listivo_1045",
+    "name": "Quận Thanh Xuân",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1061,
+    "key": "listivo_1061",
+    "name": "Phường Quán Thánh",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1077,
+    "key": "listivo_1077",
+    "name": "Phường Hàng Trống",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1093,
+    "key": "listivo_1093",
+    "name": "Phường Hàng Bột",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1113,
+    "key": "listivo_1113",
+    "name": "Phường Trung Phụng",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1129,
+    "key": "listivo_1129",
+    "name": "Phường Quỳnh Lôi",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1145,
+    "key": "listivo_1145",
+    "name": "Phường Trần Phú",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1161,
+    "key": "listivo_1161",
+    "name": "Phường Cự Khối",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1177,
+    "key": "listivo_1177",
+    "name": "Phường Đức Thắng",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1194,
+    "key": "listivo_1194",
+    "name": "Phường Mỹ Đình 2",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1210,
+    "key": "listivo_1210",
+    "name": "Phường Phú Lương",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1226,
+    "key": "listivo_1226",
+    "name": "Xã Tả Thanh Oai",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1242,
+    "key": "listivo_1242",
+    "name": "Xã Đức Giang",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1046,
+    "key": "listivo_1046",
+    "name": "Quận Bắc Từ Liêm",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1062,
+    "key": "listivo_1062",
+    "name": "Phường Thành Công",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1078,
+    "key": "listivo_1078",
+    "name": "Phường Lý Thái Tổ",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1094,
+    "key": "listivo_1094",
+    "name": "Phường Khâm Thiên",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1114,
+    "key": "listivo_1114",
+    "name": "Phường Trung Tự",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1130,
+    "key": "listivo_1130",
+    "name": "Phường Quỳnh Mai",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1146,
+    "key": "listivo_1146",
+    "name": "Phường Tương Mai",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1162,
+    "key": "listivo_1162",
+    "name": "Phường Đức Giang",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1178,
+    "key": "listivo_1178",
+    "name": "Phường Liên Mạc",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1195,
+    "key": "listivo_1195",
+    "name": "Phường Phú Đô",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1211,
+    "key": "listivo_1211",
+    "name": "Phường Phúc La",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1227,
+    "key": "listivo_1227",
+    "name": "Xã Tam Hiệp",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1243,
+    "key": "listivo_1243",
+    "name": "Xã Đức Thượng",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1047,
+    "key": "listivo_1047",
+    "name": "Quận Hà Đông",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1063,
+    "key": "listivo_1063",
+    "name": "Phường Trúc Bạch",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1079,
+    "key": "listivo_1079",
+    "name": "Phường Bưởi",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1095,
+    "key": "listivo_1095",
+    "name": "Phường Khương Thượng",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1115,
+    "key": "listivo_1115",
+    "name": "Phường Văn Chương",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1131,
+    "key": "listivo_1131",
+    "name": "Phường Thanh Lương",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1147,
+    "key": "listivo_1147",
+    "name": "Phường Vĩnh Hưng",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn Danh mục",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1163,
+    "key": "listivo_1163",
+    "name": "Phường Gia Thụy",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1180,
+    "key": "listivo_1180",
+    "name": "Phường Phú Diễn",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1196,
+    "key": "listivo_1196",
+    "name": "Phường Phương Canh",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1212,
+    "key": "listivo_1212",
+    "name": "Phường Quang Trung",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1228,
+    "key": "listivo_1228",
+    "name": "Xã Tân Triều",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1244,
+    "key": "listivo_1244",
+    "name": "Xã Dương Liễu",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1048,
+    "key": "listivo_1048",
+    "name": "Quận Long Biên",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1064,
+    "key": "listivo_1064",
+    "name": "Phường Vĩnh Phúc",
+    "parent": 1050,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1080,
+    "key": "listivo_1080",
+    "name": "Phường Nhật Tân",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1096,
+    "key": "listivo_1096",
+    "name": "Phường Kim Liên",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1116,
+    "key": "listivo_1116",
+    "name": "Phường Văn Miếu",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1132,
+    "key": "listivo_1132",
+    "name": "Phường Thanh Nhàn",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1148,
+    "key": "listivo_1148",
+    "name": "Phường Yên Sở",
+    "parent": 1042,
+    "searchFormPlaceholder": "Chọn Danh mục",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1164,
+    "key": "listivo_1164",
+    "name": "Phường Giang Biên",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1181,
+    "key": "listivo_1181",
+    "name": "Phường Phúc Diễn",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1197,
+    "key": "listivo_1197",
+    "name": "Phường Tây Mỗ",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1213,
+    "key": "listivo_1213",
+    "name": "Phường Vạn Phúc",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1229,
+    "key": "listivo_1229",
+    "name": "Xã Thanh Liệt",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1245,
+    "key": "listivo_1245",
+    "name": "Xã Kim Chung",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1049,
+    "key": "listivo_1049",
+    "name": "Quận Nam Từ Liêm",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1065,
+    "key": "listivo_1065",
+    "name": "Phường Chương Dương",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1081,
+    "key": "listivo_1081",
+    "name": "Phường Phú Thượng",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1097,
+    "key": "listivo_1097",
+    "name": "Phường Láng Hạ",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1117,
+    "key": "listivo_1117",
+    "name": "Phường Bách Khoa",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1133,
+    "key": "listivo_1133",
+    "name": "Phường Trương Định",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1149,
+    "key": "listivo_1149",
+    "name": "Phường Hạ Đình",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1165,
+    "key": "listivo_1165",
+    "name": "Phường Long Biên",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1182,
+    "key": "listivo_1182",
+    "name": "Phường Tây Tựu",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1198,
+    "key": "listivo_1198",
+    "name": "Phường Trung Văn",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1214,
+    "key": "listivo_1214",
+    "name": "Phường Văn Quán",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1230,
+    "key": "listivo_1230",
+    "name": "Xã Tứ Hiệp",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1246,
+    "key": "listivo_1246",
+    "name": "Xã La Phù",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1050,
+    "key": "listivo_1050",
+    "name": "Quận Ba Đình",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn Phường / Xã",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": true
+  },
+  {
+    "id": 1066,
+    "key": "listivo_1066",
+    "name": "Phường Cửa Đông",
+    "parent": 1040,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1082,
+    "key": "listivo_1082",
+    "name": "Phường Quảng An",
+    "parent": 1044,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1098,
+    "key": "listivo_1098",
+    "name": "Phường Láng Thượng",
+    "parent": 1043,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1118,
+    "key": "listivo_1118",
+    "name": "Phường Bạch Đằng",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1134,
+    "key": "listivo_1134",
+    "name": "Phường Vĩnh Tuy",
+    "parent": 1041,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1150,
+    "key": "listivo_1150",
+    "name": "Phường Khương Đình",
+    "parent": 1045,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1166,
+    "key": "listivo_1166",
+    "name": "Phường Ngọc Lâm",
+    "parent": 1048,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1183,
+    "key": "listivo_1183",
+    "name": "Phường Thượng Cát",
+    "parent": 1046,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1199,
+    "key": "listivo_1199",
+    "name": "Phường Xuân Phương",
+    "parent": 1049,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1215,
+    "key": "listivo_1215",
+    "name": "Phường Yên Nghĩa",
+    "parent": 1047,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1231,
+    "key": "listivo_1231",
+    "name": "Xã Vạn Phúc",
+    "parent": 1217,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 1247,
+    "key": "listivo_1247",
+    "name": "Xã Lại Yên",
+    "parent": 1234,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  }
+]

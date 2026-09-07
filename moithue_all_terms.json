@@ -1,0 +1,1222 @@
+[
+  {
+    "id": 875,
+    "name": "Sắp trống"
+  },
+  {
+    "id": 441,
+    "name": "Khép kín"
+  },
+  {
+    "id": 797,
+    "name": "STUDIO"
+  },
+  {
+    "id": 756,
+    "name": "1N1K"
+  },
+  {
+    "id": 820,
+    "name": "VS chung"
+  },
+  {
+    "id": 685,
+    "name": "Nguyên căn"
+  },
+  {
+    "id": 758,
+    "name": "Nhà đất"
+  },
+  {
+    "id": 811,
+    "name": "Chung cư"
+  },
+  {
+    "id": 757,
+    "name": "Mặt bằng"
+  },
+  {
+    "id": 760,
+    "name": "Văn phòng"
+  },
+  {
+    "id": 605,
+    "name": "Kí túc xá"
+  },
+  {
+    "id": 988,
+    "name": "Tầng 1"
+  },
+  {
+    "id": 989,
+    "name": "Tầng 2"
+  },
+  {
+    "id": 990,
+    "name": "Tầng 3"
+  },
+  {
+    "id": 991,
+    "name": "Tầng 4"
+  },
+  {
+    "id": 992,
+    "name": "Tầng 5"
+  },
+  {
+    "id": 993,
+    "name": "Tầng 6"
+  },
+  {
+    "id": 994,
+    "name": "Tầng 7"
+  },
+  {
+    "id": 995,
+    "name": "Tầng 8"
+  },
+  {
+    "id": 996,
+    "name": "Tầng 9"
+  },
+  {
+    "id": 873,
+    "name": "Ở ngay"
+  },
+  {
+    "id": 874,
+    "name": "❌ Hết phòng"
+  },
+  {
+    "id": 2202,
+    "name": "Ngọc Trục - Đại Linh"
+  },
+  {
+    "id": 2203,
+    "name": "Mễ Trì - Phú Đô"
+  },
+  {
+    "id": 2196,
+    "name": "Ba Đình - Tây Hồ"
+  },
+  {
+    "id": 2191,
+    "name": "Cầu Diễn"
+  },
+  {
+    "id": 2178,
+    "name": "Cầu Giấy"
+  },
+  {
+    "id": 2183,
+    "name": "Định Công"
+  },
+  {
+    "id": 2194,
+    "name": "Đống Đa"
+  },
+  {
+    "id": 2180,
+    "name": "Hà Đông"
+  },
+  {
+    "id": 2197,
+    "name": "Hồ Tùng Mậu"
+  },
+  {
+    "id": 2177,
+    "name": "Hoài Đức"
+  },
+  {
+    "id": 2184,
+    "name": "Hoàng Mai"
+  },
+  {
+    "id": 2187,
+    "name": "Kim Giang, Ngọc Hồi"
+  },
+  {
+    "id": 2179,
+    "name": "Mỹ Đình"
+  },
+  {
+    "id": 2198,
+    "name": "Nam Từ Liêm"
+  },
+  {
+    "id": 2182,
+    "name": "Phú Diễn"
+  },
+  {
+    "id": 2199,
+    "name": "Tây Hồ"
+  },
+  {
+    "id": 2193,
+    "name": "Thanh Xuân"
+  },
+  {
+    "id": 2185,
+    "name": "Triều Khúc"
+  },
+  {
+    "id": 2176,
+    "name": "Cổ Nhuế , Xuân Đỉnh"
+  },
+  {
+    "id": 2181,
+    "name": "Xuân Phương"
+  },
+  {
+    "id": 2186,
+    "name": "Yên Xá/Mậu Lương"
+  },
+  {
+    "id": 1042,
+    "name": "Quận Hoàng Mai"
+  },
+  {
+    "id": 1058,
+    "name": "Phường Ngọc Khánh"
+  },
+  {
+    "id": 1074,
+    "name": "Phường Hàng Đào"
+  },
+  {
+    "id": 1090,
+    "name": "Phường Trung Hòa"
+  },
+  {
+    "id": 1110,
+    "name": "Phường Thịnh Quang"
+  },
+  {
+    "id": 1126,
+    "name": "Phường Nguyễn Du"
+  },
+  {
+    "id": 1142,
+    "name": "Phường Tân Mai"
+  },
+  {
+    "id": 1158,
+    "name": "Phường Thanh Xuân Trung"
+  },
+  {
+    "id": 1174,
+    "name": "Phường Cổ Nhuế 1"
+  },
+  {
+    "id": 1191,
+    "name": "Phường Đại Mỗ"
+  },
+  {
+    "id": 1207,
+    "name": "Phường Nguyễn Trãi"
+  },
+  {
+    "id": 1223,
+    "name": "Xã Liên Ninh"
+  },
+  {
+    "id": 1239,
+    "name": "Xã Đắc Sở"
+  },
+  {
+    "id": 1255,
+    "name": "Phường Minh Khai"
+  },
+  {
+    "id": 1043,
+    "name": "Quận Đống Đa"
+  },
+  {
+    "id": 1059,
+    "name": "Phường Nguyễn Trung Trực"
+  },
+  {
+    "id": 1075,
+    "name": "Phường Hàng Gai"
+  },
+  {
+    "id": 1091,
+    "name": "Phường Yên Hòa"
+  },
+  {
+    "id": 1111,
+    "name": "Phường Thổ Quan"
+  },
+  {
+    "id": 1127,
+    "name": "Phường Phạm Đình Hổ"
+  },
+  {
+    "id": 1143,
+    "name": "Phường Thanh Trì"
+  },
+  {
+    "id": 1159,
+    "name": "Phường Thượng Đình"
+  },
+  {
+    "id": 1175,
+    "name": "Phường Cổ Nhuế 2"
+  },
+  {
+    "id": 1192,
+    "name": "Phường Mễ Trì"
+  },
+  {
+    "id": 1208,
+    "name": "Phường Phú La"
+  },
+  {
+    "id": 1224,
+    "name": "Xã Ngọc Hồi"
+  },
+  {
+    "id": 1240,
+    "name": "Xã Di Trạch"
+  },
+  {
+    "id": 1044,
+    "name": "Quận Tây Hồ"
+  },
+  {
+    "id": 1060,
+    "name": "Phường Phúc Xá"
+  },
+  {
+    "id": 1076,
+    "name": "Phường Hàng Mã"
+  },
+  {
+    "id": 1092,
+    "name": "Phường Cát Linh"
+  },
+  {
+    "id": 1112,
+    "name": "Phường Trung Liệt"
+  },
+  {
+    "id": 1128,
+    "name": "Phường Phố Huế"
+  },
+  {
+    "id": 1144,
+    "name": "Phường Thịnh Liệt"
+  },
+  {
+    "id": 1160,
+    "name": "Phường Bồ Đề"
+  },
+  {
+    "id": 1176,
+    "name": "Phường Đông Ngạc"
+  },
+  {
+    "id": 1193,
+    "name": "Phường Mỹ Đình 1"
+  },
+  {
+    "id": 1209,
+    "name": "Phường Phú Lãm"
+  },
+  {
+    "id": 1225,
+    "name": "Xã Ngũ Hiệp"
+  },
+  {
+    "id": 1241,
+    "name": "Xã Đông La"
+  },
+  {
+    "id": 1045,
+    "name": "Quận Thanh Xuân"
+  },
+  {
+    "id": 1061,
+    "name": "Phường Quán Thánh"
+  },
+  {
+    "id": 1077,
+    "name": "Phường Hàng Trống"
+  },
+  {
+    "id": 1093,
+    "name": "Phường Hàng Bột"
+  },
+  {
+    "id": 1113,
+    "name": "Phường Trung Phụng"
+  },
+  {
+    "id": 1129,
+    "name": "Phường Quỳnh Lôi"
+  },
+  {
+    "id": 1145,
+    "name": "Phường Trần Phú"
+  },
+  {
+    "id": 1161,
+    "name": "Phường Cự Khối"
+  },
+  {
+    "id": 1177,
+    "name": "Phường Đức Thắng"
+  },
+  {
+    "id": 1194,
+    "name": "Phường Mỹ Đình 2"
+  },
+  {
+    "id": 1210,
+    "name": "Phường Phú Lương"
+  },
+  {
+    "id": 1226,
+    "name": "Xã Tả Thanh Oai"
+  },
+  {
+    "id": 1242,
+    "name": "Xã Đức Giang"
+  },
+  {
+    "id": 1046,
+    "name": "Quận Bắc Từ Liêm"
+  },
+  {
+    "id": 1062,
+    "name": "Phường Thành Công"
+  },
+  {
+    "id": 1078,
+    "name": "Phường Lý Thái Tổ"
+  },
+  {
+    "id": 1094,
+    "name": "Phường Khâm Thiên"
+  },
+  {
+    "id": 1114,
+    "name": "Phường Trung Tự"
+  },
+  {
+    "id": 1130,
+    "name": "Phường Quỳnh Mai"
+  },
+  {
+    "id": 1146,
+    "name": "Phường Tương Mai"
+  },
+  {
+    "id": 1162,
+    "name": "Phường Đức Giang"
+  },
+  {
+    "id": 1178,
+    "name": "Phường Liên Mạc"
+  },
+  {
+    "id": 1195,
+    "name": "Phường Phú Đô"
+  },
+  {
+    "id": 1211,
+    "name": "Phường Phúc La"
+  },
+  {
+    "id": 1227,
+    "name": "Xã Tam Hiệp"
+  },
+  {
+    "id": 1243,
+    "name": "Xã Đức Thượng"
+  },
+  {
+    "id": 1047,
+    "name": "Quận Hà Đông"
+  },
+  {
+    "id": 1063,
+    "name": "Phường Trúc Bạch"
+  },
+  {
+    "id": 1079,
+    "name": "Phường Bưởi"
+  },
+  {
+    "id": 1095,
+    "name": "Phường Khương Thượng"
+  },
+  {
+    "id": 1115,
+    "name": "Phường Văn Chương"
+  },
+  {
+    "id": 1131,
+    "name": "Phường Thanh Lương"
+  },
+  {
+    "id": 1147,
+    "name": "Phường Vĩnh Hưng"
+  },
+  {
+    "id": 1163,
+    "name": "Phường Gia Thụy"
+  },
+  {
+    "id": 1180,
+    "name": "Phường Phú Diễn"
+  },
+  {
+    "id": 1196,
+    "name": "Phường Phương Canh"
+  },
+  {
+    "id": 1212,
+    "name": "Phường Quang Trung"
+  },
+  {
+    "id": 1228,
+    "name": "Xã Tân Triều"
+  },
+  {
+    "id": 1244,
+    "name": "Xã Dương Liễu"
+  },
+  {
+    "id": 1048,
+    "name": "Quận Long Biên"
+  },
+  {
+    "id": 1064,
+    "name": "Phường Vĩnh Phúc"
+  },
+  {
+    "id": 1080,
+    "name": "Phường Nhật Tân"
+  },
+  {
+    "id": 1096,
+    "name": "Phường Kim Liên"
+  },
+  {
+    "id": 1116,
+    "name": "Phường Văn Miếu"
+  },
+  {
+    "id": 1132,
+    "name": "Phường Thanh Nhàn"
+  },
+  {
+    "id": 1148,
+    "name": "Phường Yên Sở"
+  },
+  {
+    "id": 1164,
+    "name": "Phường Giang Biên"
+  },
+  {
+    "id": 1181,
+    "name": "Phường Phúc Diễn"
+  },
+  {
+    "id": 1197,
+    "name": "Phường Tây Mỗ"
+  },
+  {
+    "id": 1213,
+    "name": "Phường Vạn Phúc"
+  },
+  {
+    "id": 1229,
+    "name": "Xã Thanh Liệt"
+  },
+  {
+    "id": 1245,
+    "name": "Xã Kim Chung"
+  },
+  {
+    "id": 1049,
+    "name": "Quận Nam Từ Liêm"
+  },
+  {
+    "id": 1065,
+    "name": "Phường Chương Dương"
+  },
+  {
+    "id": 1081,
+    "name": "Phường Phú Thượng"
+  },
+  {
+    "id": 1097,
+    "name": "Phường Láng Hạ"
+  },
+  {
+    "id": 1117,
+    "name": "Phường Bách Khoa"
+  },
+  {
+    "id": 1133,
+    "name": "Phường Trương Định"
+  },
+  {
+    "id": 1149,
+    "name": "Phường Hạ Đình"
+  },
+  {
+    "id": 1165,
+    "name": "Phường Long Biên"
+  },
+  {
+    "id": 1182,
+    "name": "Phường Tây Tựu"
+  },
+  {
+    "id": 1198,
+    "name": "Phường Trung Văn"
+  },
+  {
+    "id": 1214,
+    "name": "Phường Văn Quán"
+  },
+  {
+    "id": 1230,
+    "name": "Xã Tứ Hiệp"
+  },
+  {
+    "id": 1246,
+    "name": "Xã La Phù"
+  },
+  {
+    "id": 1050,
+    "name": "Quận Ba Đình"
+  },
+  {
+    "id": 1066,
+    "name": "Phường Cửa Đông"
+  },
+  {
+    "id": 1082,
+    "name": "Phường Quảng An"
+  },
+  {
+    "id": 1098,
+    "name": "Phường Láng Thượng"
+  },
+  {
+    "id": 1118,
+    "name": "Phường Bạch Đằng"
+  },
+  {
+    "id": 1134,
+    "name": "Phường Vĩnh Tuy"
+  },
+  {
+    "id": 1150,
+    "name": "Phường Khương Đình"
+  },
+  {
+    "id": 1166,
+    "name": "Phường Ngọc Lâm"
+  },
+  {
+    "id": 1183,
+    "name": "Phường Thượng Cát"
+  },
+  {
+    "id": 1199,
+    "name": "Phường Xuân Phương"
+  },
+  {
+    "id": 1215,
+    "name": "Phường Yên Nghĩa"
+  },
+  {
+    "id": 1231,
+    "name": "Xã Vạn Phúc"
+  },
+  {
+    "id": 1247,
+    "name": "Xã Lại Yên"
+  },
+  {
+    "id": 1051,
+    "name": "Phường Cống Vị"
+  },
+  {
+    "id": 1067,
+    "name": "Phường Cửa Nam"
+  },
+  {
+    "id": 1083,
+    "name": "Phường Thụy Khuê"
+  },
+  {
+    "id": 1099,
+    "name": "Phường Nam Đồng"
+  },
+  {
+    "id": 1119,
+    "name": "Phường Bạch Mai"
+  },
+  {
+    "id": 1135,
+    "name": "Phường Đại Kim"
+  },
+  {
+    "id": 1151,
+    "name": "Phường Khương Mai"
+  },
+  {
+    "id": 1167,
+    "name": "Phường Ngọc Thụy"
+  },
+  {
+    "id": 1184,
+    "name": "Phường Thụy Phương"
+  },
+  {
+    "id": 1200,
+    "name": "Phường Biên Giang"
+  },
+  {
+    "id": 1216,
+    "name": "Phường Yết Kiêu"
+  },
+  {
+    "id": 1232,
+    "name": "Xã Vĩnh Quỳnh"
+  },
+  {
+    "id": 1248,
+    "name": "Xã Minh Khai"
+  },
+  {
+    "id": 1052,
+    "name": "Phường Điện Biên"
+  },
+  {
+    "id": 1068,
+    "name": "Phường Đồng Xuân"
+  },
+  {
+    "id": 1084,
+    "name": "Phường Dịch Vọng"
+  },
+  {
+    "id": 1100,
+    "name": "Phường Ngã Tư Sở"
+  },
+  {
+    "id": 1120,
+    "name": "Phường Cầu Dền"
+  },
+  {
+    "id": 1136,
+    "name": "Phường Định Công"
+  },
+  {
+    "id": 1152,
+    "name": "Phường Khương Trung"
+  },
+  {
+    "id": 1168,
+    "name": "Phường Phúc Đồng"
+  },
+  {
+    "id": 1185,
+    "name": "Phường Xuân Đỉnh"
+  },
+  {
+    "id": 1201,
+    "name": "Phường Đồng Mai"
+  },
+  {
+    "id": 1217,
+    "name": "Huyện Thanh Trì"
+  },
+  {
+    "id": 1233,
+    "name": "Xã Yên Mỹ"
+  },
+  {
+    "id": 1249,
+    "name": "Xã Sơn Đồng"
+  },
+  {
+    "id": 1053,
+    "name": "Phường Đội Cấn"
+  },
+  {
+    "id": 1069,
+    "name": "Phường Hàng Bạc"
+  },
+  {
+    "id": 1085,
+    "name": "Phường Dịch Vọng Hậu"
+  },
+  {
+    "id": 1101,
+    "name": "Phường Ô Chợ Dừa"
+  },
+  {
+    "id": 1121,
+    "name": "Phường Đống Mác"
+  },
+  {
+    "id": 1137,
+    "name": "Phường Giáp Bát"
+  },
+  {
+    "id": 1153,
+    "name": "Phường Kim Giang"
+  },
+  {
+    "id": 1169,
+    "name": "Phường Phúc Lợi"
+  },
+  {
+    "id": 1186,
+    "name": "Phường Xuân Tảo"
+  },
+  {
+    "id": 1202,
+    "name": "Phường Dương Nội"
+  },
+  {
+    "id": 1218,
+    "name": "Thị trấn Văn điển"
+  },
+  {
+    "id": 1234,
+    "name": "Huyện Hoài Đức"
+  },
+  {
+    "id": 1250,
+    "name": "Xã Song Phương"
+  },
+  {
+    "id": 1054,
+    "name": "Phường Giảng Võ"
+  },
+  {
+    "id": 1070,
+    "name": "Phường Hàng Bài"
+  },
+  {
+    "id": 1086,
+    "name": "Phường Mai Dịch"
+  },
+  {
+    "id": 1102,
+    "name": "Phường Phương Liên"
+  },
+  {
+    "id": 1122,
+    "name": "Phường Đồng Nhân"
+  },
+  {
+    "id": 1138,
+    "name": "Phường Hoàng Liệt"
+  },
+  {
+    "id": 1154,
+    "name": "Phường Nhân Chính"
+  },
+  {
+    "id": 1170,
+    "name": "Phường Sài Đồng"
+  },
+  {
+    "id": 1187,
+    "name": "Phường Tứ Liên"
+  },
+  {
+    "id": 1203,
+    "name": "Phường Hà Cầu"
+  },
+  {
+    "id": 1219,
+    "name": "Xã Đại Áng"
+  },
+  {
+    "id": 1235,
+    "name": "Thị trấn Trạm Trôi"
+  },
+  {
+    "id": 1251,
+    "name": "Xã Tiền Yên"
+  },
+  {
+    "id": 1039,
+    "name": "Quận Cầu Giấy"
+  },
+  {
+    "id": 1055,
+    "name": "Phường Kim Mã"
+  },
+  {
+    "id": 1071,
+    "name": "Phường Hàng Bồ"
+  },
+  {
+    "id": 1087,
+    "name": "Phường Nghĩa Đô"
+  },
+  {
+    "id": 1107,
+    "name": "Phường Phương Mai"
+  },
+  {
+    "id": 1123,
+    "name": "Phường Đồng Tâm"
+  },
+  {
+    "id": 1139,
+    "name": "Phường Hoàng Văn Thụ"
+  },
+  {
+    "id": 1155,
+    "name": "Phường Phương Liệt"
+  },
+  {
+    "id": 1171,
+    "name": "Phường Thạch Bàn"
+  },
+  {
+    "id": 1188,
+    "name": "Phường Xuân La"
+  },
+  {
+    "id": 1204,
+    "name": "Phường Kiến Hưng"
+  },
+  {
+    "id": 1220,
+    "name": "Xã Đông Mỹ"
+  },
+  {
+    "id": 1236,
+    "name": "Xã An Khánh"
+  },
+  {
+    "id": 1252,
+    "name": "Xã Vân Canh"
+  },
+  {
+    "id": 1040,
+    "name": "Quận Hoàn Kiếm"
+  },
+  {
+    "id": 1056,
+    "name": "Phường Liễu Giai"
+  },
+  {
+    "id": 1072,
+    "name": "Phường Hàng Bông"
+  },
+  {
+    "id": 1088,
+    "name": "Phường Nghĩa Tân"
+  },
+  {
+    "id": 1108,
+    "name": "Phường Quang Trung"
+  },
+  {
+    "id": 1124,
+    "name": "Phường Lê Đại Hành"
+  },
+  {
+    "id": 1140,
+    "name": "Phường Lĩnh Nam"
+  },
+  {
+    "id": 1156,
+    "name": "Phường Thanh Xuân Bắc"
+  },
+  {
+    "id": 1172,
+    "name": "Phường Thượng Thanh"
+  },
+  {
+    "id": 1189,
+    "name": "Phường Yên Phụ"
+  },
+  {
+    "id": 1205,
+    "name": "Phường La Khê"
+  },
+  {
+    "id": 1221,
+    "name": "Xã Duyên Hà"
+  },
+  {
+    "id": 1237,
+    "name": "Xã An Thượng"
+  },
+  {
+    "id": 1253,
+    "name": "Xã Vân Côn"
+  },
+  {
+    "id": 1041,
+    "name": "Quận Hai Bà Trưng"
+  },
+  {
+    "id": 1057,
+    "name": "Phường Ngọc Hà"
+  },
+  {
+    "id": 1073,
+    "name": "Phường Hàng Buồm"
+  },
+  {
+    "id": 1089,
+    "name": "Phường Quan Hoa"
+  },
+  {
+    "id": 1109,
+    "name": "Phường Quốc Tử Giám"
+  },
+  {
+    "id": 1125,
+    "name": "Phường Minh Khai HBT"
+  },
+  {
+    "id": 1141,
+    "name": "Phường Mai Động"
+  },
+  {
+    "id": 1157,
+    "name": "Phường Thanh Xuân Nam"
+  },
+  {
+    "id": 1173,
+    "name": "Phường Việt Hưng"
+  },
+  {
+    "id": 1190,
+    "name": "Phường Cầu Diễn"
+  },
+  {
+    "id": 1206,
+    "name": "Phường Mộ Lao"
+  },
+  {
+    "id": 1222,
+    "name": "Xã Hữu Hòa"
+  },
+  {
+    "id": 1238,
+    "name": "Xã Cát Quế"
+  },
+  {
+    "id": 1254,
+    "name": "Xã Yên Sở"
+  },
+  {
+    "id": 818,
+    "name": "2N1K"
+  },
+  {
+    "id": 2208,
+    "name": "HH 50"
+  },
+  {
+    "id": 2209,
+    "name": "HH 70"
+  },
+  {
+    "id": 2210,
+    "name": "HH 80"
+  },
+  {
+    "id": 2211,
+    "name": "HH 100"
+  },
+  {
+    "id": 2212,
+    "name": "HH 90"
+  },
+  {
+    "id": 2205,
+    "name": "HH 65"
+  },
+  {
+    "id": 2206,
+    "name": "HH 60"
+  },
+  {
+    "id": 2207,
+    "name": "HH 55"
+  },
+  {
+    "id": 839,
+    "name": "Thang máy"
+  },
+  {
+    "id": 840,
+    "name": "Thang bộ"
+  },
+  {
+    "id": 876,
+    "name": "✅ Được nuôi pet"
+  },
+  {
+    "id": 877,
+    "name": "🚫 Không nuôi pet"
+  },
+  {
+    "id": 878,
+    "name": "✅ Nhận xe điện"
+  },
+  {
+    "id": 879,
+    "name": "🚫 Cấm xe điện"
+  },
+  {
+    "id": 2200,
+    "name": "⚡ Chỉ VinFast"
+  },
+  {
+    "id": 2189,
+    "name": "✅ Nhận khách quốc tế"
+  },
+  {
+    "id": 2190,
+    "name": "🚫 Không khách quốc tế"
+  },
+  {
+    "id": 1033,
+    "name": "Ô tô vào nhà"
+  },
+  {
+    "id": 1034,
+    "name": "Gần bãi đỗ ô tô"
+  },
+  {
+    "id": 1035,
+    "name": "Gần đường lớn"
+  },
+  {
+    "id": 856,
+    "name": "✅ Có gác xép"
+  },
+  {
+    "id": 857,
+    "name": "❌ Không gác xép"
+  },
+  {
+    "id": 1020,
+    "name": "Ban công"
+  },
+  {
+    "id": 830,
+    "name": "Tủ lạnh"
+  },
+  {
+    "id": 831,
+    "name": "Máy giặt riêng"
+  },
+  {
+    "id": 2201,
+    "name": "Đầu chờ máy giặt"
+  },
+  {
+    "id": 837,
+    "name": "Thang thoát hiểm"
+  },
+  {
+    "id": 859,
+    "name": "Điều hòa"
+  },
+  {
+    "id": 1019,
+    "name": "Bàn bếp"
+  },
+  {
+    "id": 824,
+    "name": "Tủ bếp"
+  },
+  {
+    "id": 1011,
+    "name": "Bếp điện"
+  },
+  {
+    "id": 838,
+    "name": "Hút mùi"
+  },
+  {
+    "id": 836,
+    "name": "Wifi"
+  },
+  {
+    "id": 858,
+    "name": "Nóng lạnh"
+  },
+  {
+    "id": 1017,
+    "name": "Máy giặt chung"
+  },
+  {
+    "id": 1016,
+    "name": "Máy sấy chung"
+  },
+  {
+    "id": 861,
+    "name": "Tivi"
+  },
+  {
+    "id": 860,
+    "name": "Sofa"
+  },
+  {
+    "id": 1013,
+    "name": "Bàn ghế"
+  },
+  {
+    "id": 823,
+    "name": "Giường"
+  },
+  {
+    "id": 827,
+    "name": "Tủ quần áo"
+  },
+  {
+    "id": 1256,
+    "name": "Giường tầng"
+  },
+  {
+    "id": 1000,
+    "name": "Giải trí, trò chơi"
+  },
+  {
+    "id": 1001,
+    "name": "Dịch vụ, tư vấn"
+  },
+  {
+    "id": 1002,
+    "name": "Sức khoẻ, làm đẹp"
+  },
+  {
+    "id": 1003,
+    "name": "Huấn luyện, đào tạo"
+  },
+  {
+    "id": 997,
+    "name": "Bếp ăn, nhà hàng"
+  },
+  {
+    "id": 998,
+    "name": "Bảo dưỡng, sửa chữa"
+  },
+  {
+    "id": 999,
+    "name": "Bán lẻ, showroom"
+  }
+]

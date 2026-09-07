@@ -1,0 +1,6415 @@
+[
+  {
+    "timestamp": "2026-09-07T17:02:36.606Z",
+    "durationSeconds": 27,
+    "summary": {
+      "totalInMoithue": 895,
+      "newRooms": 1,
+      "updatedRooms": 2,
+      "unchangedRooms": 892,
+      "hiddenRooms": 0,
+      "reactivatedRooms": 0,
+      "totalInDatabase": 895
+    },
+    "changes": [
+      {
+        "type": "NEW",
+        "id": "MT-44-70-xx-tran-thai-tong_truc-1_anh-lam_dk",
+        "title": "Ngõ 44 Trần Thái Tông_trục 1",
+        "price": 6200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-132-42-01-xx-cau-giay_truc-1_anh-lap_dk",
+        "title": "Ngõ 132 Cầu Giấy_Trục 1",
+        "price": 5800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-197-32-a-hoang-mai_truc-01_em-nam_xh",
+        "title": "Ngõ 197 Hoàng Mai_Trục 01",
+        "price": 5800000
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-07T16:10:57.923Z",
+    "durationSeconds": 33,
+    "summary": {
+      "totalInMoithue": 894,
+      "newRooms": 0,
+      "updatedRooms": 0,
+      "unchangedRooms": 894,
+      "hiddenRooms": 0,
+      "reactivatedRooms": 0,
+      "totalInDatabase": 920
+    },
+    "changes": []
+  },
+  {
+    "timestamp": "2026-09-07T16:03:31.254Z",
+    "durationSeconds": 1594,
+    "summary": {
+      "totalInMoithue": 894,
+      "newRooms": 763,
+      "updatedRooms": 81,
+      "unchangedRooms": 50,
+      "hiddenRooms": 0,
+      "reactivatedRooms": 0,
+      "totalInDatabase": 920
+    },
+    "changes": [
+      {
+        "type": "NEW",
+        "id": "MT-43-74-co-nhue",
+        "title": "Ngõ 43 Cổ Nhuế",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-19-dich-vong-phong-302_qv",
+        "title": "Ngõ 29 Dịch Vọng_Trục 1,2_TV",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-19-dich-vong-truc-02_qv",
+        "title": "Ngõ 29 Dịch Vọng trục 02_TV",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-xx-my-dinh_truc-2_a-minh",
+        "title": "Ngõ 20 Mỹ Đình_Trục 1_A Minh",
+        "price": 4100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-83a-xx-trinh-cong-son_-truc-trong-tang-6-_-anh-long",
+        "title": "Ngõ 83A Trịnh Công Sơn_ Trục Trong Tầng 6 _ Anh Long",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-52-x-ho-linh-quang_truc-0102_dd-2",
+        "title": "Ngõ 51 Hồ Linh Quang_Trục 01,02_ĐĐ",
+        "price": 5400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-8x-05-duong-cau-dien_truc02_anh-ba_cd",
+        "title": "Ngõ 136 Đường Cầu Diễn_Trục_Anh Ba_CD",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-400-truong-dinh_truc-02_xh",
+        "title": "400 Trương Định_Trục 01,02_XH",
+        "price": 11500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-69-xx-doi-can_truc-3-tang-2-3-4-5_anh-minh_bd",
+        "title": "Ngõ 279 Đội Cấn_Trục 3 tầng 2, 3, 4, 5_Anh Minh_BĐ",
+        "price": 6200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-66-xx-pho-vong-thi-_truc-2-tang-2-5-gac-xep_-anh-cuong",
+        "title": "Ngõ 66 Phố Võng Thị _Trục 2 tầng 2, 5 Gác Xếp_ Anh Cường",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-191-x-khuong-thuong_nha-nguyen-can_dd",
+        "title": "Ngõ 191 Khương Thượng_Nhà Nguyên Căn_ĐĐ",
+        "price": 15000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-24-83-x-kim-dong_truc-02_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 02_Anh Cường_HCHome_Xh",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-194-7-8-thanh-dam_truc-03_ln",
+        "title": "Ngõ 194 Thanh Đàm_Trục 01,02,03_FH_LN",
+        "price": 4700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-22-luong-khanh-thien-1_truc-03_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (1)_Trục 03_Funhome_XH",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-xx-kim-ma_truc-3_chi-mai_bd",
+        "title": "Ngõ 82 Kim Mã_Trục 3_Chị Mai_BĐ",
+        "price": 7100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-486-41-duong-xuan-dinh-_-a-ngoc-_-truc-3-_-tvh",
+        "title": "Ngõ 486 Đường Xuân Đỉnh _ A Ngọc _ Trục 3 _ HAV",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-5-16-xx-tan-trieu-truc-1-nha-chi-van",
+        "title": "Ngõ 5 Tân Triều trục 1 nhà chị Vân( ở 2 3tr3)",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-duong-hong-le-van-canh_101_-vua-o-vua-kdoanh_a-thien_2r",
+        "title": "Đường Hồng Lê-Vân Canh_101_A Thien_2R",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha_truc-02_mt",
+        "title": "Ngõ 99 Định Công Hạ (N1)_Trục 02_MT",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-902-32-x-kim-giang-truc-01-02_anh-tung",
+        "title": "Ngõ 902 Kim Giang trục 02_Anh Tùng_HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-282-17-2x-kim-giang_anh-hoang",
+        "title": "Ngõ 282 Kim Giang_Trục 03-Anh Hoàng",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-80-47-xx-xuan-phuong_truc-34_anh-dung_cd",
+        "title": "Ngõ 80 Xuân Phương_Trục 3,4,5,6_Anh Dũng_CD",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-788-3x-kim-giang-truc-01-02-03-nha-anh-manh-2",
+        "title": "Ngõ 788 Kim Giang trục 01 nhà anh Mạnh_HĐ",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-402-7-xx-my-dinh-anh-linh-da",
+        "title": "Ngõ 402 Mỹ Đình Anh Thành",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-138-x-dinh-cong-thuong-2_truc-02_mt",
+        "title": "Ngõ 230 Định Công Thượng (2)_Trục 01,02,03,04,05,06_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-thanh-liet-truc-04_anh-dung",
+        "title": "63 Thanh Liệt trục 04_Anh Dũng",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-39-xx-my-dinh-truc-1-nha-c-lien",
+        "title": "Ngõ 20 Mỹ Đình – Trục 1 – nhà c Liên",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-31-1-xx-phan-dinh-giot_p602_mt",
+        "title": "Ngõ 31 Phan Đình Giót_P602_MT",
+        "price": 12000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-100-gieng-mut_truc-01_xh",
+        "title": "100 Giếng Mứt_Trục 01_XH",
+        "price": 8000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-265-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 265 Hoàng Mai_Trục 01,02_Anh Đạt_XH",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-280-38-co-nhue_-truc-12",
+        "title": "Ngõ 282 Cổ Nhuế_ Trục 1",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha-2_truc-05_mt",
+        "title": "Ngõ 99 Định Công Hạ (N1)_Trục 05_MT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-138-x-dinh-cong-thuong_studio_mt",
+        "title": "Ngõ 230 Định Công Thượng (2)_Trục 01,02,03,04,05,06_ Studio_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-47-nam-du_truc-0106_mt",
+        "title": "47 Nam Dư_Trục 06_FH_LN",
+        "price": 4700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-111-x-nguyen-duc-canh_truc-010205_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 01,02,05_Anh Khánh_XH",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-127-tuu-liet-truc-01-tang-7-nha-anh-thang",
+        "title": "127 Tựu Liệt trục 01 tầng 7 nhà anh Thắng",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-205-53-54-8-duong-xuan-dinh-_-nha-anh-dac-_truc-2-_tvh",
+        "title": "Ngõ 205 Đường Xuân Đỉnh _ Nhà Anh Dac _Trục 2 _VDT",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-20-x-kim-giang-mbkd1-phong-o-cho-mbkd",
+        "title": "Ngõ 634 Kim Giang MBKD",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-816-51-x-kim-giang-trich-01-nha-anh-truong",
+        "title": "Ngõ 816 Kim Giang – trục 01_HĐ",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-196-2x-tran-duy-hung_truc-01_tx",
+        "title": "Ngõ 196 Trần Duy Hưng_Trục 01_TX",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-196-7x-tran-duy-hung_truc-01_tx",
+        "title": "Ngõ 196 Trần Duy Hưng_Trục 01_TX",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-487-x-co-nhue-_-anh-duc",
+        "title": "Ngõ 487 Cổ Nhuế _ anh Đức",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-307-mau-luong_tang23_truc04_ts",
+        "title": "307 Mậu Lương_tầng2,3_Trục04_TS",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-307-mau-luong_tang23_truc03_ts",
+        "title": "307 Mậu Lương_tầng2,3_trục03_TS",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-307-mau-luong_tang-3_truc02_ts",
+        "title": "307 Mậu Lượng_Tầng 3_trục02_TS",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-307-mau-luong_tang23_truc01_ts",
+        "title": "307 Mậu Lương_Tầng2,3_Trục01_TS",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-307-mau-luong-ha-dong_tang-2_truc02_ts",
+        "title": "307 Mậu Lương , Hà Đông_Tầng 2_trục02_TS",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-65-x-dinh-cong-ha_truc-01_mt",
+        "title": "Ngõ 99 Định Công Hạ_Trục 01_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-334-xx-le-trong-tan_truc-03_mt",
+        "title": "Ngõ 192 Lê Trọng Tấn_Trục 03_MT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14-3x-hung-thinh-yen-so-_mbkd-_anh-thien",
+        "title": "Ngõ 14 Hưng Thịnh ,Yên Sở _MBKD _Anh Thiện",
+        "price": 14000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-x8-phu-do_truc-3_chi-dung_tt",
+        "title": "Ngõ 82 Phú Đô_Trục 3_Chị Dung_TT",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-103-cau-dien_truc3_anh-cong_cd",
+        "title": "Ngõ 136 Cầu Diễn_Truc3_Anh Cong_CD",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-xx-dao-tan_truc01_anh-an",
+        "title": "Ngõ 58 Đào Tấn_Trục01_anh An",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-103-cau-dien_truc12_anh-cong_cd",
+        "title": "Ngõ 136 Cầu Diễn_Truc12_Anh Cong_CD",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-11-36-17-xx-le-quang-dao-_301_a-luan_tt",
+        "title": "Ngõ 08 Lê Quang Đạo _301_A Luân_TT",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-15x-kim-giang-truc-01_hd",
+        "title": "Ngõ 750 Kim Giang – trục 01_HĐ",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-15x-kim-giang-truc-02_hd",
+        "title": "Ngõ 750 Kim Giang – trục 02_HĐ",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-2-xx-khuat-duy-tien_p601_tx",
+        "title": "Ngõ 20 Khuất Duy Tiến_P601_TX",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-1-6x-dai-linh-2",
+        "title": "Ngõ 1 Đại Linh",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-115-x-nguyen-van-troi_p701_mt",
+        "title": "Ngõ 115 Nguyễn Văn Trỗi_P701_MT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-352-15-1x-giai-phong_p401_mt",
+        "title": "Ngõ 352 Giải Phóng_P401_MT",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-1-6x-dai-linh",
+        "title": "Ngõ 1 Đại Linh",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-5x-quan-nhan_truc-01_tx",
+        "title": "Ngõ 1 Quan Nhân_Trục 01_TX",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-204-3x-tran-duy-hung_tang-2_tc",
+        "title": "Ngõ 204 Trần Duy Hưng_Tầng 2_TC",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-132-52-01-cau-dien_bac-chien_pgacxep_cd",
+        "title": "Ngõ 132 Cầu Diễn_Bác Chiến_PGacXep_CD",
+        "price": 2300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns4_601_chi-linh_lpnt",
+        "title": "Khu đất dịch vụ Di Trạch Ns4_601_Chị Linh_LPNT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-toa-b-70-97-van-tri_truc-4_chi-kieu_cd",
+        "title": "Ngõ 70 Văn Trì_T 1_Chị Huyền_CD",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-193-64-90-39-phu-dien_p201_chi-phuong_ns",
+        "title": "Ngõ 193 Phú Diễn_P201_Chị Phượng_NS",
+        "price": 3400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-467-146-xx-linh-nam_p02_chu-truong_ln",
+        "title": "Ngõ 467 Lĩnh Nam_P02_Chú Trường_LN",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-143-xx-xuan-phuong_p701_coc-15_2r",
+        "title": "Ngõ 143 Xuân Phương_P701_Cọc 1,5_2R",
+        "price": 4650000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-136-xx-trieu-khuc-thang-bo-t6",
+        "title": "Ngõ 136 Triều Khúc ( thang bộ T6)",
+        "price": 2300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-9-to1x-duong-to-hieuha-dong_hd",
+        "title": "Ngõ 9 ổ1x-đường Tô Hiệu,Hà Đông_HĐ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-139-x-bang-liet-_hd",
+        "title": "Ngõ 139 Bằng Liệt _HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-02-87-3x-dai-lo-thang-long_truc-1_a-anh_tt",
+        "title": "Ngõ 02 Đại Lộ Thăng Long_Trục 1_A Ánh_TT",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-73-3x-me-tri-thuong_truc-12_c-hang_tt",
+        "title": "Ngõ 73 Mễ Trì Thượng_Trục 1,2_C Hằng_TT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-73-3x-me-tri-thuong_truc-3_c-hang_tt",
+        "title": "Ngõ 73 Mễ Trì Thượng_Trục 3_C Hằng_TT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-97-12-1x-khuong-trung_p502_mt",
+        "title": "Ngõ 97 Khương Trung_P502_MT",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-97-12-1x-khuong-trung_p704_mt",
+        "title": "Ngõ 97 Khương Trung_P704_MT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-351-x-x-thuy-phuong-_co-an-_mb-tang-1-okinh-doanh_vdt",
+        "title": "Ngõ 351 Thụy Phương _cô An _mb tầng 1 ở+kinh doanh_VDT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-351-x-thuy-phuong-_co-an_202-302_vdt",
+        "title": "Ngõ 351 Thụy phương _cô An_202.302_VDT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-351-x-thuy-phuong_co-an_201-301_vdt",
+        "title": "Ngõ 351 Thụy phương_cô An_201.301_VDT",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-47-7-b-nguyen-duc-canh-tang-1_xh",
+        "title": "Ngõ 47 Nguyễn Đức Cảnh Tầng 1_ Chị Linh_XH",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-127-x-hoang-mai_truc-02_anh-do_xh",
+        "title": "Ngõ 127 Hoàng Mai_Trục 02_Anh Độ_XH",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-75-41-xx-phu-dien_truc-2_a-linh_tv",
+        "title": "Ngõ 75 Phú Diễn_Trục 2_A Linh_TV",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-75-41-xx-phu-dien_truc-1_a-linh_tv",
+        "title": "Ngõ 75 Phú Diễn_Trục 1_A Linh_TV",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk13-lo23-mau-luong-ha-dong",
+        "title": "LK13 Lô23 Mậu Lương , Hà Đông_trục 03",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6-x-dang-tran-duc-thanh-dam_a-chinh_tang-1_ln",
+        "title": "Ngõ 6 Đặng Trần Đức – Thanh Đàm_A Chính_Tầng 1_LN",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk13-lo-23-mau-luong-ha-dong-truc-01_hd",
+        "title": "Lk13 Lô 23 Mậu Lương, Hà Đông Trục 01_HĐ",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-9-cau-dien_truc-2_bighome_ns",
+        "title": "Ngõ 99 Cầu Diễn_Trục 2_Bighome_NS",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-5-36-xx-phu-my_truc-01-tang-8_a-the-anh",
+        "title": "Ngõ 5 Phú Mỹ_Trục 01 tầng 8_A Thế Anh",
+        "price": 4250000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-28-x-thanh-dam_truc-01_a-nam-anh_ln",
+        "title": "Ngõ 28 Thanh Đàm_Trục 01_A Nam Anh_LN",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-205-27-x-x-xuan-dinh_-anh-tien_-302-502_vdt",
+        "title": "Ngõ 205 Xuân Đỉnh_ anh Tiến_ 302.502_VDT",
+        "price": 5400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-275-giap-bat_truc-04_xh",
+        "title": "275 Giáp Bát_Trục 04_XH",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-4x-me-tri-thuong_truc-2-402_a-quyen_tt",
+        "title": "Ngõ 230 Mễ Trì Thượng_Trục 2, 402_A Quyền_TT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-x-me-tri-ha_1n1btruc-3-403_a-quyen_tt",
+        "title": "Ngõ 59 Mễ Trì Hạ_1N1BTrục 3, 403_A Quyền_TT",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-x-me-tri-dong-me_truc-1-2n1k-vip_a-cuong_tt",
+        "title": "Ngõ 32 Mễ Trì (Đồng me)_Trục 1 2N1K VIP_A Cường_TT",
+        "price": 9999999
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-x-me-tri-dong-me_1n1k-vip_truc-2_a-cuong_tt",
+        "title": "Ngõ 32 Mễ Trì (Đồng Me)_1N1K VIP_Trục 2_A Cường_TT",
+        "price": 8500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-x-me-tri-dong-me_truc-35-vip_a-cuong_tt",
+        "title": "Ngõ 32 Mễ Trì (Đồng Me)_1N1K_Trục 3,5 VIP_A Cường_TT",
+        "price": 8500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-x-me-tri-dong-me_1n1k_truc-4_a-cuong_tt",
+        "title": "Ngõ 32 Mễ Trì (Đồng Me)_1N1K_Trục 4_A Cường_TT",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-245-135-1x-dinh-cong_truc-03_mt",
+        "title": "Ngõ 245 Định Công_Trục 03_MT",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-245-135-1x-dinh-cong_truc-02_mt",
+        "title": "Ngõ 245 Định Công_Trục 02_MT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-245-135-1x-dinh-cong_truc-01_mt",
+        "title": "Ngõ 245 Định Công_Trục 01_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-35-khuong-trung_tang-6_mt",
+        "title": "35 Khương Trung_Tầng 6_MT",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-39-24-yen-xa-2",
+        "title": "Ngõ 39 yên xá",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-5x-kim-giang_tang-1_5_truc-01_truc-01",
+        "title": "Ngõ 634 Kim Giang_Tầng 1_5_Trục 01_Trục 01",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-102-44-22-x-phao-dai-lang_truc-03_tx",
+        "title": "Ngõ 102 Pháo Đài Láng_Trục 03_TX",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-772-7-x-kim-giang-truc-03-tang-7_hd",
+        "title": "Ngõ 772 Kim Giang – trục 03 tầng 7_HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-772-7-x-kim-giang-truc-03-tang-4_hd",
+        "title": "Ngõ 772 Kim Giang – trục 03 tầng 4_HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2-xx-dinh-thon",
+        "title": "Ngõ 2 Đình thôn",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-772-7-x-kim-giang-truc-02-tang-4_hd",
+        "title": "Ngõ 772 Kim Giang – trục 02 tầng 4_HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-200-x-vinh-hung_nguyen-can_a-doan_ln",
+        "title": "Ngõ 200 Vĩnh Hưng_Nguyên căn_A Đoàn_LN",
+        "price": 10500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-kim-giang-mbkd_hd",
+        "title": "634 Kim Giang MBKD_HĐ",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-122-x-dinh-cong-ha_truc-04_mt",
+        "title": "Ngõ 99 Định Công Hạ_Trục 04_MT",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-121-7x-quang-tien",
+        "title": "Ngõ 121 Quang tiến",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-27-9-6x-tay-mo",
+        "title": "Ngõ 27 Tây Mỗ",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-53-2x-quang-tien-2",
+        "title": "Ngõ 53 Quang tiến",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-53-2x-quang-tien",
+        "title": "Ngõ 53 Quang tiến",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-so-18-dv13-khu-dich-vu-linh-dam-khu-tay-nam-linh-dam",
+        "title": "Số 18 DV13 khu dịch vụ Linh Đàm – khu Tây Nam Linh Đàm",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-so-18-dv13-khu-dich-vu-linh-dam-khu-tay-nam-linh-dam-_hd",
+        "title": "Số 18 DV13 khu dịch vụ Linh Đàm – khu Tây Nam Linh Đàm _HĐ",
+        "price": 7000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-281-3x-truong-dinh_mbkd_co-nhung_xh",
+        "title": "Ngõ 281 Trương Định_MBKD_Cô Nhung_XH",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-51-20-nguyen-hoang_truc-02_a-hung",
+        "title": "Ngõ 51 Nguyễn Hoàng_Trục 02_A Hùng",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk1-mau-luong",
+        "title": "13Lk9 Mậu Lương",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-115-x-tran-cung_-1n1k_-chi-van",
+        "title": "Ngõ 115 Trần Cung_ 1N1K_ chị Vân",
+        "price": 6200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-san-vp-mbkd-25ha-khu-dat-dich-vu_tang-2_2r",
+        "title": "Sàn VP-MBKD 25ha Khu Đất Dịch Vụ_Tầng 2_2R",
+        "price": 9000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-hoang-cong-chat_c-nghia_p301_tv",
+        "title": "136 Hoàng Công Chất_C Nghia_P301_TV",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-mbkd-25ha-khu-dat-dich-vu_tang-1_c-thien_2r",
+        "title": "MBKD 25ha Khu Đất Dịch Vụ_Tầng 1_C Thien_2R",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-hoang-cong-chat_c-nghia_p203_tv",
+        "title": "136 Hoàng Công Chất_C Nghia_P203_TV",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-hoang-cong-chat_c-nghia_p202_tv",
+        "title": "136 Hoàng Công Chất_C Nghia_P202_TV",
+        "price": 2200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-250-60-5x-phan-trong-tue_tang5_truc01_hd",
+        "title": "Ngõ 250 phan trọng tuệ_tầng5_Trục01_HĐ",
+        "price": 3200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-60-dong-thang_2n1k_-gan-hoc-vien-tai-chinh-dh-mo_-mat-sau",
+        "title": "Ngõ 60 Đông Thắng_2N1K_ Gần Học Viện Tài Chính, ĐH Mỏ_ Mặt sau",
+        "price": 7700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-60-dong-thang_2n1k_-gan-hoc-vien-tai-chinh-dh-mo_-mat-truoc",
+        "title": "Ngõ 60 Đông Thắng_2N1K_ Gần Học Viện Tài Chính, ĐH Mỏ_ Mặt trước",
+        "price": 8200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-24-x-kim-dong_tang-5_truc-04_xh",
+        "title": "Ngõ 24 Kim Đồng_Tầng 5_Trục 04_XH",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-24-119-x-kim-dong_truc-01_anh-quan_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 01_Anh Quân_XH",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-83-pho-kham-thien_p601_dd",
+        "title": "83 Phố Khâm Thiên_P601_ĐĐ",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-178-quan-nhan_truc-04_tx",
+        "title": "181 Quan Nhân_Trục 04_TX",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-178-quan-nhan_truc-03_tx",
+        "title": "181 Quan Nhân_Trục 03_TX",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-178-quan-nhan_truc-01_tx",
+        "title": "181 Quan Nhân_Truc 01_TX",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-178-quan-nhan_truc-02_tx",
+        "title": "181 Quan Nhân_Trục 02_TX",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-n2c-hoang-minh-giam-_tx",
+        "title": "N2C Hoàng Minh Giám _TX",
+        "price": 15000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-3x-ngo-thai-loi_tang-2_chi-thuan_xh",
+        "title": "3X Ngõ Thái Lợi_Tầng 2_Chị Thuận_XH",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-2xd-ha-yen-quyet_truc-b_tx",
+        "title": "Ngõ 32 Hạ Yên Quyết_Trục B_TX",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-130-nguyen-dong-chi_truc-2_tv",
+        "title": "130 Nguyễn Đổng Chi_Trục 2_TV",
+        "price": 6000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-649-x-linh-nam_truc-02_fh",
+        "title": "Ngõ 649 Lĩnh Nam_Trục 02_FH_LN",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-108-3x-dai-hung_truc-01-_-anh-manh_hd",
+        "title": "Ngõ 108 Đại Hưng_trục 01 _ Anh Mạnh_HĐ",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-31-x-tam-khuong_p901_dd",
+        "title": "Ngõ 31 Tam Khương_P901_ĐĐ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-nha-nguyen-can-so-4-bang-b_hd",
+        "title": "Nhà nguyên căn số 4 Bằng B_HĐ",
+        "price": 15000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-394-xx-my-dinh_truc-2_a-duy-tq",
+        "title": "Ngõ 394 Mỹ Đình_Trục 2_A Toàn TQ",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-394-xx-my-dinh_truc-1_a-duy-tq",
+        "title": "Ngõ 394 Mỹ Đình_Trục 1_A Toàn TQ",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-394-xx-my-dinh_truc-1-2_a-duy-tq",
+        "title": "Ngõ 394 Mỹ Đình_Trục 1/2_A Toàn TQ",
+        "price": 6700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-448-x-vinh-hung-1_truc-01_a-tam_ln",
+        "title": "Ngõ 448 Vĩnh Hưng (1)_Trục 01_A Tâm_LN",
+        "price": 4800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-448-x-vinh-hung-2-_-truc-02-_-a-tam-_-ln",
+        "title": "Ngõ 448 Vĩnh Hưng ( 2 ) _ Trục 02 _ A Tâm _ LN",
+        "price": 5300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-467-170-xx-linh-nam-1_-truc-01-_-a-dat-_ln",
+        "title": "Ngõ 467 Lĩnh Nam (1)_ Trục 01 _ A Đạt _LN",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-05-phu-vinh_203204_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_203,204_A Huy_AK",
+        "price": 3200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-05-phu-vinh_truc-6_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_Trục 6_A Huy_AK",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-401-xx-xuan-dinh_co-hoai-_tang-2-3-4-5-6_vdt",
+        "title": "Ngõ 401 Xuân Đỉnh_Cô Hoài _tầng 2.3.4.5.6_VDT",
+        "price": 7200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-05-phu-vinh_truc-5_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_Trục 5_A Huy_AK",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-05-phu-vinh_truc-2_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_Trục 2_A Huy_AK",
+        "price": 3200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-4x-hoa-binh-7_tang-1_anh-tam_xh",
+        "title": "4X Hoà Bình 7_Tầng 1_Anh Tâm_XH",
+        "price": 4900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-05-phu-vinh_truc-1_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_Trục 1_A Huy_AK",
+        "price": 3400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-137-vu-tong-phan_tang-3-mat-trong_mt",
+        "title": "137 Vũ Tông Phan_Tầng 3 Mặt Trong_MT",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-42-xx-xuan-dinh-co-mai-504b-hav",
+        "title": "Ngõ 42 Xuân Đỉnh – Cô Mai – 504B – HAV",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-42-xx-xuan-dinh-p1-co-mai-hav",
+        "title": "Ngõ 42 Xuân Đỉnh – P1 – Cô Mai – HAV",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-42-xx-xuan-dinh-p9-co-mai-hav",
+        "title": "Ngõ 42 Xuân Đỉnh – P9 – Cô Mai – HAV",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-42-xx-xuan-dinh-p14-co-mai-hav",
+        "title": "Ngõ 42 Xuân Đỉnh – P14 – Cô Mai – HAV",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-x1-phu-do_101_a-chien-_tt",
+        "title": "Ngõ 82 Phú Đô_101_A Chiến _TT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-x1-phu-do_502_a-chien_tt",
+        "title": "Ngõ 82 Phú Đô_502_A Chiến_TT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-233-thuy-phuong_co-huyen_mbkd-tang1_vdt",
+        "title": "233 Thụy Phương_Cô Huyền_mbkd tầng1_VDT",
+        "price": 11000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-306-xx-xuan-dinh-c-thu-tang-1-hav",
+        "title": "Ngõ 306 Xuân Đỉnh – C Thu – Tầng 1 – HAV",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-306-xx-xuan-dinh-c-thu-tang-235-hav",
+        "title": "Ngõ 306 Xuân Đỉnh – C Thu – Tầng 2,3,5 – HAV",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-27-7-dich-vong_-anh-hung-_-truc-303a-103a-_vdt",
+        "title": "Ngõ 29 ịch Vọng_ anh Hùng _ Trục 303a ,103a _VDT",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-27-7-dich-vong_anh-hung_truc-104a304a404a_vdt",
+        "title": "Ngõ 29 ịch Vọng_anh Hùng_trục 104a,304a,404a_VDT",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-27-7-dich-vong_-anh-hung_truc-303_vdt",
+        "title": "Ngõ 29 ịch vọng_ anh Hùng_trục 303_VDT",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-x8-phu-do_truc-2_chi-dung_tt",
+        "title": "Ngõ 82 Phú Đô_Trục 2_Chị Dung_TT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-x8-phu-do_truc-1_chi-dung_tt",
+        "title": "Ngõ 82 Phú Đô_Trục 1_Chị Dung_TT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-x8-phu-do_truc-5_chi-dung_tt",
+        "title": "Ngõ 82 Phú Đô_Trục 5_Chị Dung_TT",
+        "price": 4700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-479-53-x-linh-nam_a-chinh_truc-02-_-ln",
+        "title": "Ngõ 479 Lĩnh Nam_A Chính_Trục 02 _ LN",
+        "price": 4500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-479-53-x-linh-nam_a-chinh_-truc-01-_-ln",
+        "title": "Ngõ 479 Lĩnh Nam_A Chính_ Trục 01 _ LN",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-89-19-38-x-bang-liet_truc-02_tang-1-2-3-4_hd",
+        "title": "Ngõ 89 Bằng Liệt_Trục 02_Tầng 1-2-3-4_HĐ",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-155-xx-18-cau-giay_truc01_a-do",
+        "title": "Ngõ 155 Cầu Giấy_trục01_A Đô",
+        "price": 5900000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-91-3x-hoang-mai_tang-01_anh-do_xh",
+        "title": "Ngõ 91 Hoàng Mai_Tầng 01_Anh Độ_XH",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-39-11-02-yen-vinh_nguyen-tang_chi-an_lpnt",
+        "title": "Ngõ 39 Yên Vĩnh_Nguyên Tầng_Chị An_LPNT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-816-51-23-1x-kim-giang-truc-02_-hd",
+        "title": "Ngõ 816 Kim Giang – trục 02_ HĐ",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-816-51-23-1x-kim-giang-truc-01-tang-6_-hd",
+        "title": "Ngõ 816 Kim Giang – trục 01 tầng 6_ HĐ",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-68-59-trieu-khuc-tang-1",
+        "title": "Ngõ 68 Triều Khúc tầng 1",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_p701",
+        "title": "Ngõ 23 Đức Diễn_p701",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_truc-7",
+        "title": "Ngõ 23 Đức Diễn_Trục 7",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_truc-5",
+        "title": "Ngõ 23 Đức Diễn_Trục 5",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_truc-4",
+        "title": "Ngõ 23 Đức Diễn_Trục 4",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_truc-3",
+        "title": "Ngõ 23 Đức Diễn_Trục 3",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_truc-2",
+        "title": "Ngõ 23 Đức Diễn_Trục 2",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_truc-1",
+        "title": "Ngõ 23 Đức Diễn_Trục 1",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-19-my-dinh_truc-02_c-hang",
+        "title": "19 Mỹ Đình_trục 02_C Hằng",
+        "price": 3100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-19-my-dinh_truc-01_c-hang",
+        "title": "19 Mỹ Đình_trục 01_C Hằng",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-129-12-2x-nguyen-trai_truc-02_mt",
+        "title": "Ngõ 129 Nguyễn Trãi_Trục 02_MT",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-mbkd-khu-dat-dich-vu-di-trach-ns4_chi-linh_lpnt",
+        "title": "MBKD Khu đất dịch vụ Di Trạch Ns4_Chị Linh_LPNT",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk30-47-kdt-hinode_truc-3_chi-huong_lpnt",
+        "title": "LK30.47 KĐT Hinode_Trục 3_Chị Hương_LPNT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-61-72-x-bang-liet_truc-01-_hd",
+        "title": "Ngõ 61 Bằng Liệt_trục 01 _HĐ",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-86-x-chua-ha",
+        "title": "Ngõ 86 chùa hà",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-108-3x-dai-hung-ngoc-hoi-_truc-03-_hd",
+        "title": "Ngõ 108 Đại Hưng, Ngọc Hồi _trục 03 _HĐ",
+        "price": 2700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-108-3x-dai-hung-ngoc-hoi_truc-04_hd",
+        "title": "Ngõ 108 Đại Hưng, Ngọc Hồi_trục 04_HĐ",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-108-3x-dai-hung-ngoc-hoi_truc-02_hd",
+        "title": "Ngõ 108 Đại Hưng, Ngọc Hồi_trục 02_HĐ",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk41-kdt-hud-van-canh_truc-1_mailand_2r-gan-winmart-lk41-son-dong",
+        "title": "Lk41 KDT HUD Vân Canh_Trục 1_MaiLand_2R (gần Winmart Lk41 Sơn Đồng)",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk41-kdt-hud-van-canh_truc-3_mailand_2r-gan-winmart-lk41-van-canh",
+        "title": "LK41 KDT HUD Vân Canh_Trục 3_MaiLand_2R (gần Winmart Lk41 Sơn Đồng)",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-42-bui-quoc-khai-_truc-03_hd",
+        "title": "Ngõ 42 Bùi Quốc Khái _trục 03_HĐ",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-401-x-xuan-dinh_anh-manh_mat-bang-tang1-_vdt",
+        "title": "Ngõ 401 Xuân Đỉnh_anh Mạnh_mặt bằng tầng1 _VDT",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-169-xx-26-kim-ma-_truc04_c-minh-nhi",
+        "title": "Ngõ 169 Kim Mã _trục04_C Minh Nhi",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-169-xx-26-kim-ma-_truc03_c-minh-nhi",
+        "title": "Ngõ 169 Kim Mã _trục03_C Minh Nhi",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-169-xx-26-kim-ma-_truc02_c-minh-nhi",
+        "title": "Ngõ 169 Kim Mã _trục02_C Minh Nhi",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-169-xx-26-kim-ma-_truc01_c-minh-nhi",
+        "title": "Ngõ 169 Kim Mã _trục01_C Minh Nhi",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-111a-21-an-thuong-dong-la_truc-4_a-cuong_ak",
+        "title": "Ngõ 111A An Thượng-Đông La_Trục 4_A Cường_AK",
+        "price": 3100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-53-x-tran-quoc-vuong-_anh-thang_202a_vdt",
+        "title": "Ngõ 63 Trần Quốc Vượng _anh Thắng_202A_VDT",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-70-70-van-tri-toa-moinhan-15-09_truc-4_chi-hoai_lvcd",
+        "title": "Ngõ 70 Văn Trì Toà Mới(Nhận 15/09)_Trục 4_Chị Hoài_LVCD",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-70-70-van-trinhan-15-09_truc-1_chi-hoai_lvcd",
+        "title": "Ngõ 70 Văn Tri Toà Mới(Nhận 15/09)_Trục 1_Chị Hoài_LVCD",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-93-1x-trung-kinh_truc-0304_tx",
+        "title": "Ngõ 93 Trung Kính_Trục 03,04_TX",
+        "price": 7200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-93-1x-trung-kinh_truc-01_tx",
+        "title": "Ngõ 93 Trung Kính_Trục 01_TX",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-3x-trung-kinh_truc-03_tx",
+        "title": "3X Trung Kính_Trục 03_TX",
+        "price": 13000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-167-x-quang-tien-6",
+        "title": "Ngõ 167 Quang Tiến",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-167-x-quang-tien-4",
+        "title": "Ngõ 167 Quang Tiến",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-167-x-quang-tien-3",
+        "title": "Ngõ 167 Quang Tiến",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-167-x-quang-tien-2",
+        "title": "Ngõ 167 Quang Tiến",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-167-x-quang-tien",
+        "title": "Ngõ 167 Quang Tiến",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha-n2_truc-0304_mt",
+        "title": "Ngõ 99 Định Công Hạ (N2)_Trục 01,02_MT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-165-x-kim-giang_tang-1_hd",
+        "title": "Ngõ 750 Kim Giang_Tầng 1_HĐ",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-191-1x-le-quang-dao_truc-3_403-703_a-chien_tt",
+        "title": "Ngõ 08 Lê Quang Đạo_Trục 3_403_A Chiến_TT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns5_t5_chu-thang_lpnt",
+        "title": "Khu đất dịch vụ di trạch NS5_T5_Chú Thắng_LPNT",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns5_t4_chu-thang_lpnt",
+        "title": "Khu đất dịch vụ di trạch NS5_T4_Chú Thắng_LPNT",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns5_t2_t3_chu-thang_lpnt",
+        "title": "Khu đất dịch vụ di trạch NS5_T2_T3_Chú Thắng_LPNT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-vu-tong-phan_tang-3-mat-ngoai_mt",
+        "title": "279 Vũ Tông Phan_Tầng 4 Mặt Ngoài_MT",
+        "price": 2000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-vu-tong-phan_tang-3-mat-trong_mt",
+        "title": "279 Vũ Tông Phan_Tầng 4 Mặt Trong_MT",
+        "price": 2000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-164-14-x-de-la-thanh-nho_truc-0203_dd",
+        "title": "Ngõ 164 Đê La Thành Nhỏ_Trục 02,03_ĐĐ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-mbkd-pho-nhon_chi-tuyet_cd",
+        "title": "MBKD Phố Nhổn_Chị Tuyết_Tầng 3_CD",
+        "price": 15500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2-xx-dinh-thon_truc-01_anh-tuyen",
+        "title": "Ngõ 2 Đình Thôn_Trục 01_Anh Tuyến",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-nha-nguyen-can-ngo-1-kieu-mai-khu-tdc",
+        "title": "Nhà nguyên căn ngõ 1 Kiều Mai (Khu TĐC)",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-219-5x-nguyen-ngoc-vu_truc-02_tx",
+        "title": "Ngõ 219 Nguyễn Ngọc Vũ_Trục 02_TX",
+        "price": 6200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-139-49-x-tam-trinh_truc-01_ln-2",
+        "title": "Ngõ 139 Tam Trinh_Trục 01_A Độ_LN",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-219-16-1xx-nguyen-ngoc-vu_truc-04_tx",
+        "title": "Ngõ 219 Nguyễn Ngọc Vũ_Trục 04_TX",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-41-xx-van-tri_truc-3_chi-ly_cd",
+        "title": "Ngõ 41 Văn Trì_Trục 3_Chị Ly_CD",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-68-12-x-me-tri_truc-4_c-tue-nhi_tt",
+        "title": "Ngõ 59 Mễ Trì_Trục 4_C Tuệ Nhi_TT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-11-thanh-dam_a-nhu_truc-02_ln",
+        "title": "11 Thanh Đàm_A Nhu_Trục 02_LN",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-178-1x-quan-nhan-_p701_tx",
+        "title": "Ngõ 178 Quan Nhân _P701_TX",
+        "price": 12500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2x9-xx-hoang-hoa-tham_truc2-_-anh-lam",
+        "title": "2&#215;9.xx Hoàng Hoa Thám_trục2 _ Anh Lâm",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2x9-xx-hoang-hoa-tham_truc01-_-anh-lam",
+        "title": "2&#215;9.xx Hoàng Hoa Thám_truc01 _ Anh Lâm",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-1xx-me-tri-ha_truc-3_a-linh_tt",
+        "title": "Ngõ 59 Mễ trì hạ_Trục 3_A Linh_TT",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-115-x-le-quang-dao_truc-1-tang-34-_chi-dung_tt",
+        "title": "Ngõ 08 Lê Quang Đạo_Trục 1 tầng 3,4 _Chị Dung_TT",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-93-12-x-chinh-kinh-_p702_tx",
+        "title": "Ngõ 93 Chính Kinh _P702_TX",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-115-x-le-quang-dao_truc-5_-805-_chi-dung_tt",
+        "title": "Ngõ 08 Lê Quang Đạo_Trục 5_ 805 _Chị Dung_TT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-145-2-1x-dinh-cong-ha_tang-3_mt",
+        "title": "Ngõ 99 Định Công Hạ_Tầng 3_MT",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-96-xx-vo-chi-cong-89-xx-lac-long-quan-anh-thinh",
+        "title": "Ngõ 96 Võ Chí Công ( 89.xx lạc long quân ) anh Thịnh",
+        "price": 6500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-78-bach-mai_nha-nguyen-can_a-dungc-min_xh",
+        "title": "78 Bạch Mai_Nhà Nguyên Căn_A Dũng,C Min_XH",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-chung-cu-ct1-hud-van-canh_2n1k1b2vs_a-vinh_2r",
+        "title": "Chung Cư CT1 HUD Vân Canh_2N1K+1B+2VS_A Vinh_2R",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-402-51-xx-dinh-thon_anh-tuan-anh",
+        "title": "Ngõ 402 Mỹ Đinh_Anh Tuấn Anh",
+        "price": 4900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-53-ngoa-long-toa-moinhan-tu-20-09_t7_anh-huan_lvcd",
+        "title": "53 Ngoạ Long Toà Mới(Nhận từ 15/09)_T7_Anh Huấn_LVCD",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-83-2x-bang-liet_hd",
+        "title": "Ngõ 61 Bằng Liệt_HĐ",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-401-125-xx-xuan-dinh_-anh-phuc_truc-4_vdt",
+        "title": "Ngõ 401 Xuân Đỉnh_ Anh Phúc_trục 4_VDT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-348-11-1x-kim-giang_tang-1_hd",
+        "title": "Ngõ 348 Kim Giang_Tầng 1_HĐ",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-55-38-nguyen-dao-an_tang-1_ns",
+        "title": "Ngõ 55 Nguyễn Đạo An_Tầng 1_NS",
+        "price": 4100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-3_c-van-anh",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 3_C Vân Anh",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-5_c-van-anh-2",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 5_C Vân Anh",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-5_c-van-anh",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 5_C Vân Anh",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-7_c-van-anh",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 7_C Vân Anh",
+        "price": 6500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-ngo-an-son_nha-nguyen-can_xh",
+        "title": "Ngõ An Sơn_Nhà Nguyên Căn_XH",
+        "price": 28000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-50-linh-nam_anh-dat_ln",
+        "title": "50 Lĩnh Nam_Anh Đạt_LN",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-94-69-x-ngoc-khanh_p801_dd",
+        "title": "Ngõ 94 Ngọc Khánh_P801_ĐĐ",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-205-37-1b-duong-xuan-dinh-_-truc-1-_-tvh",
+        "title": "Ngõ 205 ,1B Đường Xuân Đỉnh _ Trục 1 _ TVH",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-51-22-duong-cau-dien_truc-3-gac-xep_a-dung_cd",
+        "title": "Ngõ 136 Đường Cầu Diễn_trục 3 gác xép_a Dũng_CD",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-44-47-xx_tran-thai-tong_truc-3_chi-thuy",
+        "title": "Ngõ 44 ần Thái Tông_trục 3_Chị Thuý",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-16-b2-xx-dich-vong_truc-3_anh-tung",
+        "title": "Ngõ 29 Dịch Vọng_Trục 3_Anh Tùng",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-06-06-van-tien-dung-toa-moinhan-tu-10-09_truc-2_anh-luc_cd",
+        "title": "Ngõ 06 Văn Tiến Dũng Toà Mới(Free t9)_Trục 2_Anh Lực_CD",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14-3x-hung-thinh-yen-so-_truc-02-nha-anh-thien",
+        "title": "Ngõ 14 Hưng Thịnh, Yên Sở _trục 03 nhà Anh Thiện",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-678-26-x-7-de-la-thanh-_truc04_b1house",
+        "title": "Ngõ 678 Đê La Thành _Trục04_B1House",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-678-26-x-7-de-la-thanh-_truc02_b1house",
+        "title": "Ngõ 678 Đê La Thành _Trục02_B1House",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-678-26-x-7-de-la-thanh-_truc01_b1house",
+        "title": "Ngõ 678 Đê La Thành _Trục01_B1House",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-33-xx-doc-ngu_truc02_b1house",
+        "title": "Ngõ 33 Đốc Ngữ_Trục02_B1House",
+        "price": 9000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-33-xx-doc-ngu_truc01_b1house",
+        "title": "Ngõ 33 Đốc Ngữ_trục01_B1House",
+        "price": 8500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-33-xx-doc-ngu-_truc03_b1house",
+        "title": "Ngõ 33 Đốc Ngữ _Trục03_B1House",
+        "price": 9500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-376-39-31-x-thuy-khue_truc04_b1house",
+        "title": "Ngõ 376 Thuỵ Khuê_Trục04_B1House",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-376-39-31-x-thuy-khue_truc03_b1house",
+        "title": "Ngõ 376 Thuỵ Khuê_Trục03_B1House",
+        "price": 7300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-639-xx-hoang-hoa-tham_truc01_b1house",
+        "title": "Ngõ 639 Hoàng Hoa Thám_Trục01_B1House",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-255-42-x-cau-giay_p102_b1house",
+        "title": "Ngõ 255 Cầu Giấy_p102_B1House",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-56-xx-nguyen-dinh-hoan-_-truc-1-_-a-manh-_-ld",
+        "title": "Ngõ 56 Nguyễn Đình Hoàn _ trục 1 _ a Mạnh _ LĐ",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-tuu-liet-_truc-01-nha-chi-trang-2",
+        "title": "192 Tựu Liệt _trục 01 nhà chị Trang",
+        "price": 3900000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-91-2xb-hoang-mai_truc-02_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 02_Anh Huy_XH",
+        "price": 6500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-91-2xb-hoang-mai_truc-01_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 01_Anh Huy_XH",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-88-xx-cau-dien_tang-234_cd",
+        "title": "Ngõ 136 Cầu Diễn_Tầng 2,3,4_CD",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-13x-2-phu-do_truc-3_-303_a-trung_tt",
+        "title": "Ngõ 13x Phú Đô_Trục 3_ 303_A Trung_TT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-90-van-tri_t2_tthome_cd",
+        "title": "90 Văn Trì_T2_TThome_CD",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-06-cau-dien_-anh-dat",
+        "title": "Ngõ 136 Cầu Diễn_ Anh Đạt",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-xx-xuan-la_truc02_anh-long",
+        "title": "Ngõ 23 Xuân La_Trục02_Anh Long",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-xx-xuan-la_truc3_anh-long",
+        "title": "Ngõ 23 Xuân La_Trục3_Anh Long",
+        "price": 6700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-xx-xuan-la_truc12_anh-long",
+        "title": "Ngõ 23 Xuân La_Trục1_Anh Long",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-87-x-duong-an-duong-vuong-_-c-quynh-_-truc-4-_-tvh",
+        "title": "Ngõ 87 Đường An Dương Vương _ C Quỳnh _ Trục 4 _ TVH",
+        "price": 5900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-87-x-duong-an-duong-vuong-_-c-quynh-_-truc-3-_-tvh",
+        "title": "Ngõ 87 Đường An Dương Vương _ C Quỳnh _ Trục 3 _ TVH",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-87-x-duong-an-duong-vuong-_-c-quynh-_-truc-2-_-tvh",
+        "title": "Ngõ 87 Đường An Dương Vương _ C Quỳnh _ Trục 2 _ TVH",
+        "price": 4900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-87-x-duong-an-duong-vuong-_-c-quynh-_-truc-1-_-tvh",
+        "title": "Ngõ 87 Đường An Dương Vương _ C Quỳnh _ Trục 1 _ TVH",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-180-84-x-nguyen-luong-bang_truc-03_dd-2",
+        "title": "Ngõ 180 Nguyễn Lương Bằng_Trục 03_ĐĐ",
+        "price": 5400000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-ham-long-2-tang-45_anh-doan_xh",
+        "title": "Hàm Long 2 Tầng 4,5_Anh Đoàn_XH",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-88-my-dinh_truc-23_a-nghia",
+        "title": "88 Mỹ Đình_trục 2,3_A Nghĩa",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-02-me-tri-ha_2n2wc_a-trinh_tt",
+        "title": "02 Mễ Trì Hạ_2N2WC_A Trịnh_TT",
+        "price": 11000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-so-2-me-tri_a-trinh_tang-2_tt",
+        "title": "Số 2 Mễ Trì Hạ_A Trịnh_Tầng 2_TT",
+        "price": 12000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-so-2-me-tri_a-trinh_tang-3_tt",
+        "title": "Số 2 Mễ Trì Hạ_A Trịnh_Tầng 3_TT",
+        "price": 14000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-115-x-le-quang-dao_truc-12-_chi-dung_tt-2",
+        "title": "Ngõ 08 Lê Quang Đạo_Trục 1,2 _Chị Dung_TT",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-115-x-le-quang-dao_truc-56-_chi-dung_tt",
+        "title": "Ngõ 08 Lê Quang Đạo_Trục 5,6 _Chị Dung_TT",
+        "price": 4900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-115-x-le-quang-dao_truc-34-_chi-dung_tt",
+        "title": "Ngõ 08 Lê Quang Đạo_Trục 3,4 _Chị Dung_TT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6-9-duong-tang-thiet-giap-co-nhue-_-204-_-tvh",
+        "title": "Ngõ 6 Đường Tăng Thiết Giáp – Cổ Nhuế _ 204 _ TVH",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-268-4x-le-trong-tan_t2_mt",
+        "title": "Ngõ 268 Lê Trọng Tấn_T2_MT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-473-thuy-phuong-_-van-phong-ho-gia-dinh-tang-2_-nha-chu-dan_vdt",
+        "title": "473 Thụy Phương _ Văn phòng, hộ gia đình tầng 2_ nhà chú Dân_VDT",
+        "price": 5000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-259-x-vinh-hung_2n1k_anh-cuong_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_2N1K_Anh Cường_LN",
+        "price": 10500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-18-x-ton-that-tung_truc-0204_dd",
+        "title": "Ngõ 18 Tôn Thất Tùng_Trục 02,04_ĐĐ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-18-x-ton-that-tung_p702_dd",
+        "title": "Ngõ 18 Tôn Thất Tùng_P702_ĐĐ",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-18-x-ton-that-tung_p701_dd",
+        "title": "Ngõ 18 Tôn Thất Tùng_P701_ĐĐ",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-155-38-x-kim-giang_truc-02_hd",
+        "title": "Ngõ 734 Kim Giang_Trục 02_HĐ",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-143-x-hoang-hoa-tham_p701_anh-viet-son",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p701_Anh Việt Sơn",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14-xx-ngoc-ha_truc01_anh-phuc",
+        "title": "Ngõ 14 Ngọc Hà_Trục01.02_Anh Phúc",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-4_c-van-anh-tq",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 4_C Vân Anh TQ",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-255-xx-quan-hoa_-a-ken",
+        "title": "Ngõ 255 Quan Hoa_ A Ken",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-1197-x-giai-phong_truc-01_anh-do_xh",
+        "title": "Ngõ 1197 Giải Phóng_Trục 01_Anh Độ_XH",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-68-12-x-me-tri_truc-2_c-tue-nhi_tt",
+        "title": "Ngõ 59 Mễ Trì_Trục 2_C Tuệ Nhi_TT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-341-x_quan-nhan_p801_tx",
+        "title": "Ngõ 341 Nhân_P801_TX",
+        "price": 7600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-90-3-khuyen-luong-gamuda_truc-02_anh-dat_ln",
+        "title": "90 (3) Khuyến Lương (Gamuda)_Trục 02_Anh Đạt_LN",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-219-97-5-xx-dinh-cong-thuong_tang-4_mt",
+        "title": "Ngõ 219 Định Công Thượng_Tầng 4_MT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-37x-le-trong-tan_truc-02_mt-2",
+        "title": "Ngõ 192 Lê Trọng Tấn_Trục 02_MT",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-165-x-kim-giang_truc-01_hd-2",
+        "title": "Ngõ 750 Kim Giang_Trục 01_HĐ",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-165-x-kim-giang_truc-02_tang6-7_hd",
+        "title": "Ngõ 750 Kim Giang_Trục 02_Tầng6_HĐ",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-91x-dong-co_p101_chi-hanh",
+        "title": "91x Đồng Cổ_p101_Chị Hạnh",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-180-xx-dinh-thon_anh-giap",
+        "title": "Ngõ 180 Đình Thôn_Anh Giáp",
+        "price": 3700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-4x-hoa-binh-3_truc-02_anh-tam_xh",
+        "title": "4X Hoà Bình 3_Trục 02_Anh Tâm_XH",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-77-xx-yen-hoa_truc-5_c-van-anh-tq",
+        "title": "Ngõ 77 Yên Hoà_Trục 5_C Vân Anh TQ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-77-xx-yen-hoa_truc-4_c-van-anh-tq",
+        "title": "Ngõ 77 Yên Hoà_Trục 4_C Vân Anh TQ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-77-xx-yen-hoa_truc-3_c-van-anh-tq",
+        "title": "Ngõ 77 Yên Hoà_Trục 3_C Vân Anh TQ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-1_c-van-anh-tq-2",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 1_C Vân Anh TQ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-2_c-van-anh-tq-2",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 2_C Vân Anh TQ",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-3_c-van-anh-tq",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 3_C Vân Anh TQ",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-2_c-van-anh-tq",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 2_C Vân Anh TQ",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-1_c-van-anh-tq",
+        "title": "Ngõ 59 Khúc Thừa Dụ_Trục 1_C Vân Anh TQ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-95-xx-my-dinh_truc-1-4_c-van-anh",
+        "title": "Ngõ 322 Mỹ Đình_Trục 1/4_C Vân Anh",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-378-xx-my-dinh_truc-3_a-tho-tq",
+        "title": "Ngõ 378 Mỹ Đình_Trục 3_A Thơ TQ",
+        "price": 5900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-378-xx-my-dinh_truc-5_a-tho-tq",
+        "title": "Ngõ 378 Mỹ Đình_Trục 5_A Thơ TQ",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-71-xx_truc-2_tran-quoc-vuong_co-thuy",
+        "title": "Ngõ 63 ục 2_Trần Quốc Vượng_Cô Thuý",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-123-2x-bang-a_truc-02_hd",
+        "title": "Ngõ 123 Bằng A_Trục 02_HĐ",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-123-2x-bang-a_truc-01_tang-6_hd",
+        "title": "Ngõ 123 Bằng A_Trục 01_Tầng 6_HĐ",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-788-3x-kim-giang_truc-02_hd",
+        "title": "Ngõ 788 Kim Giang_Trục 04_HĐ",
+        "price": 4100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-788-3x-kim-giang_truc-01_hd",
+        "title": "Ngõ 788 Kim Giang_Trục 03_HĐ",
+        "price": 4100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-123-2x-bang-a_truc-01_hd",
+        "title": "Ngõ 123 Bằng A_Trục 01_HĐ",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-28-xx-08a-tu-lien-tay-ho-_-anh-quy",
+        "title": "Ngõ 28 Tứ Liên, Tây Hồ _ Anh Quý",
+        "price": 3400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-381-x-nguyen-khang_-toa-b_-studio",
+        "title": "Ngõ 381 Nguyễn Khang_ Toà B_ Studio",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-381-x-nguyen-khang_-toa-a_-studio",
+        "title": "Ngõ 381 Nguyễn Khang_ Toà A_ Studio",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-ngoc-nai_p701_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_P701_MT",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-ngoc-nai_p801",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_P801",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-ngoc-nai_p804_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_P804_MT",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-ngoc-nai_truc-01_tang-3456_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_Trục 01_Tầng 3,4,5,6_MT",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-08-191-1x-le-quang-dao_1n1k-tang-8_a-chien_tt",
+        "title": "Ngõ 08 Lê Quang Đạo_1n1k Tầng 8_A Chiến_TT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-73-xx-tan-trieu-1-9-trong",
+        "title": "Ngõ 73 Tân Triều (1/9 trống )",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-2x-nguyen-ngoc-nai_p802_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_P802_MT",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-ngoc-nai_p201_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_P201_MT",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-van-troi_truc-02_tang-3456_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_Trục 02_Tầng 3,4,5,6_MT",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-ngoc-nai_truc-04_tang3-4-5_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_Trục 04_Tầng3.4.5_MT",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-12-3x-nguyen-ngoc-nai_truc-02_mt",
+        "title": "Ngõ 12 Nguyễn Ngọc Nại_Trục 02_MT",
+        "price": 8200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-277-xx-xuan-dinh_c-huong_truc-01_hav",
+        "title": "Ngõ 277 Xuân Đỉnh_C Hương_Trục 01_HAV",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-277-xx-xuan-dinh_c-huong_truc02_hav",
+        "title": "Ngõ 277 Xuân Đỉnh_C Hương_Trục02_HAV",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-25-doan-ke-thien_-truc-1",
+        "title": "25 Doãn Kế Thiện_ Trục 1",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-25-doan-ke-thien_-truc-23",
+        "title": "25 Doãn Kế Thiện_ Trục 2,3",
+        "price": 6200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-83-1x-bang-liet_truc-03-tang-2-3-4-hd",
+        "title": "Ngõ 61 Bằng Liệt_Trục 03 Tầng 2-3-4-HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6-x-dang-tran-duc-thanh-dam_truc-01_a-chinh_ln",
+        "title": "Ngõ 6 Đặng Trần Đức – Thanh Đàm_Trục 01_A Chính_LN",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6-x-dang-tran-duc-thanh-dam_truc-02_a-chinh_ln",
+        "title": "Ngõ 6 Đặng Trần Đức – Thanh Đàm_Trục 02_A Chính_LN",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-83-1x-bang-liet-truc-01-tang-2-3-4-hd",
+        "title": "Ngõ 61 Bằng Liệt_Trục 01 tầng 2-3-4-HD",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-139-x-bang-liet_tang-3-4-5_hd",
+        "title": "Ngõ 139 Bằng Liệt_Tầng 3-4-5_HĐ",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-139-x-bang-liet_tang-2_hd",
+        "title": "Ngõ 139 Bằng Liệt_Tầng 2_HĐ",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-43-xx-co-nhue_-truc-2_-anh-loc",
+        "title": "Ngõ 43 Cổ Nhuế_ Trục 2_ Anh Lộc",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-13-xx-doc-tam-da_truc02_chi-phuong",
+        "title": "Ngõ 13 dốc Tam Đa_Trục02_Chị Phương",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-68-45-xx-trieu-khuc-truc-2",
+        "title": "Ngõ 68 Triều Khúc trục 2",
+        "price": 3000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-362-30-xx-nam-du_nguyen-can_chu-trung_ln",
+        "title": "Ngõ 362 Nam Dư_Nguyên Căn_Chú Trung_LN",
+        "price": 18000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-40-x-me-tri-thuong_truc-3_chi-dung_tt",
+        "title": "Ngõ 230 Mễ Trì Thượng_Trục 1,803_Chị Dung_TT",
+        "price": 5100000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-272-x-tran-khat-chan_truc-02_-anh-dung-_xh",
+        "title": "Ngõ 272 Trần Khát Chân_Trục 03_ Anh Dũng _XH",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-213-78-giap-nhat_truc-01_mt",
+        "title": "Ngõ 213 Giáp Nhất_Trục 01_TX",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-x-me-tri-ha_truc-2-202-402_a-quyen_tt",
+        "title": "Ngõ 59 Mễ Trì Hạ_1N1BTrục 2, 402_A Quyền_TT",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-4x-dinh-cong-ha_truc-02_mt",
+        "title": "Ngõ 99 Định Công Hạ_Trục 02_MT",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk30-42-kdt-hinode_2n1k_tang-3_a-linh_lpnt",
+        "title": "LK30.42 KĐT Hinode_2N1K_Tầng 3_A Linh_LPNT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk30-42-kdt-hinode_1n1k_a-linh_lpnt",
+        "title": "LK30.42 KĐT Hinode_1N1K_A Linh_LPNT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk30-42-kdt-hinode_2n1k_tang-2_a-linh_lpnt",
+        "title": "LK30.42 KĐT Hinode_2N1K_Tầng 2_A Linh_LPNT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-xx-dinh-thon_anh-hoan_3n3b1k",
+        "title": "Ngõ 23 Đình Thôn_Anh Hoàn_3N3B1K",
+        "price": 15000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-35-0x-phan-ke-binh_co-thuy",
+        "title": "Ngõ 35 Phan Kế Bính_cô Thúy",
+        "price": 10000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk10-23-kdt-hinode_101_a-the_lpnt",
+        "title": "LK10.23 KĐT Hinode_101_A Thế_LPNT",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-10x-kim-giang_tang-7_chi-hanh",
+        "title": "Ngõ 634 Kim Giang_Tầng 7_Chị Hạnh",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-112-2x-me-tri-thuong_truc-2_c-tue-nhi_tt",
+        "title": "Ngõ 112 Mễ Trì Thượng_Trục 2_C Tuệ nhi_TT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-70-79-12-van-tri_anh-le-cuong_t3_cd",
+        "title": "Ngõ 70 Văn Trì_Anh Le Cuong_T3_CD",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-46-3x-bui-xuong-trach_truc-02_mt",
+        "title": "Ngõ 1 Bùi Xương Trạch_Trục 02_MT",
+        "price": 5300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-151-20-x-nguyen-duc-canh_truc-01_anh-dat_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 01_Anh Đạt_XH",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-128-9b-xx-dinh-thon_phan-dat",
+        "title": "Ngõ 128 Đình Thôn_Phan Đạt",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-154-26-xx-dinh-thon_phan-dat",
+        "title": "Ngõ 402 Mỹ Đình_Phan Đạt",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-402-26-xx-my-dinh_phan-dat",
+        "title": "Ngõ 402 Mỹ Đình_Phan Đạt",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-210a-25b-vo-chi-cong_-truc-01",
+        "title": "Ngõ 210A Võ Chí Công_ trục 01",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-49-xx-do-duc-duc_truc-4_a-son_tt",
+        "title": "Ngõ 32 Đỗ Đức Dục_trục 4_A.Sơn_TT",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-127-tuu-liet-_truc-0406-nha-anh-thang",
+        "title": "127 Tựu Liệt _trục 04,06 nhà Anh Thắng",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-127-tuu-liet-_truc-01-nha-anh-thang",
+        "title": "127 Tựu Liệt _trục 01 nhà Anh Thắng",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-127-tuu-liet-_truc-02-nha-anh-thang",
+        "title": "127 Tựu Liệt _trục 02 nhà Anh Thắng",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-69a-131-1x-hoang-van-thai_truc-0102_mt-2",
+        "title": "Ngõ 69A Hoàng Văn Thái_Trục 01,02_MT",
+        "price": 6200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-104-x-nguyen-an-ninh_truc-01_anh-tuan_xh",
+        "title": "Ngõ 104 Nguyễn An Ninh_Trục 01_Anh Tuấn_XH",
+        "price": 5600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-1333-giai-phong-tang-8_xh",
+        "title": "1333 Giải Phóng Tầng 8_XH",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-3-x-kim-giang_truc-01_mt-2",
+        "title": "Ngõ 20 Kim Giang_Trục 01_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-3-x-kim-giang_truc-02_mt-2",
+        "title": "Ngõ 20 Kim Giang_Trục 02_MT",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-521-23-x-truong-dinh_truc-02_an-binh-home_xh-2",
+        "title": "Ngõ 521 Trương Định_Trục 02_An Bình Home_XH",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-36-di-trach_truc-3-4_a-duc-anh_lpnt",
+        "title": "36 Di Trạch_Trục 3-4_A Đức Anh_LPNT",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-4-3e-kieu-mai_truc-1_qv",
+        "title": "Ngõ 4 Kiều Mai_Trục 1_QV",
+        "price": 3300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-03_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 03_XH",
+        "price": 7500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-02_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 02_XH",
+        "price": 7200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-xx-phan-dinh-giot_mbkd_mt",
+        "title": "Ngõ 1 Phan Đình Giót_MBKD_MT",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-619-95-vu-tong-phan_p604704_mt",
+        "title": "Ngõ 619 Vũ Tông Phan_P604,704_MT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-100-59-4x-cho-kham-thien_truc-02_dd",
+        "title": "Ngõ 100 Chợ Khâm Thiên_Trục 02_ĐĐ",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-116-56-x-mieu-dam_201_c-xuan_tt-co-fix",
+        "title": "Ngõ 116 Miếu Đầm_201_C Xuân_TT( có fix)",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-343-38-an-duong-vuong-2",
+        "title": "Ngõ 343 An Dương Vương_ C Ly _ 1n1k_HAV",
+        "price": 6200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-xx-nguyen-khanh-toan_truc-2_time-house",
+        "title": "Ngõ 58 Nguyễn Khánh Toàn_Trục 2_Time House",
+        "price": 8200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-352-x-truong-dinh_truc-0405_anh-dat_xh",
+        "title": "Ngõ 352 Trương Định_Trục 04,05_Anh Đạt_XH",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-197-32-a-hoang-mai_truc-01_em-nam_xh",
+        "title": "Ngõ 197 Hoàng Mai_Trục 01_Em Nam_XH",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-21-80-xx-truc-1",
+        "title": "Ngõ 21 Yên Xá 1/10 ở được",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-622-xx-lac-long-quan-phong-501",
+        "title": "Ngõ 622 Lạc Long Quân p 501 tặng 1tr5 tháng đầu",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-622-xx-lac-long-quan-phong-401",
+        "title": "Ngõ 622 Lạc Long Quân phòng 401",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-622-xx-lac-long-quan-truc-1",
+        "title": "Ngõ 622 Lạc Long Quân trục 1",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-125-xx-duong-thuy-khue_p101-_-anh-hieu",
+        "title": "Ngõ 125 Đường Thuỵ Khuê_p101 _ Anh Hiếu",
+        "price": 11000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-218-xx-33-lac-long-quan-_truc02_anh-tuan",
+        "title": "Ngõ 218 Lạc Long Quân _trục02_anh tuấn",
+        "price": 8500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-218-xx-33-lac-long-quan_truc03_anh-tuan",
+        "title": "Ngõ 218 Lạc Long Quân_trục03_anh tuấn",
+        "price": 8500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-94-xx-ngoc-ha_truc02_anh-phong",
+        "title": "Ngõ 94 Ngọc Hà_trục02_Anh Phong",
+        "price": 6600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-26-4x_hoang-quoc-viet_truc3_vqh",
+        "title": "Ngõ 26 àng Quốc Việt_Trục3",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-196-5-8-xx-dai-mo-_-p210_-chi-huong",
+        "title": "Ngõ 196 Đại Mỗ _ p210_ chị Hương",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-196-5-8-xx-dai-mo-_-p211_-chi-huong",
+        "title": "Ngõ 196 Đại Mỗ _ p211_ chị Hương",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-196-5-8-xx-dai-mo_p213-_-chi-huong",
+        "title": "Ngõ 196 Đại Mỗ_p213 _ chị Hương",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-89-xx-phan-ke-binh_truc01_anh-nghia-2",
+        "title": "Ngõ 89 Phan Kế Bính_trục01_anh Nghĩa",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-44-xx-kim-hoang_tang-2-3_c-loc_2r",
+        "title": "Ngõ 44 Kim Hoàng_Tầng 2-3_C Loc_2R",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-30-11-15-xx-phu-my_-truc-02_-c-tue-nhi",
+        "title": "Ngõ 30 Phú Mỹ_ Trục 02_ C Tuệ Nhi",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-132-50-duong-cau-dien-2",
+        "title": "Ngõ 132 Đường Cầu Diễn",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-55-hoang-hoa-tham-2",
+        "title": "55 Hoàng Hoa Thám",
+        "price": 7170000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-san-vp-mbkd-duong-422b-van-canh_tang-5_c-chien_2r",
+        "title": "Sàn VP-MBKD Đường 422B Vân Canh_Tầng 5_C Chien_2R",
+        "price": 20000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-san-vp-mbkd-duong-422b-van-canh_tang-2_c-chien_2r",
+        "title": "Sàn VP-MBKD Đường 422B Vân Canh_Tầng 2_C Chien_2R",
+        "price": 20000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-mbkd-duong-422b-van-canh_c-chien_2r",
+        "title": "MBKD Đường 422B Vân Canh_Tầng 1_C Chien_2R",
+        "price": 36000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-60-phao-dai-lang_truc-02_tx",
+        "title": "60 Pháo Đài Láng_Trục 02_TX",
+        "price": 7500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-77-x-pho-8-3_tang-6-truc-02_anh-do_xh",
+        "title": "Ngõ 77 Phố 8/3_Tầng 6 Trục 02_Anh Độ_XH",
+        "price": 4800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-224-x-ngo-quynh_truc-02_anh-dat_xh",
+        "title": "Ngõ 224 Ngõ Quỳnh_Trục 02_Anh Đạt_XH",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-214-58-phu-dien_truc-1_qv",
+        "title": "Ngõ 214 Phú Diễn_Trục 1_QV",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-328-8x-tay-mo_truc-23-24-27-28_em-luc",
+        "title": "Ngõ 328 Tây Mỗ_Trục 23-24-27-28_Em Lực",
+        "price": 3200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-250-100-15-25-kim-giang_chi-bich",
+        "title": "Ngõ 250 Kim Giang_Chị Bích",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-36-tan-trieu-truc-4",
+        "title": "36 Tân Triều trục 4",
+        "price": 7900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-41-x-dong-tac_p701_dd",
+        "title": "Ngõ 41 Đông Tác_P701_ĐĐ",
+        "price": 3700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-47-53-x-nam-du_truc-04_friendly-homes_ln",
+        "title": "Ngõ 47 Nam Dư_Trục 04_Friendly Homes_LN",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-4x-kim-giang_02_-chu-duc",
+        "title": "Ngõ 61 Bằng Liệt_02_ Chú Đức",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-3x-do-duc-duc_c-thu_truc-2_2n1k_tt",
+        "title": "Ngõ 32 Đỗ Đức Dục_C Thu_Trục 2_2n1k_TT",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-155-xx-12d-cau-giay_truc02_anh-quoc-hung",
+        "title": "Ngõ 155 Cầu Giấy_Trục02_anh Quốc Hưng",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-31-xx-hang-bun_-truc01_anh-duc",
+        "title": "Ngõ 31 Hàng Bún_ trục01_Anh Đức",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-84-64-xx-do-duc-duc-_truc-4_c-tuyet_tt",
+        "title": "Ngõ 32 Đỗ Đức Dục _Trục 4_C Tuyết_TT",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-28-xx-xuan-la_-truc-2",
+        "title": "Ngõ 28 Xuân La_ Trục 2",
+        "price": 6700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-4-xx-dinh-thon_truc-06_c-tuoi",
+        "title": "Ngõ 1 Đình Thôn_Trục 06_C Tươi",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-30-xx-phu-my_truc-04_a-nam",
+        "title": "Ngõ 30 Phú Mỹ_trục 04_A Nam",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-30-xx-phu-my_truc-01_a-nam",
+        "title": "Ngõ 30 Phú Mỹ_trục 01_A Nam",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-72-x-mieu-dam_truc-12_c-dung_tt-siu-rong",
+        "title": "Ngõ 72 Miếu Đầm_Trục 1,2_C Dung_TT (Siu rộng)",
+        "price": 8200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-179-xx-vinh-hung-1_nguyen-can_ln",
+        "title": "Ngõ 179 Vĩnh Hưng (1)_Nguyên căn_LN",
+        "price": 15000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-467-170-20-x-linh-nam_truc-0203_friendly-homes_ln",
+        "title": "Ngõ 467 Lĩnh Nam_Trục 02,03_Friendly Homes_LN",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-126-33-x-nam-du_truc-0506-friendly-homes_ln",
+        "title": "Ngõ 126 Nam Dư_Trục 05,06 Friendly Homes_LN",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-264-1x-dinh-cong_truc-05_mt",
+        "title": "Ngõ 264 Định Công_Trục 05_MT",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-136-x-kim-giang_truc-01_tang-5_chi-hang",
+        "title": "Ngõ 634 Kim Giang_Trục 01_Tầng 5_Chị Hằng",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-136-x-kim-giang_truc-02_chi-hang",
+        "title": "Ngõ 634 Kim Giang_Trục 02_Chị Hằng",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-97-12-1x-khuong-trung_p303_mt",
+        "title": "Ngõ 97 Khương Trung_P303_MT",
+        "price": 6600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-78-1x-me-tri-thuong_truc-2_a-manh_tt-co-fix",
+        "title": "Ngõ 78 Mễ Trì Thượng_Trục 2_A Mạnh_TT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-80-xx-my-dinh_chi-nghia",
+        "title": "Ngõ 20 Mỹ Đình_Chị Nghĩa",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-34-xnguyen-van-ngoc-_truc-trong",
+        "title": "Ngõ 34 ễn Văn Ngọc _Trục Trong",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-34-xnguyen-van-ngoc-_truc-ngoai",
+        "title": "Ngõ 34 ễn Văn Ngọc _Trục Ngoài",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-521-190-x-truong-dinh_friendly-homes_truc-0102_xh",
+        "title": "Ngõ 521 Trương Định_Friendly Homes_Trục 01,02_XH",
+        "price": 6400000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-279-x-hoang-mai_truc-02_anh-tung_xh",
+        "title": "Ngõ 279 Hoàng Mai_Trục 02_Anh Tùng_XH",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_p803-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p803 _ Anh Đức Anh",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_p801-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p801 _ Anh Đức Anh",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_p702-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p702 _ Anh Đức Anh",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_p404-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p404 _ Anh Đức Anh",
+        "price": 8300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_p304-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p304 _ Anh Đức Anh",
+        "price": 8300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_p303-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p303 _ Anh Đức Anh",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_p203-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_p203 _ Anh Đức Anh",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_truc02_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_Trục02_ Anh Đức Anh",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-63-xx-19-hoang-hoa-tham_truc01-_-anh-duc-anh",
+        "title": "Ngõ 173 Hoàng Hoa Thám_Trục01 _ Anh Đức Anh",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-21b-le-van-luong_truc-03_tx",
+        "title": "Ngõ 21 Lê Văn Lương_Trục 03_TX",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-543-giai-phong_truc-03_funhome_xh",
+        "title": "543 Giải Phóng_Trục 03_Funhome_XH",
+        "price": 5600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-259-16-x-vinh-hung_truc-03_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 03_FH_LN",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-259-16-x-vinh-hung_truc-0102_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 01,02_FH_LN",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-153-30-xx-phu-do_mbkd-2-tang_a-dat_tt",
+        "title": "Ngõ 153 Phú Đô_MBKD 2 Tầng_A Đạt_TT",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-50-3x-kim-hoa_p601_dd",
+        "title": "Ngõ 50 Kím Hoa_P601_ĐĐ",
+        "price": 2900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk19-25-kdt-hinode_101_chi-ngoc_lpnt",
+        "title": "LK19.25 KĐT Hinode_101_Chị Ngọc_LPNT",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-an-duong-vuong_-tay-ho_-phong-1n1k",
+        "title": "Ngõ 343 An Dương Vương_ Tây Hồ_ Phòng 1N1K",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-an-duong-vuong_-tay-ho_-phong-studio",
+        "title": "Ngõ 353 An Dương Vương_ Tây Hồ_ Phòng Studio",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-282-2-2x-kim-giang_mbkd-01_anh-linh",
+        "title": "Ngõ 282 Kim Giang_MBKD 01_Anh Linh",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-143-257-x-nguyen-chinh_truc-02_an-binh-home_xh",
+        "title": "Ngõ 143 Nguyễn Chính_Trục 02_An Bình Home_XH",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-7x-nguyen-du_2n1k_hbt",
+        "title": "7X Nguyễn Du_2N1K_HBT",
+        "price": 20000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-6x-dinh-cong-ha-3_truc02_mt",
+        "title": "Ngõ 99 Định Công Hạ (3)_Trục02_MT",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-143-7x-nguyen-chinh_truc-01_quang-vinh-land_xh",
+        "title": "Ngõ 143 Nguyễn Chính_Trục 01_Quang Vinh Land_XH",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-68-127-phu-dien_truc-3_qv",
+        "title": "Ngõ 68 Phú Diễn_Trục 3_QV",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-162-de-la-thanh-nho_truc-01_dd-2",
+        "title": "162 Đê La Thành Nhỏ_Trục 01_ĐĐ",
+        "price": 6500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-112-nam-du_mbkd_co-ha",
+        "title": "112 Nam Dư_MBKD_Cô Hà_LN",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-71-xx-vo-chi-cong_truc02_-anh-quan",
+        "title": "Ngõ 71 Võ Chí Công_Trục02_ Anh Quân",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-17-1-x-bang-liet_truc-02_tang-4_chi-giang",
+        "title": "Ngõ 61 Bằng Liệt_Trục 02_tầng 4_Chị Giang",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-17-1-x-bang-liet_truc-01_tang-4_chi-giang",
+        "title": "Ngõ 61 Bằng Liệt_Trục 01_Tầng 4_Chị Giang",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-250-7x-kim-giang_truc-01_chi-hien",
+        "title": "Ngõ 250 Kim Giang_Trục 01_Chị Hiền",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-139-x-bang-liet_truc-03_anh-duy",
+        "title": "Ngõ 139 Bằng Liệt_Trục 03_Anh Duy",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-255-50-xx-cau-giay-truc-02-05-c-q-anh",
+        "title": "Ngõ 255 Cầu Giấy – Trục 02/05 – C Q.Anh",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-190-x-dai-mo-_-mskd",
+        "title": "Ngõ 190 Đại Mỗ _ MSKD",
+        "price": 12000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-33-xxx-van-cao_truc-ngoai_chi-van-anh",
+        "title": "Ngõ 33 Văn Cao_Trục Ngoài_Chị Vân Anh",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-xx-dao-tan_truc02_chi-van-anh",
+        "title": "Ngõ 58 Đào Tấn_Trục02_Chị Vân Anh",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-204-x-kim-giang_truc-02_chi-hien",
+        "title": "Ngõ 204 Kim Giang_Trục 02_Chị Hiền",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-ngo-5-cuong-ngo-tu-hiep-thanh-tri-_tang-1-nha-anh-dang",
+        "title": "Ngõ Ngò 5 Cương Ngô, Tứ Hiệp, Thanh Trì _Tầng 1 nhà Anh Đang",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-hang-hiem_-3n-1kbep-_-37-dinh-thon_-a-thanh",
+        "title": "HÀNG HIẾM_ 3N- 1K+Bếp _ 37 Đình Thôn_ a Thành",
+        "price": 25000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-400-truong-dinh_truc-01-3n1k_xh",
+        "title": "400 Trương Định_Trục 01 3N1K_XH",
+        "price": 13500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-39-xx-linh-lang_p402_chi-thao",
+        "title": "Ngõ 39 Linh Lang_p402_Chị Thảo",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-39-xx-linh-lang_truc02_chi-thao",
+        "title": "Ngõ 39 Linh Lang_Trục02_Chị Thảo",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-39-xx-linh-lang_truc01_chi-thao",
+        "title": "Ngõ 39 Linh Lang_Trục01_Chị Thảo",
+        "price": 10000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-26-01-30-cau-dien-_1n1k_qv",
+        "title": "Ngõ 26 Cầu Diễn _1N1K_QV",
+        "price": 4500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-151-x-nguyen-duc-canh_tang-2_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Tầng 2_XH",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-79-xx-thuy-khue_truc_1-2_anh-phuoc",
+        "title": "Ngõ 79 Thuỵ Khuê_Trục_1,2_Anh Phước",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-143-xx-13-kim-ma_truc02_anh-phuoc",
+        "title": "Ngõ 143 Kim Mã_Trục02_Anh Phước",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-13x-kim-giang_truc-01_anh-ha",
+        "title": "Ngõ 750 Kim Giang_Trục 01_Anh Hà",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-3-5x-cau-buou_tang-3-4_chi-thu",
+        "title": "Ngõ 3 Cầu Bươu_Tầng 3-4_Chị Thư",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-139-x-bang-liet_mbkd-101_anh-duy",
+        "title": "Ngõ 139 Bằng Liệt_MBKD 101_Anh Duy",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-848-x-kim-giang_truc-03_anh-luc",
+        "title": "Ngõ 848 Kim Giang_Trục 03_Anh Lực",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-848-x-kim-giang_truc-02_anh-luc",
+        "title": "Ngõ 848 Kim Giang_Trục 02_Anh Lực",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-83a-xx-trinh-cong-son_-truc-trong-_-anh-long-2",
+        "title": "Ngõ 83A Trịnh Công Sơn_ Trục Trong _ Anh Long",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-34-xxa-phu-do_truc-3_a-liem_tt",
+        "title": "Ngõ 34 Phú đô_Trục 3_A Liêm_TT",
+        "price": 5400000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-582-x-linh-nam_a-nam_ln",
+        "title": "Ngõ 582 Lĩnh Nam_A Nam_LN",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-83a-xx-trinh-cong-son_-truc-trong-_-anh-long",
+        "title": "Ngõ 83A Trịnh Công Sơn_ Trục Ngoài _ Anh Long",
+        "price": 7500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-56-x-ngo-tu-do-dai-la_truc-03_xh",
+        "title": "Ngõ 56 Ngõ Tự Do (Đại La)_Trục 03_XH",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-34xe-vu-mien-_-truc-ngoai-_-anh-ha",
+        "title": "34x Vũ Miên _ trục Ngoài _ Anh Hà",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-34x-vu-mien-_-truc-trong-_-anh-ha",
+        "title": "34x Vũ Miên _ trục Trong _ Anh Hà",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-179-169-xx-vinh-hung_truc-01_ln",
+        "title": "Ngõ 179 Vĩnh Hưng_Trục 01_ Anh Nam_LN",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-35-17-xx-tran-thai-tong_tang-4_renhouse",
+        "title": "Ngõ 35 Trần Thái Tông_tầng 4_Renhouse",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-44-xx-tran-thai-tong_tang-5_truc-02_renhouse",
+        "title": "Ngõ 44 Trần Thái Tông_tầng 5_trục 02_Renhouse",
+        "price": 6600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-64-xx-dong-thien-2_truc-01_ln",
+        "title": "Ngõ 64 Đông Thiên (2) _Trục 01_ A Tâm_LN",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-39-xx-dinh-thon_chi-thanh",
+        "title": "Ngõ 39 Đình Thôn_Chị Thanh",
+        "price": 7400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-467-177-linh-nam-2-_truc-02-_ln",
+        "title": "Ngõ 467 Lĩnh Nam _Trục 01, 02 _A Cường_LN",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-35-xx-51-phan-ke-binh-58-xx-dao-tan-truc-2-_-chi-mai-_-bd",
+        "title": "Ngõ 35 Phan Kế Bính (58.xx Đào Tấn) Trục 2 _ Chị Mai _ BĐ",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-35-xx-51-phan-ke-binh-58-xx-dao-tan-truc-1-_-chi-mai-_-bd",
+        "title": "Ngõ 35 Phan Kế Bính (58.xx Đào Tấn) Trục 1 _ Chị Mai _ BĐ",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-105-xx-dinh-thon_-a-minh-giu-phong-den-25-8",
+        "title": "Ngõ 105 Đình Thôn_ A Minh( giữ phòng đến 25/8)",
+        "price": 7000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-162-23-x-dong-thien-_tang-1-_-ln",
+        "title": "Ngõ 162 Đông Thiên _Tầng 1 _ LN",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-nha-nguyen-can-khu-dat-dv-cum-cong-nghiep-lai-xa_a-nhu_lpnt",
+        "title": "Nhà Nguyên căn Khu Đất DV Cụm Công Nghiệp Lai Xá_A Nhu_LPNT",
+        "price": 15000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-214-nguyen-xien-khu-pho-di-bo-carnaby",
+        "title": "214 Nguyễn Xiển, khu phố đi bộ Carnaby",
+        "price": 14000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-37-73-x-bang-liet_truc-01_tang-7_anh-quy",
+        "title": "Ngõ 37 Bằng Liệt_Trục 01_Tầng 7_Anh Quý",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-16x-kim-giang_truc-02_anh-luong",
+        "title": "Ngõ 634 Kim Giang_Trục 02_Anh Lượng",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-6x-kim-giang_truc-01_anh-luong",
+        "title": "Ngõ 634 Kim Giang_Trục 01_Anh Lượng",
+        "price": 4900000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-136-nguyen-an-ninh-q27_truc-02_xh",
+        "title": "136 Nguyễn An Ninh Q27_Trục 02_XH",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk26-90-kdt-hinode_2n1k-tang-3-truc-2_a-the-anh_lpnt",
+        "title": "LK26.90 KĐT Hinode_2N1K tầng 3 Trục 2_A Thế Anh_LPNT",
+        "price": 5200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-400-truong-dinh_truc-05_xh",
+        "title": "400 Trương Định_Trục 05_XH",
+        "price": 11500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-38-05-cau-dien_nguyen-can",
+        "title": "Ngõ 136 Cầu Diễn_Nguyên Căn",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1xx-thinh-quang_mbkd_dd",
+        "title": "1XX Thịnh Quang_MBKD_ĐĐ",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-80-xx-xuan-phuong_san-van-phong_tang-7_c-huong_2r",
+        "title": "Ngõ 80 Xuân Phương_Sàn Văn Phòng_Tầng 7_C Huong_2R",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-353-xx-nguyen-khang_truc-04_tx",
+        "title": "Ngõ 353 Nguyễn Khang_Trục 04_TX",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-353-xx-nguyen-khang_truc-03_tx",
+        "title": "Ngõ 353 Nguyễn Khang_Trục 03_TX",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-530-57-duong-thuy-khue-_-truc-1-_-chi-khanh-ha",
+        "title": "Ngõ 530 Đường Thuỵ Khuê _ Trục 1 _ Chị Khánh Hạ",
+        "price": 6200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-54-6x-le-quang-dao_penh_c-hiep_tt-co-fix",
+        "title": "Ngõ 54 Lê Quang Đạo_PenH_C Hiệp_TT (Có fix)",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-47-7-x-nguyen-duc-canh_truc-03_xh",
+        "title": "Ngõ 47 Nguyễn Đức Cảnh_Trục 03_XH",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-47-7-x-nguyen-duc-canh_truc-02_xh",
+        "title": "Ngõ 47 Nguyễn Đức Cảnh_Trục 02_XH",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-214-xx-duong-thuy-khue-_-anh-dat-_-ba-dinh",
+        "title": "Ngõ 214 Đường Thuỵ Khuê _ Anh Đạt _ Ba Đình",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-36-2-1x-kim-giang_tang-1_anh-tai",
+        "title": "Ngõ 750 Kim Giang_Tầng 1_Anh Tài",
+        "price": 2200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-342-59-1x-khuong-dinh_truc-02_mt",
+        "title": "Ngõ 342 Khương Đình_Trục 02_MT",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-42-x-phu-do_a-duc_tt",
+        "title": "Ngõ 42 Phú Đô_A Đức_Trục 5,6_TT",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-402-28-xx-my-dinh_c-tuoi",
+        "title": "Ngõ 322 Mỹ Đình_C Tươi",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-170-mat-duong-cau-dien_truc-1_anh-xuyen_cd",
+        "title": "Toà Mới A01 Đường Cầu Diễn_Trục 1_Anh Xuyến Cọc 1,5th đóng 1_CD",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-95-1-xx-truc-03-anh-nguyen",
+        "title": "Ngõ 322 Mỹ Đình_Trục 03 _Anh Nguyên",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-23-xx-tran-binh_truc-2_c-thuy",
+        "title": "Ngõ 58 Trần Bình_Trục 2_C thuý",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-132-xx-duong-cau-giay-_-truc-1_-chi-hoa",
+        "title": "Ngõ 132 Đường Cầu Giấy _ Trục 1_ Chị Hoa",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-53-x-tran-quoc-vuong-_-a-thang-_-305a405a-_-tvh",
+        "title": "Ngõ 63 Trần Quốc Vượng _ A Thắng _ 305A,405A _ VDT",
+        "price": 3100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-252-x-dinh-cong_truc-0102",
+        "title": "Ngõ 252 Định Công_Trục 01,02_MT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-km-14-ql1a-ngoc-hoi-_-truc-02-nha-chi-hang",
+        "title": "Km 14 ,QL1A , Ngọc Hồi _ trục 01 nhà chị Hằng",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-79-15x-cau-giay_truc-03_tx",
+        "title": "Ngõ 79 Cầu Giấy_Trục 03_TX",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-2x-phu-do_truc-3_a-chien_tt",
+        "title": "Ngõ 82 Phú đô_Trục 3_A Chiến_TT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk03-50-kdt-hinode_502_a-hai_lpnt",
+        "title": "LK03.50 KĐT Hinode_502_A Hải_LPNT",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-298-2x-ngoc-hoi-_tang-2-nha-co-thuy",
+        "title": "Ngõ 298 Ngọc Hồi _ tầng 2 nhà Cô Thuý",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-chung-cu-ct235-thanh-liet_tang5_-nha-chu-nang",
+        "title": "Chung cư CT235 Thanh Liệt_tầng5_ nhà chú Năng",
+        "price": 10000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-89-x1-phan-ke-binh_truc-4_anh-hieu_bd",
+        "title": "Ngõ 89 Phan Kế Bính_Trục 4_Anh Hiếu_BĐ",
+        "price": 10500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-752-ngai-cau_truc-3_co-ha_ak",
+        "title": "752 Ngãi Cầu_Trục 3_Cô Hạ_AK",
+        "price": 2900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-3-24-nguyen-canh-didinh-cong_p601_mt",
+        "title": "Ngõ 3 Nguyễn Cảnh Dị,Định Công_P601_MT",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-3-24-nguyen-canh-di-dinh-cong_tang-1_mt",
+        "title": "Ngõ 3 Nguyễn Cảnh Dị, Định Công_Tầng 1_MT",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-3-24-nguyen-canh-di-dinh-cong_truc-02_tang-234_mt",
+        "title": "Ngõ 3 Nguyễn Cảnh Dị, Định Công_Trục 02_Tầng 2,3,4_MT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-69-xx-doi-can_truc-2-tang-2-3-4-5_anh-minh_bd",
+        "title": "Ngõ 279 Đội Cấn_Trục 2 tầng 2, 3, 4, 5_Anh Minh_BĐ",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-172-55-phu-dien_san-vp_qv",
+        "title": "Ngõ 172 Phú Diễn_Sàn VP_QV",
+        "price": 15000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-151-b-lang-ha_02-tx",
+        "title": "Ngõ 151 Láng Hạ_02 TX",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-207-65-10-x-x-duong-xuan-dinh-_-a-quan-_-truc-4-_-tvh",
+        "title": "Ngõ 207 Đường Xuân Đỉnh _ A Quân _ Trục 4 _ HAV",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-95-29-xx-my-dinh_truc-3",
+        "title": "Ngõ 322 Mỹ Đình_Trục 3_ Cô Châm",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-185-linh-nam_truc-03_ln",
+        "title": "185 Lĩnh Nam_Trục 03_AB_LN",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-17-8-xx-my-dinh_truc-3_a-tien",
+        "title": "Ngõ 322 Mỹ Đình_Trục 3_A Tiến",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-33-duong-cau-dien_toa-b_qv",
+        "title": "Ngõ 29 Đường Cầu Diễn_Tòa B_QV",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-402-42-xx-my-dinh-truc-02-a-hoc-da",
+        "title": "Ngõ 402 Mỹ Đình Trục 02 A Học",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-9x-me-tri-thuong_truc-1-stu-_a-khiem_tt",
+        "title": "Ngõ 230 Mễ Trì Thượng_Trục 1 Stu _A Khiêm_TT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-100-x-tran-duy-hung_truc-03_tx",
+        "title": "Ngõ 100 Trần Duy Hưng_Trục 03_TX",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-95-xx-my-dinh_-a-dat",
+        "title": "Ngõ 322 Mỹ Đình_ A Sơn",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-76-xx-my-dinh_a-son-2",
+        "title": "Ngõ 322 Mỹ Đình_A Sơn",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-100-59-x-cho-kham-thien_truc-02_dd",
+        "title": "Ngõ 100 Chợ Khâm Thiên_Trục 02_ĐĐ",
+        "price": 2000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-38x-dai-mo-_-nguyen-can_c-kim-anh",
+        "title": "38x Đại Mỗ _ Nguyên Căn_c Kim Anh",
+        "price": 20000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-748-kim-giang_nha-chi-huong",
+        "title": "748 Kim Giang_nhà chị Hường",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-426-48-4x-duong-lang_truc-02_tx",
+        "title": "Ngõ 426 Đường Láng_Trục 01_TX",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-401-20-x-duong-co-nhue-_-chu-duc-_-truc-2-_-tvh",
+        "title": "Ngõ 401 Đường Cổ Nhuế _ Chú Đức _ Trục 2 _ TVH",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-66-xx-pho-vong-thi-_truc-3-4-tang-3-4_-anh-cuong",
+        "title": "Ngõ 66 Phố Võng Thị _Trục 3, 4 tầng 3, 4_ Anh Cường",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-254-92-x-minh-khai_mbkd-tang-12_xh",
+        "title": "Ngõ 254 Minh Khai_MBKD Tầng 1,2_XH",
+        "price": 35000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-69-xx-doi-can_truc-1_anh-minh_bd",
+        "title": "Ngõ 279 Đội Cấn_Trục 1_Anh Minh_BĐ",
+        "price": 5800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-255-xx-linh-nam_tang-1_ln",
+        "title": "Ngõ 255 Lĩnh Nam_Tầng 1_LN",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-250-51-x-kim-giang-tang-3-co-nhi",
+        "title": "Ngõ 250 Kim Giang Tầng 3 Cô Nhi",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lang-cuong-ngo-tu-hiep-thanh-tri",
+        "title": "Ngõ ngò 5 Cương Ngô , Tứ Hiệp , Thanh Trì_trục 02 nhà chị Thắm",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-262a-35-x-nguyen-trai_truc-02_tx",
+        "title": "Ngõ 262A Nguyễn Trãi_Trục 02_TX",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk02-24-kdt-hinode_501_a-linh_lpnt",
+        "title": "LK02.24 KĐT Hinode_501_A Linh_LPNT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk02-24-kdt-hinode_402_a-linh_lpnt",
+        "title": "LK02.24 KĐT Hinode_402_A Linh_LPNT",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-172-pho-vu-huu-thanh-xuan-truc-3",
+        "title": "172 Phố Vũ Hữu, Thanh Xuân Trục 3",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk8-xx-tong-cuc-5-yen-xa-tang-234",
+        "title": "LK8.xx Tổng cục 5 Yên Xá tầng 2,3,4",
+        "price": 12500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-189-xx-hoang-hoa-tham-nha-chi-ha-2",
+        "title": "Ngõ 189 Hoàng Hoa Thám nhà chị Hà",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-189-xx-hoang-hoa-tham-nha-chi-ha",
+        "title": "Ngõ 189 Hoàng Hoa Thám nhà chị Hà",
+        "price": 13800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-xx-35-nguyen-khanh-toan_truc-2_anh-hoa_bd",
+        "title": "Ngõ 58 Nguyễn Khánh Toàn_Trục 1_Anh Hoà_BĐ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-74-xx-tan-trieu",
+        "title": "Ngõ 74 Tân triều trục 1",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-196-x-tran-duy-hung_mbkd_tx",
+        "title": "Ngõ 196 Trần Duy Hưng_MBKD_TX",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-80-xx-xuan-phuong_truc-2_2n1k_c-huong_2r",
+        "title": "Ngõ 80 Xuân Phương_Trục 2_2N1K_C Huong_2R",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-176-7xd-yen-phu-tay-ho-212-0x-vu-mien-_-truc-2_anh-hanh",
+        "title": "Ngõ 212 Vũ Miên, Tây Hồ _ Trục 2_Anh Hạnh",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-du-an-176-7xd-yen-phu-tay-ho-212-0x-vu-mien-_-truc-1_anh-hanh",
+        "title": "Ngõ 212 Vũ Miên, Tây Hồ _ Trục 1_Anh Hạnh",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-445-46-2x-lac-long-quan_truc-3_anh-hoang_bd",
+        "title": "Ngõ 445 Lạc Long Quân_Trục 3_Anh Hoàng_BĐ",
+        "price": 6200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-136-xx-trieu-khuc-nha-anh-diep-truc-1",
+        "title": "Ngõ 136 Triều Khúc nhà anh Diệp trục 1",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk01-21-kdt-hinode_401_a-due_lpnt",
+        "title": "LK01.21 KĐT Hinode_401_A Duệ_LPNT",
+        "price": 4700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-479-29-x-linh-nam_tang-1_ln",
+        "title": "Ngõ 479 Lĩnh Nam_Tầng 1_LN",
+        "price": 4900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-209-2x-doi-can_truc-1_anh-quan",
+        "title": "Ngõ 209 Đội Cấn_Trục 1_Anh Quân",
+        "price": 10500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-30-11-15-xx-phu-my-tang-3_a-hung_xd",
+        "title": "Ngõ 30 Phú Mỹ tầng 3_a Nam_XĐ",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-328-39-4x-tay-mo_truc-01-02_-chu-tuan",
+        "title": "Ngõ 328 Tây Mỗ_Trục 01-02_ Chú Tuấn",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-127-x-phung-khoang-2",
+        "title": "Ngõ 127 Phùng Khoang ( Trục 2 ) cuối tháng 8 trống",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-62-41-2x-bui-xuong-trach_p11_mt",
+        "title": "Ngõ 1 Bùi Xương Trạch_P11_MT",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-97-29-xx_dinh-thon_truc-2_a-anh",
+        "title": "Ngõ 97 _Đình Thôn_trục 2_A Đỗ Anh",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-n04-xx-khu-tai-dinh-cu-trieu-khuc-truc-1",
+        "title": "N04.xx Khu Tái Định Cư Triều Khúc trục 1",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-43-66-1x-trung-kinh_mbkd_tx",
+        "title": "Ngõ 43 Trung Kính_MBKD_TX",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-699-x-vu-tong-phan_truc-02-2n1b_mt",
+        "title": "Ngõ 699 Vũ Tông Phan_Trục 02, 2N1B_MT",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-43-66-2x-trung-kinh_truc-02_tx",
+        "title": "Ngõ 43 Trung Kính_Trục 04_TX",
+        "price": 4300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-559-122-x-kim-nguu_truc-04_chi-tuyet_xh",
+        "title": "Ngõ 559 Kim Ngưu_Trục 04_Chị Tuyết_XH",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14x-dai-mo_mbkd-tang-2_anh-son",
+        "title": "14x Đại Mỗ_MBKD tầng 2_Anh Sơn",
+        "price": 8000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-9x-bang-liet_nha-anh-chien",
+        "title": "Ngõ 61 Bằng Liệt_nhà anh Chiến",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-37-dinh-thon_truc-01_-a-thanh_xd",
+        "title": "37 Đình Thôn_Trục 01_ A Thành_XĐ",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-4x-dinh-cong-thuong-2_mbkd_mt",
+        "title": "Ngõ 230 Định Công Thượng (2)_MBKD_MT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-387-37-x-bui-xuong-trach_truc-01_mt",
+        "title": "Ngõ 358 Bùi Xương Trạch_Trục 01_MT",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-81a-xx-vong-thi-p-trich-sai_truc-1_chi-mai_tt-2",
+        "title": "Ngõ 81A Võng Thị (P. Trích Sài)_Trục 2_Chị Mai_TT",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-81a-xx-vong-thi-p-trich-sai_truc-1_chi-mai_tt",
+        "title": "Ngõ 81A Võng Thị (P. Trích Sài)_Trục 1_Chị Mai_BĐ",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-15-nguyen-khang-cau-giay_tang-6_tx",
+        "title": "15 Nguyễn Khang, Cầu Giấy_Sleep box_P609_TX",
+        "price": 2200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-82-xx-kim-ma_truc-6_chi-mai_bd",
+        "title": "Ngõ 82 Kim Mã_Trục 6_Chị Mai_BĐ",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-162-28-x-khuong-dinh_truc-02_mt",
+        "title": "Ngõ 162 Khương Đình_Trục 02_MT",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-217-xx-phung-khoang-truc-3",
+        "title": "Ngõ 217 .xx Phùng Khoang trục 3",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-121-48-10-x-kim-nguu_truc-0204_xh",
+        "title": "Ngõ 121 Kim Ngưu_Trục 02,04_XH",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-44-dong-co_truc2-_vqh",
+        "title": "44 Đồng Cổ_Trục2 _Em Nguyên_VQH",
+        "price": 9500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-619-toa-b-vu-tong-phan_truc-05_mt",
+        "title": "Ngõ 619 à B Vũ Tông Phan_Trục 05_MT",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-168-26-x-kim-giang_p402_mt",
+        "title": "Ngõ 168 Kim Giang_Trục 02 Tầng 4,5_MT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk29-08-kdt-hinode_2n1k-tang-4-truc-3_a-binh_lpnt",
+        "title": "LK29.08 KĐT Hinode_2N1K Tầng 4 Trục 3_A Bình_LPNT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk29-08-kdt-hinode_1n1k-tang-5-truc-1_a-binh_lpnt",
+        "title": "LK29.08 KĐT Hinode_1N1K Tầng 5 Trục 1_A Bình_LPNT",
+        "price": 3400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk29-08-kdt-hinode_2n1k-tang-5-truc-2_a-binh_lpnt",
+        "title": "LK29.08 KĐT Hinode_2N1K Tầng 5 Trục 2_A Bình_LPNT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-298-1x-ngoc-hoi_truc-03-nha-chi-trang",
+        "title": "Ngõ 298 Ngọc Hồi_trục 03 nhà chị Trang",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-43-99-15-x-trung-kinh-cau-giay_tx",
+        "title": "Ngõ 43 Trung Kính, Cầu Giấy_Trục 01_TX",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-168-6x-kim-giang_truc-0102_mt",
+        "title": "Ngõ 168 Kim Giang_Trục 01,02_MT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-thanh-liet-truc-01-nha-anh-dung",
+        "title": "63 Thanh Liệt trục 05 nhà anh Dũng",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-76-18-51-my-dinh-truc-trong-chi-minh",
+        "title": "Ngõ 322 Mỹ Đình- Trục 2 – Chị Minh",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-107-2x-vinh-hung_truc-03_ln",
+        "title": "Ngõ 107 Vĩnh Hưng_Trục 03_ AĐ_LN",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-70-xx-02-van-tri_chi-phuong_cd",
+        "title": "Ngõ 70 Văn Trì_Truc1_Chị Phượng_CD",
+        "price": 3200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-40-165-do-nha_1k1n_c-toan_2r",
+        "title": "Ngõ 40 Do Nha_1K1N_C Toan_2R",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-286-nguyen-xien-truc-trong",
+        "title": "Ngõ 286 Nguyễn Xiển Trục trong",
+        "price": 5400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-286-nguyen-xien-truc-giua",
+        "title": "Ngõ 286 Nguyễn Xiển trục giữa",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-102-32-3x-hoang-dao-thanh_tru-02_mt",
+        "title": "Ngõ 102 Hoàng Đạo Thành_Trụ 02_MT",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk28-29-kdt-hinode_2n1k-tang-4-truc-3_a-binh",
+        "title": "LK28.29 KĐT Hinode_2N1K Tầng 4 Trục 3_A Bình",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk30-47-kdt-hinode_1n1k-tang-5-truc-1_chi-huong_lpnt",
+        "title": "LK30.47 KĐT Hinode_1N1K Tầng 5 Trục 1_Chị Hương_LPNT",
+        "price": 3100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-95-xxmyx-dinh_nha-a-vu",
+        "title": "Ngõ 322 Mỹ Đình_ Trục 02_ A Nguyên",
+        "price": 5600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-649-x-linh-nam_truc-04_ln",
+        "title": "Ngõ 649 Lĩnh Nam (3)_Trục 04_FH_LN",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2-20-1x-hoang-liet-c-loan",
+        "title": "Ngõ 2 Hoàng Liệt-C Loan",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-x-kim-giang-truc-03-nha-ba-dau",
+        "title": "Ngõ 750 Kim Giang trục 03 nhà bà Dậu",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-766-24-x-de-la-thanh_truc-03_dd",
+        "title": "Ngõ 766 Đê La Thành_Trục 03_ĐĐ",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-158-1x-dai-tu-2",
+        "title": "Ngõ 158 Đại Từ Trục 03-04 A_Sáu",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-62-24-x-bui-xuong-trach_truc-01_co-hang_mt",
+        "title": "Ngõ 1 Bùi Xương Trạch_trục 01_cô Hằng_MT",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-131-xb-kim-giang-truc-01-nha-anh-binh",
+        "title": "Ngõ 634 Kim Giang trục 01 nhà anh Bình",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-5-16-xx-tan-trieu-truc-3-nha-chi-van",
+        "title": "Ngõ 5 Tân Triều Trục 3 nhà chị Vân(ở 2 3tr3)",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-4x-nguyen-xa_anh-thuy",
+        "title": "4x Nguyên Xá_Trục 1_Anh Thủy",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-18-24-1x-dinh-cong-thuong_anh-huy_mt",
+        "title": "Ngõ 18 Định Công Thượng_Trục 01,02,03,04_MT",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-205-165-42-duong-xuan-dinh-_-c-dieu-huong-_lk3lk5lk6-_-tvh",
+        "title": "Ngõ 205 Đường Xuân Đỉnh _ C Diệu Hương _,Lk6 _ VDT",
+        "price": 6000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-22-luong-khanh-thien-01_truc-01_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (01)_Trục 01_Funhome_XH",
+        "price": 5600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-93-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 93 Hoàng Mai_Trục 01_Chị Tuyết_XH",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-619-toa-a-vu-tong-phan_truc-0304_mt",
+        "title": "Ngõ 619 à A Vũ Tông Phan_Trục 03,04_MT",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-147a-x-tan-mai_truc-01_xh",
+        "title": "Ngõ 147A Tân Mai_Trục 01 Funhome_XH",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-33-49-xx-phu-my-anh-truong-da",
+        "title": "Ngõ 33 Phú Mỹ Times Houes ĐA",
+        "price": 3300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-77-x-pho-8-3-minh-khai_truc-02_xh",
+        "title": "Ngõ 77 Phố 8-3 (Minh Khai)_Trục 02_XH",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-30-xx-phu-my-_-truc-12-_-anh-tu",
+        "title": "Ngõ 30 Phú Mỹ _ Trục 1,2 _ anh Tú",
+        "price": 6300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-196-99-ho-tung-mau-san-van-phong",
+        "title": "Ngõ 196 Hồ Tùng Mậu – Sàn Văn Phòng",
+        "price": 9500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-6x-dinh-cong-ha-3_p203204_mt",
+        "title": "Ngõ 99 Định Công Hạ (3)_Trục 03_MT",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-97-16-6x-khuong-trung_tang-234_mt",
+        "title": "Ngõ 97 Khương Trung_Tầng 2,3,4_MT",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-97-16-6x-khuong-trung_tang-567_mt",
+        "title": "Ngõ 97 Khương Trung_Tầng 5,6,7_MT",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-162-de-la-thanh-nho_p802_dd",
+        "title": "162 Đê La Thành Nhỏ_Trục 02_ĐĐ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-10-kim-giang-truc-03-04-nha-anh-manh",
+        "title": "Ngõ 750 Kim Giang trục 03-04 nhà anh Mạnh",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-75-x-vinh-hung_truc-03_ln",
+        "title": "Ngõ 75 Vĩnh Hưng_Trục 01_LN",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-02-33-05-xx-van-tri_-chi-tam_truc-03_cd",
+        "title": "Ngõ 02 Văn trì_ Chị Tám_Trục 03(30/09)_CD",
+        "price": 3900000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-111-x-nguyen-duc-canh_truc-0304_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 03_Anh Khánh_XH",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-298-105-x-ngoc-hoi-truc-03_ban-son",
+        "title": "Ngõ 298 Ngọc Hồi trục 03_Bạn Sơn",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk-16-mau-luong-2",
+        "title": "Lk 16 Khu Đấu Giá Mậu Lương -NM",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-117-yen-xa-nha-chi-thuyen",
+        "title": "117 Yên Xá- nhà chị Thuyên",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-04-36-lai-xa_truc-14_a-quang_lpnt",
+        "title": "Ngõ 63 Lai Xá_Trục 1,4_A Quang_LPNT",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-80-14-x-nhan-hoa_truc-02_tx",
+        "title": "Ngõ 80 Nhân Hoà_Trục 02_TX",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-816-51-x-kim-giang-mbkd-nha-anh-truong",
+        "title": "Ngõ 816 Kim Giang MBKD_ Chị Hằng",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-570-3x-kim-giang_truc-02-tang-6_anh-tung",
+        "title": "Ngõ 570 Kim Giang_Trục 02 Tầng 6_Anh Tùng",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-455-56-vu-tong-phan_truc-05_mt",
+        "title": "Ngõ 455 Vũ Tông Phan_Trục 04,05_MT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-3x-x-kim-giang_truc-0102_mt",
+        "title": "Ngõ 192 Kim Giang_Trục 01,02_MT",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-40-165-do-nha_phong-to_c-toan_2r",
+        "title": "Ngõ 40 Do Nha_Phòng To_Đang Giảm Giá_C Toan_2R",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-25-75-xx-phu-minh_anh-phuong",
+        "title": "Ngõ 25 Phú Minh_Anh Phương_CD",
+        "price": 2300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-387-3x-vu-tong-phan_truc-02_mt",
+        "title": "Ngõ 387 Vũ Tông Phan_Trục 02_MT",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-164-vuong-thua-vu_van-phong_mt",
+        "title": "164 Vương Thừa Vũ_Sàn VP_MT",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2-20-1x-hoang-liet_co-loan",
+        "title": "Ngõ 2 Hoàng Liệt_Cô Loan",
+        "price": 3700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-15-47-goc-de",
+        "title": "Ngõ 15 Gốc Đề_Tầng 1_Anh Độ_XH",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-772-7-x-kim-giang-truc-01_anh-duc",
+        "title": "Ngõ 772 Kim Giang trục 01_Anh Đức",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-88-xx-duong-cau-dien-_truc-3-_-anh-ha_cd",
+        "title": "Ngõ 136 đường cầu diễn _Trục 3 _ Anh Hà_Cd",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-truc-1-lien-ke-35-16-kdt-hinode",
+        "title": "Liền Kề 35.16 KĐT Hinode Di Trạch – Trục 1",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-truc-5-lien-ke-35-16-kdt-hinode-lai-xa",
+        "title": "Liền Kề 35.16 KĐT Hinode Di Trạch – Trục 5",
+        "price": 2600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-142-quan-nhan_truc-03_tx",
+        "title": "142 Quan Nhân_Trục 03_TX",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-27-15a-nguyen-dao-an-truc-1",
+        "title": "Ngõ 27 Nguyễn Đạo An – Phú Diễn – Trục 1 – QV",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-48-16-2x-ngoc-hoi-truc-04_anh-an",
+        "title": "Ngõ 48 Ngọc Hồi trục 04_Anh An",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-khu-dat-dich-vu-van-canh_truc-2_anh-thien_2r",
+        "title": "Đường Hồng Lê – Vân Canh_Trục 1-2_A Thien_2R",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-670-kim-giang-truc-04_co-giang",
+        "title": "670 Kim Giang trục 04_Cô Giang",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2-1-khu-tap-the-tang-thiet-giap-co-nhue-2-_-a-minh-_-truc-1-_-tvh",
+        "title": "Ngõ 2 Khu Tập Thể Tăng Thiết Giáp , Cổ Nhuế 2 _ A Minh _ Trục 1 _ HAV",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-xx-32-pho-trung-kien_truc-1-2_anh-ba_cd",
+        "title": "Ngõ 29 Phố Trung Kiên_Trục 1, 2_Anh Ba_CD",
+        "price": 3200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk06-05-kdt-hinode_2n1k_a-duy_lpnt",
+        "title": "LK06.05 KĐT Hinode_2N1K_A Duy_LPNT",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-173-22-03-di-trach_a-oanh",
+        "title": "Nguyên căn 173.22.03 Di Trạch_Không Đồ_A Oanh",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-le-trong-tan_san-vp-mbkd_mt",
+        "title": "252 Lê Trọng Tấn_Sàn VP + MBKD_MT",
+        "price": 60000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-42-x-khuong-ha_-truc-04_chi-nghia_mt",
+        "title": "Ngõ 29 Khương Hạ_ Trục 04_MT",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-02-33-xx-van-tri_-co-tam-_-truc-2_cd",
+        "title": "Ngõ 02 Văn trì(30/09)_ Cô Tám _ Trục 2_CD",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-175-165-x-kim-giang-truc-02-nha-co-nguyet",
+        "title": "Ngõ 750 Kim Giang Trục 02 nhà cô Nguyệt",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-48-16-2x-ngoc-hoi-truc-03_anh-an",
+        "title": "Ngõ 48 Ngọc Hồi trục 03_Anh An",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-168-97-9x-kim-giang_truc-03_anh-tuan_mt",
+        "title": "Ngõ 168 Kim Giang_Trục 03_anh Tuấn_MT",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-43-11-phu-vinh_truc-1_chi-minh_ak",
+        "title": "Ngõ 43 Phú Vinh_Trục 1_Chị Minh_AK",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-5x-hoa-binh_truc-01_dd",
+        "title": "5X Hoà Bình_Trục 01_ĐĐ",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-77-4x-bui-xuong-trach_truc-04_mt",
+        "title": "Ngõ 77 Bùi Xương Trạch_Trục 04_MT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-686-5x-kim-giang-nha-nguyen-can",
+        "title": "Ngõ 686 Kim Giang Nhà Nguyên Căn",
+        "price": 14000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-718-x-duong-lang_truc-04_dd",
+        "title": "Ngõ 718 Đường Láng_Trục 03,04_TX",
+        "price": 6600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-718-x-duong-lang_truc-01_dd",
+        "title": "Ngõ 718 Đường Láng_Trục 01,02_TX",
+        "price": 7600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-213-6x-giap-nhat-thanh-xuan_truc-03_mt",
+        "title": "Ngõ 213 Giáp Nhất, Thanh Xuân_Trục 03_TX",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk-13-08-kdt-hinode_truc-1_chi-huong_lpnt",
+        "title": "LK 13.08 KĐT Hinode_Trục 1_Chị Hương_LPNT",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-306-di-trach_truc-2_a-nhu_lpnt",
+        "title": "Khu đất dịch vụ Di Trạch_ns2_Trục 2_A Nhu_LPNT",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-32-x-dinh-cong-ha_truc-01_mt",
+        "title": "Ngõ 99 Định Công Hạ_Trục 01_MT",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-1x-ha-dinh_truc-01_mt",
+        "title": "Ngõ 192 Hạ Đình_Trục 01_MT",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-02-33-xx-van-tri-_-co-tam_truc-1-_cd",
+        "title": "Ngõ 02 Văn trì _ Cô Tám_Trục 1(máy giặt riêng)) _CD",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-13-16-x_doc-tam-da_truc1_vqh",
+        "title": "Ngõ 13 ốc Tam Đa_Trục1_VQH",
+        "price": 6800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-3-x-kim-giang_truc-02_mt",
+        "title": "Ngõ 20 Kim Giang_Trục 02,03_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1197-x-giai-phong_truc-02_xh",
+        "title": "Ngõ 1197 Giải Phóng_Trục 02_Anh Độ_Xh",
+        "price": 6100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-thanh-liet-truc-07-nha-anh-dung",
+        "title": "63 Thanh Liệt trục 05-07 nhà anh Dũng",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-thanh-liet-truc-02_anh-dung",
+        "title": "63 Thanh Liệt trục 02_Anh Dũng",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-17-6x-kim-giang_tang-235_chi-luu_mt",
+        "title": "Ngõ 192 Kim Giang_Trục 02 T2,3,5_MT",
+        "price": 3100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-619-vu-tong-phan_truc-03_mt",
+        "title": "619 Vũ Tông Phan_Trục 02,03_MT",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-33-xx-phu-my-truc-02-chi-phuong",
+        "title": "33. xx Phú Mỹ Trục 02- Chị Phương",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-53-5-ngoa-long-truc-1",
+        "title": "Ngõ 53 Ngọa Long _p101_ Tận Tâm",
+        "price": 3050000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-11x-x-dinh-cong-thuong",
+        "title": "Ngõ 230 Định Công Thượng_P101_MT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-60-nguyen-xa_truc-2_anh-dung",
+        "title": "60 Nguyên Xá_Trục 2_Anh Dũng_CD",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-378-xx-my-dinh-truc-03-a-hung",
+        "title": "378 .xx Mỹ Đình trục 03- a Hưng",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-545-7-duong-xuan-dinh-_-nha-co-anh-_truc-1-_-tvh",
+        "title": "Ngõ 545 Đường Xuân Đỉnh _ Cô Anh _Trục 1 _VDT",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-816-51-6-x-kim-giang-truc-02-tang-3-4_anh-huy",
+        "title": "Ngõ 816 Kim Giang trục 02 tầng 5_Anh Huy",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-94-x-hoang-mai_truc-03_xh",
+        "title": "Ngõ 94 Hoàng Mai_Trục 03_Funhome_XH",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-94-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 94 Hoàng Mai_Trục 01_Funhome_XH",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-17-4-cong-hoa-thanh-tri_truc-01_chi-phuong",
+        "title": "Ngõ 17 Cộng Hoà-Thanh Trì_Trục 01_Chị Phương",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-17-4-cong-hoa-thanh-tri_truc-02_chi-phuong",
+        "title": "Ngõ 17 Cộng Hoà-Thanh Trì_Trục 02_Chị Phương",
+        "price": 3100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-47-x-tran-hoa_p202_mt",
+        "title": "Ngõ 47 Trần Hoà_Trục 02_MT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-358-3x-bui-xuong-trach_truc-04_chi-chi_mt",
+        "title": "Ngõ 358 Bùi Xương Trạch_trục 02_chị Chi_MT",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-245-120-15-dinh-cong_p201_mt",
+        "title": "Ngõ 245 Định Công_P201_MT",
+        "price": 2700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-90-70-x-1-khuyen-luong-gamuda_truc-01_ln",
+        "title": "Ngõ 90 (1) Khuyến Lương (Gamuda)_Trục 01_ Anh Đạt_LN",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6x-thanh-liet-truc-06_hd",
+        "title": "6x Thanh Liệt trục 06_HĐ",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6x-thanh-liet-truc-05_hd",
+        "title": "6x Thanh Liệt trục 05_HĐ",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6x-thanh-liet-truc-02-03-04_hd",
+        "title": "6x Thanh Liệt trục 02-03-04_HĐ",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-6x-thanh-liet-truc-01_hd",
+        "title": "6x Thanh Liệt trục 01_HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-114-9-nguyen-dao-an-truc-trong-chi-phuong",
+        "title": "Ngõ 114 Nguyễn Đạo An_P206_QV",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-83-58x-tan-trieu-truc7",
+        "title": "Ngõ 83 Tân Triều trục7",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-142-1x-dai-tu_truc-05",
+        "title": "Ngõ 142 Đại Từ_Trục 05_Anh Hải",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-402-51-xx-my-dinh-_-anh-long-_-truc-2345",
+        "title": "Ngõ 402 Mỹ Đình _ anh Long _ Trục 2",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-543-x-giai-phong_truc-03_xh",
+        "title": "Ngõ 543 Giải Phóng_Trục 03_XH",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-858-28-x-kim-giang_tang-1-anh-lam",
+        "title": "Ngõ 858 Kim Giang_Tầng 1 anh Lâm",
+        "price": 2400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-mbkd-ngo-cho-co-nhue-103-co-nhue",
+        "title": "MBKD ngõ chợ Cổ Nhuế ( 103 Cổ Nhuế)",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-xx-doi-can-nha-chi-ha-3",
+        "title": "Ngõ 279 Đội Cấn nhà chị Hà",
+        "price": 11500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-xx-doi-can-nha-chi-ha-2",
+        "title": "Ngõ 279 Đội Cấn nhà chị Hà",
+        "price": 15800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-279-xx-doi-can-nha-chi-ha",
+        "title": "Ngõ 279 Đội Cấn nhà chị Hà",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk30-56-kdt-hinode_truc-2_a-dao_tv",
+        "title": "LK30.56 KĐT Hinode_Trục 2_A Đạo_TV",
+        "price": 2700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-205-37-26-9a2-duong-xuan-dinh-_-nha-anh-hung-_-tvh",
+        "title": "Ngõ 205 Đường Xuân Đỉnh _ Nhà Anh Hùng _ VDT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-di-trach_2-mat-tien_lpnt",
+        "title": "Nguyên căn 230 Di Trạch_2 mặt tiền_LPNT",
+        "price": 7500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-94-x-hoang-mai_truc-02_anh-khanh_th",
+        "title": "Ngõ 94 Hoàng Mai_Trục 02_Funhome_XH",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-697-giai-phong_truc-03_xh",
+        "title": "Ngõ 697 Giải Phóng_Trục 03_XH",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha-1_p203204_mt",
+        "title": "Ngõ 99 Định Công Hạ (N2)_P203,204_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha-2_truc-02_mt",
+        "title": "Ngõ 99 Định Công Hạ (N1)_P202_MT",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha_truc-03_mt",
+        "title": "Ngõ 99 Định Công Hạ (N1)_Trục 04_MT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk06-08-kdt-hinode_2n1k_tv",
+        "title": "LK06.08 KĐT Hinode_2N1K_TV",
+        "price": 4100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-261-14-phu-dien-mat-ho-phu-dien-truc-2",
+        "title": "Ngõ 261 Phú Diễn( Mặt hồ Phú Diễn) – Trục 2,4",
+        "price": 3850000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-261-14-phu-dien-mat-ho-phu-dien-truc-1",
+        "title": "Ngõ 261 Phú Diễn( Mặt hồ Phú Diễn) – Trục 1",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha_truc-04_mt",
+        "title": "Ngõ 99 Định Công Hạ (N2)_Trục 03,04_MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-mbkd-mat-duong-phuong-canh_130m2_2r",
+        "title": "MBKD Mặt Đường Phương Canh_130m2_2R",
+        "price": 25000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-479-29-x-linh-nam-4_truc-0104_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 01,04_FH_LN",
+        "price": 4900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-570-3x-kim-giang-truc-02-nha-anh-tung",
+        "title": "Ngõ 570 Kim Giang trục 02 nhà anh Tùng",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-29-42-x-khuong-ha_studio_chi-nghia_mt",
+        "title": "Ngõ 29 Khương Hạ_Dãy trọ_MT",
+        "price": 2600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-52-xx-duong-cau-dien_truc-3-4_co-mai_apg",
+        "title": "Ngõ 51 Văn Trì(01/10) Ngay Ngoạ Long_Trục 3, 4_Cô Mai_APG",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-116-nhan-hoa_truc-02_mt",
+        "title": "116 Nhân Hoà_Mặt Trong_TX",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-95-xx-my-dinh-truc-03-a-nghia",
+        "title": "Ngõ 322 Mỹ Đình Trục 03 – a Nghĩa",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-167-x-kim-giang-truc-03-nha-anh-duy",
+        "title": "Ngõ 634 Kim Giang trục 03 nhà anh Duy",
+        "price": 5100000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-479-29-x-linh-nam-4_truc-0203_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 02_FH_LN",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-68-02-1x-dinh-quan_chi-phuong_apg",
+        "title": "Ngõ 68 Đình Quán_Chị Phương_APG",
+        "price": 2100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-508-duong-lang_truc-03_tx",
+        "title": "Ngõ 508 Đường Láng_Trục 03_TX",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-x-dinh-cong-ha_mbkd-tang-3_mt",
+        "title": "Ngõ 99 Định Công Hạ_MBKD Tầng 7_MT",
+        "price": 7000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-245-120-11-dinh-cong_truc-01_mt",
+        "title": "Ngõ 245 Định Công_Trục 01_MT",
+        "price": 2700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-khu-dat-dich-vu-di-trach_ns1_chi-nguyet_lpnt",
+        "title": "Khu đất dịch vụ Di Trạch_ns1_Chị Nguyệt_LPNT",
+        "price": 25000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk11-37-kdt-hinode_truc-2_a-long-vu_tv",
+        "title": "LK11.37 KĐT Hinode_Trục 2_A Long Vũ_TV",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-121-my-dinh-truc-2-_-nha-a-hung-hen-khach-dau-ngo-322-my-dinh",
+        "title": "Ngõ 121 ỹ Đình trục 03_ nhà A Hùng",
+        "price": 3600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-104-nguyen-an-ninh_truc-03_xh",
+        "title": "104 Nguyễn An Ninh_Trục 03_XH",
+        "price": 5600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-408-18-14a-duong-xuan-dinh-_nha-anh-tuan-_tvh",
+        "title": "Ngõ 408 Đường Xuân Đỉnh _Nhà Anh Tuấn _Tầng 6_ HAV",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-12xb-kim-giang-_truc-01_em-tien",
+        "title": "Ngõ 750 Kim Giang _Trục 01_Em Tiến",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-99-110-6x-x-dinh-cong-ha-2_truc-04_mt",
+        "title": "Ngõ 99 Định Công Hạ (N1)_Trục 03_MT",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-170-bui-xuong-trach_truc-ngoai_mt",
+        "title": "170 Bùi Xương Trạch_Trục ngoài_MT",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14-lk31-kdt-hub-van-canh_truc-1-2_chi-oanh_2r",
+        "title": "LK31 KĐT Hub Vân Canh_Trục 1-2_Chị Oanh_2R",
+        "price": 3000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-649-4x-linh-nam_ln",
+        "title": "Ngõ 649 Lĩnh Nam_MBKD_Cô Hà_LN",
+        "price": 5000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-165-x-dong-thien_truc-02_ln",
+        "title": "Ngõ 165 Đông Thiên_Trục 02_Anh Phú _LN",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-7x-kim-giang-truc-02-_anh-thang",
+        "title": "Ngõ 750 Kim Giang trục 02 _Anh Thắng",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-39-7-x-dai-dong_truc-0203_ln",
+        "title": "Ngõ 39 Đại Đồng_Trục 02,03_AĐ_LN",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-25-4-17-phu-minh-toa-2-anh-xiem",
+        "title": "Ngõ 25 Phú Minh- Tòa 2- anh Xiêm",
+        "price": 2000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-1x-to-vinh-dien_truc-0304_mt",
+        "title": "Ngõ 1 Tô Vĩnh Diện_Trục 03,04_MT",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-559-122-x-kim-nguu_tang-5_xh",
+        "title": "Ngõ 559 Kim Ngưu_Trục 03_Chị Tuyết_XH",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1n1k-lk-10-09-hinode-lai-xa",
+        "title": "1N1K – LK 10.09 Hinode – Lai Xá",
+        "price": 3500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-2n1k-lk-10-09-hinode",
+        "title": "2N1K – LK 10.09 Hinode – Lai Xá",
+        "price": 5400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-87x-kim-giang-nha-chu-tuyen",
+        "title": "87x Kim Giang nhà chú Tuyển",
+        "price": 35000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-236-31-5x-khuong-dinh_truhc-01020304_mt",
+        "title": "Ngõ 236 Khương Đình_Trục 01,02,03,04_MT",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-80-101-7-xuan-phuong-truc-1-chu-viet",
+        "title": "Ngõ 80 Xuân Phương- Trục 1 – Chú Việt",
+        "price": 3200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-80-gieng-mut_truc-02_ln",
+        "title": "80 Giếng Mứt_Trục 02_XH",
+        "price": 5300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-151-3x-nguyen-duc-canh_truc-03_ln",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 03_Anh Tuấn_XH",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-337-73-x-dinh-cong_truc-2_mt",
+        "title": "Ngõ 337 Định Công_Trục 02_MT",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-47-12-1x-khuong-trung_truc-02_chi-oanh_mt",
+        "title": "Ngõ 47 Khương Trung_Trục 02_chị Oanh_MT",
+        "price": 3200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-2x-kim-giang-truc-03-nha-co-phuong",
+        "title": "Ngõ 750 Kim Giang trục 03 nhà cô Phương",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-139-109-1x-bang-liet-truc-01-nha-anh-hao",
+        "title": "Ngõ 139 Bằng Liệt trục 01 nhà anh Hảo",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-168-6x-kim-giang_p205_mt",
+        "title": "Ngõ 168 Kim Giang_P205_P206_MT",
+        "price": 5300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-192-7-8-thanh-dam_truc-04_th",
+        "title": "Ngõ 194 Thanh Đàm_Trục 04_FH_LN",
+        "price": 4500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-192-7-8-thanh-dam_truc-05_mt",
+        "title": "Ngõ 194 Thanh Đàm_Trục 05_FH_LN",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-208-nam-du_truc-01_mt",
+        "title": "208 Nam Dư_Trục 01_LN",
+        "price": 4800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-479-2x-linh-nam-3_truc-0405-tang-2_th",
+        "title": "Ngõ 479 Lĩnh Nam (3)_Trục 05_FH_LN",
+        "price": 4700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-27-29-xx-duong-vo-chi-cong-nha-anh-hieu-truc5",
+        "title": "Ngõ 27 Đường Võ Chí Công – Nhà Anh Hiếu / Trục5",
+        "price": 5900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-27-29-xx-duong-vo-chi-cong-nha-anh-hieu-truc-2-3",
+        "title": "Ngõ 27 Đường Võ Chí Công_Trục 2-3_Nhà Anh Hiếu_BĐ",
+        "price": 6000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-27-29-xx-duong-vo-chi-cong-nha-anh-hieu-truc-1",
+        "title": "Ngõ 27 Đường Võ Chí Công – Nhà Anh Hiếu /Trục 1",
+        "price": 6100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-248-xx-le-trong-tan_truc-03_mt",
+        "title": "Ngõ 192 Lê Trọng Tấn_Trục 03_MT",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-619-vu-tong-phan_1n1k_mt",
+        "title": "619 Vũ Tông Phan_1N1K_MT",
+        "price": 5700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-455-5x-vu-tong-phan_tang-1_mt",
+        "title": "Ngõ 455 Vũ Tông Phan_Tầng 1_MT",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-truc-2-lien-ke-35-16-kdt-hinode",
+        "title": "Trục 2 – Liền Kề 35.16 KĐT Hinode Di Trạch",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-229-2x-dinh-cong_truc-01_mt",
+        "title": "Ngõ 226 Định Công_Trục 01_MT",
+        "price": 4400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-205-53-54-8-duong-xuan-dinh-_-nha-anh-dac_-truc-1-_-tvh",
+        "title": "Ngõ 205 Đường Xuân Đỉnh _ Nhà Anh Dac_ Trục 1 _ VDT",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-1x-kim-giang_truc-01_chi-thuy_mt",
+        "title": "Ngõ 192 Kim Giang_Trục 01,02,04 _MT",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-282-1x-dinh-cong_truc-02_anh-minh_mt",
+        "title": "Ngõ 282 Định Công_Trục 03_MT",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lien-ke-01-21-kdt-hinode-lai-xa-truc-2",
+        "title": "2N1K Liền Kề 01.21 KĐT Hinode Lai Xá – Trục 2",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-37-8x-bang-liet-nha-co-yen",
+        "title": "Ngõ 37 Bằng Liệt nhà cô Yến",
+        "price": 4200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-734-6x-kim-giang-truc-03-04-nha-anh-khoi",
+        "title": "Ngõ 734 Kim Giang trục 03-04 nhà anh Khôi",
+        "price": 3300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-215-5x-dinh-cong-thuong_truc-02_-anh-khiem_mt",
+        "title": "Ngõ 215 Định Công Thượng_Trục 02_ MT",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-210a-25b-vo-chi-cong_truc-gac-xep-1-2_anh-tam_apg",
+        "title": "Ngõ 210A Võ Chí Công_Trục Gác Xếp 1, 2_Anh Tâm_APG",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-122-46-14-2x-kim-giang_nguyen-can_chi-thom_mt",
+        "title": "Ngõ 122 Kim Giang_Nguyên Căn_MT",
+        "price": 9000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-250-11-kim-giang-truc-08-nha-chi-lam",
+        "title": "Ngõ 250 Kim Giang trục 07 nhà chị Lam",
+        "price": 5200000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-72-1-80-nguyen-trai_truc-02_anh-hanh_mt",
+        "title": "Ngõ 72 Nguyễn Trãi_trục 02_TX",
+        "price": 2600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1194-63-64-18-duong-lang-canh-dh-giao-thong-van-tai-truc-1",
+        "title": "Ngõ 1194 Đường Láng – Trục 1",
+        "price": 5100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-2x-kim-giang-nha-co-phuong-truc-02-1k1n",
+        "title": "Ngõ 750 Kim Giang nhà cô Phương Trục 02 1k1n",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-112-29-xx-nguyen-xa_anh-phuong",
+        "title": "Ngõ 112 Nguyên Xá_Anh Phương_CD",
+        "price": 3800000
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-07T14:59:11.530Z",
+    "durationSeconds": 3,
+    "summary": {
+      "totalInMoithue": 50,
+      "newRooms": 0,
+      "updatedRooms": 0,
+      "unchangedRooms": 50,
+      "hiddenRooms": 107,
+      "reactivatedRooms": 0,
+      "totalInDatabase": 157
+    },
+    "changes": [
+      {
+        "type": "HIDDEN",
+        "id": "MT-22-luong-khanh-thien-_truc-0102_anh-khanh_xh",
+        "title": "22 Lương Khánh Thiện_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-15-47-goc-de",
+        "title": "Ngõ 15 Gốc Đề_Tầng 1",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-111-x-nguyen-duc-canh_truc-0304_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-77-x-pho-8-3-minh-khai_truc-02_xh",
+        "title": "Ngõ 77 Phố 8-3 (Minh Khai)_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-147a-x-tan-mai_truc-01_xh",
+        "title": "Ngõ 147A Tân Mai_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-93-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 93 Hoàng Mai_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-22-luong-khanh-thien-01_truc-01_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (01)_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-559-122-x-kim-nguu_truc-04_chi-tuyet_xh",
+        "title": "Ngõ 559 Kim Ngưu_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-254-92-x-minh-khai_mbkd-tang-12_xh",
+        "title": "Ngõ 254 Minh Khai",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-134-x-nguyen-an-ninh_tang-7_truc02_xh",
+        "title": "Ngõ 134 Nguyễn An Ninh_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-400-truong-dinh_truc-05_xh",
+        "title": "400 Trương Định_Trục 05",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-136-nguyen-an-ninh-q27_truc-02_xh",
+        "title": "136 Nguyễn An Ninh Q27_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-56-x-ngo-tu-do-dai-la_truc-03_xh",
+        "title": "Ngõ 56 Ngõ Tự Do (Đại La)_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-151-x-nguyen-duc-canh_tang-2_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Tầng 2",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-400-truong-dinh_truc-01-3n1k_xh",
+        "title": "400 Trương Định_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-143-257-x-nguyen-chinh_truc-02_an-binh-home_xh",
+        "title": "Ngõ 143 Nguyễn Chính_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-279-x-hoang-mai_truc-02_anh-tung_xh",
+        "title": "Ngõ 279 Hoàng Mai_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-521-190-x-truong-dinh_friendly-homes_truc-0102_xh",
+        "title": "Ngõ 521 Trương Định_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-167-x-thanh-nhan_truc-01_anh-cuonga-hung_xh",
+        "title": "Ngõ 167 Thanh Nhàn_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-224-x-ngo-quynh_truc-02_anh-dat_xh",
+        "title": "Ngõ 224 Ngõ Quỳnh_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-77-x-pho-8-3_tang-6-truc-02_anh-do_xh",
+        "title": "Ngõ 77 Phố 8/3_Tầng 6_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-46-2x-hoa-binh-7_truc-02_anh-tam_xh",
+        "title": "Ngõ 46 Hoà Bình 7_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-143-257-x-nguyen-chinh_truc-03_an-binh-home_xh",
+        "title": "Ngõ 143 Nguyễn Chính_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-352-x-truong-dinh_truc-01_anh-dat_xh",
+        "title": "Ngõ 352 Trương Định_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-352-x-truong-dinh_truc-0405_anh-dat_xh",
+        "title": "Ngõ 352 Trương Định_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-352-x-truong-dinh_tang-7_anh-dat_xh",
+        "title": "Ngõ 352 Trương Định_Tầng 7",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-01_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-02_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-03_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-521-23-x-truong-dinh_truc-02_an-binh-home_xh-2",
+        "title": "Ngõ 521 Trương Định_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-1333-giai-phong-tang-8_xh",
+        "title": "1333 Giải Phóng Tầng 8",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-104-x-nguyen-an-ninh_truc-01_anh-tuan_xh",
+        "title": "Ngõ 104 Nguyễn An Ninh_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-151-20-x-nguyen-duc-canh_truc-01_anh-dat_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-272-x-tran-khat-chan_truc-02_-anh-dung-_xh",
+        "title": "Ngõ 272 Trần Khát Chân_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-4x-hoa-binh-3_truc-02_anh-tam_xh",
+        "title": "4X Hoà Bình 3_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-93-4x-hoang-mai_truc-01_anh-do_xh",
+        "title": "Ngõ 93 Hoàng Mai_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-1197-x-giai-phong_truc-01_anh-do_xh",
+        "title": "Ngõ 1197 Giải Phóng_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-1197-x-giai-phong_truc-02-030405-_anh-do_xh",
+        "title": "Ngõ 1197 Giải Phóng_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-67-x2goc-de_truc-01_anh-do_xh",
+        "title": "Ngõ 67 (2)Gốc đề_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-xb-hoang-mai_truc-03_anh-do_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-ham-long-2-tang-45_anh-doan_xh",
+        "title": "Hàm Long 2 Tầng 4,5",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-2xb-hoang-mai_tang-2_1n1k_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Tầng 2_1N1K",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-2xb-hoang-mai_truc-01_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-2xb-hoang-mai_truc-02_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-ngo-an-son_nha-nguyen-can_xh",
+        "title": "Ngõ An Sơn",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-78-bach-mai_nha-nguyen-can_a-dungc-min_xh",
+        "title": "78 Bạch Mai",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-281-69-x-tran-khat-chan_truc-02-_bk-homes_xh",
+        "title": "Ngõ 281 Trần Khát Chân_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-281-69-x-tran-khat-chan_truc-04_bk-homes_xh",
+        "title": "Ngõ 281 Trần Khát Chân_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-3x-hoang-mai_tang-01_anh-do_xh",
+        "title": "Ngõ 91 Hoàng Mai_Tầng 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-4x-hoa-binh-7_tang-1_anh-tam_xh",
+        "title": "4X Hoà Bình 7_Tầng 1",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-3x-ngo-thai-loi_tang-2_chi-thuan_xh",
+        "title": "3X Ngõ Thái Lợi_Tầng 2",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-119-x-kim-dong_truc-01_anh-quan_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-x-kim-dong_tang-5_truc-04_xh",
+        "title": "Ngõ 24 Kim Đồng_Tầng 5_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-281-3x-truong-dinh_mbkd_co-nhung_xh",
+        "title": "Ngõ 281 Trương Định",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-111-x-nguyen-duc-canh_truc-010205_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-265-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 265 Hoàng Mai_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-100-gieng-mut_truc-01_xh",
+        "title": "100 Giếng Mứt_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-22-luong-khanh-thien-1_truc-03_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (1)_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-83-x-kim-dong_truc-02_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-400-truong-dinh_truc-02_xh",
+        "title": "400 Trương Định_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-47-nam-du_truc-03_fh_ln",
+        "title": "47 Nam Dư_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-200-x-vinh-hung_nguyen-can_a-doan_ln",
+        "title": "200 Vĩnh Hưng",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-2x-linh-nam-3_truc-04_th",
+        "title": "Ngõ 479 Lĩnh Nam (3)_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-2x-linh-nam-3_truc-0405-tang-2_th",
+        "title": "Ngõ 479 Lĩnh Nam (3)_Trục 05",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-194-7-8-thanh-dam_truc-03_ln",
+        "title": "Ngõ 194 Thanh Đàm_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-259-x-vinh-hung_2n1k_anh-cuong_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_2N1K",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-208-nam-du_truc-01_mt",
+        "title": "208 Nam Dư_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-192-7-8-thanh-dam_truc-05_mt",
+        "title": "Ngõ 194 Thanh Đàm_Trục 05",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-192-7-8-thanh-dam_truc-04_th",
+        "title": "Ngõ 194 Thanh Đàm_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-151-3x-nguyen-duc-canh_truc-01_ln",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-151-3x-nguyen-duc-canh_truc-03_ln",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-80-gieng-mut_truc-02_ln",
+        "title": "80 Giếng Mứt_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-39-7-x-dai-dong_truc-0203_ln",
+        "title": "Ngõ 39 Đại Đồng_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-165-x-dong-thien_truc-02_ln",
+        "title": "Ngõ 165 Đông Thiên_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-29-x-linh-nam-4_truc-0203_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-29-x-linh-nam-4_truc-0104_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-649-4x-linh-nam-3_truc-0104_ln",
+        "title": "Ngõ 649 Lĩnh Nam (3)_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-90-70-x-1-khuyen-luong-gamuda_truc-01_ln",
+        "title": "Ngõ 90 (1) Khuyến Lương (Gamuda)_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-649-x-linh-nam_truc-04_ln",
+        "title": "Ngõ 649 Lĩnh Nam (3)_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-29-x-linh-nam_tang-1_ln",
+        "title": "Ngõ 479 Lĩnh Nam_Tầng 1",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-19-xx-linh-nam_truc-02_ln",
+        "title": "Ngõ 479 Lĩnh Nam_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-255-xx-linh-nam_tang-1_ln",
+        "title": "Ngõ 255 Lĩnh Nam_Tầng 1",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-185-linh-nam_truc-03_ln",
+        "title": "185 Lĩnh Nam_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-162-23-x-dong-thien-_tang-1-_-ln",
+        "title": "Ngõ 162 Đông Thiên _Tầng 1 _ LN",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-582-x-linh-nam_a-nam_ln",
+        "title": "Ngõ 582 Lĩnh Nam",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-112-nam-du_mbkd_co-ha",
+        "title": "112 Nam Dư",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-74-dong-thien_truc-01_at_ln",
+        "title": "Ngõ 74 Đông Thiên_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-259-16-x-vinh-hung_truc-0102_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-259-16-x-vinh-hung_truc-03_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-126-33-x-nam-du_truc-0506-friendly-homes_ln",
+        "title": "Ngõ 126 Nam Dư_Trục 05",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-467-170-20-x-linh-nam_truc-0203_friendly-homes_ln",
+        "title": "Ngõ 467 Lĩnh Nam_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-179-xx-vinh-hung-1_nguyen-can_ln",
+        "title": "Ngõ 179 Vĩnh Hưng (1)",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-47-53-x-nam-du_truc-04_friendly-homes_ln",
+        "title": "Ngõ 47 Nam Dư_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-47-nam-du_truc-04_fh_ln",
+        "title": "47 Nam Dư_Trục 04",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-362-30-xx-nam-du_nguyen-can_chu-trung_ln",
+        "title": "Ngõ 362 Nam Dư",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-74-x-dong-thien_truc-03_anh-tuan_ln",
+        "title": "Ngõ 74 Đông Thiên_Trục 03",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-1-linh-nam_truc-01_a-tuan_ln",
+        "title": "1 Lĩnh Nam_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-50-linh-nam_anh-dat_ln",
+        "title": "50 Lĩnh Nam",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-139-49-x-tam-trinh_truc-01_ln-2",
+        "title": "Ngõ 139 Tam Trinh_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-53-x-linh-nam_a-chinh_-truc-01-_-ln",
+        "title": "Ngõ 479 Lĩnh Nam_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-53-x-linh-nam_a-chinh_truc-02-_-ln",
+        "title": "Ngõ 479 Lĩnh Nam_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-60-41-x-tan-khai_truc-02_chi-hien_ln",
+        "title": "Ngõ 60 Tân Khai_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-467-170-xx-linh-nam-1_-truc-01-_-a-dat-_ln",
+        "title": "Ngõ 467 Lĩnh Nam (1)_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-448-x-vinh-hung-2-_-truc-02-_-a-tam-_-ln",
+        "title": "Ngõ 448 Vĩnh Hưng ( 2 )_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-448-x-vinh-hung-1_truc-01_a-tam_ln",
+        "title": "Ngõ 448 Vĩnh Hưng (1)_Trục 01",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-649-x-linh-nam_truc-02_fh",
+        "title": "Ngõ 649 Lĩnh Nam_Trục 02",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-47-nam-du_truc-05_fh_ln",
+        "title": "47 Nam Dư_Trục 05",
+        "reason": "Vắng mặt 3 lần liên tiếp"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-07T14:44:51.946Z",
+    "durationSeconds": 88,
+    "summary": {
+      "totalInMoithue": 50,
+      "newRooms": 0,
+      "updatedRooms": 50,
+      "unchangedRooms": 0,
+      "hiddenRooms": 0,
+      "reactivatedRooms": 0,
+      "totalInDatabase": 157
+    },
+    "changes": [
+      {
+        "type": "UPDATED",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns4_603_chi-linh_lpnt",
+        "title": "Khu đất dịch vụ Di Trạch Ns4_603_Chị Linh_LPNT",
+        "price": 4800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-313-6-1x-linh-nam_truc-0102_a-manh-hung_ln",
+        "title": "313.6.1x Lĩnh Nam_Trục 01,02_A Mạnh Hùng_LN",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-32-x-me-tri-dong-me_1n1k-vip_truc-67_a-cuong_tt",
+        "title": "32.x Mễ Trì (Đồng Me)_1N1K VIP_Trục 6,7_A Cường_TT",
+        "price": 8500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-33-x-dong-me_2n1k_truc-8-vip_a-cuong_tt",
+        "title": "32.x Mễ Trì (Đồng me)_2N1K_Trục 8 VIP_A Cường_TT",
+        "price": 9999999
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-14-3x-hung-thinh_truc-02-_anh-thien_hd",
+        "title": "14.3x Hưng Thịnh_trục 02 _Anh Thiện_HĐ",
+        "price": 4200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-14-3x-hung-thinh-yen-so-_truc-03-nha-anh-thien_hd",
+        "title": "14.3x Hưng Thịnh ,Yên Sở _trục 03 nhà Anh Thiện_HĐ",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-115-x-tran-cung_-studio_-chi-van",
+        "title": "115.x Trần Cung_ Studio_ chị Vân",
+        "price": 5000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-87-10-15-yen-xa-truc-4-pl",
+        "title": "87.10.15 yên xá Trục 4 PL",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-97-1x-khuong-trung",
+        "title": "97.1X Khương Trung",
+        "price": 5000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-42-xx-xuan-dinh-co-hien-truc-02-hav",
+        "title": "42.XX Xuân Đỉnh – Cô Hiền – Trục 02 – HAV",
+        "price": 3500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-245-32-dinh-cong_tang-5-3n1k_mt",
+        "title": "245.32 Định Công_Tầng 5 3N1K_MT",
+        "price": 15000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-448-x-vinh-hung-1_truc-02_a-tam_ln",
+        "title": "448.x Vĩnh Hưng (1)_Trục 02_A Tâm_LN",
+        "price": 4500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-58-05-phu-vinh_truc-34_a-huy_ak",
+        "title": "58.05 Phú Vinh_Trục 3,4_A Huy_AK",
+        "price": 3200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-23-72-49-27-duc-dien_truc-6",
+        "title": "23.72.49.27 Đức Diễn_Trục 6",
+        "price": 3800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-34-xx-phu-do_truc-1_c-duyen_tt",
+        "title": "34.xx Phú Đô_Trục 1_C Duyên_TT",
+        "price": 4400000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-17-phu-kieu_truc-8_mv",
+        "title": "17 Phú Kiều_trục 8_MV",
+        "price": 4700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-111a-21-an-thuong-dong-la_truc-23_a-cuong_ak",
+        "title": "111A.21 An Thượng-Đông La_Trục 2,3_A Cường_AK",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-13x-2-phu-do_truc-1_-401_2n1k_a-trung_tt",
+        "title": "13x.2 Phú Đô_Trục 1_ 401_2N1K_A Trung_TT",
+        "price": 7500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-167-x-quang-tien-5",
+        "title": "167.x Quang Tiến",
+        "price": 3800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-192-1-le-trong-tan_mat-ngoai_mt",
+        "title": "192.1 Lê Trọng Tấn_Mặt Ngoài_MT",
+        "price": 6700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-06-di-ai_nhon_truc-2_co-thu_lpnt",
+        "title": "06 Di Ái_Nhổn_Trục 2_Cô Thu_LPNT",
+        "price": 3700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-20-9-xx-my-dinh_truc-01_c-diep",
+        "title": "33.57.xx Phú Mỹ_Trục 01_C Diệp",
+        "price": 5000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-11-thanh-dam_a-nhu_truc-01_ln",
+        "title": "11 Thanh Đàm_A Nhu_Trục 01_LN",
+        "price": 8000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-320-xx-xuan-phuong_truc-2_a-nham_2r",
+        "title": "320.xx Xuân Phương_Trục 3_A Nham_2R",
+        "price": 7000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-35-47-xx-tu-hoang_anh-hung_cd",
+        "title": "35.47.xx Tu Hoàng_Trục 1,2_Anh Hưng_CD",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-35-47-xx-tu-hoang_truc-2345_anh-hung_cd",
+        "title": "35.47.xx Tu Hoàng_Trục 3,4,5_Anh Hưng_CD",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-59-xx-khuc-thua-du_truc-4_c-van-anh",
+        "title": "59.xx Khúc Thừa Dụ_Trục 4_C Vân Anh",
+        "price": 6500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-678-26-x-7-de-la-thanh-_truc03_b1house",
+        "title": "678.26.x.7 Đê La Thành _Trục03_B1House",
+        "price": 5400000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-mbkd_53-ngoa-long-toa-moi_anh-huan_cd",
+        "title": "MBKD_53 Ngoạ Long Toà Mới_Anh Huấn_CD",
+        "price": 12000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-634-155-38-x-kim-giang_truc-01_hd",
+        "title": "734.26.3x Kim Giang_Trục 01_HĐ",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-14-xx-ngoc-ha_truc02_anh-phuc",
+        "title": "14.xx Ngọc Hà_Trục02_Anh Phúc",
+        "price": 6200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-750-165-x-kim-giang_truc-02_hd",
+        "title": "750.165.x Kim Giang_Trục 02_HĐ",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-322-95-xx-my-dinh_truc-2-3_c-van-anh-tq",
+        "title": "322.95.xx Mỹ Đình_Trục 2/3_C Vân Anh TQ",
+        "price": 6500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-259-47-x-vinh-hung_truc-01020304_anh-nam_ln",
+        "title": "259.47.X Vĩnh Hưng_Trục 01,02,03,04_Anh Nam_LN",
+        "price": 4700000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-230-26-xxabcd_truc-2_a-giang_tt",
+        "title": "230.26.xxABCD_Trục 2_A.Giang_TT",
+        "price": 4800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-61-83-1x-bang-liet_-truc-02_hd",
+        "title": "61.83.1x Bằng Liệt_ trục 02_HĐ",
+        "price": 4500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-472-xx-lac-long-quan-_-anh-long",
+        "title": "472.xx lạc long quân _ Anh Long",
+        "price": 7500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-13-xx-doc-tam-da_truc01_chi-phuong",
+        "title": "13.xx dốc Tam Đa_Trục01_Chị Phương",
+        "price": 6800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-lk22-21-kdt-hinode_2n1k_nguyen-san_chi-thu_lpnt",
+        "title": "LK22.21 KĐT Hinode_2N1K_Nguyên sàn_Chị Thu_LPNT",
+        "price": 9000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-17-phu-kieu_truc-trong_mv",
+        "title": "17 Phú Kiều_trục trong_MV",
+        "price": 4500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-404-xuan-dinh-_-a-dinh-_-studio-truc-trong-_-tvh",
+        "title": "404 Xuân Đỉnh _ A Định _ Studio Trục Trong _ TVH",
+        "price": 4800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-98-6-tan-trieu-truc-2-nha-moi-50p",
+        "title": "98.6 Tân Triều ( Trục 2) Nhà mới 50p",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-127-tuu-liet-_truc-0305-nha-anh-thang",
+        "title": "127 Tựu Liệt _trục 03,05 nhà Anh Thắng",
+        "price": 3200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-69a-131-1x-hoang-van-thai_truc-03_mt-2",
+        "title": "69A.131.1X Hoàng Văn Thái_Trục 03_MT",
+        "price": 6200000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-23-70-10-duc-dien_tang-1_qv",
+        "title": "23.70.10 Đức Diễn_Tầng 1_QV",
+        "price": 2500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-215-2x-dinh-cong-thuong_p701-1n1k_mt",
+        "title": "215.2X Định Công Thượng_P701 1N1K_MT",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-101-de-to-hoang_truc-0304_ab-home_xh",
+        "title": "101 Đê Tô Hoàng_Trục 03,04_AB Home_XH",
+        "price": 7000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-1-51-1x-bui-xuong-trach_-truc-01020304_mt",
+        "title": "1.51.1X Bùi Xương Trạch_ Trục 01,02,03,04_MT",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-543-giai-phong_truc-06_funhome_xh",
+        "title": "543 Giải Phóng_Trục 06_Funhome_XH",
+        "price": 6500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-444-34-xx-11-doi-can_truc02_anh-tuan",
+        "title": "444.34.xx.11 Đội Cấn_Trục02_Anh Tuấn",
+        "price": 5700000
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-07T14:31:30.005Z",
+    "durationSeconds": 145,
+    "summary": {
+      "totalInMoithue": 50,
+      "newRooms": 46,
+      "updatedRooms": 4,
+      "unchangedRooms": 0,
+      "hiddenRooms": 0,
+      "reactivatedRooms": 0,
+      "totalInDatabase": 157
+    },
+    "changes": [
+      {
+        "type": "NEW",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns4_603_chi-linh_lpnt",
+        "title": "khu-dat-dich-vu-di-trach-ns4_603_chi-linh_lpnt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-313-6-1x-linh-nam_truc-0102_a-manh-hung_ln",
+        "title": "313-6-1x-linh-nam_truc-0102_a-manh-hung_ln",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-32-x-me-tri-dong-me_1n1k-vip_truc-67_a-cuong_tt",
+        "title": "32-x-me-tri-dong-me_1n1k-vip_truc-67_a-cuong_tt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-33-x-dong-me_2n1k_truc-8-vip_a-cuong_tt",
+        "title": "33-x-dong-me_2n1k_truc-8-vip_a-cuong_tt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14-3x-hung-thinh_truc-02-_anh-thien_hd",
+        "title": "14-3x-hung-thinh_truc-02-_anh-thien_hd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14-3x-hung-thinh-yen-so-_truc-03-nha-anh-thien_hd",
+        "title": "14-3x-hung-thinh-yen-so-_truc-03-nha-anh-thien_hd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-115-x-tran-cung_-studio_-chi-van",
+        "title": "115-x-tran-cung_-studio_-chi-van",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-87-10-15-yen-xa-truc-4-pl",
+        "title": "87-10-15-yen-xa-truc-4-pl",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-97-1x-khuong-trung",
+        "title": "97-1x-khuong-trung",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-42-xx-xuan-dinh-co-hien-truc-02-hav",
+        "title": "42-xx-xuan-dinh-co-hien-truc-02-hav",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-245-32-dinh-cong_tang-5-3n1k_mt",
+        "title": "245-32-dinh-cong_tang-5-3n1k_mt",
+        "price": 0
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-448-x-vinh-hung-1_truc-02_a-tam_ln",
+        "title": "448-x-vinh-hung-1_truc-02_a-tam_ln",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-58-05-phu-vinh_truc-34_a-huy_ak",
+        "title": "58-05-phu-vinh_truc-34_a-huy_ak",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-72-49-27-duc-dien_truc-6",
+        "title": "23-72-49-27-duc-dien_truc-6",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-34-xx-phu-do_truc-1_c-duyen_tt",
+        "title": "34-xx-phu-do_truc-1_c-duyen_tt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-17-phu-kieu_truc-8_mv",
+        "title": "17-phu-kieu_truc-8_mv",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-111a-21-an-thuong-dong-la_truc-23_a-cuong_ak",
+        "title": "111a-21-an-thuong-dong-la_truc-23_a-cuong_ak",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-13x-2-phu-do_truc-1_-401_2n1k_a-trung_tt",
+        "title": "13x-2-phu-do_truc-1_-401_2n1k_a-trung_tt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-167-x-quang-tien-5",
+        "title": "167-x-quang-tien-5",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-192-1-le-trong-tan_mat-ngoai_mt",
+        "title": "192-1-le-trong-tan_mat-ngoai_mt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-06-di-ai_nhon_truc-2_co-thu_lpnt",
+        "title": "06-di-ai_nhon_truc-2_co-thu_lpnt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-20-9-xx-my-dinh_truc-01_c-diep",
+        "title": "20-9-xx-my-dinh_truc-01_c-diep",
+        "price": 0
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-11-thanh-dam_a-nhu_truc-01_ln",
+        "title": "11-thanh-dam_a-nhu_truc-01_ln",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-320-xx-xuan-phuong_truc-2_a-nham_2r",
+        "title": "320-xx-xuan-phuong_truc-2_a-nham_2r",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-35-47-xx-tu-hoang_anh-hung_cd",
+        "title": "35-47-xx-tu-hoang_anh-hung_cd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-35-47-xx-tu-hoang_truc-2345_anh-hung_cd",
+        "title": "35-47-xx-tu-hoang_truc-2345_anh-hung_cd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-59-xx-khuc-thua-du_truc-4_c-van-anh",
+        "title": "59-xx-khuc-thua-du_truc-4_c-van-anh",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-678-26-x-7-de-la-thanh-_truc03_b1house",
+        "title": "678-26-x-7-de-la-thanh-_truc03_b1house",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-mbkd_53-ngoa-long-toa-moi_anh-huan_cd",
+        "title": "mbkd_53-ngoa-long-toa-moi_anh-huan_cd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-634-155-38-x-kim-giang_truc-01_hd",
+        "title": "634-155-38-x-kim-giang_truc-01_hd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-14-xx-ngoc-ha_truc02_anh-phuc",
+        "title": "14-xx-ngoc-ha_truc02_anh-phuc",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-750-165-x-kim-giang_truc-02_hd",
+        "title": "750-165-x-kim-giang_truc-02_hd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-322-95-xx-my-dinh_truc-2-3_c-van-anh-tq",
+        "title": "322-95-xx-my-dinh_truc-2-3_c-van-anh-tq",
+        "price": 0
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-259-47-x-vinh-hung_truc-01020304_anh-nam_ln",
+        "title": "259-47-x-vinh-hung_truc-01020304_anh-nam_ln",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-26-xxabcd_truc-2_a-giang_tt",
+        "title": "230-26-xxabcd_truc-2_a-giang_tt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-61-83-1x-bang-liet_-truc-02_hd",
+        "title": "61-83-1x-bang-liet_-truc-02_hd",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-472-xx-lac-long-quan-_-anh-long",
+        "title": "472-xx-lac-long-quan-_-anh-long",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-13-xx-doc-tam-da_truc01_chi-phuong",
+        "title": "13-xx-doc-tam-da_truc01_chi-phuong",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-lk22-21-kdt-hinode_2n1k_nguyen-san_chi-thu_lpnt",
+        "title": "lk22-21-kdt-hinode_2n1k_nguyen-san_chi-thu_lpnt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-17-phu-kieu_truc-trong_mv",
+        "title": "17-phu-kieu_truc-trong_mv",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-404-xuan-dinh-_-a-dinh-_-studio-truc-trong-_-tvh",
+        "title": "404-xuan-dinh-_-a-dinh-_-studio-truc-trong-_-tvh",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-98-6-tan-trieu-truc-2-nha-moi-50p",
+        "title": "98-6-tan-trieu-truc-2-nha-moi-50p",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-127-tuu-liet-_truc-0305-nha-anh-thang",
+        "title": "127-tuu-liet-_truc-0305-nha-anh-thang",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-69a-131-1x-hoang-van-thai_truc-03_mt-2",
+        "title": "69a-131-1x-hoang-van-thai_truc-03_mt-2",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-23-70-10-duc-dien_tang-1_qv",
+        "title": "23-70-10-duc-dien_tang-1_qv",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-215-2x-dinh-cong-thuong_p701-1n1k_mt",
+        "title": "215-2x-dinh-cong-thuong_p701-1n1k_mt",
+        "price": 0
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-101-de-to-hoang_truc-0304_ab-home_xh",
+        "title": "101-de-to-hoang_truc-0304_ab-home_xh",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-1-51-1x-bui-xuong-trach_-truc-01020304_mt",
+        "title": "1-51-1x-bui-xuong-trach_-truc-01020304_mt",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-543-giai-phong_truc-06_funhome_xh",
+        "title": "543-giai-phong_truc-06_funhome_xh",
+        "price": 0
+      },
+      {
+        "type": "NEW",
+        "id": "MT-444-34-xx-11-doi-can_truc02_anh-tuan",
+        "title": "444-34-xx-11-doi-can_truc02_anh-tuan",
+        "price": 0
+      }
+    ]
+  }
+]

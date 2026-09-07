@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Thuê Trọ - Moithue Crawler & Sync Pro",
+  "version": "2.0.0",
+  "description": "Công cụ cào dữ liệu và đồng bộ phòng trọ tự động từ moithue.com về hệ thống Thuê Trọ Hà Nội.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.moithue.com/*",
+    "http://localhost:3000/*",
+    "http://127.0.0.1:3000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Thuê Trọ Crawler"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.moithue.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

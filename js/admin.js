@@ -7,8 +7,6 @@ const STORAGE_BOOKINGS_KEY = "thuetro_bookings_list";
 const SOURCE_GROUP_NAMES = {
   "nguon-ba-dinh": "Ba Đình - Tây Hồ",
   "nguon-ba-dinh-tay-ho": "Ba Đình - Tây Hồ",
-  "nguon-bach-kinh-xay": "Bách Kinh Xây",
-  "bach-kinh-xay": "Bách Kinh Xây",
   "nguon-cau-dien": "Cầu Diễn",
   "nguon-cau-giay": "Cầu Giấy",
   "nguon-xuan-dinh": "Cổ Nhuế , Xuân Đỉnh",
@@ -20,8 +18,6 @@ const SOURCE_GROUP_NAMES = {
   "nguon-hoai-duc": "Hoài Đức",
   "nguon-hoang-mai": "Hoàng Mai",
   "nguon-kim-giang-ngoc-hoi": "Kim Giang, Ngọc Hồi",
-  "nguon-linh-nam-vinh-hung": "Lĩnh Nam - Vĩnh Hưng",
-  "linh-nam-vinh-hung": "Lĩnh Nam - Vĩnh Hưng",
   "me-tri-phu-do": "Mễ Trì - Phú Đô",
   "nguon-me-tri-phu-do": "Mễ Trì - Phú Đô",
   "nguon-my-dinh": "Mỹ Đình",
@@ -52,6 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderAdminStats();
   renderBookingsTable();
   renderRoomsTable();
+  initAutoSyncDashboard();
 });
 
 // Lắng nghe thay đổi phòng khi có tab khác cập nhật
@@ -77,24 +74,42 @@ function transformMoithueName(str) {
   if (!str) return '';
   let clean = str.trim();
 
-  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 139.49.X, 259.x, 448.x...) thành "Ngõ 649 "
-  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+)(?:\.[a-zA-Z0-9_\-]+)+\s*/i, (match, alley) => {
+  // 0. Bỏ tiền tố "* Dự án: " nếu có
+  clean = clean.replace(/^\*\s*Dự án:\s*/i, '').trim();
+
+  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 1194.63.64.18...) thành "Ngõ [Số] "
+  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+[a-zA-Z]?)(?:[.\-_/](?:[a-zA-Z0-9]+))+\s*/i, (match, alley) => {
     return `Ngõ ${alley} `;
   });
 
-  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ (vd: Lĩnh Nam(1) -> Lĩnh Nam (1))
+  // Chống lặp từ "Ngõ Ngõ ..."
+  clean = clean.replace(/^(?:Ngõ\s+)+/i, 'Ngõ ');
+
+  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ
   clean = clean.replace(/([^\s(])\(/g, '$1 (');
 
-  // Xóa dấu ngoặc mở cụt ở cuối chuỗi (vd: 259.x Vĩnh Hưng( -> 259.x Vĩnh Hưng)
+  // Xóa dấu ngoặc mở cụt ở cuối chuỗi
   clean = clean.replace(/\(\s*$/, '').trim();
 
-  // 2. Trích xuất và bảo toàn phần "_Trục XX" nếu có
+  // Sửa lỗi nếu trước đó bị dính kiểu '– _Trục' hay '- _Trục'
+  clean = clean.replace(/([-–—])\s*_\s*(Trục)/gi, '$1 $2');
+
+  // 2. Trích xuất và bảo toàn phần "Trục XX" nếu có
   let trucPart = '';
-  const trucMatch = clean.match(/(?:_|\s)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
+  const trucMatch = clean.match(/([-–—_]\s*|\s+)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
   if (trucMatch) {
-    trucPart = '_' + trucMatch[1].replace(/\s+/g, ' ').trim();
-    // Tách phần tên trước Trục
-    const idx = clean.search(/(?:_|\s)Trục\s*\d+/i);
+    const isDash = /[-–—]/.test(trucMatch[1]);
+    const isUnderscore = /_/.test(trucMatch[1]);
+    const trucName = trucMatch[2].replace(/\s+/g, ' ').trim();
+    if (isDash) {
+      trucPart = ' – ' + trucName;
+    } else if (isUnderscore) {
+      trucPart = '_' + trucName;
+    } else {
+      trucPart = ' – ' + trucName;
+    }
+
+    const idx = clean.search(/(?:[-–—_]\s*|\s+)Trục\s*\d+/i);
     if (idx > -1) {
       clean = clean.substring(0, idx).trim();
     }
@@ -105,14 +120,13 @@ function transformMoithueName(str) {
 
   // Loại bỏ các mã đuôi thừa nếu còn dính vào tên chính trước Trục
   clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
-  clean = clean.replace(/_+$/, '').trim();
+  clean = clean.replace(/[\s–\-_(]+$/, '').trim();
 
   // Ghép lại phần Trục
   if (trucPart) {
     clean = clean + trucPart;
   }
 
-  // Chuẩn hóa khoảng trắng
   return clean.replace(/\s+/g, ' ').trim();
 }
 
@@ -1616,5 +1630,228 @@ function triggerImportJson() {
     });
   }
   fileInput.click();
+}
+
+// ==========================================================================
+// 24/7 AUTO-SYNC LIVE DASHBOARD & CONTROLS
+// ==========================================================================
+let autoSyncCountdownInterval = null;
+let currentNextSyncTimestamp = null;
+let isCurrentlySyncing = false;
+
+async function initAutoSyncDashboard() {
+  await fetchAndRenderSyncStatus();
+  
+  // Tự động kiểm tra trạng thái mỗi 10 giây
+  setInterval(fetchAndRenderSyncStatus, 10000);
+
+  // Đếm ngược từng giây
+  if (autoSyncCountdownInterval) clearInterval(autoSyncCountdownInterval);
+  autoSyncCountdownInterval = setInterval(updateSyncCountdownDisplay, 1000);
+}
+
+async function fetchAndRenderSyncStatus() {
+  try {
+    const res = await fetch('/api/sync-status?t=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+
+    // 1. Cập nhật Badge Trạng thái
+    const liveBadge = document.getElementById('autoSyncLiveBadge');
+    const toggleBtnIcon = document.getElementById('btnToggleAutoSyncIcon');
+    const toggleBtnText = document.getElementById('btnToggleAutoSyncText');
+    if (liveBadge) {
+      if (data.autoSync) {
+        liveBadge.style.background = '#DCFCE7';
+        liveBadge.style.color = '#15803D';
+        liveBadge.style.borderColor = '#86EFAC';
+        liveBadge.innerHTML = `
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #22C55E; display: inline-block; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);"></span>
+          ĐANG TỰ ĐỘNG CHẠY 24/24
+        `;
+        if (toggleBtnText) toggleBtnText.innerText = 'Tạm Dừng';
+        if (toggleBtnIcon) toggleBtnIcon.className = 'fas fa-pause-circle';
+      } else {
+        liveBadge.style.background = '#FEE2E2';
+        liveBadge.style.color = '#B91C1C';
+        liveBadge.style.borderColor = '#FCA5A5';
+        liveBadge.innerHTML = `
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; display: inline-block;"></span>
+          ĐÃ TẠM DỪNG
+        `;
+        if (toggleBtnText) toggleBtnText.innerText = 'Bật Tự Động';
+        if (toggleBtnIcon) toggleBtnIcon.className = 'fas fa-play-circle';
+      }
+    }
+
+    // 2. Banner tiến trình khi đang chạy đồng bộ
+    const progressBanner = document.getElementById('syncProgressBanner');
+    const btnSync = document.getElementById('btnManualSyncNow');
+    const btnSyncIcon = document.getElementById('btnSyncIcon');
+    const btnSyncText = document.getElementById('btnSyncText');
+
+    if (data.isSyncing) {
+      isCurrentlySyncing = true;
+      if (progressBanner) progressBanner.style.display = 'flex';
+      if (btnSync) btnSync.style.opacity = '0.7';
+      if (btnSyncIcon) btnSyncIcon.className = 'fas fa-sync fa-spin';
+      if (btnSyncText) btnSyncText.innerText = 'Đang đồng bộ...';
+    } else {
+      if (isCurrentlySyncing) {
+        isCurrentlySyncing = false;
+        loadAdminData();
+        showToast('🎉 Đồng bộ tự động từ Mời Thuê vừa hoàn tất thành công!');
+      }
+      if (progressBanner) progressBanner.style.display = 'none';
+      if (btnSync) btnSync.style.opacity = '1';
+      if (btnSyncIcon) btnSyncIcon.className = 'fas fa-bolt';
+      if (btnSyncText) btnSyncText.innerText = 'Đồng Bộ Ngay Bây Giờ';
+    }
+
+    // 3. Thời gian lần tới
+    currentNextSyncTimestamp = data.nextSyncTime;
+    updateSyncCountdownDisplay();
+
+    // 4. Lần quét vừa xong
+    const lastTimeText = document.getElementById('syncLastTimeText');
+    const lastSummaryBadge = document.getElementById('syncLastSummaryBadge');
+    if (data.lastSyncTime) {
+      const d = new Date(data.lastSyncTime);
+      const timeStr = d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' (' + d.toLocaleDateString('vi-VN') + ')';
+      if (lastTimeText) lastTimeText.innerText = timeStr;
+    }
+    if (lastSummaryBadge && data.lastSummary) {
+      const s = data.lastSummary;
+      lastSummaryBadge.innerHTML = `🟢 +${s.newRooms || 0} mới • 🟡 ~${s.updatedRooms || 0} đổi giá • 🔴 ${s.hiddenRooms || 0} ẩn`;
+    }
+
+    // 5. Tổng kho phòng
+    const totalRoomsNum = document.getElementById('syncTotalRoomsNum');
+    if (totalRoomsNum && data.lastSummary && data.lastSummary.totalInDatabase) {
+      totalRoomsNum.innerText = data.lastSummary.totalInDatabase;
+    } else if (totalRoomsNum && adminRooms) {
+      totalRoomsNum.innerText = adminRooms.length;
+    }
+  } catch (err) {
+    console.warn('Sync status fetch error:', err);
+  }
+}
+
+function updateSyncCountdownDisplay() {
+  const cdEl = document.getElementById('syncNextCountdown');
+  if (!cdEl) return;
+  if (!currentNextSyncTimestamp) {
+    cdEl.innerText = 'Mỗi 30 phút';
+    return;
+  }
+  const diffMs = currentNextSyncTimestamp - Date.now();
+  if (diffMs <= 0) {
+    cdEl.innerText = 'Đang kích hoạt...';
+    return;
+  }
+  const totalSecs = Math.floor(diffMs / 1000);
+  const mins = Math.floor(totalSecs / 60);
+  const secs = totalSecs % 60;
+  cdEl.innerText = `Còn ${mins}m ${secs < 10 ? '0' : ''}${secs}s`;
+}
+
+async function triggerManualSync() {
+  if (isCurrentlySyncing) {
+    showToast('⚠️ Hệ thống đang trong tiến trình đồng bộ, vui lòng đợi vài giây.');
+    return;
+  }
+  try {
+    isCurrentlySyncing = true;
+    const progressBanner = document.getElementById('syncProgressBanner');
+    if (progressBanner) progressBanner.style.display = 'flex';
+    const btnSyncIcon = document.getElementById('btnSyncIcon');
+    const btnSyncText = document.getElementById('btnSyncText');
+    if (btnSyncIcon) btnSyncIcon.className = 'fas fa-sync fa-spin';
+    if (btnSyncText) btnSyncText.innerText = 'Đang đồng bộ...';
+
+    const res = await fetch('/api/sync-now', { method: 'POST' });
+    const data = await res.json();
+    if (res.ok) {
+      showToast('🚀 Đã kích hoạt đồng bộ từ Mời Thuê!');
+      const pollInterval = setInterval(async () => {
+        const stRes = await fetch('/api/sync-status?t=' + Date.now());
+        if (stRes.ok) {
+          const st = await stRes.json();
+          if (!st.isSyncing) {
+            clearInterval(pollInterval);
+            isCurrentlySyncing = false;
+            await loadAdminData();
+            await fetchAndRenderSyncStatus();
+            showToast('🎉 Đồng bộ thành công! Danh sách phòng đã được cập nhật.');
+          }
+        }
+      }, 1500);
+    } else {
+      showToast('⚠️ ' + (data.message || 'Lỗi kích hoạt'));
+      isCurrentlySyncing = false;
+      fetchAndRenderSyncStatus();
+    }
+  } catch (e) {
+    showToast('❌ Lỗi kết nối máy chủ: ' + e.message);
+    isCurrentlySyncing = false;
+  }
+}
+
+async function toggleAutoSyncMode() {
+  try {
+    const res = await fetch('/api/toggle-auto-sync', { method: 'POST' });
+    if (res.ok) {
+      const data = await res.json();
+      showToast(data.autoSync ? '🟢 Đã BẬT chế độ tự động đồng bộ 24/24' : '⏸️ Đã TẠM DỪNG chế độ tự động 24/24');
+      fetchAndRenderSyncStatus();
+    }
+  } catch (e) {
+    showToast('❌ Lỗi kết nối: ' + e.message);
+  }
+}
+
+async function openSyncHistoryModal() {
+  const container = document.getElementById('syncHistoryListContainer');
+  if (container) {
+    container.innerHTML = '<div style="text-align: center; padding: 30px;"><i class="fas fa-spinner fa-spin" style="font-size: 1.5rem; color: var(--primary);"></i><p style="margin-top: 10px; color: var(--text-muted);">Đang tải nhật ký...</p></div>';
+  }
+  openModal('syncHistoryModal');
+  try {
+    const res = await fetch('/api/sync-history?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const history = await res.json();
+    if (!history || history.length === 0) {
+      container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--text-muted);">Chưa có lịch sử quét nào được ghi nhận.</div>';
+      return;
+    }
+    const html = history.map((item, idx) => {
+      const date = new Date(item.timestamp);
+      const timeStr = date.toLocaleTimeString('vi-VN') + ' - ' + date.toLocaleDateString('vi-VN');
+      const s = item.summary || {};
+      return `
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px 18px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-weight: 800; color: #0F172A; font-size: 0.95rem;">Lần quét #${history.length - idx}</span>
+              <span style="font-size: 0.8rem; color: #64748B;">(${timeStr})</span>
+            </div>
+            <span style="font-size: 0.78rem; font-weight: 700; background: #DCFCE7; color: #15803D; padding: 3px 10px; border-radius: 12px;">
+              ⏱️ Hoàn tất trong ${item.durationSeconds || 0}s
+            </span>
+          </div>
+          <div style="display: flex; gap: 12px; font-size: 0.82rem; flex-wrap: wrap; font-weight: 600;">
+            <span style="color: #10B981;">🟢 +${s.newRooms || 0} phòng mới</span>
+            <span style="color: #F59E0B;">🟡 ~${s.updatedRooms || 0} đổi giá</span>
+            <span style="color: #64748B;">⚪ ${s.unchangedRooms || 0} giữ nguyên</span>
+            <span style="color: #EF4444;">🔴 ${s.hiddenRooms || 0} ẩn (hết phòng)</span>
+            <span style="color: #0284C7; font-weight: 800;">📦 Tổng kho: ${s.totalInDatabase || 0} phòng</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+    container.innerHTML = html;
+  } catch (err) {
+    if (container) container.innerHTML = '<div style="color: red; padding: 20px; text-align: center;">Lỗi tải lịch sử: ' + err.message + '</div>';
+  }
 }
 

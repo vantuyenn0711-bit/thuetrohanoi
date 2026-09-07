@@ -56,8 +56,7 @@ const SOURCE_GROUP_NAMES = {
   'nguon-cau-dien': 'Cầu Diễn', 'nguon-kim-giang-ngoc-hoi': 'Kim Giang, Ngọc Hồi',
   'nguon-trieu-khuc': 'Triều Khúc', 'nguon-phu-dien': 'Phú Diễn',
   'nguon-xuan-phuong': 'Xuân Phương', 'nguon-yen-xa-mau-luong': 'Yên Xá/Mậu Lương',
-  'ngoc-truc-dai-linh': 'Ngọc Trục - Đại Linh', 'nguon-ha-dong': 'Hà Đông',
-  'nguon-linh-nam-vinh-hung': 'Lĩnh Nam - Vĩnh Hưng', 'nguon-bach-kinh-xay': 'Bách Kinh Xây'
+  'ngoc-truc-dai-linh': 'Ngọc Trục - Đại Linh', 'nguon-ha-dong': 'Hà Đông'
 };
 
 const CLOUDFLARE_WORKER_URL = process.env.CLOUDFLARE_WORKER_URL || 'https://proud-grass-4b4a.vantuyenn0711.workers.dev';

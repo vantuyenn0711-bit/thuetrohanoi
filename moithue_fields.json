@@ -1,0 +1,215 @@
+[
+  {
+    "key": "listivo_145233",
+    "id": 145233,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": false,
+    "multilevel": false,
+    "orderType": "name",
+    "whenTermHasNoResults": "hide",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_15029",
+    "id": 15029,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": true,
+    "multilevel": true,
+    "orderType": "name",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "keyword"
+  },
+  {
+    "key": "listivo_14",
+    "id": 14,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": true,
+    "multilevel": true,
+    "orderType": "custom",
+    "whenTermHasNoResults": "hide",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_9128",
+    "id": 9128,
+    "type": "price",
+    "hideTerms": [],
+    "currencySign": " đ",
+    "currencySignPosition": "after",
+    "displayBefore": "",
+    "displayAfter": ""
+  },
+  {
+    "key": "listivo_9128",
+    "id": 9128,
+    "type": "price",
+    "hideTerms": [],
+    "currencySign": " đ",
+    "currencySignPosition": "after",
+    "displayBefore": "",
+    "displayAfter": ""
+  },
+  {
+    "key": "listivo_9128",
+    "id": 9128,
+    "type": "price",
+    "hideTerms": [],
+    "currencySign": " đ",
+    "currencySignPosition": "after",
+    "displayBefore": "",
+    "displayAfter": ""
+  },
+  {
+    "key": "listivo_5279602",
+    "id": 5279602,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": false,
+    "multilevel": false,
+    "orderType": "name",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_9129",
+    "id": 9129,
+    "type": "number",
+    "hideTerms": [],
+    "name": "Số phòng ngủ",
+    "displayBefore": "",
+    "displayAfter": " phòng ngủ"
+  },
+  {
+    "key": "listivo_9130",
+    "id": 9130,
+    "type": "number",
+    "hideTerms": [],
+    "name": "Số phòng tắm",
+    "displayBefore": "",
+    "displayAfter": " phòng tắm"
+  },
+  {
+    "key": "listivo_9131",
+    "id": 9131,
+    "type": "number",
+    "hideTerms": [],
+    "name": "Sức chứa",
+    "displayBefore": "",
+    "displayAfter": " người"
+  },
+  {
+    "key": "listivo_9132",
+    "id": 9132,
+    "type": "number",
+    "hideTerms": [],
+    "name": "Để xe",
+    "displayBefore": "",
+    "displayAfter": " xe"
+  },
+  {
+    "key": "listivo_9126",
+    "id": 9126,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": false,
+    "multilevel": false,
+    "orderType": "count",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_9133",
+    "id": 9133,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": false,
+    "multilevel": false,
+    "orderType": "count",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_9166",
+    "id": 9166,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": false,
+    "multilevel": false,
+    "orderType": "custom",
+    "whenTermHasNoResults": "hide",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_147398",
+    "id": 147398,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": false,
+    "multilevel": false,
+    "orderType": "name",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_13345",
+    "id": 13345,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": true,
+    "multilevel": false,
+    "orderType": "custom",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_9134",
+    "id": 9134,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": false,
+    "multilevel": false,
+    "orderType": "count",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_6414",
+    "id": 6414,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": true,
+    "multilevel": false,
+    "orderType": "custom",
+    "whenTermHasNoResults": "hide",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  },
+  {
+    "key": "listivo_9236",
+    "id": 9236,
+    "type": "taxonomy",
+    "hideTerms": [],
+    "multiple": true,
+    "multilevel": false,
+    "orderType": "count",
+    "whenTermHasNoResults": "disable",
+    "disableUntilParentSelected": false,
+    "parentTaxonomyKeys": []
+  }
+]

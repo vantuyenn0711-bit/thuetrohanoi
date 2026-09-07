@@ -16,6 +16,7 @@ let currentFilter = {
   roomLayout: "all",
   capacity: "all",
   vehicles: "all",
+  furnishLevel: "all",
   elevator: "all",
   pet: "all",
   electricVehicle: "all",
@@ -89,24 +90,42 @@ function transformMoithueName(str) {
   if (!str) return '';
   let clean = str.trim();
 
-  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 139.49.X, 259.x, 448.x...) thành "Ngõ 649 "
-  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+)(?:\.[a-zA-Z0-9_\-]+)+\s*/i, (match, alley) => {
+  // 0. Bỏ tiền tố "* Dự án: " nếu có
+  clean = clean.replace(/^\*\s*Dự án:\s*/i, '').trim();
+
+  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 1194.63.64.18...) thành "Ngõ [Số] "
+  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+[a-zA-Z]?)(?:[.\-_/](?:[a-zA-Z0-9]+))+\s*/i, (match, alley) => {
     return `Ngõ ${alley} `;
   });
 
-  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ (vd: Lĩnh Nam(1) -> Lĩnh Nam (1))
+  // Chống lặp từ "Ngõ Ngõ ..."
+  clean = clean.replace(/^(?:Ngõ\s+)+/i, 'Ngõ ');
+
+  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ
   clean = clean.replace(/([^\s(])\(/g, '$1 (');
 
-  // Xóa dấu ngoặc mở cụt ở cuối chuỗi (vd: 259.x Vĩnh Hưng( -> 259.x Vĩnh Hưng)
+  // Xóa dấu ngoặc mở cụt ở cuối chuỗi
   clean = clean.replace(/\(\s*$/, '').trim();
 
-  // 2. Trích xuất và bảo toàn phần "_Trục XX" nếu có
+  // Sửa lỗi nếu trước đó bị dính kiểu '– _Trục' hay '- _Trục'
+  clean = clean.replace(/([-–—])\s*_\s*(Trục)/gi, '$1 $2');
+
+  // 2. Trích xuất và bảo toàn phần "Trục XX" nếu có
   let trucPart = '';
-  const trucMatch = clean.match(/(?:_|\s)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
+  const trucMatch = clean.match(/([-–—_]\s*|\s+)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
   if (trucMatch) {
-    trucPart = '_' + trucMatch[1].replace(/\s+/g, ' ').trim();
-    // Tách phần tên trước Trục
-    const idx = clean.search(/(?:_|\s)Trục\s*\d+/i);
+    const isDash = /[-–—]/.test(trucMatch[1]);
+    const isUnderscore = /_/.test(trucMatch[1]);
+    const trucName = trucMatch[2].replace(/\s+/g, ' ').trim();
+    if (isDash) {
+      trucPart = ' – ' + trucName;
+    } else if (isUnderscore) {
+      trucPart = '_' + trucName;
+    } else {
+      trucPart = ' – ' + trucName;
+    }
+
+    const idx = clean.search(/(?:[-–—_]\s*|\s+)Trục\s*\d+/i);
     if (idx > -1) {
       clean = clean.substring(0, idx).trim();
     }
@@ -117,14 +136,13 @@ function transformMoithueName(str) {
 
   // Loại bỏ các mã đuôi thừa nếu còn dính vào tên chính trước Trục
   clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
-  clean = clean.replace(/_+$/, '').trim();
+  clean = clean.replace(/[\s–\-_(]+$/, '').trim();
 
   // Ghép lại phần Trục
   if (trucPart) {
     clean = clean + trucPart;
   }
 
-  // Chuẩn hóa khoảng trắng
   return clean.replace(/\s+/g, ' ').trim();
 }
 
@@ -307,9 +325,22 @@ function renderRooms() {
       </div>
     `}).join("");
 
-    const dotsHtml = room.images.map((_, idx) => `
-      <div class="slider-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}" onclick="jumpCardSlide('${room.id}', ${idx}, event)"></div>
-    `).join("");
+    const totalImgs = (room.images || []).length;
+    let dotsHtml = "";
+    if (totalImgs > 1) {
+      if (totalImgs === 2) {
+        dotsHtml = `
+          <span class="slider-dot active" data-index="0" onclick="changeCardSlide('${room.id}', -1, event)"></span>
+          <span class="slider-dot dot-med" data-index="1" onclick="changeCardSlide('${room.id}', 1, event)"></span>
+        `;
+      } else {
+        dotsHtml = `
+          <span class="slider-dot active" data-index="0" onclick="changeCardSlide('${room.id}', -1, event)"></span>
+          <span class="slider-dot dot-med" data-index="1" onclick="jumpCardSlide('${room.id}', 1, event)"></span>
+          <span class="slider-dot dot-small" data-index="2" onclick="changeCardSlide('${room.id}', 1, event)"></span>
+        `;
+      }
+    }
 
     // Xe điện badge nhỏ
     let evBadgeHtml = "";
@@ -496,9 +527,7 @@ function changeCardSlide(roomId, step, event) {
   // Smooth slide transition
   track.style.transform = `translateX(-${nextIndex * 100}%)`;
 
-  dots.forEach((dot, idx) => {
-    dot.classList.toggle("active", idx === nextIndex);
-  });
+  updateCardDots(slider, nextIndex, items.length);
 }
 
 function jumpCardSlide(roomId, targetIndex, event) {
@@ -508,7 +537,6 @@ function jumpCardSlide(roomId, targetIndex, event) {
 
   const track = slider.querySelector(".card-slides-track");
   const items = slider.querySelectorAll(".card-slide-item");
-  const dots = slider.querySelectorAll(".slider-dot");
   if (!track || items.length <= 1) return;
 
   slider.dataset.current = targetIndex;
@@ -520,9 +548,38 @@ function jumpCardSlide(roomId, targetIndex, event) {
 
   track.style.transform = `translateX(-${targetIndex * 100}%)`;
 
-  dots.forEach((dot, idx) => {
-    dot.classList.toggle("active", idx === targetIndex);
-  });
+  updateCardDots(slider, targetIndex, items.length);
+}
+
+function updateCardDots(slider, nextIndex, totalCount) {
+  const dotsContainer = slider.querySelector(".slider-dots");
+  if (!dotsContainer || totalCount <= 1) return;
+  const dots = dotsContainer.querySelectorAll(".slider-dot");
+  if (!dots || dots.length === 0) return;
+
+  if (totalCount === 2) {
+    dots[0].className = `slider-dot ${nextIndex === 0 ? 'active' : 'dot-med'}`;
+    dots[1].className = `slider-dot ${nextIndex === 1 ? 'active' : 'dot-med'}`;
+    return;
+  }
+
+  // 3 chấm động chuẩn phong cách Mời Thuê
+  if (nextIndex === 0) {
+    // Đang ở ảnh đầu: chấm 1 to nhất (active), chấm 2 vừa, chấm 3 nhỏ
+    dots[0].className = 'slider-dot active';
+    dots[1].className = 'slider-dot dot-med';
+    dots[2].className = 'slider-dot dot-small';
+  } else if (nextIndex === totalCount - 1) {
+    // Đang ở ảnh cuối: chấm 1 nhỏ, chấm 2 vừa, chấm 3 to nhất (active)
+    dots[0].className = 'slider-dot dot-small';
+    dots[1].className = 'slider-dot dot-med';
+    dots[2].className = 'slider-dot active';
+  } else {
+    // Đang ở ảnh giữa: chấm 1 vừa, chấm 2 to nhất (active), chấm 3 vừa
+    dots[0].className = 'slider-dot dot-med';
+    dots[1].className = 'slider-dot active';
+    dots[2].className = 'slider-dot dot-med';
+  }
 }
 
 // Touch swipe gestures for card image slider (Smooth Swipe)
@@ -607,8 +664,8 @@ function initModalTouchGallery() {
 // Filter logic (Toàn bộ tiêu chí lọc chuẩn xác theo giao diện Listivo / Mời Thuê)
 function getFilteredRooms() {
   return rooms.filter(room => {
-    // 0. Ẩn hoàn toàn các phòng đã hết / đã cho thuê đối với khách xem
-    if (room.status === "rented" || room.statusName === "Đã cho thuê" || room.status === "het-phong") {
+    // 0. Ẩn hoàn toàn các phòng đã hết / đã cho thuê / ẩn đối với khách xem
+    if (room.status === "rented" || room.statusName === "Đã cho thuê" || room.status === "het-phong" || room.status === "hidden" || room.statusName === "Đã thuê / Tạm ẩn") {
       return false;
     }
 
@@ -622,45 +679,18 @@ function getFilteredRooms() {
       if (!matchTitle && !matchAddress && !matchTag && !matchNear) return false;
     }
 
-    // 2. District
+    // 2. District (Quận / Huyện chuẩn Moithue)
     if (currentFilter.district !== "all") {
-      const d = currentFilter.district.replace(/^(quan-|huyen-)/, '');
-      const rd = (room.district || '').replace(/^(quan-|huyen-)/, '');
+      const d = currentFilter.district.replace(/^(quan-|huyen-)/, '').toLowerCase();
+      const rd = (room.district || '').replace(/^(quan-|huyen-)/, '').toLowerCase();
       if (d !== rd) return false;
     }
 
-    // 3. Source Group
+    // 3. Source Group (Nhóm Nguồn Hàng chuẩn Moithue)
     if (currentFilter.sourceGroup !== "all") {
       const sg = currentFilter.sourceGroup;
       const rsg = room.sourceGroup || '';
-      const rDist = (room.district || '').replace(/^(quan-|huyen-)/, '');
-      let matchSource = (rsg === sg);
-      if (!matchSource) {
-        if (sg === 'nguon-ba-dinh' && (rsg.includes('ba-dinh') || rDist === 'ba-dinh' || rDist === 'tay-ho')) matchSource = true;
-        else if (sg === 'nguon-cau-dien' && (rsg.includes('cau-dien') || (room.address || '').toLowerCase().includes('cầu diễn'))) matchSource = true;
-        else if (sg === 'nguon-cau-giay' && (rsg.includes('cau-giay') || rDist === 'cau-giay')) matchSource = true;
-        else if (sg === 'nguon-xuan-dinh' && (rsg.includes('xuan-dinh') || (room.address || '').toLowerCase().includes('xuân đỉnh') || (room.address || '').toLowerCase().includes('cổ nhuế'))) matchSource = true;
-        else if (sg === 'nguon-dinh-cong' && (rsg.includes('dinh-cong') || (room.address || '').toLowerCase().includes('định công'))) matchSource = true;
-        else if (sg === 'nguon-dong-da' && (rsg.includes('dong-da') || rDist === 'dong-da')) matchSource = true;
-        else if (sg === 'nguon-ha-dong' && (rsg.includes('ha-dong') || rDist === 'ha-dong')) matchSource = true;
-        else if (sg === 'nguon-hoang-mai' && (rsg.includes('hoang-mai') || rDist === 'hoang-mai')) matchSource = true;
-        else if (sg === 'nguon-kim-giang-ngoc-hoi' && (rsg.includes('kim-giang') || rDist === 'thanh-tri' || (room.address || '').toLowerCase().includes('kim giang') || (room.address || '').toLowerCase().includes('ngọc hồi'))) matchSource = true;
-        else if (sg === 'me-tri-phu-do' && (rsg.includes('me-tri') || (room.address || '').toLowerCase().includes('mễ trì') || (room.address || '').toLowerCase().includes('phú đô'))) matchSource = true;
-        else if (sg === 'nguon-my-dinh' && (rsg.includes('my-dinh') || (room.address || '').toLowerCase().includes('mỹ đình'))) matchSource = true;
-        else if (sg === 'nguon-nam-tu-liem' && (rsg.includes('nam-tu-liem') || rDist === 'nam-tu-liem')) matchSource = true;
-        else if (sg === 'nguon-phu-dien' && (rsg.includes('phu-dien') || (room.address || '').toLowerCase().includes('phú diễn'))) matchSource = true;
-        else if (sg === 'nguon-tay-ho' && (rsg.includes('tay-ho') || rDist === 'tay-ho')) matchSource = true;
-        else if (sg === 'nguon-thanh-xuan' && (rsg.includes('thanh-xuan') || rDist === 'thanh-xuan')) matchSource = true;
-        else if (sg === 'nguon-trieu-khuc' && (rsg.includes('trieu-khuc') || (room.address || '').toLowerCase().includes('triều khúc'))) matchSource = true;
-        else if (sg === 'nguon-xuan-phuong' && (rsg.includes('xuan-phuong') || (room.address || '').toLowerCase().includes('xuân phương'))) matchSource = true;
-        else if (sg === 'nguon-yen-xa-mau-luong' && (rsg.includes('yen-xa') || (room.address || '').toLowerCase().includes('yên xá') || (room.address || '').toLowerCase().includes('mậu lương'))) matchSource = true;
-        else if (sg === 'nguon-hoai-duc' && (rsg.includes('hoai-duc') || rDist === 'hoai-duc')) matchSource = true;
-        else if (sg === 'nguon-bach-kinh-xay' && (rsg.includes('bach-kinh-xay') || (room.address || '').toLowerCase().includes('bách khoa') || (room.address || '').toLowerCase().includes('kinh tế') || (room.address || '').toLowerCase().includes('xây dựng') || (room.address || '').toLowerCase().includes('tạ quang bửu') || (room.address || '').toLowerCase().includes('lê thanh nghị') || (room.address || '').toLowerCase().includes('trần đại nghĩa') || (room.address || '').toLowerCase().includes('đại cồ việt'))) matchSource = true;
-        else if (sg === 'nguon-linh-nam-vinh-hung' && (rsg.includes('linh-nam') || rsg.includes('vinh-hung') || (room.address || '').toLowerCase().includes('lĩnh nam') || (room.address || '').toLowerCase().includes('vĩnh hưng') || (room.address || '').toLowerCase().includes('nam dư') || (room.address || '').toLowerCase().includes('tây trà') || (room.address || '').toLowerCase().includes('thúy lĩnh') || (room.address || '').toLowerCase().includes('khuyến lương'))) matchSource = true;
-        else if (sg === 'nguon-ho-tung-mau' && ((room.address || '').toLowerCase().includes('hồ tùng mậu'))) matchSource = true;
-        else if (sg === 'ngoc-truc-dai-linh' && ((room.address || '').toLowerCase().includes('ngọc trục') || (room.address || '').toLowerCase().includes('đại linh'))) matchSource = true;
-      }
-      if (!matchSource) return false;
+      if (rsg !== sg) return false;
     }
 
     // 4. Room Type
@@ -735,7 +765,16 @@ function getFilteredRooms() {
     if (currentFilter.elevator === "elevator" && !room.elevator) return false;
     if (currentFilter.elevator === "stairs" && room.elevator) return false;
 
-    // 12. Thú cưng
+    // 12. Mức nội thất (Full đồ / Đồ cơ bản)
+    if (currentFilter.furnishLevel === "full") {
+      const fl = (room.furnishLevel || "").toLowerCase();
+      if (!fl.includes("full")) return false;
+    } else if (currentFilter.furnishLevel === "basic") {
+      const fl = (room.furnishLevel || "").toLowerCase();
+      if (fl.includes("full") || !fl.includes("cơ bản")) return false;
+    }
+
+    // 13. Thú cưng
     if (currentFilter.pet === "allowed" && !room.petAllowed) return false;
     if (currentFilter.pet === "forbidden" && room.petAllowed) return false;
 
@@ -1630,7 +1669,18 @@ function onSidebarFilterChange() {
   const vehEl = document.getElementById("sidebarVehicles");
   currentFilter.vehicles = vehEl ? vehEl.value : "all";
 
-  // 5. Elevator
+  // 5. Mức nội thất
+  const elFurnishFull = document.getElementById("filterFurnishFull");
+  const elFurnishBasic = document.getElementById("filterFurnishBasic");
+  if (elFurnishFull && elFurnishFull.checked && (!elFurnishBasic || !elFurnishBasic.checked)) {
+    currentFilter.furnishLevel = "full";
+  } else if (elFurnishBasic && elFurnishBasic.checked && (!elFurnishFull || !elFurnishFull.checked)) {
+    currentFilter.furnishLevel = "basic";
+  } else {
+    currentFilter.furnishLevel = "all";
+  }
+
+  // 6. Elevator
   const elElevator = document.getElementById("filterElevator");
   const elStairs = document.getElementById("filterStairs");
   if (elElevator && elElevator.checked && (!elStairs || !elStairs.checked)) {
@@ -1809,6 +1859,7 @@ function resetAllFilters() {
     roomLayout: "all",
     capacity: "all",
     vehicles: "all",
+    furnishLevel: "all",
     elevator: "all",
     pet: "all",
     electricVehicle: "all",

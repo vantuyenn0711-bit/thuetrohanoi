@@ -13,8 +13,62 @@ const { URL } = require('url');
 
 const PORT = process.env.PORT || 3000;
 const CREDENTIALS = { email: 'Phonghuyentran.moithue@gmail.com', password: 'Huyentran' };
-let cookies = {};
+const { runSync } = require('./sync_rooms');
 
+// ======================================================================
+// AUTO-SYNC 24/7 SCHEDULER (Chạy ngầm định kỳ mỗi 30 phút)
+// ======================================================================
+let isAutoSyncEnabled = true;
+let isSyncInProgress = false;
+const SYNC_INTERVAL_MINUTES = 30;
+let lastSyncTime = null;
+let nextSyncTime = Date.now() + SYNC_INTERVAL_MINUTES * 60 * 1000;
+let lastSyncResult = null;
+
+try {
+  const historyPath = path.join(__dirname, 'sync_history.json');
+  if (fs.existsSync(historyPath)) {
+    const history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+    if (history.length > 0) {
+      lastSyncTime = history[0].timestamp;
+      lastSyncResult = history[0].summary;
+    }
+  }
+} catch (e) {}
+
+async function triggerSync(triggerType = 'auto') {
+  if (isSyncInProgress) {
+    console.log(`[Sync] Đang có tiến trình đồng bộ khác đang chạy, bỏ qua lượt ${triggerType}.`);
+    return { success: false, message: 'Sync already in progress' };
+  }
+  isSyncInProgress = true;
+  console.log(`\n======================================================`);
+  console.log(`🤖 [Auto-Sync 24/7] Bắt đầu đồng bộ tự động (${triggerType}) [${new Date().toLocaleTimeString('vi-VN')}]`);
+  console.log(`======================================================`);
+
+  try {
+    const result = await runSync();
+    lastSyncTime = new Date().toISOString();
+    nextSyncTime = Date.now() + SYNC_INTERVAL_MINUTES * 60 * 1000;
+    lastSyncResult = result ? result.summary : null;
+    isSyncInProgress = false;
+    return { success: true, result };
+  } catch (err) {
+    console.error(`❌ [Auto-Sync Error]:`, err.message);
+    isSyncInProgress = false;
+    nextSyncTime = Date.now() + 5 * 60 * 1000;
+    return { success: false, error: err.message };
+  }
+}
+
+// Bật timer chạy ngầm 24/24 mỗi 30 phút
+setInterval(() => {
+  if (isAutoSyncEnabled && !isSyncInProgress) {
+    triggerSync('auto');
+  }
+}, SYNC_INTERVAL_MINUTES * 60 * 1000);
+
+let cookies = {};
 const CLOUDFLARE_WORKER_URL = process.env.CLOUDFLARE_WORKER_URL || 'https://proud-grass-4b4a.vantuyenn0711.workers.dev';
 
 // ======================================================================
@@ -218,24 +272,42 @@ function transformMoithueName(str) {
   if (!str) return '';
   let clean = str.trim();
 
-  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 139.49.X, 259.x, 448.x...) thành "Ngõ 649 "
-  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+)(?:\.[a-zA-Z0-9_\-]+)+\s*/i, (match, alley) => {
+  // 0. Bỏ tiền tố "* Dự án: " nếu có
+  clean = clean.replace(/^\*\s*Dự án:\s*/i, '').trim();
+
+  // 1. Chuyển số đầu có dấu chấm (649.x, 649.55.x, 467.170.x, 1194.63.64.18...) thành "Ngõ [Số] "
+  clean = clean.replace(/^(?:(?:ngõ|Ngõ)\s+)?(\d+[a-zA-Z]?)(?:[.\-_/](?:[a-zA-Z0-9]+))+\s*/i, (match, alley) => {
     return `Ngõ ${alley} `;
   });
 
-  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ (vd: Lĩnh Nam(1) -> Lĩnh Nam (1))
+  // Chống lặp từ "Ngõ Ngõ ..."
+  clean = clean.replace(/^(?:Ngõ\s+)+/i, 'Ngõ ');
+
+  // Đảm bảo dấu ngoặc có khoảng trắng phía trước nếu dính chữ
   clean = clean.replace(/([^\s(])\(/g, '$1 (');
 
-  // Xóa dấu ngoặc mở cụt ở cuối chuỗi (vd: 259.x Vĩnh Hưng( -> 259.x Vĩnh Hưng)
+  // Xóa dấu ngoặc mở cụt ở cuối chuỗi
   clean = clean.replace(/\(\s*$/, '').trim();
 
-  // 2. Trích xuất và bảo toàn phần "_Trục XX" nếu có
+  // Sửa lỗi nếu trước đó bị dính kiểu '– _Trục' hay '- _Trục'
+  clean = clean.replace(/([-–—])\s*_\s*(Trục)/gi, '$1 $2');
+
+  // 2. Trích xuất và bảo toàn phần "Trục XX" nếu có
   let trucPart = '';
-  const trucMatch = clean.match(/(?:_|\s)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
+  const trucMatch = clean.match(/([-–—_]\s*|\s+)(Trục\s*\d+[a-zA-Z0-9\-]*)/i);
   if (trucMatch) {
-    trucPart = '_' + trucMatch[1].replace(/\s+/g, ' ').trim();
-    // Tách phần tên trước Trục
-    const idx = clean.search(/(?:_|\s)Trục\s*\d+/i);
+    const isDash = /[-–—]/.test(trucMatch[1]);
+    const isUnderscore = /_/.test(trucMatch[1]);
+    const trucName = trucMatch[2].replace(/\s+/g, ' ').trim();
+    if (isDash) {
+      trucPart = ' – ' + trucName;
+    } else if (isUnderscore) {
+      trucPart = '_' + trucName;
+    } else {
+      trucPart = ' – ' + trucName;
+    }
+
+    const idx = clean.search(/(?:[-–—_]\s*|\s+)Trục\s*\d+/i);
     if (idx > -1) {
       clean = clean.substring(0, idx).trim();
     }
@@ -246,14 +318,13 @@ function transformMoithueName(str) {
 
   // Loại bỏ các mã đuôi thừa nếu còn dính vào tên chính trước Trục
   clean = clean.replace(/_(?:A|Anh|Chị|Em|C|E|FH|LN|AK|MK|HL|HN|QD|CD|T\d+|[A-Z]{2,4})[\s\S]*$/i, '').trim();
-  clean = clean.replace(/_+$/, '').trim();
+  clean = clean.replace(/[\s–\-_(]+$/, '').trim();
 
   // Ghép lại phần Trục
   if (trucPart) {
     clean = clean + trucPart;
   }
 
-  // Chuẩn hóa khoảng trắng
   return clean.replace(/\s+/g, ' ').trim();
 }
 
@@ -687,7 +758,7 @@ function convertToRoomFormat(data, sourceGroup, district) {
     'nguon-trieu-khuc': 'Triều Khúc', 'nguon-phu-dien': 'Phú Diễn',
     'nguon-xuan-phuong': 'Xuân Phương', 'nguon-yen-xa-mau-luong': 'Yên Xá/Mậu Lương',
     'ngoc-truc-dai-linh': 'Ngọc Trục - Đại Linh', 'nguon-ha-dong': 'Hà Đông',
-    'nguon-linh-nam-vinh-hung': 'Lĩnh Nam - Vĩnh Hưng', 'nguon-bach-kinh-xay': 'Bách Kinh Xây'
+    'me-tri-phu-do': 'Mễ Trì - Phú Đô', 'nguon-ho-tung-mau': 'Hồ Tùng Mậu'
   };
 
   const evPolicy = data.evPolicy || 'unspecified';
@@ -863,24 +934,6 @@ const server = http.createServer(async (req, res) => {
   const parsedUrl = new URL(req.url, `http://localhost:${PORT}`);
   const pathname = parsedUrl.pathname;
 
-  // API: Get rooms from rooms_new.json
-  if (pathname === '/api/rooms' && req.method === 'GET') {
-    try {
-      const roomsPath = path.join(__dirname, 'rooms_new.json');
-      if (fs.existsSync(roomsPath)) {
-        const data = fs.readFileSync(roomsPath, 'utf8');
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(data);
-      } else {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify([]));
-      }
-    } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: err.message }));
-    }
-    return;
-  }
 
   // API: Get rooms from rooms_new.json
   if ((pathname === '/api/rooms' || pathname === '/api/get-rooms') && req.method === 'GET') {
@@ -951,6 +1004,75 @@ const server = http.createServer(async (req, res) => {
         res.end(JSON.stringify({ error: err.message }));
       }
     });
+    return;
+  }
+
+  // API: Lấy trạng thái đồng bộ tự động 24/24
+  if (pathname === '/api/sync-status' && req.method === 'GET') {
+    res.writeHead(200, {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
+    });
+    res.end(JSON.stringify({
+      autoSync: isAutoSyncEnabled,
+      intervalMinutes: SYNC_INTERVAL_MINUTES,
+      isSyncing: isSyncInProgress,
+      lastSyncTime: lastSyncTime,
+      nextSyncTime: nextSyncTime,
+      lastSummary: lastSyncResult
+    }));
+    return;
+  }
+
+  // API: Kích hoạt đồng bộ ngay lập tức
+  if (pathname === '/api/sync-now' && req.method === 'POST') {
+    if (isSyncInProgress) {
+      res.writeHead(409, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+      res.end(JSON.stringify({ success: false, message: 'Đang có tiến trình đồng bộ khác đang chạy.' }));
+      return;
+    }
+    triggerSync('manual');
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify({ success: true, message: 'Đã kích hoạt đồng bộ' }));
+    return;
+  }
+
+  // API: Bật/Tắt chế độ tự động 24/24
+  if (pathname === '/api/toggle-auto-sync' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        if (typeof payload.enabled === 'boolean') {
+          isAutoSyncEnabled = payload.enabled;
+        } else {
+          isAutoSyncEnabled = !isAutoSyncEnabled;
+        }
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ success: true, autoSync: isAutoSyncEnabled }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  // API: Lấy lịch sử đồng bộ
+  if (pathname === '/api/sync-history' && req.method === 'GET') {
+    const historyPath = path.join(__dirname, 'sync_history.json');
+    let history = [];
+    if (fs.existsSync(historyPath)) {
+      try { history = JSON.parse(fs.readFileSync(historyPath, 'utf8')); } catch (e) {}
+    }
+    res.writeHead(200, {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
+    });
+    res.end(JSON.stringify(history.slice(0, 15)));
     return;
   }
 

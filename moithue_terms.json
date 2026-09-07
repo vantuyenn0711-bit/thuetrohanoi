@@ -1,0 +1,212 @@
+[
+  {
+    "id": 2202,
+    "key": "listivo_2202",
+    "name": "Ngọc Trục - Đại Linh",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2203,
+    "key": "listivo_2203",
+    "name": "Mễ Trì - Phú Đô",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2196,
+    "key": "listivo_2196",
+    "name": "Ba Đình - Tây Hồ",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2191,
+    "key": "listivo_2191",
+    "name": "Cầu Diễn",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2178,
+    "key": "listivo_2178",
+    "name": "Cầu Giấy",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2183,
+    "key": "listivo_2183",
+    "name": "Định Công",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2194,
+    "key": "listivo_2194",
+    "name": "Đống Đa",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2180,
+    "key": "listivo_2180",
+    "name": "Hà Đông",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2197,
+    "key": "listivo_2197",
+    "name": "Hồ Tùng Mậu",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2177,
+    "key": "listivo_2177",
+    "name": "Hoài Đức",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2184,
+    "key": "listivo_2184",
+    "name": "Hoàng Mai",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2187,
+    "key": "listivo_2187",
+    "name": "Kim Giang, Ngọc Hồi",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2179,
+    "key": "listivo_2179",
+    "name": "Mỹ Đình",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2198,
+    "key": "listivo_2198",
+    "name": "Nam Từ Liêm",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2182,
+    "key": "listivo_2182",
+    "name": "Phú Diễn",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2199,
+    "key": "listivo_2199",
+    "name": "Tây Hồ",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2193,
+    "key": "listivo_2193",
+    "name": "Thanh Xuân",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2185,
+    "key": "listivo_2185",
+    "name": "Triều Khúc",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2176,
+    "key": "listivo_2176",
+    "name": "Cổ Nhuế , Xuân Đỉnh",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2181,
+    "key": "listivo_2181",
+    "name": "Xuân Phương",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  },
+  {
+    "id": 2186,
+    "key": "listivo_2186",
+    "name": "Yên Xá/Mậu Lương",
+    "parent": 0,
+    "searchFormPlaceholder": "Chọn loại nhà",
+    "parentTermIds": [],
+    "dependencies": [],
+    "hasMultilevelChildren": false
+  }
+]
