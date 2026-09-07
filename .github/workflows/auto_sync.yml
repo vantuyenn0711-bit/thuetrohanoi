@@ -1,0 +1,42 @@
+name: Auto Sync Rooms Moithue 24/7
+
+on:
+  schedule:
+    # Chạy tự động mỗi 1 tiếng một lần (24/24 kể cả khi tắt máy tính)
+    - cron: '0 * * * *'
+  workflow_dispatch: # Cho phép bấm chạy thủ công trên điện thoại hoặc web bất kỳ lúc nào
+
+# Cấp quyền ghi để commit danh sách phòng mới vào kho GitHub
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Sync Rooms from Moithue
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Room Sync Script
+        run: node sync_rooms.js
+
+      - name: Commit and Push if changes exist
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add rooms_new.json sync_history.json moithue_official_mapping.json moithue_official_attributes.json
+          
+          if git diff --staged --quiet; then
+            echo "✅ Dữ liệu phòng đã cập nhật mới nhất, không có thay đổi cần commit."
+          else
+            git commit -m "chore(auto-sync): cap nhat phong moi nhat tu Moithue [skip ci]"
+            git push
+            echo "🚀 Đã tự động commit và đẩy danh sách phòng mới lên GitHub thành công!"
+          fi
