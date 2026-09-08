@@ -1020,6 +1020,12 @@ function formatDescContent(text) {
   // Tách dòng
   let lines = clean.split('\n').map(l => l.trim()).filter(l => l.length > 0);
 
+  // Ẩn hoàn toàn dòng ĐỊA CHỈ nội bộ trong phần mô tả để không lộ số nhà/mã trục
+  lines = lines.filter(line => {
+    if (/^(?:ĐỊA CHỈ|Địa chỉ|Đ\/c|Đ\/C|địa chỉ)\s*[:•]/i.test(line)) return false;
+    return true;
+  });
+
   return lines.map(line => {
     // 1. Tiêu đề khối lớn như ✅ TIỆN ÍCH, 🚚 DỊCH VỤ, ❎ LƯU Ý
     if (/^(?:✅\s*TIỆN ÍCH|TIỆN ÍCH\b|(?:🚚|🏆)\s*DỊCH VỤ|DỊCH VỤ\b|❎\s*LƯU Ý|LƯU Ý\b)/i.test(line)) {
@@ -1037,12 +1043,25 @@ function formatDescContent(text) {
     if (/^(?:🍡|🛋️|⏳|📋)/u.test(line)) {
       return `<div style="margin-bottom: 5px; font-weight: 500; color: #1E293B;">${line}</div>`;
     }
-    // 5. Tiêu đề THÔNG TIN PHÒNG_LN
+    // 5. Tiêu đề THÔNG TIN PHÒNG (lược bỏ mã nhân viên như _LPNT, _LN)
     if (/^THÔNG TIN PHÒNG/i.test(line)) {
-      return `<div style="font-weight: 700; color: #64748B; margin-bottom: 12px; font-size: 0.95rem;">${line}</div>`;
+      const cleanHeading = line.replace(/_[a-zA-Z0-9]+$/i, '').trim();
+      return `<div style="font-weight: 700; color: #64748B; margin-bottom: 12px; font-size: 0.95rem;">${cleanHeading}</div>`;
     }
     return `<div style="margin-bottom: 5px; color: #334155;">${line}</div>`;
   }).join('');
+}
+
+function formatRoomDisplayCode(room) {
+  if (!room) return 'MT-ROOM';
+  if (room.external_id || room.externalId) return `MT-${room.external_id || room.externalId}`;
+  if (!room.id) return 'MT-ROOM';
+  // Nếu là dạng MT-slug dài có mã nhân viên, rút gọn thành mã ngắn
+  const cleanId = String(room.id).replace(/^MT-/, '');
+  if (/^\d+$/.test(cleanId)) return `MT-${cleanId}`;
+  const parts = cleanId.split(/[-_]/);
+  const shortCode = parts.slice(0, 3).join('-').toUpperCase();
+  return `MT-${shortCode}`;
 }
 
 function openRoomDetailModal(roomId, isFullscreen = true, event) {
@@ -1144,7 +1163,7 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
         <i class="far fa-clock"></i> Đăng: ${timeAgo}
       </div>
       <div class="detail-stat">
-        <i class="far fa-eye"></i> ${room.views || 1} Lượt xem · Mã tin: <strong>${room.id}</strong>
+        <i class="far fa-eye"></i> ${room.views || 1} Lượt xem · Mã tin: <strong>${formatRoomDisplayCode(room)}</strong>
       </div>
     </div>
 
