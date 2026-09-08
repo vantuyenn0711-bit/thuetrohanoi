@@ -1760,41 +1760,192 @@ async function triggerManualSync() {
     showToast('⚠️ Hệ thống đang trong tiến trình đồng bộ, vui lòng đợi vài giây.');
     return;
   }
-  try {
-    isCurrentlySyncing = true;
-    const progressBanner = document.getElementById('syncProgressBanner');
-    if (progressBanner) progressBanner.style.display = 'flex';
-    const btnSyncIcon = document.getElementById('btnSyncIcon');
-    const btnSyncText = document.getElementById('btnSyncText');
-    if (btnSyncIcon) btnSyncIcon.className = 'fas fa-sync fa-spin';
-    if (btnSyncText) btnSyncText.innerText = 'Đang đồng bộ...';
+  
+  isCurrentlySyncing = true;
+  const progressBanner = document.getElementById('syncProgressBanner');
+  if (progressBanner) progressBanner.style.display = 'flex';
+  const btnSyncIcon = document.getElementById('btnSyncIcon');
+  const btnSyncText = document.getElementById('btnSyncText');
+  if (btnSyncIcon) btnSyncIcon.className = 'fas fa-sync fa-spin';
+  if (btnSyncText) btnSyncText.innerText = 'Đang đồng bộ...';
 
-    const res = await fetch('/api/sync-now', { method: 'POST' });
-    const data = await res.json();
+  // 1. Thử gọi API máy chủ Node.js nếu có
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const res = await fetch('/api/sync-now', { method: 'POST', signal: controller.signal });
+    clearTimeout(timeoutId);
+
     if (res.ok) {
-      showToast('🚀 Đã kích hoạt đồng bộ từ Mời Thuê!');
+      const data = await res.json();
+      showToast('🚀 Đã kích hoạt đồng bộ từ máy chủ Mời Thuê!');
       const pollInterval = setInterval(async () => {
-        const stRes = await fetch('/api/sync-status?t=' + Date.now());
-        if (stRes.ok) {
-          const st = await stRes.json();
-          if (!st.isSyncing) {
-            clearInterval(pollInterval);
-            isCurrentlySyncing = false;
-            await loadAdminData();
-            await fetchAndRenderSyncStatus();
-            showToast('🎉 Đồng bộ thành công! Danh sách phòng đã được cập nhật.');
+        try {
+          const stRes = await fetch('/api/sync-status?t=' + Date.now());
+          if (stRes.ok) {
+            const st = await stRes.json();
+            if (!st.isSyncing) {
+              clearInterval(pollInterval);
+              isCurrentlySyncing = false;
+              await loadAdminData();
+              renderAdminStats();
+              renderRoomsTable();
+              await fetchAndRenderSyncStatus();
+              showToast('🎉 Đồng bộ hoàn tất! Dữ liệu đã được cập nhật.');
+            }
           }
-        }
+        } catch (e) {}
       }, 1500);
-    } else {
-      showToast('⚠️ ' + (data.message || 'Lỗi kích hoạt'));
-      isCurrentlySyncing = false;
-      fetchAndRenderSyncStatus();
+      return;
     }
-  } catch (e) {
-    showToast('❌ Lỗi kết nối máy chủ: ' + e.message);
-    isCurrentlySyncing = false;
+  } catch (err) {
+    // Không có máy chủ cục bộ (đang mở trên điện thoại / GitHub Pages) -> Chuyển sang cào trực tiếp qua Client!
   }
+
+  // 2. Fallback: ĐỒNG BỘ TRỰC TIẾP TRÊN TRÌNH DUYỆT ĐIỆN THOẠI (DIRECT BROWSER SYNC)
+  try {
+    showToast('📱 Đang quét trực tiếp dữ liệu mới từ Mời Thuê trên điện thoại...');
+    const result = await runDirectBrowserSync();
+    showToast(`🎉 Đồng bộ trực tiếp thành công! Tìm thấy ${result.newCount} phòng mới, tổng kho: ${result.totalRooms} phòng.`);
+  } catch (err) {
+    console.error('Direct sync failed:', err);
+    showToast('❌ Không thể tải dữ liệu trực tiếp: ' + err.message);
+  } finally {
+    isCurrentlySyncing = false;
+    if (progressBanner) progressBanner.style.display = 'none';
+    if (btnSyncIcon) btnSyncIcon.className = 'fas fa-bolt';
+    if (btnSyncText) btnSyncText.innerText = 'Đồng Bộ Ngay Bây Giờ';
+    renderAdminStats();
+    renderRoomsTable();
+  }
+}
+
+// BROWSER DIRECT SYNC RUNNER CHO ĐIỆN THOẠI & WEB TĨNH
+async function runDirectBrowserSync() {
+  const workerProxy = 'https://proud-grass-4b4a.vantuyenn0711.workers.dev';
+  const targetApi = 'https://moithue.com/wp-json/listivo/v1/listings';
+  
+  const payload = new URLSearchParams({
+    'template': 'templates/partials/search_results_card_small',
+    'cardType': 'card_small',
+    'rowType': 'row_regular_v2',
+    'params[page]': '1',
+    'params[limit]': '50',
+    'params[sortBy]': 'most-relevant',
+    'map': '0',
+    'locationFieldId': '0'
+  }).toString();
+
+  // Gọi qua Worker Proxy để vượt CORS trên trình duyệt điện thoại
+  const res = await fetch(`${workerProxy}/?url=${encodeURIComponent(targetApi)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    body: payload
+  });
+
+  if (!res.ok) throw new Error('Mạng không phản hồi (Mã ' + res.status + ')');
+  const json = await res.json();
+  const html = json.template || '';
+
+  // Parse card HTML
+  const cardRegex = /<a\s+class="listivo-listing-card-v4[^"]*"[\s\S]*?<\/a>/gi;
+  const cards = html.match(cardRegex) || [];
+  
+  const roomMap = new Map();
+  for (const r of adminRooms) {
+    const key = r.external_id || r.externalId || r.moithueSlug || r.id?.replace(/^MT-/, '');
+    if (key) roomMap.set(String(key), r);
+  }
+
+  let newCount = 0;
+  let updatedCount = 0;
+
+  for (const card of cards) {
+    const hrefMatch = card.match(/href="([^"]+)"/i);
+    const url = hrefMatch ? hrefMatch[1] : '';
+    const slugMatch = url.match(/\/listing\/([^/?#]+)/i);
+    const slug = slugMatch ? slugMatch[1] : '';
+    if (!slug) continue;
+
+    const modelMatch = card.match(/:model-id="(\d+)"/i);
+    const modelId = modelMatch ? modelMatch[1] : null;
+
+    const titleMatch = card.match(/class="listivo-listing-card-v4__name[^"]*"[^>]*>([\s\S]*?)<\/h3>/i);
+    let title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : slug;
+    title = transformMoithueName(title);
+
+    const priceMatch = card.match(/class="listivo-listing-card-v4__value[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+    const priceStr = priceMatch ? priceMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+    const priceNumMatch = priceStr.match(/(\d{1,3}(?:[.,]\d{3})+)/);
+    const price = priceNumMatch ? parseInt(priceNumMatch[1].replace(/[.,]/g, ''), 10) : 0;
+
+    const imgMatch = card.match(/data-srcset="([^"\s]+)/i) || card.match(/src="([^"\s]+)/i);
+    const firstImg = imgMatch ? imgMatch[1].replace(/&#038;/g, '&') : '';
+
+    const key = String(modelId || slug);
+    const old = roomMap.get(key) || roomMap.get(slug);
+
+    if (!old) {
+      const newRoom = {
+        id: 'MT-' + slug,
+        external_id: modelId,
+        title: title,
+        address: title,
+        district: 'cau-giay',
+        sourceGroup: 'nguon-cau-giay',
+        sourceGroupName: 'Cầu Giấy',
+        roomLayout: 'STUDIO',
+        categoryName: 'Khép kín',
+        tag: 'Khép kín',
+        price: price,
+        area: 25,
+        floor: 'Tầng 2 (Thang máy: Có)',
+        furnishLevel: 'Full đồ',
+        maxPeople: 2,
+        maxVehicles: 2,
+        petAllowed: false,
+        electricVehicle: false,
+        status: 'available',
+        statusName: 'Còn phòng',
+        images: firstImg ? [firstImg] : ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'],
+        amenities: ['Điều hòa', 'Nóng lạnh', 'Giường', 'Tủ quần áo'],
+        description: title,
+        moithueUrl: url,
+        moithueSlug: slug,
+        first_seen_at: new Date().toISOString()
+      };
+      adminRooms.unshift(newRoom);
+      roomMap.set(key, newRoom);
+      newCount++;
+    } else {
+      if (price && old.price !== price) {
+        old.price = price;
+        updatedCount++;
+      }
+      if (old.status !== 'available') {
+        old.status = 'available';
+        old.statusName = 'Còn phòng';
+      }
+    }
+  }
+
+  // Lưu ngay vào LocalStorage để cả admin và trang tìm kiếm khách xem đều nhận dữ liệu ngay
+  try {
+    localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
+  } catch (e) {}
+
+  // Cập nhật hiển thị số phòng trên giao diện
+  const totalNumEl = document.getElementById('syncTotalRoomsNum');
+  if (totalNumEl) totalNumEl.innerText = adminRooms.length;
+  const lastTimeEl = document.getElementById('syncLastTimeText');
+  if (lastTimeEl) lastTimeEl.innerText = new Date().toLocaleTimeString('vi-VN') + ' (Trực tiếp)';
+  const lastSummaryEl = document.getElementById('syncLastSummaryBadge');
+  if (lastSummaryEl) lastSummaryEl.innerHTML = `🟢 +${newCount} mới • 🟡 ~${updatedCount} đổi giá`;
+
+  return { newCount, updatedCount, totalRooms: adminRooms.length };
 }
 
 async function toggleAutoSyncMode() {
