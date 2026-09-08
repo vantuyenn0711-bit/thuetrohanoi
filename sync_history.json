@@ -1,5 +1,1767 @@
 [
   {
+    "timestamp": "2026-09-08T08:20:08.002Z",
+    "durationSeconds": 39,
+    "summary": {
+      "totalInMoithue": 918,
+      "newRooms": 3,
+      "updatedRooms": 0,
+      "unchangedRooms": 835,
+      "hiddenRooms": 0,
+      "reactivatedRooms": 80,
+      "totalInDatabase": 1011
+    },
+    "changes": [
+      {
+        "type": "NEW",
+        "id": "MT-g23-khu-dau-gia-yen-xa",
+        "title": "G23 khu đấu giá Yên xá",
+        "price": 4000000
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-448-x-vinh-hung-1_truc-02_a-tam_ln",
+        "title": "Ngõ 448 Vĩnh Hưng (1)_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-11-thanh-dam_a-nhu_truc-01_ln",
+        "title": "11 Thanh Đàm_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-259-47-x-vinh-hung_truc-01020304_anh-nam_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-101-de-to-hoang_truc-0304_ab-home_xh",
+        "title": "101 Đê Tô Hoàng_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-400-truong-dinh_truc-02_xh",
+        "title": "400 Trương Định_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-24-83-x-kim-dong_truc-02_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-194-7-8-thanh-dam_truc-03_ln",
+        "title": "Ngõ 194 Thanh Đàm_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-22-luong-khanh-thien-1_truc-03_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (1)_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-100-gieng-mut_truc-01_xh",
+        "title": "100 Giếng Mứt_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-265-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 265 Hoàng Mai_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-111-x-nguyen-duc-canh_truc-010205_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 01"
+      },
+      {
+        "type": "NEW",
+        "id": "MT-g23-khu-dau-gia-yen-xa-2",
+        "title": "G23 khu đấu giá Yên xá",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-ngo-46-ngoc-hoi-_hoang-liet-chung-cu-osaka-complex-tang-21",
+        "title": "Ngõ 46 Ngọc Hồi",
+        "price": 10500000
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-132-42-01-xx-cau-giay_truc-1_anh-lap_dk",
+        "title": "Ngõ 132 Cầu Giấy_Trục 1"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-200-x-vinh-hung_nguyen-can_a-doan_ln",
+        "title": "Ngõ 200 Vĩnh Hưng"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-281-3x-truong-dinh_mbkd_co-nhung_xh",
+        "title": "Ngõ 281 Trương Định"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-24-x-kim-dong_tang-5_truc-04_xh",
+        "title": "Ngõ 24 Kim Đồng_Tầng 5_Trục 04"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-24-119-x-kim-dong_truc-01_anh-quan_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-3x-ngo-thai-loi_tang-2_chi-thuan_xh",
+        "title": "3X Ngõ Thái Lợi_Tầng 2"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-649-x-linh-nam_truc-02_fh",
+        "title": "Ngõ 649 Lĩnh Nam_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-448-x-vinh-hung-1_truc-01_a-tam_ln",
+        "title": "Ngõ 448 Vĩnh Hưng (1)_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-448-x-vinh-hung-2-_-truc-02-_-a-tam-_-ln",
+        "title": "Ngõ 448 Vĩnh Hưng ( 2 )_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-467-170-xx-linh-nam-1_-truc-01-_-a-dat-_ln",
+        "title": "Ngõ 467 Lĩnh Nam (1)_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-4x-hoa-binh-7_tang-1_anh-tam_xh",
+        "title": "4X Hoà Bình 7_Tầng 1"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-91-3x-hoang-mai_tang-01_anh-do_xh",
+        "title": "Ngõ 91 Hoàng Mai_Tầng 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-139-49-x-tam-trinh_truc-01_ln-2",
+        "title": "Ngõ 139 Tam Trinh_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-78-bach-mai_nha-nguyen-can_a-dungc-min_xh",
+        "title": "78 Bạch Mai"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-ngo-an-son_nha-nguyen-can_xh",
+        "title": "Ngõ An Sơn"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-50-linh-nam_anh-dat_ln",
+        "title": "50 Lĩnh Nam"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-91-2xb-hoang-mai_truc-02_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-91-2xb-hoang-mai_truc-01_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-ham-long-2-tang-45_anh-doan_xh",
+        "title": "Hàm Long 2 Tầng 4,5"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-259-x-vinh-hung_2n1k_anh-cuong_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_2N1K"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-1197-x-giai-phong_truc-01_anh-do_xh",
+        "title": "Ngõ 1197 Giải Phóng_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-4x-hoa-binh-3_truc-02_anh-tam_xh",
+        "title": "4X Hoà Bình 3_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-362-30-xx-nam-du_nguyen-can_chu-trung_ln",
+        "title": "Ngõ 362 Nam Dư"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-272-x-tran-khat-chan_truc-02_-anh-dung-_xh",
+        "title": "Ngõ 272 Trần Khát Chân_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-151-20-x-nguyen-duc-canh_truc-01_anh-dat_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-104-x-nguyen-an-ninh_truc-01_anh-tuan_xh",
+        "title": "Ngõ 104 Nguyễn An Ninh_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-1333-giai-phong-tang-8_xh",
+        "title": "1333 Giải Phóng Tầng 8"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-521-23-x-truong-dinh_truc-02_an-binh-home_xh-2",
+        "title": "Ngõ 521 Trương Định_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-03_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-02_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-352-x-truong-dinh_truc-0405_anh-dat_xh",
+        "title": "Ngõ 352 Trương Định_Trục 04"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-77-x-pho-8-3_tang-6-truc-02_anh-do_xh",
+        "title": "Ngõ 77 Phố 8/3_Tầng 6 – Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-224-x-ngo-quynh_truc-02_anh-dat_xh",
+        "title": "Ngõ 224 Ngõ Quỳnh_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-179-xx-vinh-hung-1_nguyen-can_ln",
+        "title": "Ngõ 179 Vĩnh Hưng (1)"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-467-170-20-x-linh-nam_truc-0203_friendly-homes_ln",
+        "title": "Ngõ 467 Lĩnh Nam_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-126-33-x-nam-du_truc-0506-friendly-homes_ln",
+        "title": "Ngõ 126 Nam Dư_Trục 05"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-521-190-x-truong-dinh_friendly-homes_truc-0102_xh",
+        "title": "Ngõ 521 Trương Định_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-279-x-hoang-mai_truc-02_anh-tung_xh",
+        "title": "Ngõ 279 Hoàng Mai_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-259-16-x-vinh-hung_truc-03_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-259-16-x-vinh-hung_truc-0102_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-112-nam-du_mbkd_co-ha",
+        "title": "112 Nam Dư"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-151-x-nguyen-duc-canh_tang-2_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Tầng 2"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-582-x-linh-nam_a-nam_ln",
+        "title": "Ngõ 582 Lĩnh Nam_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-56-x-ngo-tu-do-dai-la_truc-03_xh",
+        "title": "Ngõ 56 Ngõ Tự Do (Đại La)_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-162-23-x-dong-thien-_tang-1-_-ln",
+        "title": "Ngõ 162 Đông Thiên _Tầng 1 _ LN"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-400-truong-dinh_truc-05_xh",
+        "title": "400 Trương Định_Trục 05"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-185-linh-nam_truc-03_ln",
+        "title": "185 Lĩnh Nam_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-254-92-x-minh-khai_mbkd-tang-12_xh",
+        "title": "Ngõ 254 Minh Khai"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-255-xx-linh-nam_tang-1_ln",
+        "title": "Ngõ 255 Lĩnh Nam_Tầng 1"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-479-29-x-linh-nam_tang-1_ln",
+        "title": "Ngõ 479 Lĩnh Nam_Tầng 1"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-559-122-x-kim-nguu_truc-04_chi-tuyet_xh",
+        "title": "Ngõ 559 Kim Ngưu_Trục 04"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-649-x-linh-nam_truc-04_ln",
+        "title": "Ngõ 649 Lĩnh Nam (3)_Trục 04"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-22-luong-khanh-thien-01_truc-01_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (01)_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-93-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 93 Hoàng Mai_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-147a-x-tan-mai_truc-01_xh",
+        "title": "Ngõ 147A Tân Mai_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-77-x-pho-8-3-minh-khai_truc-02_xh",
+        "title": "Ngõ 77 Phố 8-3 (Minh Khai)_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-111-x-nguyen-duc-canh_truc-0304_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-15-47-goc-de",
+        "title": "Ngõ 15 Gốc Đề_Tầng 1"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-90-70-x-1-khuyen-luong-gamuda_truc-01_ln",
+        "title": "Ngõ 90 (1) Khuyến Lương (Gamuda)_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-479-29-x-linh-nam-4_truc-0104_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-479-29-x-linh-nam-4_truc-0203_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-165-x-dong-thien_truc-02_ln",
+        "title": "Ngõ 165 Đông Thiên_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-39-7-x-dai-dong_truc-0203_ln",
+        "title": "Ngõ 39 Đại Đồng_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-80-gieng-mut_truc-02_ln",
+        "title": "80 Giếng Mứt_Trục 02"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-151-3x-nguyen-duc-canh_truc-03_ln",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 03"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-192-7-8-thanh-dam_truc-04_th",
+        "title": "Ngõ 194 Thanh Đàm_Trục 04"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-192-7-8-thanh-dam_truc-05_mt",
+        "title": "Ngõ 194 Thanh Đàm_Trục 05"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-208-nam-du_truc-01_mt",
+        "title": "208 Nam Dư_Trục 01"
+      },
+      {
+        "type": "REACTIVATED",
+        "id": "MT-479-2x-linh-nam-3_truc-0405-tang-2_th",
+        "title": "Ngõ 479 Lĩnh Nam (3)_Trục 05"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-08T08:14:00.060Z",
+    "durationSeconds": 98,
+    "summary": {
+      "totalInMoithue": 915,
+      "newRooms": 34,
+      "updatedRooms": 12,
+      "unchangedRooms": 869,
+      "hiddenRooms": 173,
+      "reactivatedRooms": 0,
+      "totalInDatabase": 1008
+    },
+    "changes": [
+      {
+        "type": "UPDATED",
+        "id": "MT-230-26-xxabcd_truc-2_a-giang_tt",
+        "title": "Ngõ 230 Mễ Trì Thượng_Trục 2",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-210-thanh-binh",
+        "title": "210 Thanh Bình",
+        "price": 11000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-98-17-xx-tan-trieu-truc-1-tang-1",
+        "title": "Ngõ 98 Tân Triều – trục 1",
+        "price": 3100000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-486-30-x-xuan-dinh_anh-pvc_tang-1_vdt",
+        "title": "Ngõ 486 Xuân Đỉnh",
+        "price": 2500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-28-9xx-dai-linh-nha-a-dang-truc-1",
+        "title": "Ngõ 28 Đại linh nhà a Đăng – trục 1",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-28-9xx-dai-linh-a-dang-truc-2",
+        "title": "Ngõ 28 Đại Linh a Đăng – trục 2",
+        "price": 5000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-43-86-22-co-nhue-_-a-phong-_-504-_-tvh",
+        "title": "Ngõ 43 Cổ Nhuế _ A Phong _ 504 _ TVH",
+        "price": 2800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-117-92-35-tran-cung-_-c-min-_-501-_-tvh",
+        "title": "Ngõ 117 Trần Cung _ C Min _ 501 _ TVH",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-9x-me-tri-thuong_302_a-khiem_tt",
+        "title": "Ngõ 230 Mễ Trì Thượng_302",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-230-9x-me-tri-thuong_602_1n1k_a-khiem_tt",
+        "title": "Ngõ 230 Mễ Trì Thượng_602_1N1K",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-355-xx-duong-xuan-dinh_-c-huong_truc-3_tvh",
+        "title": "Ngõ 355 Đường Xuân Đỉnh_ C Hường_Trục 3",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-355-xx-duong-xuan-dinh_-c-huong_truc-5_tvh",
+        "title": "Ngõ 355 Đường Xuân Đỉnh_ C Hường_Trục 5",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-355-xx-duong-xuan-dinh_-c-huong_truc-4_tvh",
+        "title": "Ngõ 355 Đường Xuân Đỉnh_ C Hường_Trục 4",
+        "price": 6500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-355-xx-duong-xuan-dinh_-c-huong_truc-2_tvh",
+        "title": "Ngõ 355 Đường Xuân Đỉnh_ C Hường_Trục 2",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-355-xx-duong-xuan-dinh-_-c-huong-_-truc-1-_-tvh",
+        "title": "Ngõ 355 Đường Xuân Đỉnh _ C Hường_Trục 1",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-734-12-x-kim-giang-tang-3_6-truc-03_04-hd-2",
+        "title": "Ngõ 734 Kim Giang Tầng 3_6 – Trục 03",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-734-12-x-kim-giang-tang-6-truc_04-hd",
+        "title": "Ngõ 734 Kim Giang Tầng 6 Trục_04 HĐ",
+        "price": 3900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-132-52-01-cau-dien_p1n1b_bac-chien_cd",
+        "title": "Ngõ 132 Cầu Diễn_P1n1b_Bác Chiến",
+        "price": 1900000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-734-12-x-kim-giang-tang-3_6-truc-03_04-hd",
+        "title": "Ngõ 734 Kim Giang Tầng 3_6 – Trục 03",
+        "price": 3700000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-132-52-01-cau-dien_t1co-dh-ko-nl_bac-chien_cd",
+        "title": "Ngõ 132 Cầu Diễn",
+        "price": 2000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-63-23-xx-tran-quoc-vuong_chi-thanh",
+        "title": "Ngõ 63 Trần Quốc Vượng",
+        "price": 4300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-487-x-co-nhue-_-anh-duc",
+        "title": "Ngõ 487 Cổ Nhuế _ anh Đức_Trục 3",
+        "price": 3600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-lk41-kdt-hud-van-canh_truc-1_mailand_2r-gan-winmart-lk41-son-dong",
+        "title": "Lk42 KDT HUD Vân Canh_Trục 1",
+        "price": 4300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns5_t5_chu-thang_lpnt",
+        "title": "Khu đất dịch vụ di trạch NS5",
+        "price": 3000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns5_t4_chu-thang_lpnt",
+        "title": "Khu đất dịch vụ di trạch NS5",
+        "price": 3800000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-khu-dat-dich-vu-di-trach-ns5_t2_t3_chu-thang_lpnt",
+        "title": "Khu đất dịch vụ di trạch NS5",
+        "price": 4300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-583-x-vu-tong-phan_1n1k_mt",
+        "title": "Ngõ 583 Vũ Tông Phan_1N1K",
+        "price": 5800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-377-giai-phong_truc-02_funhome_xh",
+        "title": "377 Giải Phóng_Trục 02",
+        "price": 5500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-143-257-x-nguyen-chinh_truc-03_an-binh-home_xh",
+        "title": "Ngõ 143 Nguyễn Chính_Trục 03",
+        "price": 5300000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-77-x-pho-8-3_tang-6-truc-02_anh-do_xh",
+        "title": "Ngõ 77 Phố 8/3_Tầng 6 – Trục 02",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-54-x-de-tran-khat-chan_truc-01_xh",
+        "title": "Ngõ 54 Đê Trần Khát Chân_Trục 01",
+        "price": 4000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-848-x-kim-giang_truc-03_anh-luc",
+        "title": "Ngõ 848 Kim Giang_Trục 03",
+        "price": 4600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-582-x-linh-nam_a-nam_ln",
+        "title": "Ngõ 582 Lĩnh Nam_Trục 01",
+        "price": 3600000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-467-177-linh-nam-2-_truc-02-_ln",
+        "title": "Ngõ 467 Lĩnh Nam (1)_Trục 01",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-172-30-phu-dien_truc-1_qv",
+        "title": "Ngõ 172 Phú Diễn_Trục 1",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-570-33-5x-kim-giang-truc-01_anh-khoa",
+        "title": "Ngõ 570 Kim Giang – trục 01",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-1xx-cau-dien_truc-1_-chi-ngoan_cd",
+        "title": "Ngõ 136 Cầu Diễn_Trục 1",
+        "price": 3400000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-254-x-giap-bat_truc-03_xh",
+        "title": "Ngõ 254 Giáp Bát_Trục 02",
+        "price": 5500000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-77-x-pho-8-3-minh-khai_truc-02_xh",
+        "title": "Ngõ 77 Phố 8-3 (Minh Khai)_Trục 02",
+        "price": 4600000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-102-22-x-to-vinh-dien_truc-01-nha-anh-giang",
+        "title": "Ngõ 102 Tô Vĩnh Diện_Trục 01",
+        "price": 4800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-128-7a-nguyen-dao-an-_-anh-tien",
+        "title": "Ngõ 128 Nguyễn Đạo An_Trục 2",
+        "price": 4000000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-522-truong-chinh_truc-01-t567_dd",
+        "title": "522 Trường Chinh_Trục 01",
+        "price": 5300000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-401-20-co-nhue",
+        "title": "Ngõ 401 Cổ Nhuế",
+        "price": 2000000
+      },
+      {
+        "type": "UPDATED",
+        "id": "MT-165-x-dong-thien_truc-02_ln",
+        "title": "Ngõ 165 Đông Thiên_Trục 02",
+        "price": 4500000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-136-38-5a-cau-dien-chu-hai",
+        "title": "Ngõ 136 Cầu Diễn – chú Hải",
+        "price": 3800000
+      },
+      {
+        "type": "NEW",
+        "id": "MT-53-3-ngoa-long-45mv-linh-doan",
+        "title": "Ngõ 53 Ngọa Long- Tận Tâm Home",
+        "price": 3900000
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-132-78-cau-dien-wc-chung-chi-hoan",
+        "title": "Ngõ 132 Cầu Diễn – Wc Chung – Chị Hoàn",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-134-54-cau-dien-truc-1-chi-thuy",
+        "title": "Ngõ 134 Cầu Diễn – Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-132-78-cau-dien-chi-hoan",
+        "title": "Ngõ 132 Cầu Diễn – chị Hoàn",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-lien-ke-17-3-kdt-hinode-di-trach",
+        "title": "Liền Kề 17.3 KĐT Hinode Lai Xá",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-2n1k-lk-17-01-hinode-lai-xa",
+        "title": "2N1K – LK 17.01 Hinode – Lai Xá",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-50-48-dinh-thon-chi-ly",
+        "title": "Ngõ 50 Đình Thôn – chị Ly",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-126-129-12-4-cau-dien-anh-khoi",
+        "title": "Ngõ 126 Cầu Diễn- Anh Khôi",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-14-147-me-tri-ha_-1n1k_-anh-cuong",
+        "title": "Ngõ 14 Mễ Trì Hạ_ 1N1K_ Anh Cường",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-60-nguyen-xa-anh-hung",
+        "title": "60 Nguyên Xá – Anh Hưng",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-212-duong-van-xuan-lai-xa-tang-1-anh-cuong",
+        "title": "212 Đường Vạn Xuân- Lai Xá – Tầng 6 – Anh Cường",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-41-35-x-tu-hoang-nha-chi-thuc",
+        "title": "Ngõ 35 Tu Hoàng nhà chị Thục",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-so-7-khu-do-thi-lien-ke-22-van-canh-nha-anh-tu",
+        "title": "Số 7 Khu đô thị liền kề 22 Vân Canh nhà anh Tú",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-255-x-cau-giay-nha-chi-trang",
+        "title": "Ngõ 255 Cầu Giấy",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-103-12-co-nhue-mbkd-nguyen-can",
+        "title": "Ngõ 103 Cổ Nhuế – MBKD – Nguyên Căn",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-213-phuong-canh-anh-manh",
+        "title": "213 Phương Canh – anh Mạnh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-255-x-cau-giay-truc-4-nha-chi-trang",
+        "title": "Ngõ 255 Cầu Giấy_Trục 4",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-255-x-cau-giay-truc-1-nha-chi-trang",
+        "title": "Ngõ 255 Cầu Giấy_Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-68-x-cau-giay",
+        "title": "Ngõ 68 Cầu Giấy",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-50-18-dai-mo-anh-nam-truc-ngoai",
+        "title": "Ngõ 24 Đại Mỗ – Anh Nam- Trục Ngoài",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-50-18-dai-mo-anh-nam-truc-trong",
+        "title": "Ngõ 24 Đại Mỗ – Anh Nam – Trục Trong",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-562-117-duong-lang-truc-1-anh-dat",
+        "title": "Ngõ 562 Đường Láng – Trục 1-",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-280-21-6-co-nhue-truc-1-anh-son",
+        "title": "Ngõ 280 Cổ Nhuế – Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-280-21-6-co-nhue-truc-2-anh-son",
+        "title": "Ngõ 280 Cổ Nhuế – Trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-486-30-7-duong-xuan-dinh-_nha-anh-cuong-104-_tvh",
+        "title": "Ngõ 486 Đường Xuân Đỉnh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-318-x-de-la-thanh",
+        "title": "Ngõ 318 Đê La Thành",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-58-55-01-01-thanh-binh-mo-lao-ha-dong-chu-thi-tang-1",
+        "title": "Ngõ 58 – Thanh Bình- Mộ Lao – Hà Đông – Chú Thi – Tầng 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-san-vp-khu-d-geleximco-le-trong-tan-ha-dong-a-bac-tang-1",
+        "title": "Sàn VP Khu D Geleximco Lê Trọng Tấn , Hà Đông – A Bắc – Tầng 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-04-13-ngoc-truc-em-phu-truc-01",
+        "title": "Ngõ 04 Ngọc Trục – Em Phú – Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-04-13-ngoc-truc-em-phu-truc-02",
+        "title": "Ngõ 04 Ngọc Trục – Em Phú – Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-217-x-mai-dich",
+        "title": "Ngõ 217 Mai Dịch",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-87-6-phu-do-chu-chien-truc-1",
+        "title": "Ngõ 87 Phú Đô – Chú Chiến – Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-mbkd-so-17-duong-ngoc-truc-nha-c-hanh",
+        "title": "MBKD- Số 17 Đường Ngọc Trục- Nhà C Hạnh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-so-17-duong-ngoc-truc-nha-chi-hanh",
+        "title": "Số 17 – Đường Ngọc Trục – Nhà Chị Hạnh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-93-20-ngoc-truc-chu-chien-truc-4",
+        "title": "Ngõ 93 Ngọc Trục – Chú Chiến – Trục 4",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-93-20-ngoc-truc-chu-chien-truc-03",
+        "title": "Ngõ 93 Ngọc Trục – Chú Chiến – Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-2-xa-la-ha-dong-nha-a-quan-truc-2",
+        "title": "2 Xa La – Hà Đông nhà a Quân – Trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-347-17-16-x-co-nhue-truc-1-nha-chi-ha",
+        "title": "Ngõ 347 Cổ Nhuế_Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-347-17-16-x-co-nhue-truc-2-nha-chi-ha",
+        "title": "Ngõ 347 Cổ Nhuế_Trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-38-16-6-thanh-binh-mo-lao-ha-dong-2",
+        "title": "Ngõ 38 Thanh Bình – Mộ Lao- Hà Đông",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-38-16-6-thanh-binh-mo-lao-ha-dong",
+        "title": "Ngõ 38 Thanh Bình – Mộ Lao – Hà Đông",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-136-129-8-30-cau-dien-chi-le",
+        "title": "Ngõ 136 Cầu Diễn – Chị Lê",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-28-97-8-dai-linh-penhouse",
+        "title": "Ngõ 28 Đại Linh – penhouse",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-262-39a-3-nguyen-trai-truc-3",
+        "title": "Ngõ 262 Nguyễn Trãi/ – trục 3",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-113-34-vinh-ho-truc-2",
+        "title": "Ngõ 113 Vĩnh Hồ/trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-113-34-vinh-ho-tang-1",
+        "title": "Ngõ 113 Vĩnh Hồ/tầng 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-69-dong-me_-1n1k_-chi-anh",
+        "title": "69 Đồng Me_ 1N1K_ Chị Ánh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-69-dong-me-_studio_-chi-anh",
+        "title": "69 Đồng Me",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-322-x-truc-1-nha-anh-huy",
+        "title": "Ngõ 322 Mỹ Đình_Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-486-11-xuan-dinh-1n1k-chi-anh",
+        "title": "Ngõ 486 Xuân Đỉnh – 1N1K- Chị Ánh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-381-55-x-nguyen-khang-truc-2-nha-chi-nga",
+        "title": "Ngõ 381 Nguyễn Khang_Trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-130-nguyen-dong-chi-truc-tang-7-nha-anh-huy",
+        "title": "130 Nguyễn Đổng Chi trục tầng 7 nhà anh Quân",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-130-nguyen-dong-chi-truc-12-nha-anh-quan",
+        "title": "130 Nguyễn Đổng Chi – trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-130-nguyen-dong-chi-truc-34-nha-anh-quan",
+        "title": "130 Nguyễn Đổng Chi – trục 3",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-130-nguyen-dong-chi-truc-56-nha-anh-quan",
+        "title": "130 Nguyễn Đổng Chi – trục 5",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-so-10-duong-van-canh-truc-2-nha-ban-truong",
+        "title": "Số 10 đường Vân Canh – trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-so-10-duong-van-canh-truc-1-nha-ban-truong",
+        "title": "Số 10 đường Vân Canh – trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-mbkd-tai-134-54-cau-dien",
+        "title": "MBKD tại 134.54 Cầu Diễn",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-134-54-cau-dien-truc-4-nha-chi-thuy",
+        "title": "Ngõ 134 Cầu Diễn – Trục 4",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-136-64-27-cau-dien-nha-bac-hoa",
+        "title": "Ngõ 136 Cầu Diễn nhà bác Hoa",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-134-56-cau-dien-nha-bac-hoa",
+        "title": "Ngõ 134 Cầu Diễn nhà Bác Hoa",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-so-x-day-b-tap-the-tong-cuc-2",
+        "title": "Số X dãy B tập thể Tổng Cục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-44-24-le-van-hien-nha-chi-thanh",
+        "title": "Ngõ 44 Lê Văn Hiến_Trục 3",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-514-17-tran-cung_tang-1_-anh-son",
+        "title": "Ngõ 514 Trần Cung",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-14-147-me-tri-ha_-mat-bang-kinh-doanh_-anh-cuong",
+        "title": "Ngõ 14 Mễ Trì Hạ_ Mặt Bằng Kinh Doanh_ Anh Cường",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-phong-tro-cho-nguoi-co-thu-nhap-thap-tai-so-10-ngo-132-cau-dien",
+        "title": "Phòng trọ cho người có thu nhập thấp tại số 10 ngõ 132 Cầu Diễn",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-25-106-15-01-phu-minh",
+        "title": "Ngõ 25 Phú Minh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-132-42-01-xx-cau-giay_truc-1_anh-lap_dk",
+        "title": "Ngõ 132 Cầu Giấy_Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-14-lk31-kdt-hub-van-canh_truc-1-2_chi-oanh_2r",
+        "title": "LK31 KĐT Hub Vân Canh_Trục 1-2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-408-18-14a-duong-xuan-dinh-_nha-anh-tuan-_tvh",
+        "title": "Ngõ 408 Đường Xuân Đỉnh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-25-75-xx-phu-minh_anh-phuong",
+        "title": "Ngõ 25 Phú Minh",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-63-04-36-lai-xa_truc-14_a-quang_lpnt",
+        "title": "Ngõ 63 Lai Xá_Trục 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-401-20-x-duong-co-nhue-_-chu-duc-_-truc-2-_-tvh",
+        "title": "Ngõ 401 Đường Cổ Nhuế _ Chú Đức_Trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-136-38-05-cau-dien_nguyen-can",
+        "title": "Ngõ 136 Cầu Diễn",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-64-xx-dong-thien-2_truc-01_ln",
+        "title": "Ngõ 64 Đông Thiên (2)_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-848-x-kim-giang_truc-02_anh-luc",
+        "title": "Ngõ 848 Kim Giang_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-378-xx-my-dinh_truc-5_a-tho-tq",
+        "title": "Ngõ 378 Mỹ Đình_Trục 5",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-378-xx-my-dinh_truc-3_a-tho-tq",
+        "title": "Ngõ 378 Mỹ Đình_Trục 3",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-180-84-x-nguyen-luong-bang_truc-03_dd-2",
+        "title": "Ngõ 180 Nguyễn Lương Bằng_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-53-ngoa-long-toa-moinhan-tu-20-09_t7_anh-huan_lvcd",
+        "title": "53 Ngoạ Long Toà Mới (Nhận từ 15/09)",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-59-68-12-x-me-tri_truc-4_c-tue-nhi_tt",
+        "title": "Ngõ 59 Mễ Trì_Trục 4",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-lk41-kdt-hud-van-canh_truc-3_mailand_2r-gan-winmart-lk41-van-canh",
+        "title": "LK41 KDT HUD Vân Canh_Trục 3",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-58-05-phu-vinh_truc-2_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_Trục 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-58-05-phu-vinh_203204_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_203,204",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-32-2xd-ha-yen-quyet_truc-b_tx",
+        "title": "Ngõ 32 Hạ Yên Quyết",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-102-44-22-x-phao-dai-lang_truc-03_tx",
+        "title": "Ngõ 102 Pháo Đài Láng_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-467-146-xx-linh-nam_p02_chu-truong_ln",
+        "title": "Ngõ 467 Lĩnh Nam_P02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-52-x-ho-linh-quang_truc-0102_dd-2",
+        "title": "Ngõ 51 Hồ Linh Quang_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-58-05-phu-vinh_truc-34_a-huy_ak",
+        "title": "Ngõ 58 Phú Vinh_Trục 3",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-15-47-goc-de",
+        "title": "Ngõ 15 Gốc Đề_Tầng 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-111-x-nguyen-duc-canh_truc-0304_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-77-x-pho-8-3-minh-khai_truc-02_xh",
+        "title": "Ngõ 77 Phố 8-3 (Minh Khai)_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-147a-x-tan-mai_truc-01_xh",
+        "title": "Ngõ 147A Tân Mai_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-93-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 93 Hoàng Mai_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-22-luong-khanh-thien-01_truc-01_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (01)_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-559-122-x-kim-nguu_truc-04_chi-tuyet_xh",
+        "title": "Ngõ 559 Kim Ngưu_Trục 04",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-254-92-x-minh-khai_mbkd-tang-12_xh",
+        "title": "Ngõ 254 Minh Khai",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-400-truong-dinh_truc-05_xh",
+        "title": "400 Trương Định_Trục 05",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-136-nguyen-an-ninh-q27_truc-02_xh",
+        "title": "136 Nguyễn An Ninh Q27_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-56-x-ngo-tu-do-dai-la_truc-03_xh",
+        "title": "Ngõ 56 Ngõ Tự Do (Đại La)_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-151-x-nguyen-duc-canh_tang-2_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Tầng 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-400-truong-dinh_truc-01-3n1k_xh",
+        "title": "400 Trương Định_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-143-257-x-nguyen-chinh_truc-02_an-binh-home_xh",
+        "title": "Ngõ 143 Nguyễn Chính_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-279-x-hoang-mai_truc-02_anh-tung_xh",
+        "title": "Ngõ 279 Hoàng Mai_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-521-190-x-truong-dinh_friendly-homes_truc-0102_xh",
+        "title": "Ngõ 521 Trương Định_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-224-x-ngo-quynh_truc-02_anh-dat_xh",
+        "title": "Ngõ 224 Ngõ Quỳnh_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-77-x-pho-8-3_tang-6-truc-02_anh-do_xh",
+        "title": "Ngõ 77 Phố 8/3_Tầng 6 – Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-352-x-truong-dinh_truc-0405_anh-dat_xh",
+        "title": "Ngõ 352 Trương Định_Trục 04",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-02_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-25-175-x-lac-trung_tang-34_truc-03_xh",
+        "title": "Ngõ 25 Lạc Trung_Tầng 3,4_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-521-23-x-truong-dinh_truc-02_an-binh-home_xh-2",
+        "title": "Ngõ 521 Trương Định_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-1333-giai-phong-tang-8_xh",
+        "title": "1333 Giải Phóng Tầng 8",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-104-x-nguyen-an-ninh_truc-01_anh-tuan_xh",
+        "title": "Ngõ 104 Nguyễn An Ninh_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-151-20-x-nguyen-duc-canh_truc-01_anh-dat_xh",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-272-x-tran-khat-chan_truc-02_-anh-dung-_xh",
+        "title": "Ngõ 272 Trần Khát Chân_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-4x-hoa-binh-3_truc-02_anh-tam_xh",
+        "title": "4X Hoà Bình 3_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-1197-x-giai-phong_truc-01_anh-do_xh",
+        "title": "Ngõ 1197 Giải Phóng_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-ham-long-2-tang-45_anh-doan_xh",
+        "title": "Hàm Long 2 Tầng 4,5",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-2xb-hoang-mai_truc-01_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-2xb-hoang-mai_truc-02_anh-huy_xh",
+        "title": "Ngõ 91 Hoàng Mai_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-ngo-an-son_nha-nguyen-can_xh",
+        "title": "Ngõ An Sơn",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-78-bach-mai_nha-nguyen-can_a-dungc-min_xh",
+        "title": "78 Bạch Mai",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-91-3x-hoang-mai_tang-01_anh-do_xh",
+        "title": "Ngõ 91 Hoàng Mai_Tầng 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-4x-hoa-binh-7_tang-1_anh-tam_xh",
+        "title": "4X Hoà Bình 7_Tầng 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-3x-ngo-thai-loi_tang-2_chi-thuan_xh",
+        "title": "3X Ngõ Thái Lợi_Tầng 2",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-119-x-kim-dong_truc-01_anh-quan_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-x-kim-dong_tang-5_truc-04_xh",
+        "title": "Ngõ 24 Kim Đồng_Tầng 5_Trục 04",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-281-3x-truong-dinh_mbkd_co-nhung_xh",
+        "title": "Ngõ 281 Trương Định",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-111-x-nguyen-duc-canh_truc-010205_anh-khanh_xh",
+        "title": "Ngõ 111 Nguyễn Đức Cảnh_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-265-x-hoang-mai_truc-01_xh",
+        "title": "Ngõ 265 Hoàng Mai_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-100-gieng-mut_truc-01_xh",
+        "title": "100 Giếng Mứt_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-22-luong-khanh-thien-1_truc-03_xh",
+        "title": "Ngõ 22 Lương Khánh Thiện (1)_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-24-83-x-kim-dong_truc-02_xh",
+        "title": "Ngõ 24 Kim Đồng_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-400-truong-dinh_truc-02_xh",
+        "title": "400 Trương Định_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-101-de-to-hoang_truc-0304_ab-home_xh",
+        "title": "101 Đê Tô Hoàng_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-200-x-vinh-hung_nguyen-can_a-doan_ln",
+        "title": "Ngõ 200 Vĩnh Hưng",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-259-47-x-vinh-hung_truc-01020304_anh-nam_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-11-thanh-dam_a-nhu_truc-01_ln",
+        "title": "11 Thanh Đàm_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-448-x-vinh-hung-1_truc-02_a-tam_ln",
+        "title": "Ngõ 448 Vĩnh Hưng (1)_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-2x-linh-nam-3_truc-0405-tang-2_th",
+        "title": "Ngõ 479 Lĩnh Nam (3)_Trục 05",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-194-7-8-thanh-dam_truc-03_ln",
+        "title": "Ngõ 194 Thanh Đàm_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-259-x-vinh-hung_2n1k_anh-cuong_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_2N1K",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-208-nam-du_truc-01_mt",
+        "title": "208 Nam Dư_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-192-7-8-thanh-dam_truc-05_mt",
+        "title": "Ngõ 194 Thanh Đàm_Trục 05",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-192-7-8-thanh-dam_truc-04_th",
+        "title": "Ngõ 194 Thanh Đàm_Trục 04",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-151-3x-nguyen-duc-canh_truc-03_ln",
+        "title": "Ngõ 151 Nguyễn Đức Cảnh_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-80-gieng-mut_truc-02_ln",
+        "title": "80 Giếng Mứt_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-39-7-x-dai-dong_truc-0203_ln",
+        "title": "Ngõ 39 Đại Đồng_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-165-x-dong-thien_truc-02_ln",
+        "title": "Ngõ 165 Đông Thiên_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-29-x-linh-nam-4_truc-0203_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-29-x-linh-nam-4_truc-0104_ln",
+        "title": "Ngõ 479 Lĩnh Nam (4)_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-90-70-x-1-khuyen-luong-gamuda_truc-01_ln",
+        "title": "Ngõ 90 (1) Khuyến Lương (Gamuda)_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-649-x-linh-nam_truc-04_ln",
+        "title": "Ngõ 649 Lĩnh Nam (3)_Trục 04",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-29-x-linh-nam_tang-1_ln",
+        "title": "Ngõ 479 Lĩnh Nam_Tầng 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-255-xx-linh-nam_tang-1_ln",
+        "title": "Ngõ 255 Lĩnh Nam_Tầng 1",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-185-linh-nam_truc-03_ln",
+        "title": "185 Lĩnh Nam_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-162-23-x-dong-thien-_tang-1-_-ln",
+        "title": "Ngõ 162 Đông Thiên _Tầng 1 _ LN",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-582-x-linh-nam_a-nam_ln",
+        "title": "Ngõ 582 Lĩnh Nam_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-112-nam-du_mbkd_co-ha",
+        "title": "112 Nam Dư",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-259-16-x-vinh-hung_truc-0102_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-259-16-x-vinh-hung_truc-03_fh_ln",
+        "title": "Ngõ 259 Vĩnh Hưng_Trục 03",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-126-33-x-nam-du_truc-0506-friendly-homes_ln",
+        "title": "Ngõ 126 Nam Dư_Trục 05",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-467-170-20-x-linh-nam_truc-0203_friendly-homes_ln",
+        "title": "Ngõ 467 Lĩnh Nam_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-179-xx-vinh-hung-1_nguyen-can_ln",
+        "title": "Ngõ 179 Vĩnh Hưng (1)",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-47-53-x-nam-du_truc-04_friendly-homes_ln",
+        "title": "Ngõ 47 Nam Dư_Trục 04",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-362-30-xx-nam-du_nguyen-can_chu-trung_ln",
+        "title": "Ngõ 362 Nam Dư",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-50-linh-nam_anh-dat_ln",
+        "title": "50 Lĩnh Nam",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-139-49-x-tam-trinh_truc-01_ln-2",
+        "title": "Ngõ 139 Tam Trinh_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-53-x-linh-nam_a-chinh_-truc-01-_-ln",
+        "title": "Ngõ 479 Lĩnh Nam_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-479-53-x-linh-nam_a-chinh_truc-02-_-ln",
+        "title": "Ngõ 479 Lĩnh Nam_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-467-170-xx-linh-nam-1_-truc-01-_-a-dat-_ln",
+        "title": "Ngõ 467 Lĩnh Nam (1)_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-448-x-vinh-hung-2-_-truc-02-_-a-tam-_-ln",
+        "title": "Ngõ 448 Vĩnh Hưng ( 2 )_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-448-x-vinh-hung-1_truc-01_a-tam_ln",
+        "title": "Ngõ 448 Vĩnh Hưng (1)_Trục 01",
+        "reason": "Không còn trên Mời Thuê"
+      },
+      {
+        "type": "HIDDEN",
+        "id": "MT-649-x-linh-nam_truc-02_fh",
+        "title": "Ngõ 649 Lĩnh Nam_Trục 02",
+        "reason": "Không còn trên Mời Thuê"
+      }
+    ]
+  },
+  {
     "timestamp": "2026-09-08T07:41:15.776Z",
     "durationSeconds": 50,
     "summary": {

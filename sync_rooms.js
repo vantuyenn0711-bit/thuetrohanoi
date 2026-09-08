@@ -182,21 +182,7 @@ async function httpPost(url, data) {
     'X-Requested-With': 'XMLHttpRequest'
   };
 
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      body: postBody,
-      headers: headers,
-      signal: AbortSignal.timeout(25000)
-    });
-    const text = await res.text();
-    try {
-      return { status: res.status, data: JSON.parse(text) };
-    } catch (e) {
-      return { status: res.status, raw: text };
-    }
-  } catch (err) {
-    // Fallback qua Cloudflare Worker nếu mạng trực tiếp gặp sự cố
+  async function tryWorker() {
     if (CLOUDFLARE_WORKER_URL) {
       const workerUrl = `${CLOUDFLARE_WORKER_URL}/?url=${encodeURIComponent(url)}`;
       const resW = await fetch(workerUrl, {
@@ -212,6 +198,38 @@ async function httpPost(url, data) {
         return { status: resW.status, raw: textW };
       }
     }
+    return null;
+  }
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      body: postBody,
+      headers: headers,
+      signal: AbortSignal.timeout(25000)
+    });
+    
+    // Nếu bị Cloudflare chặn 403 trên Render -> Fallback ngay qua Worker
+    if (res.status === 403 || res.status === 503) {
+      const workerResult = await tryWorker();
+      if (workerResult && workerResult.status === 200) return workerResult;
+    }
+
+    const text = await res.text();
+    try {
+      const json = JSON.parse(text);
+      return { status: res.status, data: json };
+    } catch (e) {
+      // Nếu không parse được JSON và có worker, thử qua worker
+      if (res.status !== 200) {
+        const workerResult = await tryWorker();
+        if (workerResult && workerResult.status === 200) return workerResult;
+      }
+      return { status: res.status, raw: text };
+    }
+  } catch (err) {
+    const workerResult = await tryWorker();
+    if (workerResult) return workerResult;
     throw err;
   }
 }
@@ -782,11 +800,16 @@ async function runSync(options = {}) {
     console.log(`🛡️ Đã tạo file sao lưu an toàn: ${path.basename(BACKUP_FILE)}`);
   }
 
-  // Map phòng cũ theo key nhận diện: modelId hoặc slug
+  // Map phòng cũ theo tất cả key nhận diện: external_id, moithueSlug, id
   const roomMap = new Map();
   for (const r of existingRooms) {
-    const key = r.external_id || r.externalId || r.modelId || r.moithueSlug || r.id?.replace(/^MT-/, '');
-    if (key) roomMap.set(String(key), r);
+    if (r.external_id) roomMap.set(String(r.external_id), r);
+    if (r.externalId) roomMap.set(String(r.externalId), r);
+    if (r.moithueSlug) roomMap.set(String(r.moithueSlug), r);
+    if (r.id) {
+      roomMap.set(String(r.id), r);
+      roomMap.set(String(r.id).replace(/^MT-/, ''), r);
+    }
   }
 
   // Lấy danh sách mới nhất từ moithue.com
@@ -803,10 +826,15 @@ async function runSync(options = {}) {
 
   for (let i = 0; i < crawledList.length; i++) {
     const item = crawledList[i];
-    const key = String(item.externalId || item.slug);
-    crawledKeys.add(key);
+    if (item.externalId) crawledKeys.add(String(item.externalId));
+    if (item.slug) {
+      crawledKeys.add(String(item.slug));
+      crawledKeys.add('MT-' + String(item.slug));
+    }
 
-    const old = roomMap.get(key) || roomMap.get(item.slug);
+    const old = (item.externalId && roomMap.get(String(item.externalId))) || 
+                (item.slug && roomMap.get(String(item.slug))) || 
+                (item.slug && roomMap.get('MT-' + String(item.slug)));
 
     if (!old) {
       // 🟢 PHÒNG MỚI TINH -> Cào chi tiết
@@ -846,7 +874,11 @@ async function runSync(options = {}) {
       if (!newRoom.price && item.price) newRoom.price = item.price;
 
       existingRooms.unshift(newRoom);
-      roomMap.set(key, newRoom);
+      if (item.externalId) roomMap.set(String(item.externalId), newRoom);
+      if (item.slug) {
+        roomMap.set(String(item.slug), newRoom);
+        roomMap.set('MT-' + String(item.slug), newRoom);
+      }
       newCount++;
       changeLogs.push({ type: 'NEW', id: newRoom.id, title: newRoom.title, price: newRoom.price });
       await new Promise(r => setTimeout(r, 100));
@@ -896,23 +928,32 @@ async function runSync(options = {}) {
     }
   }
 
-  // 🔴 PHÒNG BIẾN MẤT (KHÔNG CÒN TRÊN MOITHUE) -> TĂNG MISSING_COUNT
-  // LƯU Ý: Chỉ kiểm tra phòng biến mất khi chạy FULL đồng bộ toàn bộ danh sách (không có tham số --limit)
+  // 🔴 PHÒNG BIẾN MẤT (KHÔNG CÒN TRÊN MOITHUE) -> ĐÁNH DẤU ẨN / ĐÃ THUÊ NGAY LẬP TỨC
+  // Khi chạy FULL đồng bộ (không có --limit), phòng nào không có trên Moithue sẽ bị ẩn để khớp 100% số lượng
   let hiddenCount = 0;
   if (!options.limit) {
     for (const r of existingRooms) {
-      const key = String(r.external_id || r.externalId || r.moithueSlug || r.id?.replace(/^MT-/, ''));
-      if (!crawledKeys.has(key) && !crawledKeys.has(r.moithueSlug)) {
+      const extKey = r.external_id ? String(r.external_id) : (r.externalId ? String(r.externalId) : null);
+      const slugKey = r.moithueSlug || (r.id ? String(r.id).replace(/^MT-/, '') : null);
+      const idKey = r.id ? String(r.id) : null;
+
+      const isPresent = (extKey && crawledKeys.has(extKey)) || 
+                        (slugKey && crawledKeys.has(slugKey)) || 
+                        (idKey && crawledKeys.has(idKey));
+
+      if (!isPresent) {
         r.missing_count = (r.missing_count || 0) + 1;
-        
-        // Nếu vắng mặt 3 lần liên tiếp -> Đánh dấu Tạm ẩn / Đã thuê
-        if (r.missing_count >= 3 && r.status === 'available') {
+        if (r.status === 'available' || !r.status) {
           r.status = 'hidden';
           r.statusName = 'Đã thuê / Tạm ẩn';
           r.last_hidden_at = new Date().toISOString();
           hiddenCount++;
-          changeLogs.push({ type: 'HIDDEN', id: r.id, title: r.title, reason: 'Vắng mặt 3 lần liên tiếp' });
+          changeLogs.push({ type: 'HIDDEN', id: r.id, title: r.title, reason: 'Không còn trên Mời Thuê' });
         }
+      } else {
+        r.missing_count = 0;
+        r.status = 'available';
+        r.statusName = 'Còn phòng';
       }
     }
   }
