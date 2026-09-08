@@ -155,12 +155,14 @@
         const addressEl = doc.querySelector('.listivo-listing-hero__address') || doc.querySelector('[class*="address"]');
         let address = addressEl ? addressEl.textContent.trim() : title;
 
-        // Images
+        // Images extraction (Full resolution from gallery and body)
         const images = [];
-        doc.querySelectorAll('img').forEach(img => {
-          const src = img.src || img.getAttribute('src') || img.dataset.src || '';
-          if (src && src.startsWith('http') && !src.includes('svg') && !src.includes('logo') && !src.includes('avatar')) {
-            images.push(src);
+        doc.querySelectorAll('a[href*="/uploads/"], img').forEach(el => {
+          let src = el.getAttribute('href') || el.src || el.getAttribute('src') || el.dataset.src || el.dataset.lazySrc || '';
+          if (src.startsWith('/')) src = 'https://moithue.com' + src;
+          if (src && src.startsWith('http') && src.includes('/uploads/') && !src.includes('svg') && !src.includes('logo') && !src.includes('avatar')) {
+            const cleanUrl = src.replace(/-\d+x\d+(\.[a-zA-Z]+)$/, '$1');
+            images.push(cleanUrl);
           }
         });
         const cleanImages = [...new Set(images)];
@@ -207,7 +209,7 @@
           status: 'available',
           statusName: 'Còn phòng',
           depositTerm: 'Cọc 1 đóng 1',
-          images: cleanImages.length > 0 ? cleanImages : ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'],
+          images: cleanImages,
           amenities: amenities.length > 0 ? [...new Set(amenities)] : ['Điều hòa', 'Nóng lạnh', 'Giường', 'Tủ quần áo'],
           description: desc || title,
           detailDescription: {

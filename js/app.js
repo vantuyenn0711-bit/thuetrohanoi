@@ -39,21 +39,18 @@ const CONSULTANT_NAME = "Đặng Văn Tuyển";
 const CONSULTANT_PHONE = "0358954360";
 const CONSULTANT_ZALO = "0358954360";
 
-// Fallback image URL
-const DEFAULT_ROOM_IMAGE = "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80";
+// Fallback placeholder image URL (Clean SVG placeholder)
+const DEFAULT_ROOM_IMAGE = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400' fill='%23f1f5f9'><rect width='600' height='400' fill='%23f1f5f9'/><g fill='%2394a3b8'><path d='M260 180a40 40 0 1 0 80 0 40 40 0 1 0-80 0zm-60 120h200l-60-80-45 60-35-40-60 60z'/></g><text x='50%25' y='80%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' font-weight='600' fill='%2394a3b8'>Hình ảnh đang cập nhật</text></svg>";
 
 // ==========================================================================
-// IMAGE OPTIMIZER - FAST WEBP CDN PROXY & RESIZING (wsrv.nl / Cloudflare)
+// IMAGE LOADER - DIRECT CDN WITH NO-REFERRER (Bypass Cloudflare & Fast Load)
 // ==========================================================================
 function getOptimizedImageUrl(url, width = 600, quality = 80) {
   if (!url || typeof url !== 'string') return DEFAULT_ROOM_IMAGE;
   const clean = url.trim();
-  if (!clean || clean.startsWith('data:') || clean.startsWith('blob:')) return clean;
-  if (clean.startsWith('/') || clean.startsWith('./')) return clean;
-  if (clean.includes('wsrv.nl') || clean.includes('images.weserv.nl')) return clean;
-
-  // Use wsrv.nl to resize, compress and convert to WebP on the fly (backed by Cloudflare CDN)
-  return `https://wsrv.nl/?url=${encodeURIComponent(clean)}&w=${width}&q=${quality}&output=webp&we=1&default=${encodeURIComponent(DEFAULT_ROOM_IMAGE)}`;
+  if (!clean) return DEFAULT_ROOM_IMAGE;
+  // Trực tiếp trả về URL ảnh gốc thực tế
+  return clean;
 }
 
 let heroDistrictSelectComponent = null;

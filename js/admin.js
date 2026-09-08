@@ -35,11 +35,10 @@ let adminRooms = [];
 let adminBookings = [];
 
 function getOptimizedImageUrl(url, width = 140, quality = 75) {
-  if (!url || typeof url !== 'string') return 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80';
+  if (!url || typeof url !== 'string') return '';
   const clean = url.trim();
-  if (!clean || clean.startsWith('data:') || clean.startsWith('blob:') || clean.startsWith('/') || clean.startsWith('./')) return clean;
-  if (clean.includes('wsrv.nl') || clean.includes('images.weserv.nl')) return clean;
-  return `https://wsrv.nl/?url=${encodeURIComponent(clean)}&w=${width}&q=${quality}&output=webp&we=1`;
+  if (!clean) return '';
+  return clean;
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
