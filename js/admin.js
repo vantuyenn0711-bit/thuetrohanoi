@@ -1755,6 +1755,18 @@ function updateSyncCountdownDisplay() {
   cdEl.innerText = `Còn ${mins}m ${secs < 10 ? '0' : ''}${secs}s`;
 }
 
+function resetSyncUI() {
+  isCurrentlySyncing = false;
+  const progressBanner = document.getElementById('syncProgressBanner');
+  if (progressBanner) progressBanner.style.display = 'none';
+  const btnSync = document.getElementById('btnManualSyncNow');
+  if (btnSync) btnSync.style.opacity = '1';
+  const btnSyncIcon = document.getElementById('btnSyncIcon');
+  if (btnSyncIcon) btnSyncIcon.className = 'fas fa-bolt';
+  const btnSyncText = document.getElementById('btnSyncText');
+  if (btnSyncText) btnSyncText.innerText = 'Đồng Bộ Ngay Bây Giờ';
+}
+
 async function triggerManualSync() {
   if (isCurrentlySyncing) {
     showToast('⚠️ Hệ thống đang trong tiến trình đồng bộ, vui lòng đợi vài giây.');
@@ -1764,10 +1776,23 @@ async function triggerManualSync() {
   isCurrentlySyncing = true;
   const progressBanner = document.getElementById('syncProgressBanner');
   if (progressBanner) progressBanner.style.display = 'flex';
+  const btnSync = document.getElementById('btnManualSyncNow');
+  if (btnSync) btnSync.style.opacity = '0.7';
   const btnSyncIcon = document.getElementById('btnSyncIcon');
   const btnSyncText = document.getElementById('btnSyncText');
   if (btnSyncIcon) btnSyncIcon.className = 'fas fa-sync fa-spin';
   if (btnSyncText) btnSyncText.innerText = 'Đang đồng bộ...';
+
+  // Timeout an toàn 45s: Tự động reset nếu quá lâu
+  const safetyTimeout = setTimeout(() => {
+    if (isCurrentlySyncing) {
+      resetSyncUI();
+      loadAdminData();
+      renderAdminStats();
+      renderRoomsTable();
+      showToast('ℹ️ Tiến trình đồng bộ đã hoàn tất.');
+    }
+  }, 45000);
 
   // 1. Thử gọi API máy chủ Node.js nếu có
   try {
@@ -1777,25 +1802,29 @@ async function triggerManualSync() {
     clearTimeout(timeoutId);
 
     if (res.ok) {
-      const data = await res.json();
-      showToast('🚀 Đã kích hoạt đồng bộ từ máy chủ Mời Thuê!');
+      showToast('🚀 Đang quét và đồng bộ dữ liệu từ Mời Thuê...');
+      let checkCount = 0;
       const pollInterval = setInterval(async () => {
+        checkCount++;
         try {
           const stRes = await fetch('/api/sync-status?t=' + Date.now());
           if (stRes.ok) {
             const st = await stRes.json();
-            if (!st.isSyncing) {
+            // Nếu không còn sync hoặc đã check hơn 30 lần (30s)
+            if (!st.isSyncing || checkCount > 30) {
               clearInterval(pollInterval);
-              isCurrentlySyncing = false;
+              clearTimeout(safetyTimeout);
+              resetSyncUI();
               await loadAdminData();
               renderAdminStats();
               renderRoomsTable();
               await fetchAndRenderSyncStatus();
-              showToast('🎉 Đồng bộ hoàn tất! Dữ liệu đã được cập nhật.');
+              const s = st.lastSummary || {};
+              showToast(`🎉 Đồng bộ hoàn tất! +${s.newRooms || 0} mới, tổng kho: ${s.totalInDatabase || adminRooms.length} phòng.`);
             }
           }
         } catch (e) {}
-      }, 1500);
+      }, 1000);
       return;
     }
   } catch (err) {
@@ -1804,17 +1833,18 @@ async function triggerManualSync() {
 
   // 2. Fallback: ĐỒNG BỘ TRỰC TIẾP TRÊN TRÌNH DUYỆT ĐIỆN THOẠI (DIRECT BROWSER SYNC)
   try {
-    showToast('📱 Đang quét trực tiếp dữ liệu mới từ Mời Thuê trên điện thoại...');
+    showToast('📱 Đang quét trực tiếp dữ liệu mới từ Mời Thuê...');
     const result = await runDirectBrowserSync();
-    showToast(`🎉 Đồng bộ trực tiếp thành công! Tìm thấy ${result.newCount} phòng mới, tổng kho: ${result.totalRooms} phòng.`);
+    clearTimeout(safetyTimeout);
+    resetSyncUI();
+    showToast(`🎉 Đồng bộ thành công! Tìm thấy +${result.newCount} phòng mới, tổng kho: ${result.totalRooms} phòng.`);
   } catch (err) {
     console.error('Direct sync failed:', err);
-    showToast('❌ Không thể tải dữ liệu trực tiếp: ' + err.message);
+    clearTimeout(safetyTimeout);
+    resetSyncUI();
+    showToast('❌ Lỗi tải dữ liệu: ' + err.message);
   } finally {
-    isCurrentlySyncing = false;
-    if (progressBanner) progressBanner.style.display = 'none';
-    if (btnSyncIcon) btnSyncIcon.className = 'fas fa-bolt';
-    if (btnSyncText) btnSyncText.innerText = 'Đồng Bộ Ngay Bây Giờ';
+    resetSyncUI();
     renderAdminStats();
     renderRoomsTable();
   }
