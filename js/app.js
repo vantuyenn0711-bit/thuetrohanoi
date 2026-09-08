@@ -159,13 +159,17 @@ async function initData() {
 
   let loaded = false;
 
-  // 1. Thử lấy từ API / file rooms_new.json
+  // 1. Thử lấy từ API / file rooms_new.json (có cache-busting timestamp)
   try {
-    let res = await fetch(`/api/rooms?t=${Date.now()}`);
-    if (!res.ok) {
-      res = await fetch(`rooms_new.json?t=${Date.now()}`);
+    let res = null;
+    try { res = await fetch(`/api/rooms?t=${Date.now()}`); } catch (e) {}
+    if (!res || !res.ok) {
+      try { res = await fetch(`rooms_new.json?t=${Date.now()}`); } catch (e) {}
     }
-    if (res.ok) {
+    if (!res || !res.ok) {
+      try { res = await fetch(`./rooms_new.json?t=${Date.now()}`); } catch (e) {}
+    }
+    if (res && res.ok) {
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         rooms = data.map(r => {
