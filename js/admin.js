@@ -202,8 +202,8 @@ function renderAdminStats() {
   const availableRoomsEl = document.getElementById("statAvailableRooms");
   const rentedRoomsEl = document.getElementById("statRentedRooms");
 
-  const availableCount = adminRooms.filter(r => r.status === "available").length;
-  const rentedCount = adminRooms.filter(r => r.status === "rented").length;
+  const availableCount = adminRooms.filter(r => r.status === "available" || !r.status).length;
+  const rentedCount = adminRooms.filter(r => r.status === "rented" || r.status === "hidden" || r.statusName === "Đã thuê / Tạm ẩn" || r.statusName === "Đã cho thuê").length;
 
   if (totalRoomsEl) totalRoomsEl.innerText = adminRooms.length;
   if (availableRoomsEl) availableRoomsEl.innerText = availableCount;
@@ -1755,6 +1755,19 @@ function updateSyncCountdownDisplay() {
   cdEl.innerText = `Còn ${mins}m ${secs < 10 ? '0' : ''}${secs}s`;
 }
 
+function updateSyncProgressUI(percent, title, subtitle) {
+  const banner = document.getElementById('syncProgressBanner');
+  if (banner) banner.style.display = 'flex';
+  const fill = document.getElementById('syncProgressBarFill');
+  if (fill) fill.style.width = percent + '%';
+  const pctText = document.getElementById('syncProgressPercent');
+  if (pctText) pctText.innerText = percent + '%';
+  const titleEl = document.getElementById('syncProgressTitle');
+  if (titleEl && title) titleEl.innerText = title;
+  const subEl = document.getElementById('syncProgressSubtitle');
+  if (subEl && subtitle) subEl.innerText = subtitle;
+}
+
 function resetSyncUI() {
   isCurrentlySyncing = false;
   const progressBanner = document.getElementById('syncProgressBanner');
@@ -1774,8 +1787,6 @@ async function triggerManualSync() {
   }
   
   isCurrentlySyncing = true;
-  const progressBanner = document.getElementById('syncProgressBanner');
-  if (progressBanner) progressBanner.style.display = 'flex';
   const btnSync = document.getElementById('btnManualSyncNow');
   if (btnSync) btnSync.style.opacity = '0.7';
   const btnSyncIcon = document.getElementById('btnSyncIcon');
@@ -1783,26 +1794,43 @@ async function triggerManualSync() {
   if (btnSyncIcon) btnSyncIcon.className = 'fas fa-sync fa-spin';
   if (btnSyncText) btnSyncText.innerText = 'Đang đồng bộ...';
 
-  // Timeout an toàn 45s: Tự động reset nếu quá lâu
+  updateSyncProgressUI(15, 'Bắt đầu kết nối máy chủ Mời Thuê...', 'Đang gửi yêu cầu quét toàn bộ 918 phòng...');
+
+  let progressVal = 15;
+  const progressTimer = setInterval(() => {
+    if (progressVal < 90) {
+      progressVal += Math.floor(Math.random() * 8) + 4;
+      if (progressVal > 90) progressVal = 90;
+      let stageText = 'Đang tải danh sách phòng mới...';
+      if (progressVal > 40 && progressVal < 70) stageText = 'Đang đối soát giá thuê và hình ảnh...';
+      if (progressVal >= 70) stageText = 'Đang lọc và ẩn các phòng đã cho thuê...';
+      updateSyncProgressUI(progressVal, 'Đang đồng bộ dữ liệu Mời Thuê...', stageText);
+    }
+  }, 1000);
+
+  // Timeout an toàn 40s: Tự động reset nếu quá lâu
   const safetyTimeout = setTimeout(() => {
     if (isCurrentlySyncing) {
-      resetSyncUI();
-      loadAdminData();
-      renderAdminStats();
-      renderRoomsTable();
-      showToast('ℹ️ Tiến trình đồng bộ đã hoàn tất.');
+      clearInterval(progressTimer);
+      updateSyncProgressUI(100, 'Đồng bộ hoàn tất!', 'Đã cập nhật toàn bộ kho phòng.');
+      setTimeout(() => {
+        resetSyncUI();
+        loadAdminData();
+        renderAdminStats();
+        renderRoomsTable();
+        showToast('🎉 Đồng bộ hoàn tất! Danh sách phòng đã được cập nhật.');
+      }, 1000);
     }
-  }, 45000);
+  }, 40000);
 
   // 1. Thử gọi API máy chủ Node.js nếu có
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     const res = await fetch('/api/sync-now', { method: 'POST', signal: controller.signal });
     clearTimeout(timeoutId);
 
     if (res.ok) {
-      showToast('🚀 Đang quét và đồng bộ dữ liệu từ Mời Thuê...');
       let checkCount = 0;
       const pollInterval = setInterval(async () => {
         checkCount++;
@@ -1810,21 +1838,26 @@ async function triggerManualSync() {
           const stRes = await fetch('/api/sync-status?t=' + Date.now());
           if (stRes.ok) {
             const st = await stRes.json();
-            // Nếu không còn sync hoặc đã check hơn 30 lần (30s)
-            if (!st.isSyncing || checkCount > 30) {
+            // Nếu không còn sync hoặc đã check hơn 25 lần
+            if (!st.isSyncing || checkCount > 25) {
               clearInterval(pollInterval);
+              clearInterval(progressTimer);
               clearTimeout(safetyTimeout);
-              resetSyncUI();
-              await loadAdminData();
-              renderAdminStats();
-              renderRoomsTable();
-              await fetchAndRenderSyncStatus();
-              const s = st.lastSummary || {};
-              showToast(`🎉 Đồng bộ hoàn tất! +${s.newRooms || 0} mới, tổng kho: ${s.totalInDatabase || adminRooms.length} phòng.`);
+              updateSyncProgressUI(100, '🎉 Đồng bộ thành công 100%!', 'Đã cập nhật toàn bộ phòng mới nhất.');
+              
+              setTimeout(async () => {
+                resetSyncUI();
+                await loadAdminData();
+                renderAdminStats();
+                renderRoomsTable();
+                await fetchAndRenderSyncStatus();
+                const s = st.lastSummary || {};
+                showToast(`🎉 Đồng bộ hoàn tất! +${s.newRooms || 0} mới, tổng kho: ${s.totalInDatabase || adminRooms.length} phòng.`);
+              }, 1200);
             }
           }
         } catch (e) {}
-      }, 1000);
+      }, 1200);
       return;
     }
   } catch (err) {
@@ -1833,20 +1866,24 @@ async function triggerManualSync() {
 
   // 2. Fallback: ĐỒNG BỘ TRỰC TIẾP TRÊN TRÌNH DUYỆT ĐIỆN THOẠI (DIRECT BROWSER SYNC)
   try {
-    showToast('📱 Đang quét trực tiếp dữ liệu mới từ Mời Thuê...');
+    updateSyncProgressUI(50, 'Đang quét trực tiếp từ Mời Thuê...', 'Kết nối qua Cloudflare Proxy tốc độ cao...');
     const result = await runDirectBrowserSync();
+    clearInterval(progressTimer);
     clearTimeout(safetyTimeout);
-    resetSyncUI();
-    showToast(`🎉 Đồng bộ thành công! Tìm thấy +${result.newCount} phòng mới, tổng kho: ${result.totalRooms} phòng.`);
+    updateSyncProgressUI(100, '🎉 Đồng bộ trực tiếp thành công!', `Tìm thấy +${result.newCount} phòng mới.`);
+    
+    setTimeout(() => {
+      resetSyncUI();
+      renderAdminStats();
+      renderRoomsTable();
+      showToast(`🎉 Đồng bộ thành công! Tìm thấy +${result.newCount} phòng mới, tổng kho: ${result.totalRooms} phòng.`);
+    }, 1200);
   } catch (err) {
     console.error('Direct sync failed:', err);
+    clearInterval(progressTimer);
     clearTimeout(safetyTimeout);
     resetSyncUI();
     showToast('❌ Lỗi tải dữ liệu: ' + err.message);
-  } finally {
-    resetSyncUI();
-    renderAdminStats();
-    renderRoomsTable();
   }
 }
 
