@@ -411,7 +411,7 @@ function extractRoomFromHtml(html, slug) {
   data.availableFloors = availableFloors;
 
   // 6. Extract Video
-  const ytMatch = html.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+  const ytMatch = html.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
   if (ytMatch) {
     data.videoUrl = `https://www.youtube.com/watch?v=${ytMatch[1]}`;
     data.videoId = ytMatch[1];

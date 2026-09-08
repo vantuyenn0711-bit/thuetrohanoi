@@ -3,6 +3,64 @@
 // Cách dùng: Mở moithue.com -> F12 -> Console -> Dán đoạn code này vào -> Enter
 // ==========================================================================
 (async function initMoithueCrawler() {
+  const DISTRICT_MAP = {
+    'hoài đức': 'hoai-duc', 'an khánh': 'hoai-duc', 'phú vinh': 'hoai-duc', 'hinode': 'hoai-duc', 'di trạch': 'hoai-duc', 'vân canh': 'hoai-duc', 'kim chung': 'hoai-duc',
+    'cầu giấy': 'cau-giay', 'dịch vọng': 'cau-giay', 'trung hoà': 'cau-giay', 'quan hoa': 'cau-giay', 'yên hoà': 'cau-giay',
+    'hoàng mai': 'hoang-mai', 'định công': 'hoang-mai', 'lĩnh nam': 'hoang-mai', 'vĩnh hưng': 'hoang-mai', 'tân mai': 'hoang-mai', 'giáp bát': 'hoang-mai', 'đại kim': 'hoang-mai', 'hoàng liệt': 'hoang-mai', 'tương mai': 'hoang-mai',
+    'thanh trì': 'thanh-tri', 'tân triều': 'thanh-tri', 'triều khúc': 'thanh-tri', 'thanh liệt': 'thanh-tri', 'ngọc hồi': 'thanh-tri', 'tứ hiệp': 'thanh-tri', 'hữu hoà': 'thanh-tri', 'tam hiệp': 'thanh-tri',
+    'mỹ đình': 'nam-tu-liem', 'nam từ liêm': 'nam-tu-liem', 'mễ trì': 'nam-tu-liem', 'phú đô': 'nam-tu-liem', 'cầu diễn': 'nam-tu-liem', 'tây mỗ': 'nam-tu-liem', 'đại mỗ': 'nam-tu-liem', 'trung văn': 'nam-tu-liem', 'xuân phương': 'nam-tu-liem',
+    'bắc từ liêm': 'bac-tu-liem', 'xuân đỉnh': 'bac-tu-liem', 'cổ nhuế': 'bac-tu-liem', 'phú diễn': 'bac-tu-liem', 'phúc diễn': 'bac-tu-liem', 'minh khai': 'bac-tu-liem', 'đông ngạc': 'bac-tu-liem',
+    'thanh xuân': 'thanh-xuan', 'khương đình': 'thanh-xuan', 'khương trung': 'thanh-xuan', 'khương mai': 'thanh-xuan', 'nhân chính': 'thanh-xuan', 'phương liệt': 'thanh-xuan', 'thượng đình': 'thanh-xuan', 'hạ đình': 'thanh-xuan',
+    'ba đình': 'ba-dinh', 'đội cấn': 'ba-dinh', 'kim mã': 'ba-dinh', 'ngọc hà': 'ba-dinh', 'giảng võ': 'ba-dinh', 'cống vị': 'ba-dinh', 'liễu giai': 'ba-dinh',
+    'tây hồ': 'tay-ho', 'xuân la': 'tay-ho', 'yên phụ': 'tay-ho', 'quảng an': 'tay-ho', 'nhật tân': 'tay-ho', 'bưởi': 'tay-ho', 'phú thượng': 'tay-ho', 'thụy khuê': 'tay-ho',
+    'đống đa': 'dong-da', 'láng': 'dong-da', 'khâm thiên': 'dong-da', 'kim liên': 'dong-da', 'phương mai': 'dong-da', 'văn miếu': 'dong-da', 'ngã tư sở': 'dong-da', 'ô chợ dừa': 'dong-da',
+    'hai bà trưng': 'hai-ba-trung', 'bạch mai': 'hai-ba-trung', 'vĩnh tuy': 'hai-ba-trung', 'thanh nhàn': 'hai-ba-trung', 'trương định': 'hai-ba-trung', 'đồng tâm': 'hai-ba-trung',
+    'hà đông': 'ha-dong', 'văn quán': 'ha-dong', 'mỗ lao': 'ha-dong', 'kiến hưng': 'ha-dong', 'yên nghĩa': 'ha-dong', 'phú la': 'ha-dong', 'yên xá': 'ha-dong',
+    'hoàn kiếm': 'hoan-kiem', 'hàng bài': 'hoan-kiem'
+  };
+
+  const SOURCE_GROUP_RULES = [
+    { id: 'nguon-trieu-khuc', name: 'Triều Khúc', keys: ['triều khúc', 'tân triều'] },
+    { id: 'nguon-dinh-cong', name: 'Định Công', keys: ['định công', 'trần điền', 'lê trọng tấn (hoàng mai)'] },
+    { id: 'nguon-kim-giang-ngoc-hoi', name: 'Kim Giang, Ngọc Hồi', keys: ['kim giang', 'ngọc hồi', 'thanh liệt', 'linh đàm', 'hoàng liệt'] },
+    { id: 'nguon-yen-xa-mau-luong', name: 'Yên Xá/Mậu Lương', keys: ['yên xá', 'mậu lương', 'kiến hưng', 'xa la'] },
+    { id: 'me-tri-phu-do', name: 'Mễ Trì - Phú Đô', keys: ['mễ trì', 'phú đô', 'đồng me', 'đỗ đức dục'] },
+    { id: 'ngoc-truc-dai-linh', name: 'Ngọc Trục - Đại Linh', keys: ['ngọc trục', 'đại linh', 'trung văn'] },
+    { id: 'nguon-cau-dien', name: 'Cầu Diễn', keys: ['cầu diễn', 'kiều mai', 'nguyễn đổng chi'] },
+    { id: 'nguon-phu-dien', name: 'Phú Diễn', keys: ['phú diễn', 'phúc diễn', 'đức diễn', 'hoàng công chất'] },
+    { id: 'nguon-xuan-phuong', name: 'Xuân Phương', keys: ['xuân phương', 'phương canh', 'vân canh', 'trịnh văn bô'] },
+    { id: 'nguon-ho-tung-mau', name: 'Hồ Tùng Mậu', keys: ['hồ tùng mậu', 'mai dịch', 'doãn kế thiện', 'nguyễn khả trạc'] },
+    { id: 'nguon-co-nhue-xuan-dinh', name: 'Cổ Nhuế , Xuân Đỉnh', keys: ['cổ nhuế', 'xuân đỉnh', 'tân xuân', 'phạm văn đồng', 'đông ngạc'] },
+    { id: 'nguon-my-dinh', name: 'Mỹ Đình', keys: ['mỹ đình', 'đình thôn', 'nhân mỹ', 'thiên hiền', 'lê đức thọ', 'nguyễn hoàng'] },
+    { id: 'nguon-ba-dinh-tay-ho', name: 'Ba Đình - Tây Hồ', keys: ['ba đình', 'tây hồ', 'đội cấn', 'kim mã', 'ngọc hà', 'giảng võ', 'xuân la', 'lạc long quân', 'thụy khuê', 'trích sài', 'yên phụ', 'bưởi', 'võ chí công'] },
+    { id: 'nguon-cau-giay', name: 'Cầu Giấy', keys: ['cầu giấy', 'dịch vọng', 'trung hoà', 'quan hoa', 'yên hoà', 'nguyễn khang', 'trần thái tông', 'duy tân', 'trần duy hưng', 'nguyễn phong sắc', 'hoàng quốc việt', 'hoa bằng'] },
+    { id: 'nguon-dong-da', name: 'Đống Đa', keys: ['đống đa', 'chùa láng', 'pháo đài láng', 'nguyên hồng', 'thái hà', 'thái thịnh', 'tây sơn', 'tôn đức thắng', 'xã đàn', 'khâm thiên', 'đê la thành', 'hào nam'] },
+    { id: 'nguon-thanh-xuan', name: 'Thanh Xuân', keys: ['thanh xuân', 'nguyễn trãi', 'khương đình', 'khương trung', 'khương mai', 'nhân chính', 'vương thừa vũ', 'hoàng văn thái', 'ngụy như kon tum', 'lê văn lương', 'quan nhân'] },
+    { id: 'nguon-ha-dong', name: 'Hà Đông', keys: ['hà đông', 'mỗ lao', 'văn quán', 'văn phú', 'quang trung (hà đông)', 'tố hữu', 'vạn phúc', 'chiến thắng', 'bế văn đàn'] },
+    { id: 'nguon-hoang-mai', name: 'Hoàng Mai', keys: ['hoàng mai', 'giáp bát', 'tân mai', 'trương định', 'vĩnh hưng', 'lĩnh nam', 'tam trinh', 'đại từ', 'đền lừ'] },
+    { id: 'nguon-hoai-duc', name: 'Hoài Đức', keys: ['hoài đức', 'an khánh', 'geleximco', 'hinode', 'kim chung'] }
+  ];
+
+  function guessDistrict(text) {
+    if (!text) return 'cau-giay';
+    const lower = text.toLowerCase();
+    for (const [kw, dist] of Object.entries(DISTRICT_MAP)) {
+      if (lower.includes(kw)) return dist;
+    }
+    return 'cau-giay';
+  }
+
+  function guessSourceGroup(text) {
+    if (!text) return { id: 'nguon-cau-giay', name: 'Cầu Giấy' };
+    const lower = text.toLowerCase();
+    for (const rule of SOURCE_GROUP_RULES) {
+      if (rule.keys.some(k => lower.includes(k))) {
+        return { id: rule.id, name: rule.name };
+      }
+    }
+    return { id: 'nguon-cau-giay', name: 'Cầu Giấy' };
+  }
+
   if (document.getElementById('mt-crawler-modal')) {
     document.getElementById('mt-crawler-modal').remove();
   }
@@ -131,6 +189,9 @@
         else if (/1n1k|1 phòng ngủ/i.test(desc) || /1n1k/i.test(title)) roomLayout = '1N1K';
         else if (/gác|duplex/i.test(desc) || /gác|duplex/i.test(title)) roomLayout = 'Gác lửng';
 
+        const guessedDistrict = guessDistrict(address + ' ' + title + ' ' + desc);
+        const guessedSource = guessSourceGroup(address + ' ' + title + ' ' + desc);
+
         results.push({
           id: 'MT-' + slug,
           title: title,
@@ -140,9 +201,9 @@
           area: area,
           roomLayout: roomLayout,
           furnishLevel: 'Full đồ',
-          district: 'cau-giay',
-          sourceGroup: 'nguon-cau-giay',
-          sourceGroupName: 'Cầu Giấy',
+          district: guessedDistrict,
+          sourceGroup: guessedSource.id,
+          sourceGroupName: guessedSource.name,
           status: 'available',
           statusName: 'Còn phòng',
           depositTerm: 'Cọc 1 đóng 1',

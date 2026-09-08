@@ -711,7 +711,7 @@ async function fetchRoomDetail(url, slug) {
   }
 
   // 20. Youtube & Video Drive
-  const ytMatch = html.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+  const ytMatch = html.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
   const videoUrl = ytMatch ? `https://www.youtube.com/watch?v=${ytMatch[1]}` : '';
   const driveMatch = html.match(/href=["'](https:\/\/drive\.google\.com\/[^\s"'>]+)["'][^>]*title=["']Lấy Video["']/i) ||
                      html.match(/href=["'](https:\/\/drive\.google\.com\/[^\s"'>]+)["']/i);
@@ -928,10 +928,10 @@ async function runSync(options = {}) {
     }
   }
 
-  // 🔴 PHÒNG BIẾN MẤT (KHÔNG CÒN TRÊN MOITHUE) -> ĐÁNH DẤU ẨN / ĐÃ THUÊ NGAY LẬP TỨC
-  // Khi chạy FULL đồng bộ (không có --limit), phòng nào không có trên Moithue sẽ bị ẩn để khớp 100% số lượng
+  // 🔴 PHÒNG BIẾN MẤT (KHÔNG CÒN TRÊN MOITHUE) -> XÓA HẲN ĐỂ KHỚP 100% VỚI MOITHUE
   let hiddenCount = 0;
   if (!options.limit) {
+    const activeRooms = [];
     for (const r of existingRooms) {
       const extKey = r.external_id ? String(r.external_id) : (r.externalId ? String(r.externalId) : null);
       const slugKey = r.moithueSlug || (r.id ? String(r.id).replace(/^MT-/, '') : null);
@@ -942,20 +942,16 @@ async function runSync(options = {}) {
                         (idKey && crawledKeys.has(idKey));
 
       if (!isPresent) {
-        r.missing_count = (r.missing_count || 0) + 1;
-        if (r.status === 'available' || !r.status) {
-          r.status = 'hidden';
-          r.statusName = 'Đã thuê / Tạm ẩn';
-          r.last_hidden_at = new Date().toISOString();
-          hiddenCount++;
-          changeLogs.push({ type: 'HIDDEN', id: r.id, title: r.title, reason: 'Không còn trên Mời Thuê' });
-        }
+        hiddenCount++;
+        changeLogs.push({ type: 'REMOVED', id: r.id, title: r.title, reason: 'Đã xóa vì không còn trên Mời Thuê' });
       } else {
         r.missing_count = 0;
         r.status = 'available';
         r.statusName = 'Còn phòng';
+        activeRooms.push(r);
       }
     }
+    existingRooms = activeRooms;
   }
 
   // Chuẩn hóa tên và địa chỉ tất cả các phòng trước khi ghi đè

@@ -182,20 +182,6 @@ async function loadAdminData() {
   renderRoomsTable();
 }
 
-function clearAllRooms() {
-  if (!confirm("⚠️ Bạn có chắc chắn muốn xóa TẤT CẢ phòng hiện có? Toàn bộ danh sách sẽ được đưa về 0 phòng.")) return;
-  adminRooms = [];
-  localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify([]));
-  fetch('/api/save-rooms', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify([])
-  }).catch(e => console.warn('Could not persist to server', e));
-
-  renderAdminStats();
-  renderRoomsTable();
-  showToast("🗑️ Đã xóa toàn bộ phòng! Hệ thống đang có 0 phòng.");
-}
 
 function renderAdminStats() {
   const totalRoomsEl = document.getElementById("statTotalRooms");
@@ -817,7 +803,7 @@ async function handleRoomFormSubmit(event) {
       maxVehicles,
       moveInStatus,
       availableFloors,
-      detailDescription: { info, amenity, service, note },
+      detailDescription: { info: '', service: '', note: '', amenity: '' },
       petAllowed,
       electricVehiclePolicy,
       electricVehicle,
@@ -843,61 +829,6 @@ async function handleRoomFormSubmit(event) {
   closeModal("roomManageModal");
   renderAdminStats();
   renderRoomsTable();
-}
-
-// ==========================================================================
-// EXPORT & IMPORT BACKUP DATABASE (JSON)
-// ==========================================================================
-function exportRoomsJson() {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(adminRooms, null, 2));
-  const downloadAnchor = document.createElement("a");
-  downloadAnchor.setAttribute("href", dataStr);
-  downloadAnchor.setAttribute("download", `thuetro_database_${adminRooms.length}_phong_${new Date().toISOString().slice(0, 10)}.json`);
-  document.body.appendChild(downloadAnchor);
-  downloadAnchor.click();
-  downloadAnchor.remove();
-  showToast(`📁 Đã xuất dữ liệu ${adminRooms.length} phòng ra file JSON thành công!`);
-}
-
-function triggerImportJson() {
-  const fileInput = document.getElementById("jsonFileInput");
-  if (fileInput) fileInput.click();
-}
-
-function handleImportJson(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = async function(e) {
-    try {
-      const imported = JSON.parse(e.target.result);
-      if (Array.isArray(imported) && imported.length > 0 && imported[0].title) {
-        if (confirm(`Bạn có chắc muốn nhập ${imported.length} phòng từ file này vào hệ thống không? Dữ liệu hiện tại sẽ được cập nhật.`)) {
-          adminRooms = imported;
-          await syncAdminRoomsToServer();
-          renderAdminStats();
-          renderRoomsTable();
-          showToast(`🎉 Đã nạp thành công ${imported.length} phòng vào hệ thống!`);
-        }
-      } else {
-        alert("File JSON không hợp lệ hoặc không đúng định dạng danh sách phòng!");
-      }
-    } catch (err) {
-      alert("Lỗi đọc file JSON: " + err.message);
-    }
-    event.target.value = "";
-  };
-  reader.readAsText(file);
-}
-
-function restoreInitialData() {
-  if (!confirm(`Khôi phục lại danh sách ${INITIAL_ROOMS.length} phòng trọ gốc mặc định? Các phòng thêm mới hoặc chỉnh sửa gần đây sẽ được đưa về dữ liệu gốc ban đầu.`)) return;
-  adminRooms = [...INITIAL_ROOMS];
-  localStorage.setItem(STORAGE_ROOMS_KEY, JSON.stringify(adminRooms));
-  renderAdminStats();
-  renderRoomsTable();
-  showToast(`Đã khôi phục toàn bộ ${INITIAL_ROOMS.length} phòng gốc thành công!`);
 }
 
 // ==========================================================================
