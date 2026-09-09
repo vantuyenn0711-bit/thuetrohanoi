@@ -36,8 +36,19 @@ let adminBookings = [];
 
 function getOptimizedImageUrl(url, width = 140, quality = 75) {
   if (!url || typeof url !== 'string') return '';
-  const clean = url.trim();
+  let clean = url.trim();
   if (!clean) return '';
+
+  const r2Match = clean.match(/https:\/\/d21aa69b6f66[^\/]*\/moithue-com-prod\/wp-content\/uploads\/([^?]+)/);
+  if (r2Match) {
+    let imgPath = r2Match[1].replace(/-\d+x\d+(?=\.(?:jpg|jpeg|png|webp))/i, '');
+    return `https://moithue.com/wp-content/uploads/${imgPath}`;
+  }
+
+  if (clean.includes('moithue.com/wp-content/uploads/')) {
+    clean = clean.replace(/-\d+x\d+(?=\.(?:jpg|jpeg|png|webp))/i, '');
+  }
+
   return clean;
 }
 

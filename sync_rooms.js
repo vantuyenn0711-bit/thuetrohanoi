@@ -104,6 +104,27 @@ function cleanHtml(html) {
 }
 
 // ==========================================================================
+// FIX R2 SIGNED URL → MOITHUE.COM DIRECT URL
+// R2 signed URLs hết hạn sau 1 giờ, cần chuyển sang URL trực tiếp moithue.com
+// ==========================================================================
+function fixR2Url(url) {
+  if (!url || typeof url !== 'string') return url;
+  // Nếu là R2 Cloudflare signed URL → chuyển sang moithue.com direct
+  const r2Match = url.match(/https:\/\/d21aa69b6f66[^\/]*\/moithue-com-prod\/wp-content\/uploads\/([^?]+)/);
+  if (r2Match) {
+    let path = r2Match[1];
+    // Bỏ thumbnail suffix (360x240, 150x150, etc.) để lấy ảnh gốc
+    path = path.replace(/-\d+x\d+(?=\.(?:jpg|jpeg|png|webp))/i, '');
+    return `https://moithue.com/wp-content/uploads/${path}`;
+  }
+  // Nếu là moithue.com URL có thumbnail suffix → bỏ suffix để lấy ảnh gốc
+  if (url.includes('moithue.com/wp-content/uploads/')) {
+    return url.replace(/-\d+x\d+(?=\.(?:jpg|jpeg|png|webp))/i, '');
+  }
+  return url;
+}
+
+// ==========================================================================
 // CHUẨN HÓA TÊN PHÒNG: ÉP CÁC ĐỊNH DẠNG 444.34.xx.11 / 444.xx THÀNH "Ngõ 444 "
 // ==========================================================================
 function normalizeRoomTitle(title) {
@@ -247,24 +268,34 @@ async function httpGet(url) {
   };
   if (authCookie) {
     headers['Cookie'] = authCookie;
-    headers['x-moithue-cookie'] = authCookie;
   }
 
-  // Luôn đi qua Worker Proxy kèm Cookie để không bị chặn Cloudflare và lấy được 100% nội dung đăng nhập
-  const targetUrl = CLOUDFLARE_WORKER_URL
-    ? `${CLOUDFLARE_WORKER_URL}/?url=${encodeURIComponent(url)}&cookie=${encodeURIComponent(authCookie)}`
-    : url;
-
+  // Thử trực tiếp trước (nhanh, không bị worker rate-limit 429)
   try {
-    const res = await fetch(targetUrl, { headers, signal: AbortSignal.timeout(25000) });
-    const body = await res.text();
-    return { status: res.status, body };
+    const res = await fetch(url, { headers, signal: AbortSignal.timeout(20000) });
+    if (res.status === 200) {
+      const body = await res.text();
+      return { status: 200, body };
+    }
   } catch (err) {
-    // Thử lại trực tiếp nếu worker lag
-    const res = await fetch(url, { headers, signal: AbortSignal.timeout(25000) });
-    const body = await res.text();
-    return { status: res.status, body };
+    // Fallback qua worker bên dưới
   }
+
+  // Nếu trực tiếp bị 403 (Cloudflare bot) hoặc lỗi mạng -> fallback qua Worker Proxy
+  if (CLOUDFLARE_WORKER_URL) {
+    try {
+      const workerHeaders = { ...headers };
+      if (authCookie) workerHeaders['x-moithue-cookie'] = authCookie;
+      const workerUrl = `${CLOUDFLARE_WORKER_URL}/?url=${encodeURIComponent(url)}&cookie=${encodeURIComponent(authCookie)}`;
+      const resW = await fetch(workerUrl, { headers: workerHeaders, signal: AbortSignal.timeout(25000) });
+      const bodyW = await resW.text();
+      return { status: resW.status, body: bodyW };
+    } catch (errW) {
+      console.warn(`Worker proxy error for ${url}:`, errW.message);
+    }
+  }
+
+  return { status: 500, body: '' };
 }
 
 // ==========================================================================
@@ -325,9 +356,10 @@ function parseListingCards(html) {
     const metaMatch = card.match(/class="listivo-listing-card-v4__meta-value[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
     const meta = metaMatch ? cleanHtml(metaMatch[1]) : '';
 
-    // First Image
+    // First Image (fix R2 URL + bỏ thumbnail suffix)
     const imgMatch = card.match(/data-srcset="([^"\s]+)/i) || card.match(/src="([^"\s]+)/i);
-    const firstImg = imgMatch ? imgMatch[1].replace(/&#038;/g, '&') : '';
+    const firstImgRaw = imgMatch ? imgMatch[1].replace(/&#038;/g, '&') : '';
+    const firstImg = fixR2Url(firstImgRaw);
 
     const listHash = sha256(`${modelId || slug}|${title}|${price}|${meta}`);
 
@@ -660,7 +692,10 @@ async function fetchRoomDetail(url, slug) {
     const baseName = p.replace(/-\d+x\d+/, '').replace(/-scaled/, '');
     if (!baseMap.has(baseName)) baseMap.set(baseName, p);
   }
-  const images = Array.from(baseMap.values()).map(p => `https://moithue.com/wp-content/uploads/${p}`);
+  const images = Array.from(baseMap.values()).map(p => {
+    const fullUrl = `https://moithue.com/wp-content/uploads/${p}`;
+    return fixR2Url(fullUrl); // Bỏ thumbnail suffix nếu có
+  });
 
   // 16. Address
   const addrMatch = description.match(/(?:ĐỊA CHỈ|Địa chỉ)[:\s]*([^\n\r•]+)/i);
@@ -797,6 +832,84 @@ async function fetchRoomDetail(url, slug) {
     moithueUrl: url,
     moithueSlug: slug
   };
+}
+
+// ==========================================================================
+// 2.5. SỬA CHỮA PHÒNG THIẾU GALLERY ẢNH (REPAIR INCOMPLETE ROOMS)
+// Quét phòng chỉ có 1 ảnh hoặc thiếu mô tả → fetch lại chi tiết từ moithue
+// ==========================================================================
+async function repairIncompleteRooms(rooms) {
+  // Tìm phòng cần sửa: chỉ 1 ảnh, hoặc description = title, hoặc dùng R2 URL
+  const needsRepair = rooms.filter(r => {
+    const imgCount = (r.images || []).length;
+    const hasR2 = (r.images || []).some(img => img.includes('r2.cloudflarestorage'));
+    const noDetail = !r.detailDescription || Object.keys(r.detailDescription || {}).length === 0;
+    const descIsTitle = r.description === r.title || !r.description;
+    return (imgCount <= 1 || hasR2 || (noDetail && descIsTitle)) && r.moithueUrl;
+  });
+
+  if (needsRepair.length === 0) {
+    console.log('✅ Tất cả phòng đã có đủ ảnh gallery - không cần sửa chữa.');
+    return { repaired: 0, failed: 0 };
+  }
+
+  console.log(`\n🔧 [Repair] Phát hiện ${needsRepair.length} phòng thiếu ảnh/thông tin → đang sửa chữa...`);
+  let repaired = 0, failed = 0;
+
+  for (let i = 0; i < needsRepair.length; i++) {
+    const room = needsRepair[i];
+    process.stdout.write(`\r  🔧 [${i + 1}/${needsRepair.length}] Sửa: ${(room.title || room.id).slice(0, 40)}...`);
+
+    try {
+      const detail = await fetchRoomDetail(room.moithueUrl, room.moithueSlug || room.id.replace(/^MT-/, ''));
+      if (detail) {
+        const newImgCount = (detail.images || []).length;
+        const oldImgCount = (room.images || []).length;
+
+        // Chỉ cập nhật nếu lấy được nhiều ảnh hơn hoặc có thêm thông tin
+        if (newImgCount > oldImgCount || (detail.description && detail.description !== detail.title)) {
+          // Giữ lại các trường quan trọng không được ghi đè
+          const keepFields = ['id', 'external_id', 'status', 'statusName', 'first_seen_at', 'last_seen_at', 'last_changed_at', 'missing_count', 'list_hash'];
+          const preserved = {};
+          for (const key of keepFields) {
+            if (room[key] !== undefined) preserved[key] = room[key];
+          }
+
+          Object.assign(room, detail, preserved);
+          // Fix R2 URLs in images
+          room.images = (room.images || []).map(fixR2Url);
+          room.title = normalizeRoomTitle(room.title);
+          room.address = normalizeRoomTitle(room.address);
+          repaired++;
+        } else {
+          // Ít nhất cũng fix R2 URLs
+          room.images = (room.images || []).map(fixR2Url);
+          if ((room.images || []).some(img => !img.includes('r2.cloudflarestorage'))) repaired++;
+        }
+      } else {
+        // fetchRoomDetail fail → vẫn fix R2 URL nếu có
+        room.images = (room.images || []).map(fixR2Url);
+        failed++;
+      }
+    } catch (err) {
+      // Fix R2 URL ngay cả khi lỗi
+      room.images = (room.images || []).map(fixR2Url);
+      failed++;
+    }
+
+    // Delay nhẹ để không bị rate limit
+    await new Promise(r => setTimeout(r, 150));
+  }
+
+  // Fix R2 URLs cho TẤT CẢ phòng (không chỉ phòng cần repair)
+  for (const room of rooms) {
+    if (room.images) {
+      room.images = room.images.map(fixR2Url);
+    }
+  }
+
+  console.log(`\n  ✅ [Repair] Sửa thành công: ${repaired} | Thất bại: ${failed}`);
+  return { repaired, failed };
 }
 
 // ==========================================================================
@@ -996,6 +1109,9 @@ async function runSync(options = {}) {
     if (r.address) r.address = normalizeRoomTitle(r.address);
   }
 
+  // 🔧 SỬA CHỮA phòng thiếu ảnh / dùng R2 URL hết hạn
+  const repairResult = await repairIncompleteRooms(existingRooms);
+
   // Lưu lại vào rooms_new.json
   fs.writeFileSync(DB_FILE, JSON.stringify(existingRooms, null, 2), 'utf8');
 
@@ -1065,4 +1181,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { runSync, fetchRoomDetail, httpGet, fetchAllListings };
+module.exports = { runSync, fetchRoomDetail, httpGet, fetchAllListings, repairIncompleteRooms, fixR2Url };

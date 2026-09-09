@@ -47,9 +47,23 @@ const DEFAULT_ROOM_IMAGE = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.or
 // ==========================================================================
 function getOptimizedImageUrl(url, width = 600, quality = 80) {
   if (!url || typeof url !== 'string') return DEFAULT_ROOM_IMAGE;
-  const clean = url.trim();
+  let clean = url.trim();
   if (!clean) return DEFAULT_ROOM_IMAGE;
-  // Trực tiếp trả về URL ảnh gốc thực tế
+
+  // Fix R2 Cloudflare signed URL → moithue.com direct URL (R2 hết hạn sau 1 giờ)
+  const r2Match = clean.match(/https:\/\/d21aa69b6f66[^\/]*\/moithue-com-prod\/wp-content\/uploads\/([^?]+)/);
+  if (r2Match) {
+    let imgPath = r2Match[1];
+    // Bỏ thumbnail suffix (360x240, 150x150...) để lấy ảnh gốc nét
+    imgPath = imgPath.replace(/-\d+x\d+(?=\.(?:jpg|jpeg|png|webp))/i, '');
+    return `https://moithue.com/wp-content/uploads/${imgPath}`;
+  }
+
+  // Fix moithue.com URL có thumbnail suffix → bỏ suffix lấy ảnh gốc
+  if (clean.includes('moithue.com/wp-content/uploads/')) {
+    clean = clean.replace(/-\d+x\d+(?=\.(?:jpg|jpeg|png|webp))/i, '');
+  }
+
   return clean;
 }
 
