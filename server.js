@@ -68,6 +68,45 @@ setInterval(() => {
   }
 }, SYNC_INTERVAL_MINUTES * 60 * 1000);
 
+// ======================================================================
+// SELF-PING KEEP-ALIVE (Chống Render Free Tier ngủ server)
+// Ping chính mình mỗi 14 phút để server KHÔNG BAO GIỜ bị tắt
+// ======================================================================
+const KEEP_ALIVE_INTERVAL = 14 * 60 * 1000; // 14 phút
+function keepAlive() {
+  const renderUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+  const pingUrl = `${renderUrl}/api/sync-status`;
+  
+  fetch(pingUrl, { signal: AbortSignal.timeout(10000) })
+    .then(() => {
+      // Im lặng, chỉ log 1 dòng nhỏ
+      console.log(`💓 [Keep-Alive] Ping OK lúc ${new Date().toLocaleTimeString('vi-VN')} → Server vẫn thức`);
+    })
+    .catch(() => {
+      // Không cần xử lý, chỉ cần gửi request để Render biết server còn hoạt động
+    });
+}
+setInterval(keepAlive, KEEP_ALIVE_INTERVAL);
+
+// ======================================================================
+// STARTUP AUTO-SYNC (Khởi động → kiểm tra và sync ngay nếu cần)
+// Nếu lần sync cuối cách > 30 phút → sync ngay khi server vừa bật
+// ======================================================================
+setTimeout(async () => {
+  const msSinceLastSync = lastSyncTime 
+    ? Date.now() - new Date(lastSyncTime).getTime() 
+    : Infinity;
+  const minutesSinceLastSync = Math.round(msSinceLastSync / 60000);
+
+  if (msSinceLastSync > SYNC_INTERVAL_MINUTES * 60 * 1000) {
+    console.log(`\n🚨 [Startup] Phát hiện lần sync cuối cách đây ${minutesSinceLastSync} phút (> ${SYNC_INTERVAL_MINUTES}p)`);
+    console.log(`🚨 [Startup] Tự động kích hoạt đồng bộ ngay lập tức...`);
+    await triggerSync('startup');
+  } else {
+    console.log(`✅ [Startup] Lần sync cuối cách ${minutesSinceLastSync} phút → chưa cần sync, chờ timer tự động.`);
+  }
+}, 10000); // Chờ 10 giây cho server ổn định rồi mới check
+
 let cookies = {};
 const CLOUDFLARE_WORKER_URL = process.env.CLOUDFLARE_WORKER_URL || 'https://proud-grass-4b4a.vantuyenn0711.workers.dev';
 
