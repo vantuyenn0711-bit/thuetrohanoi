@@ -1296,14 +1296,35 @@ function openRoomDetailModal(roomId, isFullscreen = true, event) {
 
 function switchDetailImg(imgSrc, thumbEl) {
   const mainImg = document.getElementById('detailMainImg');
-  if (mainImg) mainImg.src = imgSrc;
+  if (mainImg) {
+    // Smooth crossfade animation
+    mainImg.style.transition = 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)';
+    mainImg.style.opacity = '0';
+    mainImg.style.transform = 'scale(1.015)';
+    
+    setTimeout(() => {
+      mainImg.src = imgSrc;
+      mainImg.onload = () => {
+        mainImg.style.opacity = '1';
+        mainImg.style.transform = 'scale(1)';
+      };
+      // Fallback nếu ảnh đã cached (onload không fire)
+      setTimeout(() => {
+        mainImg.style.opacity = '1';
+        mainImg.style.transform = 'scale(1)';
+      }, 100);
+    }, 200);
+  }
   document.querySelectorAll('.thumb-img').forEach(t => {
     t.classList.remove('active');
     t.style.borderColor = 'transparent';
+    t.style.transform = 'scale(1)';
   });
   if (thumbEl) {
     thumbEl.classList.add('active');
     thumbEl.style.borderColor = 'var(--primary)';
+    thumbEl.style.transform = 'scale(1.08)';
+    thumbEl.style.transition = 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)';
   }
 }
 
@@ -1347,18 +1368,26 @@ function openModal(modalId) {
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.classList.remove("active");
-    modal.classList.remove("modal-fullscreen");
-    document.body.style.overflow = "auto";
-  }
+  if (!modal || !modal.classList.contains('active')) return;
+  
+  // Thêm class closing để chạy animation đóng mượt
+  modal.classList.add('closing');
+  modal.classList.remove('active');
+  
+  // Sau khi animation kết thúc, dọn dẹp
+  setTimeout(() => {
+    modal.classList.remove('closing');
+    modal.classList.remove('modal-fullscreen');
+    document.body.style.overflow = 'auto';
+  }, 340); // Khớp với duration CSS 0.32s + buffer
 }
 
 window.onclick = function(event) {
-  if (event.target.classList.contains("modal-overlay")) {
-    event.target.classList.remove("active");
-    event.target.classList.remove("modal-fullscreen");
-    document.body.style.overflow = "auto";
+  if (event.target.classList.contains('modal-overlay') && event.target.classList.contains('active')) {
+    const modalId = event.target.id;
+    if (modalId) {
+      closeModal(modalId);
+    }
   }
 };
 

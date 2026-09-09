@@ -57,7 +57,54 @@
 @keyframes cardFadeIn {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(24px) scale(0.97);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes heartBurst {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.35) rotate(-8deg); color: var(--accent); }
+  50% { transform: scale(0.85) rotate(4deg); }
+  75% { transform: scale(1.1) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); color: var(--accent); }
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes modalSlideOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.94) translateY(16px);
+    filter: blur(3px);
+  }
+}
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -65,17 +112,20 @@
   }
 }
 
-@keyframes heartBurst {
-  0% { transform: scale(1); }
-  35% { transform: scale(1.4); color: var(--accent); }
-  70% { transform: scale(0.9); }
-  100% { transform: scale(1); color: var(--accent); }
+@keyframes galleryFadeIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes modalScaleIn {
+@keyframes shimmerSlide {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes tagPopIn {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(12px);
+    transform: scale(0.8) translateY(6px);
   }
   to {
     opacity: 1;
@@ -847,20 +897,22 @@ button, input, select, textarea {
   border: 1px solid var(--border-color);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), 
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), 
+              border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   position: relative;
   cursor: pointer;
   height: 100%;
-  animation: cardFadeIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(var(--i, 0) * 0.045s);
-  will-change: transform, box-shadow;
+  animation: cardFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 0.06s);
+  will-change: transform, box-shadow, filter;
 }
 
 .room-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-6px) scale(1.008);
+  box-shadow: 0 20px 40px -8px rgba(31, 93, 74, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06);
   border-color: var(--primary);
 }
 
@@ -911,11 +963,13 @@ button, input, select, textarea {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+  filter: brightness(1);
 }
 
 .room-card:hover .card-slide-img {
-  transform: scale(1.045);
+  transform: scale(1.06);
+  filter: brightness(1.03);
 }
 
 /* FLOATING WISHLIST BUTTON ON TOP RIGHT OF IMAGE */
@@ -1227,12 +1281,25 @@ button, input, select, textarea {
   padding: 20px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), 
+              visibility 0.38s ease,
+              backdrop-filter 0.38s ease;
 }
 
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
+}
+
+/* Closing animation: smooth slide-down + fade out */
+.modal-overlay.closing {
+  opacity: 0;
+  visibility: visible;
+  transition: opacity 0.32s cubic-bezier(0.4, 0, 1, 1), visibility 0.32s ease;
+}
+
+.modal-overlay.closing .modal-container {
+  animation: modalSlideOut 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
 .modal-container {
@@ -1242,18 +1309,42 @@ button, input, select, textarea {
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: var(--shadow-lg);
+  overflow-x: hidden;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
   position: relative;
-  transform: scale(0.94) translateY(14px);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  transform: scale(0.92) translateY(20px);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), 
+              opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.4s ease;
+  filter: blur(4px);
+  scroll-behavior: smooth;
 }
 
 .modal-overlay.active .modal-container {
   transform: scale(1) translateY(0);
+  opacity: 1;
+  filter: blur(0);
 }
 
-.modal-overlay.active .modal-container {
-  transform: translateY(0);
+/* Staggered content reveal inside modal */
+.modal-overlay.active .detail-gallery {
+  animation: sectionReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+.modal-overlay.active .detail-header-info {
+  animation: sectionReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
+}
+.modal-overlay.active .listing-attr-tags-strip {
+  animation: sectionReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+.modal-overlay.active .notice-sale-banner {
+  animation: sectionReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+.modal-overlay.active .detail-description-section {
+  animation: sectionReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.26s both;
+}
+.modal-overlay.active .available-floors-section {
+  animation: sectionReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
 }
 
 /* TOP NAVIGATION BAR CỦA DETAIL MODAL */
@@ -1918,7 +2009,8 @@ button, input, select, textarea {
 
 .listing-attr-tag:hover {
   background: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .listing-attr-tag--primary {
@@ -1929,6 +2021,7 @@ button, input, select, textarea {
 
 .listing-attr-tag--primary:hover {
   background: var(--primary-hover);
+  box-shadow: 0 4px 14px rgba(31, 93, 74, 0.3);
 }
 
 /* Available Floors Section */
@@ -1949,6 +2042,13 @@ button, input, select, textarea {
   border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 700;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: tagPopIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.floor-tag:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 12px rgba(31, 93, 74, 0.3);
 }
 
 /* Video Embed */
