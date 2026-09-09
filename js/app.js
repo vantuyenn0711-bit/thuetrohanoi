@@ -1374,7 +1374,7 @@ document.addEventListener("keydown", (e) => {
 // ==========================================================================
 function getAvailableRooms() {
   if (!rooms) return [];
-  return rooms.filter(r => r.status !== 'rented' && r.statusName !== 'Đã cho thuê' && r.status !== 'het-phong');
+  return rooms.filter(r => r.status !== 'rented' && r.statusName !== 'Đã cho thuê' && r.status !== 'het-phong' && r.status !== 'hidden' && r.statusName !== 'Đã thuê / Tạm ẩn');
 }
 
 function getDistrictCount(districtId) {

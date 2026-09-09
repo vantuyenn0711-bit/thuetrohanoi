@@ -351,7 +351,7 @@ async function fetchAllListings(limitPerPage = 50, maxItems = null) {
   console.log('🔄 Đang gọi API Moithue.com lấy danh sách phòng...');
   const firstPage = await fetchListingsPage(1, limitPerPage);
   const totalCount = firstPage.count || 0;
-  console.log(`📊 Tổng số phòng hiện có trên Moithue: ${totalCount} phòng`);
+  console.log(`📊 Tổng số phòng trên Moithue (API count): ${totalCount} phòng`);
 
   const seenKeys = new Set();
   let allRooms = [];
@@ -364,8 +364,11 @@ async function fetchAllListings(limitPerPage = 50, maxItems = null) {
 
   const targetCount = maxItems ? Math.min(totalCount, maxItems) : totalCount;
   let page = 2;
+  let consecutiveEmpty = 0;   // Đếm số trang rỗng liên tiếp
+  let skippedPages = 0;       // Đếm số trang bị skip do lỗi mạng
+  let reachedEnd = false;     // Flag đánh dấu đã hết phòng thực tế
 
-  while (allRooms.length < targetCount) {
+  while (allRooms.length < targetCount && !reachedEnd) {
     process.stdout.write(`\r   -> Đang tải trang ${page} (${allRooms.length}/${targetCount} phòng)...`);
     
     let pageSuccess = false;
@@ -376,10 +379,20 @@ async function fetchAllListings(limitPerPage = 50, maxItems = null) {
         const data = await fetchListingsPage(page, limitPerPage);
         const rooms = parseListingCards(data.template);
         if (!rooms || rooms.length === 0) {
-          // Thực sự hết phòng trên moithue
+          // Trang này không có phòng nào
+          consecutiveEmpty++;
           pageSuccess = true;
+          page++;
+          // Nếu 2 trang liên tiếp rỗng → chắc chắn đã hết phòng thực tế
+          // (API count có thể lớn hơn số phòng thực tế do đếm cả Mặt bằng, Văn phòng...)
+          if (consecutiveEmpty >= 2) {
+            console.log(`\n⚠️ ${consecutiveEmpty} trang liên tiếp rỗng → đã hết phòng thực tế (API báo ${totalCount} nhưng thực tế chỉ có ${allRooms.length})`);
+            reachedEnd = true;
+          }
           break;
         }
+        // Reset bộ đếm rỗng khi trang có dữ liệu
+        consecutiveEmpty = 0;
         for (const r of rooms) {
           if (!seenKeys.has(r.slug)) {
             seenKeys.add(r.slug);
@@ -396,9 +409,22 @@ async function fetchAllListings(limitPerPage = 50, maxItems = null) {
           await new Promise(r => setTimeout(r, 1500));
         } else {
           console.warn(`\n⚠️ Bỏ qua trang ${page} do lỗi sau 3 lần thử:`, err.message);
-          page++; // Bỏ qua trang lỗi để tiếp tục cào các trang còn lại chứ không dừng đột ngột
+          skippedPages++;
+          page++; // Bỏ qua trang lỗi, tiếp tục cào các trang còn lại
+          // Nếu quá nhiều trang lỗi liên tiếp (>5), dừng lại để tránh mất dữ liệu
+          if (skippedPages >= 5) {
+            console.error(`\n❌ Đã bỏ qua ${skippedPages} trang do lỗi mạng liên tiếp → dừng cào để bảo toàn dữ liệu`);
+            reachedEnd = true;
+          }
         }
       }
+    }
+  }
+
+  if (allRooms.length !== totalCount) {
+    console.log(`\n📊 Lưu ý: API báo ${totalCount} phòng nhưng thực tế cào được ${allRooms.length} phòng (chênh lệch ${totalCount - allRooms.length})`);
+    if (skippedPages > 0) {
+      console.log(`   ⚠️ Có ${skippedPages} trang bị bỏ qua do lỗi mạng → có thể thiếu ~${skippedPages * limitPerPage} phòng`);
     }
   }
   console.log(`\n✅ Đã lấy thành công ${allRooms.length} phòng từ danh sách.`);
@@ -929,29 +955,39 @@ async function runSync(options = {}) {
   }
 
   // 🔴 PHÒNG BIẾN MẤT (KHÔNG CÒN TRÊN MOITHUE) -> XÓA HẲN ĐỂ KHỚP 100% VỚI MOITHUE
+  // ⚠️ CHỈ XÓA khi cào được ít nhất 90% số phòng dự kiến (bảo vệ dữ liệu khi mạng lỗi)
   let hiddenCount = 0;
   if (!options.limit) {
-    const activeRooms = [];
-    for (const r of existingRooms) {
-      const extKey = r.external_id ? String(r.external_id) : (r.externalId ? String(r.externalId) : null);
-      const slugKey = r.moithueSlug || (r.id ? String(r.id).replace(/^MT-/, '') : null);
-      const idKey = r.id ? String(r.id) : null;
+    const crawlCoverage = crawledList.length / Math.max(1, existingRooms.filter(r => r.status === 'available' || !r.status).length);
+    const isCrawlReliable = crawlCoverage >= 0.85; // Phải cào được >= 85% số phòng hiện có
 
-      const isPresent = (extKey && crawledKeys.has(extKey)) || 
-                        (slugKey && crawledKeys.has(slugKey)) || 
-                        (idKey && crawledKeys.has(idKey));
+    if (!isCrawlReliable) {
+      console.log(`\n⚠️ KHÔNG XÓA PHÒNG vì crawl chưa đủ tin cậy:`);
+      console.log(`   Crawl được ${crawledList.length} phòng, DB hiện có ${existingRooms.length} phòng (tỷ lệ: ${(crawlCoverage * 100).toFixed(1)}%, cần >= 85%)`);
+      console.log(`   → Giữ nguyên tất cả phòng trong DB để không bị mất dữ liệu.`);
+    } else {
+      const activeRooms = [];
+      for (const r of existingRooms) {
+        const extKey = r.external_id ? String(r.external_id) : (r.externalId ? String(r.externalId) : null);
+        const slugKey = r.moithueSlug || (r.id ? String(r.id).replace(/^MT-/, '') : null);
+        const idKey = r.id ? String(r.id) : null;
 
-      if (!isPresent) {
-        hiddenCount++;
-        changeLogs.push({ type: 'REMOVED', id: r.id, title: r.title, reason: 'Đã xóa vì không còn trên Mời Thuê' });
-      } else {
-        r.missing_count = 0;
-        r.status = 'available';
-        r.statusName = 'Còn phòng';
-        activeRooms.push(r);
+        const isPresent = (extKey && crawledKeys.has(extKey)) || 
+                          (slugKey && crawledKeys.has(slugKey)) || 
+                          (idKey && crawledKeys.has(idKey));
+
+        if (!isPresent) {
+          hiddenCount++;
+          changeLogs.push({ type: 'REMOVED', id: r.id, title: r.title, reason: 'Đã xóa vì không còn trên Mời Thuê' });
+        } else {
+          r.missing_count = 0;
+          r.status = 'available';
+          r.statusName = 'Còn phòng';
+          activeRooms.push(r);
+        }
       }
+      existingRooms = activeRooms;
     }
-    existingRooms = activeRooms;
   }
 
   // Chuẩn hóa tên và địa chỉ tất cả các phòng trước khi ghi đè
